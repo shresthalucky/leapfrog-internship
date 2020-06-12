@@ -1,0 +1,14 @@
+.main-wrapper {
+    width: 100%;
+}
+
+.container {
+    position: relative;
+    width: 940px;
+    min-width: 940px;
+    margin: 0 auto;
+}
+
+.header {
+    width: 100%;
+}

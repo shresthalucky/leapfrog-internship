@@ -1,0 +1,52 @@
+html, body {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.clearfix {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.primary-bg {
+    background-color: #7dd9e8;
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+.user-info {
+    text-align: right;
+    margin-top: 24px;
+}
+
+.user-info .name {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.user-info .nav {
+    font-size: 12px;
+}
+
+.search {
+    margin-top: 40px;
+}
+
+.search input {
+    font-size: 12px;
+    padding: 4px 8px 4px 8px;
+    border: 0;
+    background-color: #caeff7;
+    width: 260px;
+}

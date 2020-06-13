@@ -1,10 +1,11 @@
-html, body {
+html,
+body {
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .clearfix {
-    content: '';
+    content: "";
     display: table;
     clear: both;
 }
@@ -20,6 +21,12 @@ html, body {
 .primary-bg {
     background-color: #7dd9e8;
 }
+
+.secondary-bg {
+    background-color: #f5f5f5;
+}
+
+/* header */
 
 .logo {
     float: left;
@@ -52,7 +59,7 @@ html, body {
 
 .search-field {
     float: left;
-    background: url('../images/sprite.png') no-repeat 0 0;
+    background: url("../images/sprite.png") no-repeat 0 0;
     width: 276px;
     margin-right: 7px;
 }
@@ -69,10 +76,10 @@ html, body {
 .search button {
     font-size: 9px;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #ffffff;
     padding: 6px 8px 6px 8px;
     border: 0;
-    background: url('../images/sprite.png') no-repeat 0 -26px;
+    background: url("../images/sprite.png") no-repeat 0 -26px;
     width: 53px;
     cursor: pointer;
 }
@@ -81,7 +88,7 @@ html, body {
     display: inline-block;
     height: 9px;
     width: 8px;
-    background: url('../images/sprite.png') no-repeat -63px -27px;
+    background: url("../images/sprite.png") no-repeat -63px -27px;
 }
 
 .search-icon {
@@ -89,5 +96,55 @@ html, body {
     margin-left: 5px;
     height: 10px;
     width: 9px;
-    background: url('../images/sprite.png') no-repeat -82px -27px;
+    background: url("../images/sprite.png") no-repeat -82px -27px;
+}
+
+/* navigation bar */
+
+.nav ul li {
+    display: inline;
+    margin: 15px;
+}
+
+.nav ul li:first-child {
+    margin-left: 0;
+}
+
+.nav ul li:last-child {
+    margin-right: 0;
+}
+
+.left-nav {
+    float: left;
+    font-size: 14px;
+    padding: 12px 0 12px 8px;
+}
+
+.right-nav {
+    float: right;
+    font-size: 11px;
+    padding: 12px 0 12px 0;
+}
+
+span.nav-icon {
+    display: inline-block;
+    background: url("../images/sprite.png") no-repeat;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.invites span.nav-icon{
+    height: 15px;
+    width: 10px;
+    background-position: -98px -27px;
+}
+
+.requests span.nav-icon{
+    height: 16px;
+    width: 19px;
+    background-position: -117px -27px;
+}
+
+.requests a {
+    color: #ababab;
 }

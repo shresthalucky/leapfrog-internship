@@ -22,31 +22,72 @@ html, body {
 }
 
 .logo {
+    float: left;
     margin-right: 20px;
 }
 
 .user-info {
+    float: right;
     text-align: right;
     margin-top: 24px;
 }
 
 .user-info .name {
-    font-size: 16px;
-    margin-bottom: 4px;
+    font-size: 15px;
+    margin-bottom: 9px;
 }
 
 .user-info .nav {
-    font-size: 12px;
+    font-size: 11px;
+}
+
+.user-info .nav span {
+    margin: 2px;
 }
 
 .search {
+    float: right;
     margin-top: 40px;
 }
 
-.search input {
-    font-size: 12px;
+.search-field {
+    float: left;
+    background: url('../images/sprite.png') no-repeat 0 0;
+    width: 276px;
+    margin-right: 7px;
+}
+
+.search-field input {
+    width: 80%;
+    font-size: 11px;
     padding: 4px 8px 4px 8px;
     border: 0;
-    background-color: #caeff7;
-    width: 260px;
+    /* background-color: #caeff7; */
+    background-color: transparent;
+}
+
+.search button {
+    font-size: 9px;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: 6px 8px 6px 8px;
+    border: 0;
+    background: url('../images/sprite.png') no-repeat 0 -26px;
+    width: 53px;
+    cursor: pointer;
+}
+
+.search-clear {
+    display: inline-block;
+    height: 9px;
+    width: 8px;
+    background: url('../images/sprite.png') no-repeat -63px -27px;
+}
+
+.search-icon {
+    display: inline-block;
+    margin-left: 5px;
+    height: 10px;
+    width: 9px;
+    background: url('../images/sprite.png') no-repeat -82px -27px;
 }

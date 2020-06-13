@@ -16,3 +16,27 @@
 .nav-wrapper {
     width: 100%;
 }
+
+.content-wrapper {
+    padding-top: 30px;
+}
+
+.left-content {
+    float: left;
+    width: 764px;
+}
+
+.right-content {
+    float: right;
+    width: 176px;
+}
+
+.recent-content {
+    float: left;
+    width: 194px;
+}
+
+.entries-content {
+    float: right;
+    width: 570px;
+}

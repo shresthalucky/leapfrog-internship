@@ -111,6 +111,10 @@ body {
 
 /* navigation bar */
 
+.user-info a:hover, .nav-wrapper a:hover {
+  text-decoration: underline;
+}
+
 .nav-wrapper .nav ul li {
   display: inline;
   margin: 15px;
@@ -320,15 +324,15 @@ span.bar-icon {
   font-weight: bold;
 }
 
-.article span.primary-dark {
+.article span.primary-dark, span.primary-dark a {
   color: #2fc1da;
 }
 
-.article span.green {
+.article span.green, span.green a {
   color: #769c2f;
 }
 
-.article span.red {
+.article span.red, span.red a {
   color: #d33f1b;
 }
 
@@ -349,6 +353,14 @@ span.bar-icon {
   padding-bottom: 6px;
 }
 
+.article h2.heading a {
+  color: #000000;
+}
+
+.article a:hover {
+  text-decoration: underline;
+}
+
 .article .description {
   color: #616161;
   font-size: 11px;
@@ -356,10 +368,6 @@ span.bar-icon {
 
 .article .description .info {
   margin-bottom: 4px;
-}
-
-.user-info a:hover, .nav-wrapper a:hover {
-  text-decoration: underline;
 }
 
 

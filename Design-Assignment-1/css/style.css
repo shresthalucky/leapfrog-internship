@@ -217,9 +217,10 @@ span.bar-icon {
 }
 
 
-.entries-content h2 {
+.entries-content h1 {
+  font-size: 21px;
   font-weight: normal;
-  padding-bottom: 5px;
+  padding-bottom: 8px;
 }
 
 .entries-nav {
@@ -282,6 +283,74 @@ span.bar-icon {
 
 .entries-nav .nav ul li a {
   display: block;
+}
+
+/* article */
+
+.article {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.article .user-avatar, .article .user-avatar .avatar-frame, .article .user-avatar img {
+  height: 70px;
+  width: 70px;
+}
+
+.article .user-avatar {
+  float: left;
+  position: relative;
+}
+
+.article .user-avatar .avatar-frame {
+  background: url("../images/sprite.png") no-repeat 0 -226px;
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.article span.highlight{
+  font-weight: bold;
+}
+
+.article span.primary-dark {
+  color: #2fc1da;
+}
+
+.article span.green {
+  color: #769c2f;
+}
+
+.article span.red {
+  color: #d33f1b;
+}
+
+.article .content {
+  width: 430px;
+  float: right;
+  padding: 0 9px 0 9px;
+}
+
+.article .content h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+}
+
+.article h2.heading {
+  font-size: 14px;
+  padding-bottom: 6px;
+}
+
+.article .description {
+  color: #616161;
+  font-size: 11px;
+}
+
+.article .description .info {
+  margin-bottom: 4px;
 }
 
 .user-info a:hover, .nav-wrapper a:hover {

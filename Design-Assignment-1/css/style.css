@@ -1,213 +1,289 @@
 html,
 body {
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #ffffff;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
 }
 
 .clearfix {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .right {
-    float: right;
+  float: right;
 }
 
 .left {
-    float: left;
+  float: left;
 }
 
 .primary-bg {
-    background-color: #7dd9e8;
+  background-color: #7dd9e8;
+}
+
+.primary-dark-bg {
+  background-color: #2fc1da;
 }
 
 .secondary-bg {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 /* header */
 
 .logo {
-    float: left;
-    margin-right: 20px;
+  float: left;
+  margin-right: 20px;
 }
 
 .user-info {
-    float: right;
-    text-align: right;
-    margin-top: 24px;
+  float: right;
+  text-align: right;
+  margin-top: 24px;
 }
 
 .user-info .name {
-    font-size: 15px;
-    margin-bottom: 9px;
+  font-size: 15px;
+  margin-bottom: 9px;
 }
 
 .user-info .nav {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 .user-info .nav span {
-    margin: 2px;
+  margin: 2px;
 }
 
 .search {
-    float: right;
-    margin-top: 40px;
+  float: right;
+  margin-top: 40px;
 }
 
 .search-field {
-    float: left;
-    background: url("../images/sprite.png") no-repeat 0 0;
-    width: 276px;
-    margin-right: 7px;
+  float: left;
+  background: url("../images/sprite.png") no-repeat 0 0;
+  width: 276px;
+  margin-right: 7px;
 }
 
 .search-field input {
-    width: 80%;
-    font-size: 11px;
-    padding: 4px 8px 4px 8px;
-    border: 0;
-    /* background-color: #caeff7; */
-    background-color: transparent;
+  width: 80%;
+  font-size: 11px;
+  padding: 4px 8px 4px 8px;
+  border: 0;
+  /* background-color: #caeff7; */
+  background-color: transparent;
 }
 
 .search button {
-    font-size: 9px;
-    font-weight: bold;
-    color: #ffffff;
-    padding: 6px 8px 6px 8px;
-    border: 0;
-    background: url("../images/sprite.png") no-repeat 0 -26px;
-    width: 53px;
-    cursor: pointer;
+  font-size: 9px;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 6px 8px 6px 8px;
+  border: 0;
+  background: url("../images/sprite.png") no-repeat 0 -26px;
+  width: 53px;
+  cursor: pointer;
 }
 
 .search-clear {
-    display: inline-block;
-    height: 9px;
-    width: 8px;
-    background: url("../images/sprite.png") no-repeat -63px -27px;
+  display: inline-block;
+  height: 9px;
+  width: 8px;
+  background: url("../images/sprite.png") no-repeat -63px -27px;
 }
 
 .search-icon {
-    display: inline-block;
-    margin-left: 5px;
-    height: 10px;
-    width: 9px;
-    background: url("../images/sprite.png") no-repeat -82px -27px;
+  display: inline-block;
+  margin-left: 5px;
+  height: 10px;
+  width: 9px;
+  background: url("../images/sprite.png") no-repeat -82px -27px;
 }
 
 /* navigation bar */
 
-.nav ul li {
-    display: inline;
-    margin: 15px;
+.nav-wrapper .nav ul li {
+  display: inline;
+  margin: 15px;
 }
 
-.nav ul li:first-child {
-    margin-left: 0;
+.nav-wrapper .nav ul li:first-child {
+  margin-left: 0;
 }
 
-.nav ul li:last-child {
-    margin-right: 0;
+.nav-wrapper .nav ul li:last-child {
+  margin-right: 0;
 }
 
 .left-nav {
-    float: left;
-    font-size: 14px;
-    padding: 12px 0 12px 8px;
+  float: left;
+  font-size: 14px;
+  padding: 12px 0 12px 8px;
 }
 
 .right-nav {
-    float: right;
-    font-size: 11px;
-    padding: 12px 0 12px 0;
+  float: right;
+  font-size: 11px;
+  padding: 12px 0 12px 0;
 }
 
 span.nav-icon {
-    display: inline-block;
-    background: url("../images/sprite.png") no-repeat;
-    vertical-align: middle;
-    margin-right: 8px;
+  display: inline-block;
+  background: url("../images/sprite.png") no-repeat;
+  vertical-align: middle;
+  margin-right: 8px;
 }
 
-.invites span.nav-icon{
-    height: 15px;
-    width: 10px;
-    background-position: -98px -27px;
+.invites span.nav-icon {
+  height: 15px;
+  width: 10px;
+  background-position: -98px -27px;
 }
 
-.requests span.nav-icon{
-    height: 16px;
-    width: 19px;
-    background-position: -117px -27px;
+.requests span.nav-icon {
+  height: 16px;
+  width: 19px;
+  background-position: -117px -27px;
 }
 
 .requests a {
-    color: #ababab;
+  color: #ababab;
 }
 
 /* contents */
 
 .side-nav-header {
-    color: #ffffff;
-    padding: 13px 12px 13px 12px;
-    font-size: 14px;
+  color: #ffffff;
+  padding: 13px 12px 13px 12px;
+  font-size: 14px;
 }
 
 span.download-icon {
-    display: inline-block;
-    background: url("../images/sprite.png") no-repeat;
-    background-position: -139px -27px;
-    height: 12px;
-    width: 14px;
+  display: inline-block;
+  background: url("../images/sprite.png") no-repeat;
+  background-position: -139px -27px;
+  height: 12px;
+  width: 14px;
 }
 
 span.bar-icon {
-    display: inline-block;
-    background: url("../images/sprite.png") no-repeat;
-    background-position: -61px -38px;
-    height: 9px;
-    width: 14px;
+  display: inline-block;
+  background: url("../images/sprite.png") no-repeat;
+  background-position: -61px -38px;
+  height: 9px;
+  width: 14px;
 }
 
-.side-nav ul li{
-    list-style-type: none;
-    font-size: 11px;
+.side-nav ul li {
+  list-style-type: none;
+  font-size: 11px;
 }
 
 .side-nav ul li a {
-    display: table;
-    width: 100%;
+  display: table;
+  width: 100%;
 }
 
 .side-nav ul li a > span {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
 }
 
-.side-nav ul li a > span:nth-child(2){
-    padding: 0 12px 0 12px;
-    width: 14px;
+.side-nav ul li a > span:nth-child(2) {
+  padding: 0 12px 0 12px;
+  width: 14px;
 }
 
 .side-nav ul li a > span:nth-child(1) {
-    width: 146px;
-    padding: 12px 0px 12px 11px;
+  width: 146px;
+  padding: 12px 0px 12px 11px;
 }
 
 .side-nav ul li a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .side-nav ul li:hover {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .video-tutorials ul li a > span:first-child {
-    width: 100%;
-    padding: 12px 11px 12px 11px;
+  width: 100%;
+  padding: 12px 11px 12px 11px;
+}
+
+
+.entries-content h2 {
+  font-weight: normal;
+  padding-bottom: 5px;
+}
+
+.entries-nav {
+  width: 100%;
+  border-bottom: 2px solid #2fc1da;
+  text-align: center;
+}
+
+.entries-nav .nav {
+  width: 258px;
+  height: 65px;
+  background: url("../images/sprite.png") no-repeat;
+  position: relative;
+}
+
+.entries-nav .nav:first-child{
+  float: left;
+  background-position: 0 -52px;
+}
+
+.entries-nav .nav:last-child{
+  float: right;
+  background-position: 0 -122px;
+}
+
+.entries-nav span.nav-title {
+  font-size: 12px;
+  display: block;
+  padding: 12px;
+}
+
+.entries-nav .nav ul {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  font-size: 0;
+}
+
+.entries-nav .nav ul li {
+  display: inline-block;
+  width: 115px;
+  height: 28px;
+  background: url("../images/sprite.png") no-repeat;
+  background-position: 0px -194px;
+  text-align: center;
+  margin: 0 4px 0 4px;
+  font-size: 11px;
+  line-height: 28px;
+  vertical-align: middle;
+}
+
+.entries-nav .nav ul li.active, .entries-nav .nav ul li:hover {
+  background-position: -117px -194px;
+}
+
+.entries-nav .nav ul li.active a, .entries-nav .nav ul li:hover a {
+  color: #ffffff;
+}
+
+.entries-nav .nav ul li a {
+  display: block;
+}
+
+.user-info a:hover, .nav-wrapper a:hover {
+  text-decoration: underline;
 }

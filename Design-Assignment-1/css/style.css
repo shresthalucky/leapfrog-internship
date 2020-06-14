@@ -305,6 +305,7 @@ span.nav-icon {
 /********* articles *********/
 
 .article {
+  width: 100%;
   padding: 15px 0 15px 0;
   border-bottom: 1px solid #d8d8d8;
 }
@@ -350,8 +351,7 @@ span.red a {
 }
 
 .article .content {
-  width: 430px;
-  float: right;
+  float: left;
   padding: 0 9px 0 9px;
 }
 

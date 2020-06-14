@@ -39,7 +39,12 @@
 .entries-content {
   float: right;
   width: 518px;
+<<<<<<< HEAD
+  padding: 0 26px 0 26px;
+=======
   padding: 0 24px 0 26px;
+>>>>>>> acb48671dcbde5f6f71ca933e041f9dd69e7bf60
+  background-color: #ffffff;
 }
 
 .footer-wrapper {

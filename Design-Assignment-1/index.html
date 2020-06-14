@@ -2,30 +2,34 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="./css/reset.css" />
-  <link rel="stylesheet" type="text/css" href="./css/layout.css" />
-  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="description" content="TuTangle Design">
+  <meta name="keywords" content="HTML, CSS">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/layout.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
   <title>TuTangle - Design Assignment 1</title>
 </head>
 
 <body>
   <div class="main-wrapper">
+
+    <!-- header begin -->
     <div class="header primary-bg">
       <div class="container clearfix primary-bg">
-        <div class="left">
+        <div class="float-l">
           <div class="logo">
-            <img src="./images/logo.jpg">
+            <img src="./images/logo.jpg" alt="TuTangle">
           </div>
           <div class="search">
             <div class="search-field">
-              <input type="text" placeholder="Search by Term, Member, or Entry Title" />
+              <input type="text" value="Search by Term, Member, or Entry Title">
               <a href="#">
-                <span class="search-clear"></span>
+                <span class="icon clear-icon"></span>
               </a>
               <a href="#">
-                <span class="search-icon"></span>
+                <span class="icon search-icon"></span>
               </a>
             </div>
             <button>SEARCH</button>
@@ -43,12 +47,14 @@
         </div>
       </div>
     </div>
+    <!-- header end -->
 
+    <!-- top navigation begin -->
     <div class="nav-wrapper secondary-bg">
       <div class="nav container clearfix secondary-bg">
         <div class="left-nav">
           <ul>
-            <li>
+            <li class="ml-0">
               <a href="#">Create New Entry</a>
             </li>
             <li>
@@ -57,28 +63,32 @@
             <li>
               <a href="#">Friends</a>
             </li>
-            <li>
+            <li class="mr-0">
               <a href="#">Invite New Member</a>
             </li>
           </ul>
         </div>
         <div class="right-nav">
           <ul>
-            <li class="invites">
-              <span class="nav-icon"></span>
+            <li class="invites ml-0">
+              <span class="icon nav-icon invites-icon"></span>
               <a href="#">Topic Boxes Invites - 2</a>
             </li>
-            <li class="requests">
-              <span class="nav-icon"></span>
+            <li class="requests mr-0">
+              <span class="icon nav-icon requests-icon"></span>
               <a href="#">Friend Requests - 0</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
+    <!-- top navigation end -->
 
+    <!-- page content begin -->
     <div class="content-wrapper">
-      <div class="container clearfix">
+      <div class="container secondary-bg clearfix">
+
+        <!-- left side navigation begin -->
         <div class="left-content">
           <div class="recent-content secondary-bg">
             <div class="recent-searches side-nav">
@@ -88,17 +98,17 @@
               <ul>
                 <li>
                   <a href="#">
-                    <span>Nick Cave and the<br /> Bad Seeds</span>
-                    <span>
-                      <span class="download-icon"></span>
+                    <span class="text">Nick Cave and the<br> Bad Seeds</span>
+                    <span class="side-icon">
+                      <span class="icon download-icon"></span>
                     </span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span>African Animals</span>
-                    <span>
-                      <span class="download-icon"></span>
+                    <span class="text">African Animals</span>
+                    <span class="side-icon">
+                      <span class="icon download-icon"></span>
                     </span>
                   </a>
                 </li>
@@ -111,62 +121,65 @@
               <ul>
                 <li>
                   <a href="#">
-                    <span>Different verions of the Tristan Und Isolade Prelude</span>
-                    <span>
-                      <span class="bar-icon"></span>
+                    <span class="text">Different verions of the Tristan Und Isolade Prelude</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
                     </span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span>Music</span>
-                    <span>
-                      <span class="bar-icon"></span>
+                    <span class="text">Music</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
                     </span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span>Guitar</span>
-                    <span>
-                      <span class="bar-icon"></span>
+                    <span class="text">Guitar</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
                     </span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span>Bob Cohen</span>
-                    <span>
-                      <span class="bar-icon"></span>
+                    <span class="text">Bob Cohen</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
                     </span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span>Mark Schnack</span>
-                    <span>
-                      <span class="bar-icon"></span>
+                    <span class="text">Mark Schnack</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
                     </span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span>Jefferson Dickey</span>
-                    <span>
-                      <span class="bar-icon"></span>
+                    <span class="text">Jefferson Dickey</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
                     </span>
                   </a>
                 </li>
               </ul>
             </div>
-
           </div>
+          <!-- left side navigation end -->
 
+          <!-- center content begin -->
           <div class="entries-content">
             <h1>Entries</h1>
             <div>
+
+              <!-- tabbed navigation begin -->
               <div class="entries-nav clearfix">
-                <div class="nav">
+                <div class="nav entries-group">
                   <span class="nav-title">All Entries</span>
                   <ul>
                     <li class="active">
@@ -177,7 +190,7 @@
                     </li>
                   </ul>
                 </div>
-                <div class="nav">
+                <div class="nav subscribed-group">
                   <span class="nav-title">Subscribed</span>
                   <ul>
                     <li class="active">
@@ -189,11 +202,13 @@
                   </ul>
                 </div>
               </div>
+              <!-- tabbed navigation end -->
 
+              <!-- list articles begin -->
               <div class="articles-wrapper">
                 <div class="article clearfix">
                   <div class="user-avatar">
-                    <img src="./images/user1.jpg" />
+                    <img src="./images/user1.jpg" alt="user1">
                     <div class="avatar-frame"></div>
                   </div>
                   <div class="content">
@@ -213,7 +228,7 @@
                 </div>
                 <div class="article clearfix">
                   <div class="user-avatar">
-                    <img src="./images/user2.jpg" />
+                    <img src="./images/user2.jpg" alt="user2">
                     <div class="avatar-frame"></div>
                   </div>
                   <div class="content">
@@ -233,7 +248,7 @@
                 </div>
                 <div class="article clearfix">
                   <div class="user-avatar">
-                    <img src="./images/user3.jpg" />
+                    <img src="./images/user3.jpg" alt="user3">
                     <div class="avatar-frame"></div>
                   </div>
                   <div class="content">
@@ -253,7 +268,7 @@
                 </div>
                 <div class="article clearfix">
                   <div class="user-avatar">
-                    <img src="./images/user4.jpg" />
+                    <img src="./images/user4.jpg" alt="user4">
                     <div class="avatar-frame"></div>
                   </div>
                   <div class="content">
@@ -273,7 +288,7 @@
                 </div>
                 <div class="article clearfix">
                   <div class="user-avatar">
-                    <img src="./images/user5.jpg" />
+                    <img src="./images/user5.jpg" alt="user5">
                     <div class="avatar-frame"></div>
                   </div>
                   <div class="content">
@@ -291,14 +306,15 @@
                     </div>
                   </div>
                 </div>
-
               </div>
+              <!-- list articles end -->
 
             </div>
           </div>
-
         </div>
+        <!-- center content end -->
 
+        <!-- right side navigation begin -->
         <div class="right-content">
           <div class="video-content secondary-bg">
             <div class="video-tutorials side-nav">
@@ -337,9 +353,13 @@
             </div>
           </div>
         </div>
+        <!-- right side navigation end -->
+
       </div>
     </div>
+    <!-- page content end -->
 
+    <!-- footer begin -->
     <div class="footer-wrapper gray-bg">
       <div class="footer container clearfix gray-bg">
         <div class="nav">
@@ -358,6 +378,8 @@
         </div>
       </div>
     </div>
+    <!-- footer end -->
+
   </div>
 </body>
 

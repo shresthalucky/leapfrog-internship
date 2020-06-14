@@ -1,0 +1,386 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="description" content="TuTangle Design">
+  <meta name="keywords" content="HTML, CSS">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/layout.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <title>TuTangle - Design Assignment 1</title>
+</head>
+
+<body>
+  <div class="main-wrapper">
+
+    <!-- header begin -->
+    <div class="header primary-bg">
+      <div class="container clearfix primary-bg">
+        <div class="float-l">
+          <div class="logo">
+            <img src="./images/logo.jpg" alt="TuTangle">
+          </div>
+          <div class="search">
+            <div class="search-field">
+              <input type="text" value="Search by Term, Member, or Entry Title">
+              <a href="#">
+                <span class="icon clear-icon"></span>
+              </a>
+              <a href="#">
+                <span class="icon search-icon"></span>
+              </a>
+            </div>
+            <button>SEARCH</button>
+          </div>
+        </div>
+        <div class="user-info">
+          <div class="name">Joe Burros</div>
+          <div class="nav">
+            <a href="#">Home</a>
+            <span>|</span>
+            <a href="#">Settings</a>
+            <span>|</span>
+            <a href="#">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- header end -->
+
+    <!-- top navigation begin -->
+    <div class="nav-wrapper secondary-bg">
+      <div class="nav container clearfix secondary-bg">
+        <div class="left-nav">
+          <ul>
+            <li class="ml-0">
+              <a href="#">Create New Entry</a>
+            </li>
+            <li>
+              <a href="#">My Topic Boxes</a>
+            </li>
+            <li>
+              <a href="#">Friends</a>
+            </li>
+            <li class="mr-0">
+              <a href="#">Invite New Member</a>
+            </li>
+          </ul>
+        </div>
+        <div class="right-nav">
+          <ul>
+            <li class="invites ml-0">
+              <span class="icon nav-icon invites-icon"></span>
+              <a href="#">Topic Boxes Invites - 2</a>
+            </li>
+            <li class="requests mr-0">
+              <span class="icon nav-icon requests-icon"></span>
+              <a href="#">Friend Requests - 0</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- top navigation end -->
+
+    <!-- page content begin -->
+    <div class="content-wrapper">
+      <div class="container secondary-bg clearfix">
+
+        <!-- left side navigation begin -->
+        <div class="left-content">
+          <div class="recent-content secondary-bg">
+            <div class="recent-searches side-nav">
+              <div class="side-nav-header primary-dark-bg">
+                Recent Searches
+              </div>
+              <ul>
+                <li>
+                  <a href="#">
+                    <span class="text">Nick Cave and the<br> Bad Seeds</span>
+                    <span class="side-icon">
+                      <span class="icon download-icon"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="text">African Animals</span>
+                    <span class="side-icon">
+                      <span class="icon download-icon"></span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="side-nav recent-searches">
+              <div class="side-nav-header primary-dark-bg">
+                Recent Searches
+              </div>
+              <ul>
+                <li>
+                  <a href="#">
+                    <span class="text">Different verions of the Tristan Und Isolade Prelude</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="text">Music</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="text">Guitar</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="text">Bob Cohen</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="text">Mark Schnack</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="text">Jefferson Dickey</span>
+                    <span class="side-icon">
+                      <span class="icon bar-icon"></span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- left side navigation end -->
+
+          <!-- center content begin -->
+          <div class="entries-content">
+            <h1>Entries</h1>
+            <div>
+
+              <!-- tabbed navigation begin -->
+              <div class="entries-nav clearfix">
+                <div class="nav entries-group">
+                  <span class="nav-title">All Entries</span>
+                  <ul>
+                    <li class="active">
+                      <a href="#">All Members</a>
+                    </li>
+                    <li>
+                      <a href="#">Friends</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav subscribed-group">
+                  <span class="nav-title">Subscribed</span>
+                  <ul>
+                    <li class="active">
+                      <a href="#">New Entries</a>
+                    </li>
+                    <li>
+                      <a href="#">New Comments</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- tabbed navigation end -->
+
+              <!-- list articles begin -->
+              <div class="articles-wrapper">
+                <div class="article clearfix">
+                  <div class="user-avatar">
+                    <img src="./images/user1.jpg" alt="user1">
+                    <div class="avatar-frame"></div>
+                  </div>
+                  <div class="content">
+                    <h2 class="heading">
+                      <a href="#">Day for Night by Francois Truffaut, a ground breaking film</a>
+                    </h2>
+                    <div class="description">
+                      <div class="info">
+                        by <span class="highlight primary-dark"><a href="#">Alan Coe</a></span> | February 10, 2012 | <span
+                          class="highlight green">Subscribed</span>
+                      </div>
+                      <div class="source">
+                        From Topic Box: <span class="highlight primary-dark"><a href="#">My Favorite Movies</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="article clearfix">
+                  <div class="user-avatar">
+                    <img src="./images/user2.jpg" alt="user2">
+                    <div class="avatar-frame"></div>
+                  </div>
+                  <div class="content">
+                    <h3><span class="primary-dark">New Entry!</span></h3>
+                    <h2 class="heading">
+                      <a href="#">Blade Runner, The Director's Cut</a>
+                    </h2>
+                    <div class="description">
+                      <div class="info">
+                        by <span class="highlight primary-dark"><a href="#">Mary Pilot</a></span> | February 8, 2012
+                      </div>
+                      <div class="source">
+                        From Topic Box: <span class="highlight primary-dark"><a href="#">Behind the Scene</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="article clearfix">
+                  <div class="user-avatar">
+                    <img src="./images/user3.jpg" alt="user3">
+                    <div class="avatar-frame"></div>
+                  </div>
+                  <div class="content">
+                    <h3><span class="primary-dark">New Comment!</span></h3>
+                    <h2 class="heading">
+                      <a href="#">The Best French Resturant in Chicago?</a>
+                    </h2>
+                    <div class="description">
+                      <div class="info">
+                        by <span class="highlight primary-dark"><a href="#">Jim Roy</a></span> | February 7, 2012
+                      </div>
+                      <div class="source">
+                        From Topic Box: <span class="highlight primary-dark"><a href="#">Chicago Resturants Reviews</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="article clearfix">
+                  <div class="user-avatar">
+                    <img src="./images/user4.jpg" alt="user4">
+                    <div class="avatar-frame"></div>
+                  </div>
+                  <div class="content">
+                    <h2 class="heading">
+                      <a href="#">The Meaning of Night. Dark Book but incredibly well written.</a>
+                    </h2>
+                    <div class="description">
+                      <div class="info">
+                        by <span class="highlight primary-dark"><a href="#">John-Peter Moise</a></span> | February 7, 2012 | <span
+                          class="highlight green">Subscribed</span>
+                      </div>
+                      <div class="source">
+                        From Topic Box: <span class="highlight primary-dark"><a href="#">Books Read & Books to Read</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="article clearfix">
+                  <div class="user-avatar">
+                    <img src="./images/user5.jpg" alt="user5">
+                    <div class="avatar-frame"></div>
+                  </div>
+                  <div class="content">
+                    <h3><span class="highlight red">Topic Box Invite!</span></h3>
+                    <h2 class="heading">
+                      <a href="#">Pea Pesto</a>
+                    </h2>
+                    <div class="description">
+                      <div class="info">
+                        by <span class="highlight primary-dark"><a href="#">Marianne Gig</a></span> | February 6, 2012
+                      </div>
+                      <div class="source">
+                        From Topic Box: <span class="highlight primary-dark"><a href="#">Favorite Recipes</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- list articles end -->
+
+            </div>
+          </div>
+        </div>
+        <!-- center content end -->
+
+        <!-- right side navigation begin -->
+        <div class="right-content">
+          <div class="video-content secondary-bg">
+            <div class="video-tutorials side-nav">
+              <div class="side-nav-header primary-dark-bg">
+                Video Tutorials
+              </div>
+              <ul>
+                <li>
+                  <a href="#"><span>Overview of TuTangle</span></a>
+                </li>
+                <li>
+                  <a href="#"><span>Searching the Site</span></a>
+                </li>
+                <li>
+                  <a href="#"><span>Previous & Saved Searches</span></a>
+                </li>
+                <li>
+                  <a href="#"><span>The Topic Box Page</span></a>
+                </li>
+                <li>
+                  <a href="#"><span>Creating a Topic Box</span></a>
+                </li>
+                <li>
+                  <a href="#"><span>View Topic Box Entries</span></a>
+                </li>
+                <li>
+                  <a href="#"><span>Creating an Entry</span></a>
+                </li>
+                <li>
+                  <a href="#"><span>Privacy Settings</span></a>
+                </li>
+                <li>
+                  <a href="#"><span>Co-Authoring</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- right side navigation end -->
+
+      </div>
+    </div>
+    <!-- page content end -->
+
+    <!-- footer begin -->
+    <div class="footer-wrapper gray-bg">
+      <div class="footer container clearfix gray-bg">
+        <div class="nav">
+          <a href="#">About Us</a>
+          <span class="sep">&bull;</span>
+          <a href="#">Contact Us</a>
+          <span class="sep">&bull;</span>
+          <a href="#">Terms of Us</a>
+          <span class="sep">&bull;</span>
+          <a href="#">Privacy Policy</a>
+          <span class="sep">&bull;</span>
+          <a href="#">Feedback</a>
+        </div>
+        <div class="note">
+          &copy; TuTangle 2013
+        </div>
+      </div>
+    </div>
+    <!-- footer end -->
+
+  </div>
+</body>
+
+</html>

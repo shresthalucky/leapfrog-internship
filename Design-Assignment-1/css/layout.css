@@ -1,0 +1,48 @@
+.main-wrapper {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  width: 940px;
+  min-width: 940px;
+  margin: 0 auto;
+}
+
+.header {
+  width: 100%;
+}
+
+.nav-wrapper {
+  width: 100%;
+}
+
+.content-wrapper {
+  padding: 30px 0 32px 0;
+}
+
+.left-content {
+  float: left;
+  width: 764px;
+}
+
+.right-content {
+  float: right;
+  width: 176px;
+}
+
+.recent-content {
+  float: left;
+  width: 194px;
+}
+
+.entries-content {
+  float: right;
+  width: 518px;
+  padding: 0 26px 0 26px;
+  background-color: #ffffff;
+}
+
+.footer-wrapper {
+  width: 100%;
+}

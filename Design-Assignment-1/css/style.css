@@ -6,7 +6,7 @@ body {
   background-color: #ffffff;
 }
 
-.clearfix {
+.clearfix:after {
   content: "";
   display: table;
   clear: both;
@@ -107,8 +107,23 @@ span.requests-icon {
   margin-bottom: 9px;
 }
 
-.user-info .nav {
+.user-info ul.nav {
+  font-size: 0px;
+}
+
+.user-info ul.nav li {
+  display: inline;
   font-size: 11px;
+}
+
+.user-info ul.nav li:before {
+  content: "|";
+  padding: 5px;
+}
+
+.user-info ul.nav li:first-child:before {
+  content: "";
+  padding: 0;
 }
 
 .user-info .nav span {
@@ -141,13 +156,17 @@ span.requests-icon {
 }
 
 .search button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.search button.search-button {
   font-size: 9px;
   color: #ffffff;
   padding: 6px 8px 6px 8px;
-  border: 0;
   background: url("../images/sprite.png") no-repeat 0 -26px;
   width: 53px;
-  cursor: pointer;
 }
 
 /********* top navigation bar *********/
@@ -192,29 +211,30 @@ span.nav-icon {
 }
 
 .side-nav ul li {
+  display: block;
   list-style-type: none;
   font-size: 11px;
 }
 
 .side-nav ul li a {
-  display: table;
-  width: 100%;
+  display: block;
+  padding: 11px;
 }
 
 .side-nav ul li a > span {
-  display: table-cell;
-  vertical-align: middle;
+  display: block;
 }
 
 .side-nav ul li a span.side-icon {
-  padding: 0 12px 0 12px;
   width: 14px;
+  display: inline-block;
 }
 
 .side-nav ul li a span.text {
-  width: 146px;
-  padding: 11px 0px 11px 11px;
+  width: 152px;
+  display: inline-block;
   line-height: 1.4;
+  vertical-align: middle;
 }
 
 .side-nav ul li a:hover {
@@ -223,11 +243,6 @@ span.nav-icon {
 
 .side-nav ul li:hover {
   background-color: #ffffff;
-}
-
-.video-tutorials ul li a span {
-  width: 100%;
-  padding: 11px;
 }
 
 /********* main content *********/
@@ -355,10 +370,11 @@ span.red a {
   padding: 0 9px 0 9px;
 }
 
-.article .content h3 {
+.article .content .alert {
   font-size: 11px;
   text-transform: uppercase;
   padding-bottom: 6px;
+  font-weight: bold;
 }
 
 .article h2.heading {
@@ -391,21 +407,31 @@ span.red a {
   font-weight: bold;
 }
 
-.footer .nav {
+.footer ul.nav {
   float: left;
 }
 
-.footer .nav a {
+.footer ul.nav a {
   color: #d5d5d5;
 }
 
-.footer .nav a:hover {
+.footer a:hover {
   text-decoration: underline;
 }
 
-.footer span.sep {
+.footer ul.nav li {
+  display: inline;
+}
+
+.footer ul.nav li:before {
+  content: "•";
+  padding: 7px;
   color: #d5d5d5;
-  margin: 7px;
+}
+
+.footer ul.nav li:first-child:before {
+  content: "";
+  padding: 0px;
 }
 
 .footer .note {

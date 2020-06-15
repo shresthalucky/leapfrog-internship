@@ -93,7 +93,7 @@ span.requests-icon {
 
 .logo {
   float: left;
-  margin-right: 20px;
+  margin-right: 21px;
 }
 
 .user-info {
@@ -142,7 +142,6 @@ span.requests-icon {
 
 .search button {
   font-size: 9px;
-  font-weight: bold;
   color: #ffffff;
   padding: 6px 8px 6px 8px;
   border: 0;
@@ -214,7 +213,8 @@ span.nav-icon {
 
 .side-nav ul li a span.text {
   width: 146px;
-  padding: 12px 0px 12px 11px;
+  padding: 11px 0px 11px 11px;
+  line-height: 1.4;
 }
 
 .side-nav ul li a:hover {
@@ -227,15 +227,15 @@ span.nav-icon {
 
 .video-tutorials ul li a span {
   width: 100%;
-  padding: 12px 11px 12px 11px;
+  padding: 11px;
 }
 
 /********* main content *********/
 
 .entries-content h1 {
-  font-size: 21px;
+  font-size: 24px;
   font-weight: normal;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 .entries-nav {
@@ -387,7 +387,7 @@ span.red a {
 
 .footer {
   padding: 19px 0 19px 0;
-  font-size: 11px;
+  font-size: 9px;
   font-weight: bold;
 }
 

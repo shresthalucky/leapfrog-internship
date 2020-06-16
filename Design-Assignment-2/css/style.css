@@ -137,9 +137,10 @@ span.requests-icon {
 
 .search-field {
   float: left;
-  background: url("../images/sprite.png") no-repeat 0 0;
   width: 276px;
   margin-right: 7px;
+  background-color: #caeff7;
+  border-radius: 6px;
 }
 
 .search-field input {
@@ -165,8 +166,9 @@ span.requests-icon {
   font-size: 9px;
   color: #ffffff;
   padding: 6px 8px 6px 8px;
-  background: url("../images/sprite.png") no-repeat 0 -26px;
+  background-color: #264d56;
   width: 53px;
+  border-radius: 6px;
 }
 
 /********* top navigation bar *********/
@@ -262,7 +264,7 @@ span.nav-icon {
 .entries-nav .nav {
   width: 258px;
   height: 65px;
-  background: url("../images/sprite.png") no-repeat;
+  background-color: #f5f5f5;
   position: relative;
 }
 
@@ -294,7 +296,7 @@ span.nav-icon {
   display: inline-block;
   width: 115px;
   height: 28px;
-  background: url("../images/sprite.png") no-repeat;
+  background-color: #dddddd;
   background-position: 0px -194px;
   text-align: center;
   margin: 0 4px 0 4px;
@@ -305,7 +307,7 @@ span.nav-icon {
 
 .entries-nav .nav ul li.active,
 .entries-nav .nav ul li:hover {
-  background-position: -117px -194px;
+  background-color: #2fc1da;
 }
 
 .entries-nav .nav ul li.active a,
@@ -326,7 +328,7 @@ span.nav-icon {
 }
 
 .article .user-avatar,
-.article .user-avatar .avatar-frame,
+.article .user-avatar,
 .article .user-avatar img {
   height: 70px;
   width: 70px;
@@ -335,15 +337,8 @@ span.nav-icon {
 .article .user-avatar {
   float: left;
   position: relative;
-}
-
-.article .user-avatar .avatar-frame {
-  background: url("../images/sprite.png") no-repeat 0 -226px;
-  height: 70px;
-  width: 70px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .article span.highlight {

@@ -1,3 +1,34 @@
+@media only screen and (min-width: 480px) {
+  .nav-wrapper .nav {
+    text-align: left;
+  }
+
+  .nav-wrapper .nav .top-nav {
+    width: auto;
+  }
+
+  .nav-wrapper .menu-toggle span {
+    display: none;
+  }
+
+  .right-nav ul li {
+    margin: 15px;
+  }
+
+  .entries-nav .nav {
+    height: 65px;
+  }
+
+  .entries-nav .nav ul li {
+    display: inline-block;
+    margin: 0 4px 0 4px;
+    vertical-align: middle;
+    width: 46%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .content-wrapper {
     padding: 30px 20px 32px 20px;
@@ -11,6 +42,44 @@
   .recent-content {
     float: left;
     width: 194px;
+  }
+
+  .brand,
+  .logo {
+    float: left;
+    width: auto;
+  }
+
+  .logo {
+    margin-right: 21px;
+  }
+
+  .logo img {
+    display: inline-block;
+  }
+
+  .search {
+    text-align: left;
+    float: right;
+    margin-top: 40px;
+    padding: 0;
+  }
+
+  .search-field {
+    float: left;
+    width: 258px;
+    margin-right: 7px;
+  }
+
+  .user-info {
+    display: block;
+    float: right;
+    text-align: right;
+    margin-top: 24px;
+  }
+
+  .top-nav .user-config {
+    display: none;
   }
 
   .side-nav ul li a {
@@ -37,7 +106,7 @@
   .right-content {
     display: block;
   }
-  
+
   .recent-content {
     display: none;
   }
@@ -49,7 +118,7 @@
   }
 
   .entries-content h1 {
-    padding-bottom: 6px;
+    padding: 0 0 6px 0;
   }
 
   .entries-nav .nav:first-child {
@@ -60,12 +129,19 @@
     border-top-right-radius: 12px;
   }
 
-  .article .user-avatar {
-    display: block;
+  .footer ul.nav li {
+    display: inline;
   }
-
-  .article .description .info {
-    display: block;
+  
+  .footer ul.nav li:before {
+    content: "•";
+    padding: 7px;
+    color: #d5d5d5;
+  }
+  
+  .footer ul.nav li:first-child:before {
+    content: "";
+    padding: 0px;
   }
 }
 
@@ -86,38 +162,8 @@
     padding: 30px 0 32px 0;
   }
 
-  .brand,
-  .logo {
-    float: left;
-    width: auto;
-  }
-
-  .logo {
-    margin-right: 21px;
-  }
-
-  .logo img {
-    display: inline-block;
-  }
-
-  .user-info {
-    display: block;
-    float: right;
-    text-align: right;
-    margin-top: 24px;
-  }
-
-  .search {
-    text-align: left;
-    float: right;
-    margin-top: 40px;
-    padding: 0;
-  }
-
   .search-field {
-    float: left;
     width: 276px;
-    margin-right: 7px;
   }
 
   .left-nav {
@@ -151,7 +197,7 @@
   .nav-wrapper .nav {
     display: block;
   }
-  
+
   .left-content {
     float: left;
     width: 765px;

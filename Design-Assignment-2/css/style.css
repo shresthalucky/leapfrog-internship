@@ -191,9 +191,18 @@ span.requests-icon {
   padding: 8px 0 0 0;
 }
 
+.nav-wrapper .nav {
+  text-align: center;
+}
+
+.nav-wrapper .nav .top-nav {
+  width: 100%;
+}
 
 .nav-wrapper .menu-toggle img {
   height: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 .right-nav {
@@ -217,9 +226,13 @@ span.requests-icon {
   margin: 0;
 }
 
+.left-nav:hover ul{
+  display: block;
+}
+
 .right-nav ul li {
   display: inline;
-  margin: 15px;
+  margin: 9px;
 }
 
 .right-nav ul li:first-child {
@@ -297,7 +310,7 @@ span.nav-icon {
 
 .entries-nav .nav {
   width: 49.5%;
-  height: 65px;
+  height: 95px;
   background-color: #f5f5f5;
   position: relative;
 }
@@ -327,18 +340,16 @@ span.nav-icon {
 }
 
 .entries-nav .nav ul li {
-  display: inline-block;
-  width: 46%;
+  display: block;
+  width: 100%;
   height: 28px;
   background-color: #dddddd;
   background-position: 0px -194px;
   text-align: center;
-  margin: 0 4px 0 4px;
+  margin: 0;
   font-size: 11px;
   line-height: 28px;
-  vertical-align: middle;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 0;
 }
 
 .entries-nav .nav ul li.active,
@@ -396,8 +407,7 @@ span.red a {
 }
 
 .article .content {
-  float: left;
-  padding: 0 9px 0 9px;
+  padding: 0 10px 0 80px;
 }
 
 .article .content .alert {
@@ -450,18 +460,9 @@ span.red a {
 }
 
 .footer ul.nav li {
-  display: inline;
-}
-
-.footer ul.nav li:before {
-  content: "•";
-  padding: 7px;
-  color: #d5d5d5;
-}
-
-.footer ul.nav li:first-child:before {
-  content: "";
-  padding: 0px;
+  display: list-item;
+  list-style-type: none;
+  margin: 5px 0 5px 0;
 }
 
 .footer .note {

@@ -1,8 +1,7 @@
 @media only screen and (min-width: 768px) {
-
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1200px) {
   .main-wrapper {
     min-width: 1002px;
   }
@@ -10,4 +9,39 @@
   .container {
     width: 940px;
   }
+
+  .brand,
+  .logo {
+    float: left;
+    width: auto;
+  }
+
+  .logo {
+    margin-right: 21px;
+  }
+
+  .logo img {
+    display: inline-block;
+  }
+
+  .user-info {
+    display: block;
+    float: right;
+    text-align: right;
+    margin-top: 24px;
+  }
+
+  .search {
+    text-align: left;
+    float: right;
+    margin-top: 40px;
+    padding: 0;
+  }
+
+  .search-field {
+    float: left;
+    width: 276px;
+    margin-right: 7px;
+  }
+
 }

@@ -187,7 +187,7 @@ span.requests-icon {
   text-decoration: underline;
 }
 
-.nav-wrapper .menu-toggle{
+.nav-wrapper .menu-toggle {
   text-align: center;
   padding: 12px;
 }
@@ -202,7 +202,8 @@ span.requests-icon {
   text-align: center;
 }
 
-.left-nav, .right-nav {
+.left-nav,
+.right-nav {
   font-size: 14px;
 }
 
@@ -256,6 +257,16 @@ span.nav-icon {
 
 .side-nav ul li:hover {
   background-color: #ffffff;
+}
+
+.recent-searches-1 ul,
+.recent-searches-2 ul {
+  display: none;
+}
+
+.recent-searches-1:hover ul,
+.recent-searches-2:hover ul {
+  display: block;
 }
 
 /********* main content *********/
@@ -339,7 +350,6 @@ span.nav-icon {
 }
 
 .article .user-avatar,
-.article .user-avatar,
 .article .user-avatar img {
   height: 70px;
   width: 70px;
@@ -350,6 +360,34 @@ span.nav-icon {
   position: relative;
   border-radius: 6px;
   overflow: hidden;
+  display: none;
+}
+
+.user-sm {
+  width: 100%;
+  font-size: 11px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.article .user-sm .user-avatar,
+.article .user-sm .user-avatar img {
+  height: 30px;
+  width: 30px;
+}
+
+.article .user-sm .user-avatar {
+  display: inline-block;
+  float: none;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 9px;
+  vertical-align: middle;
+}
+
+.article .user-sm .description-sm {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .article span.highlight {
@@ -403,6 +441,7 @@ span.red a {
 
 .article .description .info {
   margin-bottom: 4px;
+  display: none;
 }
 
 /********* footer *********/

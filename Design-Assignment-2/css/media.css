@@ -72,4 +72,42 @@
     display: block;
   }
 
+  .left-content {
+    float: left;
+    width: 765px;
+  }
+  
+  .right-content {
+    float: right;
+    width: 175px;
+  }
+  
+  .recent-content {
+    float: left;
+    width: 194px;
+  }
+
+  .recent-searches-1 ul,
+  .recent-searches-2 ul {
+    display: block;
+  }
+
+  .entries-content {
+    float: right;
+    width: 519px;
+    padding: 0 26px 0 26px;
+  }
+
+  .user-sm {
+    display: none;
+  }
+  
+  .article .user-avatar {
+    display: block;
+  }
+
+  .article .description .info {
+    display: block;
+  }
+
 }

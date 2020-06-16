@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
-  padding: 0px 20px 0 20px;
+  /* padding: 0px 20px 0 20px; */
 }
 
 .header {
@@ -22,24 +22,19 @@
 }
 
 .left-content {
-  float: left;
-  width: 765px;
+  width: 100%;
 }
 
 .right-content {
-  float: right;
-  width: 175px;
+  width: 100%;
+  display: none;
 }
 
 .recent-content {
-  float: left;
-  width: 194px;
+  width: 100%;
 }
 
 .entries-content {
-  float: right;
-  width: 519px;
-  padding: 0 26px 0 26px;
   background-color: #ffffff;
 }
 

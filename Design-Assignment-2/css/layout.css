@@ -1,0 +1,46 @@
+.main-wrapper {
+  min-width: 100%;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.inner-container {
+  padding: 0px 20px 0 20px;
+}
+
+.header {
+  width: 100%;
+}
+
+.nav-wrapper {
+  width: 100%;
+}
+
+.content-wrapper {
+  padding: 0 0 30px 0;
+}
+
+.left-content {
+  width: 100%;
+}
+
+.right-content {
+  width: 100%;
+  display: none;
+}
+
+.recent-content {
+  display: none;
+}
+
+.entries-content {
+  background-color: #ffffff;
+}
+
+.footer-wrapper {
+  width: 100%;
+}

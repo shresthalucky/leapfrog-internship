@@ -1,17 +1,83 @@
 @media only screen and (min-width: 768px) {
+  .content-wrapper {
+    padding: 30px 20px 32px 20px;
+  }
+
+  .right-content {
+    float: right;
+    width: 175px;
+  }
+
+  .recent-content {
+    float: left;
+    width: 194px;
+  }
+
+  .side-nav ul li a {
+    padding: 11px;
+  }
+
+  .side-nav ul li a span.side-icon {
+    display: inline-block;
+  }
+
+  .side-nav ul li a span.text {
+    width: 152px;
+  }
+
+  .recent-searches-1 ul,
+  .recent-searches-2 ul {
+    display: block;
+  }
+
+  .left-content {
+    width: calc(100% - 175px);
+  }
+
+  .right-content {
+    display: block;
+  }
+  
+  .recent-content {
+    display: none;
+  }
+
+  .entries-content {
+    float: left;
+    width: calc(100% - 26px);
+    padding: 0 26px 0 0;
+  }
+
+  .entries-content h1 {
+    padding-bottom: 6px;
+  }
+
+  .entries-nav .nav:first-child {
+    border-top-left-radius: 12px;
+  }
+
+  .entries-nav .nav:last-child {
+    border-top-right-radius: 12px;
+  }
+
+  .article .user-avatar {
+    display: block;
+  }
+
+  .article .description .info {
+    display: block;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
-
-  
   .main-wrapper {
     min-width: 1002px;
   }
-  
+
   .container {
     width: 940px;
   }
-  
+
   .inner-container {
     padding: 0;
   }
@@ -59,7 +125,7 @@
     float: left;
     padding: 12px 0 12px 8px;
   }
-  
+
   .right-nav {
     font-size: 11px;
     float: right;
@@ -78,31 +144,20 @@
     padding: 0;
   }
 
-  .nav-wrapper .menu-toggle{
+  .nav-wrapper .menu-toggle {
     display: none;
   }
 
   .nav-wrapper .nav {
     display: block;
   }
-
+  
   .left-content {
     float: left;
     width: 765px;
   }
-  
-  .right-content {
-    float: right;
-    width: 175px;
-  }
-  
-  .recent-content {
-    float: left;
-    width: 194px;
-  }
 
-  .recent-searches-1 ul,
-  .recent-searches-2 ul {
+  .recent-content {
     display: block;
   }
 
@@ -112,47 +167,11 @@
     padding: 0 26px 0 26px;
   }
 
-  .entries-content h1 {
-    padding-bottom: 6px;
-  }
-
   .entries-nav .nav {
     width: 258px;
   }
 
-  .entries-nav .nav:first-child {
-    border-top-left-radius: 12px;
-  }
-  
-  .entries-nav .nav:last-child {
-    border-top-right-radius: 12px;
-  }
-
   .entries-nav .nav ul li {
     width: 115px;
-  }
-
-  .user-sm {
-    display: none;
-  }
-  
-  .article .user-avatar {
-    display: block;
-  }
-
-  .article .description .info {
-    display: block;
-  }
-
-  .side-nav ul li a {
-    padding: 11px;
-  }
-
-  .side-nav ul li a span.side-icon {
-    display: inline-block;
-  }
-
-  .side-nav ul li a span.text {
-    width: 152px;
   }
 }

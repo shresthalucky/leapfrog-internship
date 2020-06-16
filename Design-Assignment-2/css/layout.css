@@ -34,7 +34,7 @@
 }
 
 .recent-content {
-  width: 100%;
+  display: none;
 }
 
 .entries-content {

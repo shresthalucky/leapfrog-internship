@@ -264,7 +264,6 @@ span.nav-icon {
 
 .side-nav ul li a span.side-icon {
   width: 14px;
-  display: none;
 }
 
 .side-nav ul li a span.text {
@@ -280,16 +279,6 @@ span.nav-icon {
 
 .side-nav ul li:hover {
   background-color: #ffffff;
-}
-
-.recent-searches-1 ul,
-.recent-searches-2 ul {
-  display: none;
-}
-
-.recent-searches-1:hover ul,
-.recent-searches-2:hover ul {
-  display: block;
 }
 
 /********* main content *********/

@@ -6,7 +6,10 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
-  /* padding: 0px 20px 0 20px; */
+}
+
+.inner-container {
+  padding: 0px 20px 0 20px;
 }
 
 .header {
@@ -18,7 +21,7 @@
 }
 
 .content-wrapper {
-  padding: 30px 0 32px 0;
+  padding: 0;
 }
 
 .left-content {

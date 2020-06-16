@@ -2,13 +2,22 @@
 }
 
 @media only screen and (min-width: 1200px) {
+
+  
   .main-wrapper {
     min-width: 1002px;
   }
-
+  
   .container {
     width: 940px;
+  }
+  
+  .inner-container {
     padding: 0;
+  }
+
+  .content-wrapper {
+    padding: 30px 0 32px 0;
   }
 
   .brand,
@@ -57,9 +66,14 @@
     padding: 12px 0 12px 0;
   }
 
-  .nav-wrapper .nav ul li {
+  .left-nav ul {
+    display: block;
+  }
+
+  .left-nav ul li {
     display: inline;
     margin: 15px;
+    padding: 12px;
     text-align: left;
     padding: 0;
   }
@@ -98,6 +112,26 @@
     padding: 0 26px 0 26px;
   }
 
+  .entries-content h1 {
+    padding-bottom: 6px;
+  }
+
+  .entries-nav .nav {
+    width: 258px;
+  }
+
+  .entries-nav .nav:first-child {
+    border-top-left-radius: 12px;
+  }
+  
+  .entries-nav .nav:last-child {
+    border-top-right-radius: 12px;
+  }
+
+  .entries-nav .nav ul li {
+    width: 115px;
+  }
+
   .user-sm {
     display: none;
   }
@@ -110,4 +144,15 @@
     display: block;
   }
 
+  .side-nav ul li a {
+    padding: 11px;
+  }
+
+  .side-nav ul li a span.side-icon {
+    display: inline-block;
+  }
+
+  .side-nav ul li a span.text {
+    width: 152px;
+  }
 }

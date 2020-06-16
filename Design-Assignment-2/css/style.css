@@ -141,7 +141,7 @@ span.requests-icon {
   display: inline-block;
   background-color: #caeff7;
   border-radius: 6px;
-  width: 80%;
+  width: calc(100% - 60px);
   text-align: left;
 }
 
@@ -188,23 +188,46 @@ span.requests-icon {
 }
 
 .nav-wrapper .menu-toggle {
-  text-align: center;
-  padding: 12px;
+  padding: 8px 0 0 0;
 }
 
-.nav-wrapper .nav {
+
+.nav-wrapper .menu-toggle img {
+  height: 20px;
+}
+
+.right-nav {
+  font-size: 11px;
+  float: right;
+  padding: 12px 0 12px 0;
+}
+
+.left-nav {
+  font-size: 11px;
+  float: left;
+}
+
+.left-nav ul {
   display: none;
 }
 
-.nav-wrapper .nav ul li {
+.left-nav ul li {
   display: block;
-  padding: 12px;
-  text-align: center;
+  padding: 12px 0 12px 0;
+  margin: 0;
 }
 
-.left-nav,
-.right-nav {
-  font-size: 14px;
+.right-nav ul li {
+  display: inline;
+  margin: 15px;
+}
+
+.right-nav ul li:first-child {
+  margin-left: 0;
+}
+
+.right-nav ul li:last-child {
+  margin-right: 0;
 }
 
 span.nav-icon {
@@ -232,7 +255,7 @@ span.nav-icon {
 
 .side-nav ul li a {
   display: block;
-  padding: 11px;
+  padding: 11px 20px 11px 20px;
 }
 
 .side-nav ul li a > span {
@@ -241,11 +264,11 @@ span.nav-icon {
 
 .side-nav ul li a span.side-icon {
   width: 14px;
-  display: inline-block;
+  display: none;
 }
 
 .side-nav ul li a span.text {
-  width: 152px;
+  width: 100%;
   display: inline-block;
   line-height: 1.4;
   vertical-align: middle;
@@ -274,7 +297,7 @@ span.nav-icon {
 .entries-content h1 {
   font-size: 24px;
   font-weight: normal;
-  padding-bottom: 6px;
+  padding: 10px 14px 10px 14px;
 }
 
 .entries-nav {
@@ -284,7 +307,7 @@ span.nav-icon {
 }
 
 .entries-nav .nav {
-  width: 258px;
+  width: 49.5%;
   height: 65px;
   background-color: #f5f5f5;
   position: relative;
@@ -316,7 +339,7 @@ span.nav-icon {
 
 .entries-nav .nav ul li {
   display: inline-block;
-  width: 115px;
+  width: 46%;
   height: 28px;
   background-color: #dddddd;
   background-position: 0px -194px;
@@ -325,6 +348,8 @@ span.nav-icon {
   font-size: 11px;
   line-height: 28px;
   vertical-align: middle;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .entries-nav .nav ul li.active,
@@ -360,34 +385,6 @@ span.nav-icon {
   position: relative;
   border-radius: 6px;
   overflow: hidden;
-  display: none;
-}
-
-.user-sm {
-  width: 100%;
-  font-size: 11px;
-  padding-bottom: 10px;
-  display: block;
-}
-
-.article .user-sm .user-avatar,
-.article .user-sm .user-avatar img {
-  height: 30px;
-  width: 30px;
-}
-
-.article .user-sm .user-avatar {
-  display: inline-block;
-  float: none;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 9px;
-  vertical-align: middle;
-}
-
-.article .user-sm .description-sm {
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .article span.highlight {
@@ -441,7 +438,6 @@ span.red a {
 
 .article .description .info {
   margin-bottom: 4px;
-  display: none;
 }
 
 /********* footer *********/

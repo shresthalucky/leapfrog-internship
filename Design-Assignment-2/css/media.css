@@ -8,6 +8,7 @@
 
   .container {
     width: 940px;
+    padding: 0;
   }
 
   .brand,
@@ -42,6 +43,33 @@
     float: left;
     width: 276px;
     margin-right: 7px;
+  }
+
+  .left-nav {
+    font-size: 14px;
+    float: left;
+    padding: 12px 0 12px 8px;
+  }
+  
+  .right-nav {
+    font-size: 11px;
+    float: right;
+    padding: 12px 0 12px 0;
+  }
+
+  .nav-wrapper .nav ul li {
+    display: inline;
+    margin: 15px;
+    text-align: left;
+    padding: 0;
+  }
+
+  .nav-wrapper .menu-toggle{
+    display: none;
+  }
+
+  .nav-wrapper .nav {
+    display: block;
   }
 
 }

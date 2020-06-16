@@ -12,6 +12,10 @@ body {
   clear: both;
 }
 
+.show {
+  display: block !important;
+}
+
 .float-r {
   float: right !important;
 }
@@ -183,21 +187,23 @@ span.requests-icon {
   text-decoration: underline;
 }
 
+.nav-wrapper .menu-toggle{
+  text-align: center;
+  padding: 12px;
+}
+
+.nav-wrapper .nav {
+  display: none;
+}
+
 .nav-wrapper .nav ul li {
-  display: inline;
-  margin: 15px;
+  display: block;
+  padding: 12px;
+  text-align: center;
 }
 
-.left-nav {
-  float: left;
+.left-nav, .right-nav {
   font-size: 14px;
-  padding: 12px 0 12px 8px;
-}
-
-.right-nav {
-  float: right;
-  font-size: 11px;
-  padding: 12px 0 12px 0;
 }
 
 span.nav-icon {

@@ -1,0 +1,21 @@
+section.hero {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 15px 0 15px;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+.top-container {
+  display: inline-block;
+  width: 100%;
+}
+
+header {
+  padding: 15px 0 15px 0;
+}

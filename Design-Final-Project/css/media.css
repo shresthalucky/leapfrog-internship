@@ -2,10 +2,95 @@
 }
 
 @media only screen and (min-width: 768px) {
+  header .logo {
+    height: 63px;
+  }
+
+  header button.buy {
+    display: inline;
+  }
+
+  .top-right-menu {
+    padding: 5px 0 5px 0;
+  }
 }
 
 @media only screen and (min-width: 992px) {
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1280px) {
+  .container {
+    max-width: 1540px;
+    padding: 0 50px 0 50px;
+  }
+
+  button.light {
+    padding: 14px 53px 15px 53px;
+    font-size: 18px;
+    border-radius: 30px;
+  }
+
+  .top-container {
+    width: auto;
+  }
+
+  .sm-top-container {
+    float: left;
+  }
+
+  header {
+    background: transparent;
+    padding-top: 70px;
+  }
+
+  header .logo {
+    height: 83px;
+  }
+
+  .top-right-menu {
+    display: none;
+  }
+
+  header nav {
+    display: block;
+    float: right;
+    padding: 0;
+    letter-spacing: 1px;
+  }
+
+  header nav ul,
+  header nav ul li {
+    width: auto;
+  }
+
+  header nav ul {
+    float: left;
+    margin-right: 70px;
+    padding: 27px 0 27px 0;
+  }
+
+  header nav button {
+    float: right;
+    margin: 10px 0 10px 0;
+    display: block;
+  }
+
+  header nav ul li {
+    display: inline-block;
+    margin: 0 35px 0 35px;
+  }
+
+  header nav ul li:first-child {
+    margin: 0 35px 0 0;
+  }
+
+  header nav ul li:last-child {
+    margin: 0 0 0 35px;
+  }
+
+  header nav ul li a {
+    font-weight: 500;
+    display: inline;
+    padding: 0;
+  }
 }

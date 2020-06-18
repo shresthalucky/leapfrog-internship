@@ -1,4 +1,7 @@
 @media only screen and (min-width: 480px) {
+  header .top-right-menu button.buy {
+    display: inline;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -6,7 +9,7 @@
     height: 63px;
   }
 
-  header button.buy {
+  header .top-right-menu button {
     display: inline;
   }
 

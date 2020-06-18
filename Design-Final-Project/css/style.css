@@ -1,0 +1,109 @@
+button.default {
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+}
+
+button.light {
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 7px 26px 7px 26px;
+}
+
+.float-l {
+  float: left;
+}
+
+.float-r {
+  float: right;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.sm {
+  display: block;
+}
+
+.main-wrapper {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+section.hero {
+  background-image: url("../images/hero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+section.hero::before {
+  content: "";
+  position: absolute;
+  background-color: #000000;
+  height: 100%;
+  width: 100%;
+  opacity: 0.4;
+  z-index: -1;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+header .logo {
+  float: left;
+  height: 53px;
+}
+
+header .logo img {
+  max-height: 100%;
+}
+
+header button.buy {
+  display: none;
+}
+
+button.toggle-nav {
+  background: transparent;
+  color: #ffffff;
+  border: 0;
+  font-size: 18px;
+  padding: 15px;
+}
+
+header nav {
+  display: none;
+  padding: 10px 0 10px 0;
+}
+
+header nav button {
+  display: none;
+}
+
+header nav ul {
+  width: 100%;
+}
+
+header nav ul li {
+  display: block;
+  width: 100%;
+}
+
+header nav ul li a {
+  display: block;
+  padding: 10px 15px 10px 15px;
+  color: #ffffff;
+}
+
+header .inner-wrapper:hover nav {
+  display: block;
+}

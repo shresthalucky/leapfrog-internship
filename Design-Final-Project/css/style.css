@@ -68,7 +68,8 @@ header .logo img {
   max-height: 100%;
 }
 
-header button.buy {
+header nav button,
+header .top-right-menu button.buy {
   display: none;
 }
 

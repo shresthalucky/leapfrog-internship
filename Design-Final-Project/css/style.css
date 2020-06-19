@@ -124,7 +124,11 @@ button.toggle-nav {
 
 header nav {
   display: none;
-  padding: 10px 0 10px 0;
+  position: absolute;
+  width: 100%;
+  background-color: #1c1d1d;
+  margin-left: -15px;
+  box-shadow: 0 10px 20px #1c1d1d;
 }
 
 header nav button {
@@ -142,7 +146,7 @@ header nav ul li {
 
 header nav ul li a {
   display: block;
-  padding: 10px 15px 10px 15px;
+  padding: 15px;
   color: #ffffff;
 }
 

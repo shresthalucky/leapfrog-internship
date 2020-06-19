@@ -2,11 +2,10 @@
   header .top-right-menu button.buy {
     display: inline;
   }
-  
+
   .countdown {
     margin: 60px 0 60px 0;
   }
-
 }
 
 @media only screen and (min-width: 768px) {
@@ -46,7 +45,7 @@
 
   .countdown ul li {
     padding: 44px 34px 44px 0;
-    background-color: rgba(242, 85, 67, 0.78);;
+    background-color: rgba(242, 85, 67, 0.78);
     width: auto;
   }
 
@@ -89,7 +88,7 @@
     font-size: 16px;
   }
 
-  .hero-buttons button{
+  .hero-buttons button {
     display: inline-block;
     margin: 0 15px;
   }
@@ -133,6 +132,11 @@
     float: right;
     padding: 0;
     letter-spacing: 1px;
+    position: relative;
+    background: transparent;
+    width: auto;
+    margin: 0;
+    box-shadow: none;
   }
 
   header nav ul,
@@ -209,7 +213,6 @@
 }
 
 @media only screen and (min-width: 1200px) {
-
   .lg {
     display: block;
   }

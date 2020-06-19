@@ -3,7 +3,6 @@ button.default {
   text-align: center;
   border-radius: 20px;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
   letter-spacing: 1px;
 }
 
@@ -12,6 +11,39 @@ button.light {
   border: 2px solid #ffffff;
   color: #ffffff;
   padding: 7px 26px 7px 26px;
+}
+
+button.light,
+button.yellow {
+  -webkit-transition: background 0.2s ease;
+  -moz-transition: background 0.2s ease;
+  -o-transition: background 0.2s ease;
+  transition: background 0.2s ease;
+}
+
+button.light:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+button.light:active {
+  background: #ffffff;
+  color: #1c1d1d;
+}
+
+button.yellow {
+  background-color: #fdaf19;
+  color: #1c1d1d;
+  border: 2px solid #fdaf19;
+  padding: 7px 26px 7px 26px;
+}
+
+button.yellow:hover {
+  background: #ffc046;
+}
+
+button.yellow:active {
+  background-color: transparent;
+  color: #fdaf19;
 }
 
 .float-l {
@@ -28,13 +60,23 @@ button.light {
   clear: both;
 }
 
-.sm {
+.sm,
+.sm-md {
   display: block;
 }
 
-.main-wrapper {
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
+.md,
+.lg {
+  display: none;
+}
+
+.content {
+  text-align: center;
+}
+
+.content h1 {
+  font-family: "Playfair Display", serif;
+  padding-bottom: 10px;
 }
 
 section.hero {
@@ -83,7 +125,11 @@ button.toggle-nav {
 
 header nav {
   display: none;
-  padding: 10px 0 10px 0;
+  position: absolute;
+  width: 100%;
+  background-color: #1c1d1d;
+  margin-left: -15px;
+  box-shadow: 0 10px 20px #1c1d1d;
 }
 
 header nav button {
@@ -101,10 +147,100 @@ header nav ul li {
 
 header nav ul li a {
   display: block;
-  padding: 10px 15px 10px 15px;
+  padding: 15px;
   color: #ffffff;
 }
 
 header .inner-wrapper:hover nav {
+  display: block;
+}
+
+section.hero .content h1 {
+  font-size: 30px;
+  color: #ffffff;
+}
+
+section.hero .content p {
+  color: #ffffff;
+}
+
+.hero-content {
+  height: calc(100% - 100px);
+  width: 100%;
+  display: table;
+}
+
+.hero-content .container {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.countdown {
+  margin: 30px 0 30px 0;
+}
+
+.countdown ul {
+  font-size: 0;
+  background-color: rgba(242, 85, 67, 0.78);
+  border-radius: 10px;
+}
+
+.countdown ul li {
+  display: inline-block;
+  padding: 20px;
+  width: 40%;
+}
+
+.countdown ul li div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.countdown ul li p:first-child {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.countdown ul li p:last-child {
+  letter-spacing: 1px;
+  font-size: 11px;
+}
+
+.countdown ul li:before {
+  content: "—";
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.hero-buttons button {
+  display: block;
+  margin: 15px auto;
+}
+
+.hero-play {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.hero-play button {
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.hero-play button:hover {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-play button:active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-play button span {
   display: block;
 }

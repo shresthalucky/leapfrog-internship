@@ -6,6 +6,10 @@
   .countdown {
     margin: 60px 0 60px 0;
   }
+
+  .about .container{
+    padding: 80px 45px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -15,6 +19,14 @@
 
   .sm {
     display: none;
+  }
+
+  .content h1 {
+    font-size: 50px;
+  }
+
+  .content h2 {
+    font-size: 40px;
   }
 
   .top-container {
@@ -28,10 +40,6 @@
 
   .top-right-menu {
     padding: 5px 0 5px 0;
-  }
-
-  section.hero .content h1 {
-    font-size: 40px;
   }
 
   .hero-content {
@@ -88,13 +96,26 @@
     font-size: 16px;
   }
 
-  .hero-buttons button {
+  .btn-row button {
     display: inline-block;
     margin: 0 15px;
   }
 }
 
 @media only screen and (min-width: 992px) {
+
+  .content h1 {
+    font-size: 60px;
+  }
+
+  .content h2 {
+    font-size: 50px;
+  }
+
+  .content p {
+    font-size: 18px;
+  }
+
   .container {
     max-width: 992px;
   }
@@ -112,7 +133,8 @@
   }
 
   button.light,
-  button.yellow {
+  button.yellow,
+  button.redline {
     padding: 15px 46px;
     font-size: 16px;
     border-radius: 30px;
@@ -183,10 +205,6 @@
     height: calc(100% - 175px);
   }
 
-  section.hero .content h1 {
-    font-size: 60px;
-  }
-
   section.hero .content p {
     font-size: 22px;
   }
@@ -221,7 +239,8 @@
     max-width: 1140px;
   }
   button.light,
-  button.yellow {
+  button.yellow,
+  button.redline {
     padding: 15px 53px 15px 53px;
     font-size: 18px;
     border-radius: 30px;
@@ -230,6 +249,11 @@
   header {
     padding-top: 70px;
   }
+
+  .about .container{
+    padding: 120px 85px;
+  }
+
 }
 
 @media only screen and (min-width: 1400px) {

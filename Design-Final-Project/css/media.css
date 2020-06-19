@@ -2,35 +2,106 @@
   header .top-right-menu button.buy {
     display: inline;
   }
+  
+  .countdown {
+    margin: 60px 0 60px 0;
+  }
+
 }
 
 @media only screen and (min-width: 768px) {
-  header .logo {
-    height: 63px;
+  .md {
+    display: block;
   }
 
-  header .top-right-menu button {
-    display: inline;
+  .sm {
+    display: none;
+  }
+
+  .top-container {
+    display: inline-block;
+    width: 100%;
+  }
+
+  header .logo {
+    height: 63px;
   }
 
   .top-right-menu {
     padding: 5px 0 5px 0;
   }
+
+  section.hero .content h1 {
+    font-size: 40px;
+  }
+
+  .hero-content {
+    height: calc(100% - 104px);
+  }
+
+  .countdown ul {
+    width: auto;
+    background: transparent;
+  }
+
+  .countdown ul li {
+    padding: 44px 34px 44px 0;
+    background-color: rgba(242, 85, 67, 0.78);;
+    width: auto;
+  }
+
+  .countdown ul li:before {
+    content: "—";
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .countdown ul li:first-child:before {
+    content: "";
+  }
+
+  .countdown ul li:before {
+    padding-right: 44px;
+  }
+
+  .countdown ul li:first-child:before {
+    padding: 0;
+  }
+
+  .countdown ul li:first-child {
+    padding-left: 40px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .countdown ul li:last-child {
+    padding-right: 40px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .countdown ul li p:first-child {
+    font-size: 40px;
+  }
+
+  .countdown ul li p:last-child {
+    font-size: 16px;
+  }
+
+  .hero-buttons button{
+    display: inline-block;
+    margin: 0 15px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
-}
-
-@media only screen and (min-width: 1280px) {
   .container {
-    max-width: 1540px;
-    padding: 0 50px 0 50px;
+    max-width: 992px;
   }
 
-  button.light {
-    padding: 14px 53px 15px 53px;
-    font-size: 18px;
-    border-radius: 30px;
+  .top-right-menu {
+    display: none;
   }
 
   .top-container {
@@ -41,17 +112,20 @@
     float: left;
   }
 
+  button.light,
+  button.yellow {
+    padding: 15px 46px;
+    font-size: 16px;
+    border-radius: 30px;
+  }
+
   header {
     background: transparent;
-    padding-top: 70px;
+    padding-top: 40px;
   }
 
   header .logo {
     height: 83px;
-  }
-
-  .top-right-menu {
-    display: none;
   }
 
   header nav {
@@ -68,7 +142,7 @@
 
   header nav ul {
     float: left;
-    margin-right: 70px;
+    margin-right: 40px;
     padding: 27px 0 27px 0;
   }
 
@@ -80,20 +154,87 @@
 
   header nav ul li {
     display: inline-block;
-    margin: 0 35px 0 35px;
+    margin: 0 10px;
+  }
+
+  header nav ul li:hover {
+    border-bottom: 2px solid #ffffff;
   }
 
   header nav ul li:first-child {
-    margin: 0 35px 0 0;
+    margin-left: 0;
   }
 
   header nav ul li:last-child {
-    margin: 0 0 0 35px;
+    margin-right: 0;
   }
 
   header nav ul li a {
     font-weight: 500;
     display: inline;
     padding: 0;
+  }
+
+  .hero-content {
+    height: calc(100% - 175px);
+  }
+
+  section.hero .content h1 {
+    font-size: 60px;
+  }
+
+  section.hero .content p {
+    font-size: 22px;
+  }
+
+  .countdown ul li {
+    padding: 44px 44px 44px 0;
+  }
+
+  .countdown ul li:first-child {
+    padding-left: 100px;
+  }
+
+  .countdown ul li:last-child {
+    padding-right: 100px;
+  }
+
+  .countdown ul li p:first-child {
+    font-size: 60px;
+  }
+
+  .countdown ul li p:last-child {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+  .lg {
+    display: block;
+  }
+
+  .container {
+    max-width: 1140px;
+  }
+  button.light,
+  button.yellow {
+    padding: 15px 53px 15px 53px;
+    font-size: 18px;
+    border-radius: 30px;
+  }
+
+  header {
+    padding-top: 70px;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  header nav ul {
+    margin-right: 70px;
+  }
+
+  header nav ul li {
+    margin: 0 35px;
   }
 }

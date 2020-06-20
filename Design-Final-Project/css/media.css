@@ -3,12 +3,8 @@
     display: inline;
   }
 
-  .countdown {
-    margin: 60px 0 60px 0;
-  }
-
-  .about .container{
-    padding: 80px 45px;
+  section .content {
+    padding: 80px 0;
   }
 }
 
@@ -46,25 +42,28 @@
     height: calc(100% - 104px);
   }
 
-  .countdown ul {
+  .counter ul {
     width: auto;
     background: transparent;
   }
 
-  .countdown ul li {
-    padding: 44px 34px 44px 0;
-    background-color: rgba(242, 85, 67, 0.78);
+  .counter ul li {
+    padding: 0px 34px 0 0;
     width: auto;
   }
 
-  .countdown ul li:before {
+  .countdown ul li {
+    padding: 44px 34px 44px 0;
+  }
+
+  .counter ul li:before {
     content: "—";
     color: #ffffff;
     font-weight: 700;
     font-size: 12px;
   }
 
-  .countdown ul li:first-child:before {
+  .counter ul li:first-child:before {
     content: "";
   }
 
@@ -88,22 +87,35 @@
     border-bottom-right-radius: 10px;
   }
 
-  .countdown ul li p:first-child {
+  .counter ul li p:first-child {
     font-size: 40px;
   }
 
-  .countdown ul li p:last-child {
+  .counter ul li p:last-child {
     font-size: 16px;
+  }
+
+  .countdown ul li {
+    background-color: rgba(242, 85, 67, 0.78);
+  }
+
+  .detail-numbers ul li:before {
+    content: "";
+    padding: 0;
   }
 
   .btn-row button {
     display: inline-block;
     margin: 0 15px;
   }
+
+  .col {
+    width: 33.33%;
+    padding: 0 15px 15px 15px !important;
+  }
 }
 
 @media only screen and (min-width: 992px) {
-
   .content h1 {
     font-size: 60px;
   }
@@ -222,11 +234,43 @@
   }
 
   .countdown ul li p:first-child {
-    font-size: 60px;
+    font-size: 40px;
   }
 
-  .countdown ul li p:last-child {
-    font-size: 18px;
+  .detail-numbers ul li p:first-child {
+    font-size: 40px;
+  }
+
+  .counter ul li p:last-child {
+    font-size: 20px;
+  }
+
+  .detail-numbers ul li:before {
+    content: "—";
+  }
+
+  .detail-numbers ul li:first-child:before {
+    content: "";
+  }
+
+  .detail-numbers ul li:before {
+    padding-right: 44px;
+  }
+
+  .detail-numbers ul li:first-child:before {
+    padding: 0;
+  }
+
+  .speaker .info{
+    padding: 32px;
+  }
+
+  .speaker .info p.name {
+    font-size: 30px;
+  }
+
+  .speaker .info p.job {
+    font-size: 16px;
   }
 }
 
@@ -250,13 +294,38 @@
     padding-top: 70px;
   }
 
-  .about .container{
+  .countdown {
+    margin: 60px 0;
+  }
+
+  .about .content {
     padding: 120px 85px;
   }
 
+  .about p {
+    line-height: 36px;
+  }
 }
 
 @media only screen and (min-width: 1400px) {
+  .outer-container {
+    padding: 0 50px;
+  }
+  
+  .detail .content {
+    padding: 116px 0 231px 0;
+  }
+
+  .confirmed-speakers {
+    margin-top: -132px;
+  }
+
+  .confirmed-speakers .content{
+    background-color: #ffffff;
+    box-shadow: 0 0 10.5px rgba(0,0,0,0.07);
+    padding: 116px 120px 50px 120px;
+  }
+
   header nav ul {
     margin-right: 70px;
   }
@@ -264,4 +333,5 @@
   header nav ul li {
     margin: 0 35px;
   }
+
 }

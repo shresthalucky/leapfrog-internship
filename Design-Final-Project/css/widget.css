@@ -34,7 +34,15 @@ button.redline {
   transition: background 0.2s ease;
 }
 
-button.light:hover {
+button.light:hover,
+button.yellow:hover,
+button.redline:hover {
+  background-color: #f0474a;
+  border: 2px solid #f0474a;
+  color: #ffffff;
+}
+
+/* button.light:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
@@ -59,4 +67,4 @@ button.redline:hover {
 button.redline:active {
   background-color: #f0474a;
   color: #ffffff;
-}
+} */

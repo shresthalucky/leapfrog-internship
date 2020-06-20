@@ -182,7 +182,7 @@ section.hero .content p {
 }
 
 .countdown ul {
-  background-color: rgba(242, 85, 67, 0.78);
+  background-color: rgba(242, 85, 67, 0.8);
 }
 
 .countdown ul li {
@@ -260,6 +260,10 @@ section .content {
   padding-bottom: 0;
 }
 
+.speaker {
+  cursor: pointer;
+}
+
 .speaker img {
   width: 100%;
 }
@@ -308,6 +312,10 @@ section .content {
   height: 100%;
   width: 100%;
   position: absolute;
+}
+
+.speaker:hover:before {
+  background-color: rgb(242, 85, 67, 0.7);
 }
 
 .speakers-showcase {
@@ -359,6 +367,7 @@ section .content {
 .date ul li {
   width: auto !important;
   margin: 8px 0;
+  cursor: pointer;
 }
 
 .date ul li.active {
@@ -391,6 +400,7 @@ section .content {
   position: relative;
   border-radius: 26px;
   margin: 8px;
+  cursor: pointer;
 }
 
 .place-tabs li.active {
@@ -402,7 +412,6 @@ section .content {
   margin: 0 auto;
 }
 
-
 .event {
   padding-top: 22px;
 }
@@ -412,7 +421,7 @@ section .content {
   border-bottom: 1px solid #f3f3f3;
 }
 
-.event:last-child .event-detail{
+.event:last-child .event-detail {
   border: 0;
 }
 

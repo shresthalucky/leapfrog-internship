@@ -29,7 +29,8 @@
 }
 
 .content h1,
-.content h2 {
+.content h2,
+.content h3 {
   font-family: "Playfair Display", serif;
 }
 
@@ -345,4 +346,100 @@ section .content {
   height: 170px;
   width: 100%;
   z-index: -1;
+}
+
+.cal-icon {
+  width: 60px;
+}
+
+.date {
+  padding: 30px 0;
+}
+
+.date ul li {
+  width: auto !important;
+  margin: 8px 0;
+}
+
+.date ul li.active {
+  color: #f0474a;
+}
+
+.date ul li:before {
+  content: none !important;
+}
+
+.date ul li p:first-child {
+  font-size: 22px !important;
+}
+
+.date ul li p:last-child {
+  font-size: 14px !important;
+}
+
+.place-tabs {
+  font-size: 0;
+}
+
+.place-tabs li {
+  display: inline-block;
+  font-weight: 700;
+  color: rgb(28, 29, 29, 0.7);
+  background-color: #f3f3f3;
+  padding: 15px 20px;
+  font-size: 16px;
+  position: relative;
+  border-radius: 26px;
+  margin: 8px;
+}
+
+.place-tabs li.active {
+  color: #1c1d1d;
+}
+
+.timeline {
+  max-width: 770px;
+  margin: 0 auto;
+}
+
+
+.event {
+  padding-top: 22px;
+}
+
+.event-detail {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.event:last-child .event-detail{
+  border: 0;
+}
+
+.event .event-speaker {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
+}
+
+.event .event-speaker img {
+  width: 100%;
+}
+
+.event-detail {
+  float: right;
+  width: calc(100% - 70px);
+  text-align: left;
+  padding-left: 30px;
+}
+
+.event-detail .time span {
+  color: #7c7c7c;
+}
+
+.event-detail .description {
+  font-size: 16px;
+  margin-top: 20px;
 }

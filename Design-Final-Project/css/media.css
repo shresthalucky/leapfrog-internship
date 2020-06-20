@@ -108,6 +108,71 @@
     padding: 0;
   }
 
+  .cal-icon {
+    width: auto;
+    margin-bottom: 10px;
+  }
+
+  .date {
+    padding: 54px 0 35px 0;
+  }
+
+  .date ul li {
+    padding: 0px 45px;
+    border-right: 1px solid #e9e9e9;
+    margin: 0;
+  }
+
+  .date ul li:last-child {
+    border-right: 0;
+  }
+
+  .place-tabs li {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .place-tabs li:first-child {
+    padding-left: 40px;
+    border-top-left-radius: 26px;
+    border-bottom-left-radius: 26px;
+  }
+
+  .place-tabs li:last-child {
+    padding-right: 40px;
+    border-top-right-radius: 26px;
+    border-bottom-right-radius: 26px;
+  }
+
+  .place-tabs li.active:after {
+    content: "";
+    border-right: 20px solid #f3f3f3;
+    border-top: 20px solid transparent;
+    height: 0;
+    width: 0;
+    transform: rotate(45deg);
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+  }
+
+  .event-detail .time {
+    font-size: 18px;
+  }
+
+  .event-detail .task {
+    font-size: 23px;
+    font-weight: 700;
+  }
+
+  .event {
+    padding-top: 45px;
+  }
+
+  .event-detail {
+    padding-bottom: 45px;
+  }
+
   .btn-row button {
     display: inline-block;
     margin: 0 15px;
@@ -117,6 +182,10 @@
     width: 33.33%;
     padding: 0 15px 15px 15px !important;
   }
+
+  .timeline {
+    padding: 0 25px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -125,7 +194,7 @@
   }
 
   .content h2 {
-    font-size: 50px;
+    font-size: 40px;
   }
 
   .content p {
@@ -223,6 +292,10 @@
 
   section.hero .content p {
     font-size: 22px;
+  }
+
+  .about h2 {
+    font-size: 50px;
   }
 
   .countdown ul li {
@@ -337,10 +410,15 @@
     z-index: 1;
   }
 
-  .confirmed-speakers .content {
+  .confirmed-speakers .content,
+  .schedule .content {
     background-color: #ffffff;
     box-shadow: 0 0 10.5px rgba(0, 0, 0, 0.07);
     padding: 116px 120px 50px 120px;
+  }
+
+  .schedule {
+    margin-top: 46px;
   }
 
   .separator {

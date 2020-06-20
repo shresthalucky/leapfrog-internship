@@ -18,7 +18,9 @@
 }
 
 .md,
-.lg {
+.lg,
+.md-lg,
+.xlg {
   display: none;
 }
 
@@ -224,10 +226,6 @@ section.hero .content p {
   line-height: 30px;
 }
 
-.detail {
-  background: linear-gradient(-45deg, #f0474a 0%, #fdaf19 100%);
-}
-
 .detail .content p {
   color: #ffffff;
 }
@@ -336,4 +334,15 @@ section .content {
 
 .speaker .info p.job {
   font-size: 12px;
+}
+
+.gradient-bg {
+  background: linear-gradient(-45deg, #f0474a 0%, #fdaf19 100%);
+}
+
+.separator {
+  position: absolute;
+  height: 170px;
+  width: 100%;
+  z-index: -1;
 }

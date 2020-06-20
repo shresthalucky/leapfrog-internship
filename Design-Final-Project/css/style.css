@@ -24,13 +24,22 @@
   display: none;
 }
 
+.mr-0 {
+  margin-right: 0 !important;
+}
+
+.ml-0 {
+  margin-left: 0 !important;
+}
+
 .content {
   text-align: center;
 }
 
 .content h1,
 .content h2,
-.content h3 {
+.content h3,
+.content h4 {
   font-family: "Playfair Display", serif;
 }
 
@@ -41,6 +50,15 @@
 
 .content h2 {
   font-size: 26px;
+  margin-top: 14px;
+}
+
+.content h3 {
+  font-size: 22px;
+}
+
+.content h4 {
+  font-size: 18px;
 }
 
 .content p {
@@ -49,22 +67,28 @@
   letter-spacing: 1px;
 }
 
-section.hero {
+.hero {
   background-image: url("../images/hero.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  z-index: 1;
+  z-index: 0;
+  position: relative;
 }
 
-section.hero::before {
+.hero::before {
   content: "";
   position: absolute;
   background-color: #000000;
   height: 100%;
   width: 100%;
   opacity: 0.4;
-  z-index: -1;
+  z-index: 1;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
 }
 
 header {
@@ -124,12 +148,10 @@ header nav ul li a {
 header .inner-wrapper:hover nav {
   display: block;
 }
-
-section.hero .content h1 {
+.hero .content h1 {
   color: #ffffff;
 }
-
-section.hero .content p {
+.hero .content p {
   color: #ffffff;
 }
 
@@ -235,6 +257,12 @@ section .content {
   padding: 60px 0;
 }
 
+.ticket-countdown {
+  margin-top: 45px;
+  margin-bottom: 55px;
+}
+
+.ticket-countdown ul li,
 .detail-numbers ul li {
   width: auto;
   padding: 20px;
@@ -347,13 +375,19 @@ section .content {
 
 .gradient-bg {
   background: linear-gradient(-45deg, #f0474a 0%, #fdaf19 100%);
+  color: #ffffff;
 }
 
 .separator {
   position: absolute;
   height: 170px;
   width: 100%;
-  z-index: -1;
+  z-index: 0;
+}
+
+.schedule {
+  position: relative;
+  z-index: 1;
 }
 
 .cal-icon {
@@ -491,4 +525,33 @@ section .content {
 
 .testimonial .description .person p {
   font-size: 14px;
+}
+
+.sponsors-list {
+  padding: 32px 0 0 0;
+  border-top: 1px solid #f3f3f3;
+  margin-top: 32px;
+}
+
+.sponsors-list li {
+  display: inline-block;
+  margin: 15px;
+  width: calc(50% - 40px);
+}
+
+.sponsors-list li img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.sponsors-list li:nth-child(odd) {
+  margin-left: 0;
+}
+
+.sponsors-list li:nth-child(even) {
+  margin-right: 0;
+}
+
+.sponsors-list h3 {
+  margin-bottom: 20px;
 }

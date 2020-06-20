@@ -9,6 +9,10 @@
 }
 
 @media only screen and (min-width: 768px) {
+  section.hero {
+    min-height: 950px;
+  }
+
   .md {
     display: block;
   }
@@ -349,6 +353,32 @@
   .speaker .info p.job {
     font-size: 16px;
   }
+
+  .testimonial {
+    width: 48%;
+    display: inline-block;
+    margin: 37px 15px;
+  }
+
+  .testimonial:nth-child(odd) {
+    margin-left: 0;
+  }
+  .testimonial:nth-child(even) {
+    margin-right: 0;
+  }
+
+  .testimonial .description {
+    padding: 48px 15px 48px 78px;
+  }
+
+  .testimonial .description .person strong {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .testimonial .description .person p {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -357,8 +387,10 @@
   }
 
   .container {
-    max-width: 1140px;
+    max-width: 1170px;
+    padding: 0;
   }
+
   button.light,
   button.yellow,
   button.redline {
@@ -391,6 +423,11 @@
 
   .outer-container {
     padding: 0 50px;
+  }
+
+  .grid-container {
+    max-width: 1200px;
+    padding: 0;
   }
 
   header nav ul {

@@ -380,6 +380,7 @@ section .content {
 
 .date ul li p:first-child {
   font-size: 22px !important;
+  letter-spacing: 0;
 }
 
 .date ul li p:last-child {
@@ -425,15 +426,26 @@ section .content {
   border: 0;
 }
 
-.event .event-speaker {
-  height: 70px;
-  width: 70px;
+.event .event-speaker,
+.testimonial .picture {
   border-radius: 50%;
   overflow: hidden;
   float: left;
 }
 
-.event .event-speaker img {
+.event .event-speaker {
+  height: 70px;
+  width: 70px;
+}
+
+.testimonial .picture {
+  height: 100px;
+  width: 100px;
+  margin-top: 48px;
+}
+
+.event .event-speaker img,
+.testimonial .picture img {
   width: 100%;
 }
 
@@ -451,4 +463,32 @@ section .content {
 .event-detail .description {
   font-size: 16px;
   margin-top: 20px;
+}
+
+.testimonial {
+  text-align: left;
+  margin: 15px 0;
+}
+
+.testimonials-list {
+  margin-top: 36px;
+}
+
+.testimonial .description {
+  margin-left: 50px;
+  box-shadow: 0 0 10.5px rgba(0, 0, 0, 0.07);
+  padding: 24px 15px 24px 78px;
+}
+
+.testimonial .description .person {
+  margin-top: 24px;
+}
+
+.testimonial .description .person strong {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.testimonial .description .person p {
+  font-size: 14px;
 }

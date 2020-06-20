@@ -1,11 +1,13 @@
 section.hero {
   height: 100vh;
+  min-height: 710px;
   width: 100%;
   /* width: 100vw; */
   position: relative;
 }
 
-.container {
+.container,
+.grid-container {
   width: 100%;
   margin: 0 auto;
   padding: 0 15px;

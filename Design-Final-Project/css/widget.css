@@ -1,0 +1,70 @@
+button.default {
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  padding: 7px 26px 7px 26px;
+}
+
+button.light {
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+button.yellow {
+  background-color: #fdaf19;
+  color: #1c1d1d;
+  border: 2px solid #fdaf19;
+}
+
+button.redline {
+  background: transparent;
+  border: 2px solid #f0474a;
+  color: #1c1d1d;
+}
+
+button.light,
+button.yellow,
+button.redline {
+  -webkit-transition: background 0.2s ease;
+  -moz-transition: background 0.2s ease;
+  -o-transition: background 0.2s ease;
+  transition: background 0.2s ease;
+}
+
+button.light:hover,
+button.yellow:hover,
+button.redline:hover {
+  background-color: #f0474a;
+  border: 2px solid #f0474a;
+  color: #ffffff;
+}
+
+/* button.light:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+button.light:active {
+  background: #ffffff;
+  color: #1c1d1d;
+}
+
+button.yellow:hover {
+  background: #ffc046;
+}
+
+button.yellow:active {
+  background-color: transparent;
+  color: #fdaf19;
+}
+
+button.redline:hover {
+  background-color: rgba(240, 71, 74, 0.1);
+}
+
+button.redline:active {
+  background-color: #f0474a;
+  color: #ffffff;
+} */

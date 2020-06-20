@@ -1,51 +1,3 @@
-button.default {
-  font-weight: bold;
-  text-align: center;
-  border-radius: 20px;
-  cursor: pointer;
-  letter-spacing: 1px;
-}
-
-button.light {
-  background: transparent;
-  border: 2px solid #ffffff;
-  color: #ffffff;
-  padding: 7px 26px 7px 26px;
-}
-
-button.light,
-button.yellow {
-  -webkit-transition: background 0.2s ease;
-  -moz-transition: background 0.2s ease;
-  -o-transition: background 0.2s ease;
-  transition: background 0.2s ease;
-}
-
-button.light:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-button.light:active {
-  background: #ffffff;
-  color: #1c1d1d;
-}
-
-button.yellow {
-  background-color: #fdaf19;
-  color: #1c1d1d;
-  border: 2px solid #fdaf19;
-  padding: 7px 26px 7px 26px;
-}
-
-button.yellow:hover {
-  background: #ffc046;
-}
-
-button.yellow:active {
-  background-color: transparent;
-  color: #fdaf19;
-}
-
 .float-l {
   float: left;
 }
@@ -66,7 +18,9 @@ button.yellow:active {
 }
 
 .md,
-.lg {
+.lg,
+.md-lg,
+.xlg {
   display: none;
 }
 
@@ -74,9 +28,25 @@ button.yellow:active {
   text-align: center;
 }
 
-.content h1 {
+.content h1,
+.content h2,
+.content h3 {
   font-family: "Playfair Display", serif;
+}
+
+.content h1 {
+  font-size: 30px;
   padding-bottom: 10px;
+}
+
+.content h2 {
+  font-size: 26px;
+}
+
+.content p {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
 section.hero {
@@ -156,7 +126,6 @@ header .inner-wrapper:hover nav {
 }
 
 section.hero .content h1 {
-  font-size: 30px;
   color: #ffffff;
 }
 
@@ -175,44 +144,52 @@ section.hero .content p {
   vertical-align: middle;
 }
 
-.countdown {
-  margin: 30px 0 30px 0;
-}
-
-.countdown ul {
+.counter ul {
   font-size: 0;
-  background-color: rgba(242, 85, 67, 0.78);
   border-radius: 10px;
 }
 
-.countdown ul li {
+.counter ul li {
   display: inline-block;
-  padding: 20px;
+  padding: 0 20px;
   width: 40%;
 }
 
-.countdown ul li div {
+.counter ul li div {
   display: inline-block;
   vertical-align: middle;
 }
 
-.countdown ul li p:first-child {
+.counter ul li p:first-child {
   font-size: 30px;
   font-weight: 700;
+  letter-spacing: 2px;
 }
 
-.countdown ul li p:last-child {
+.counter ul li p:last-child {
   letter-spacing: 1px;
   font-size: 11px;
 }
 
-.countdown ul li:before {
+.counter ul li:before {
   content: "—";
   color: #ffffff;
   font-weight: 700;
 }
 
-.hero-buttons button {
+.countdown {
+  margin: 30px 0;
+}
+
+.countdown ul {
+  background-color: rgba(242, 85, 67, 0.8);
+}
+
+.countdown ul li {
+  padding: 20px;
+}
+
+.btn-row button {
   display: block;
   margin: 15px auto;
 }
@@ -243,4 +220,235 @@ section.hero .content p {
 
 .hero-play button span {
   display: block;
+}
+
+.about p {
+  padding: 30px 0 50px 0;
+  line-height: 30px;
+}
+
+.detail .content p {
+  color: #ffffff;
+}
+
+section .content {
+  padding: 60px 0;
+}
+
+.detail-numbers ul li {
+  width: auto;
+  padding: 20px;
+}
+
+.col {
+  display: inline-block;
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+.col:nth-child(odd) {
+  padding-right: 7.5px;
+}
+
+.col:nth-child(even) {
+  padding-left: 7.5px;
+}
+
+.col:nth-last-child(1),
+.col:nth-last-child(2) {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.speaker {
+  cursor: pointer;
+}
+
+.speaker img {
+  width: 100%;
+}
+
+.speakers-showcase {
+  font-size: 0;
+}
+
+.speaker::before {
+  content: "";
+  background: -webkit-linear-gradient(
+    top,
+    rgba(28, 28, 28, 0.23) 40%,
+    rgba(27, 29, 29, 0.63) 60%,
+    rgba(27, 29, 29, 0.92) 80%,
+    rgba(27, 29, 29, 0.99) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(28, 28, 28, 0.23) 40%,
+    rgba(27, 29, 29, 0.63) 60%,
+    rgba(27, 29, 29, 0.92) 80%,
+    rgba(27, 29, 29, 0.99) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(28, 28, 28, 0.23) 40%,
+    rgba(27, 29, 29, 0.63) 60%,
+    rgba(27, 29, 29, 0.92) 80%,
+    rgba(27, 29, 29, 0.99) 100%
+  );
+  background: -moz-linear-gradient(
+    top,
+    rgba(28, 28, 28, 0.23) 40%,
+    rgba(27, 29, 29, 0.63) 60%,
+    rgba(27, 29, 29, 0.92) 80%,
+    rgba(27, 29, 29, 0.99) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(28, 28, 28, 0.23) 40%,
+    rgba(27, 29, 29, 0.63) 60%,
+    rgba(27, 29, 29, 0.92) 80%,
+    rgba(27, 29, 29, 0.99) 100%
+  );
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.speaker:hover:before {
+  background-color: rgb(242, 85, 67, 0.7);
+}
+
+.speakers-showcase {
+  margin-top: 50px;
+}
+
+.speakers-showcase .speaker {
+  width: 100%;
+  position: relative;
+}
+
+.speaker .info {
+  position: absolute;
+  text-align: left;
+  padding: 10px;
+  color: #ffffff;
+  bottom: 0;
+  width: 100%;
+}
+
+.speaker .info p.name {
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+}
+
+.speaker .info p.job {
+  font-size: 12px;
+}
+
+.gradient-bg {
+  background: linear-gradient(-45deg, #f0474a 0%, #fdaf19 100%);
+}
+
+.separator {
+  position: absolute;
+  height: 170px;
+  width: 100%;
+  z-index: -1;
+}
+
+.cal-icon {
+  width: 60px;
+}
+
+.date {
+  padding: 30px 0;
+}
+
+.date ul li {
+  width: auto !important;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.date ul li.active {
+  color: #f0474a;
+}
+
+.date ul li:before {
+  content: none !important;
+}
+
+.date ul li p:first-child {
+  font-size: 22px !important;
+}
+
+.date ul li p:last-child {
+  font-size: 14px !important;
+}
+
+.place-tabs {
+  font-size: 0;
+}
+
+.place-tabs li {
+  display: inline-block;
+  font-weight: 700;
+  color: rgb(28, 29, 29, 0.7);
+  background-color: #f3f3f3;
+  padding: 15px 20px;
+  font-size: 16px;
+  position: relative;
+  border-radius: 26px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+.place-tabs li.active {
+  color: #1c1d1d;
+}
+
+.timeline {
+  max-width: 770px;
+  margin: 0 auto;
+}
+
+.event {
+  padding-top: 22px;
+}
+
+.event-detail {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.event:last-child .event-detail {
+  border: 0;
+}
+
+.event .event-speaker {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
+}
+
+.event .event-speaker img {
+  width: 100%;
+}
+
+.event-detail {
+  float: right;
+  width: calc(100% - 70px);
+  text-align: left;
+  padding-left: 30px;
+}
+
+.event-detail .time span {
+  color: #7c7c7c;
+}
+
+.event-detail .description {
+  font-size: 16px;
+  margin-top: 20px;
 }

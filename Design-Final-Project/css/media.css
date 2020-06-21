@@ -6,9 +6,25 @@
   section .content {
     padding: 80px 0;
   }
+
+  .past-speakers .content {
+    padding: 50px 0;
+  }
+
+  .card {
+    padding: 62px 60px;
+  }
+
+  .social-media a {
+    margin: 0 21px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
+  section.hero {
+    min-height: 950px;
+  }
+
   .md {
     display: block;
   }
@@ -21,12 +37,21 @@
     display: block;
   }
 
+  .col-about {
+    width: 75%;
+  }
+
+  .col-links {
+    width: 25%;
+  }
+
   .content h1 {
     font-size: 50px;
   }
 
   .content h2 {
     font-size: 40px;
+    margin-top: 16px;
   }
 
   .top-container {
@@ -54,6 +79,14 @@
   .counter ul li {
     padding: 0px 34px 0 0;
     width: auto;
+  }
+
+  .ticket-countdown ul li {
+    padding: 0px 60px 0 0;
+  }
+
+  .ticket-countdown ul li:last-child {
+    padding: 0;
   }
 
   .countdown ul li {
@@ -103,6 +136,7 @@
     background-color: rgba(242, 85, 67, 0.8);
   }
 
+  .ticket-countdown ul li:before,
   .detail-numbers ul li:before {
     content: "";
     padding: 0;
@@ -186,6 +220,15 @@
   .timeline {
     padding: 0 25px;
   }
+
+  .subscribe h2, .subscribe .input-field {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .input-field {
+    margin-left: 38px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -194,11 +237,11 @@
   }
 
   .content h2 {
-    font-size: 40px;
+    margin-bottom: 22px;
   }
 
   .content p {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .container {
@@ -314,6 +357,7 @@
     font-size: 40px;
   }
 
+  .ticket-countdown ul li p:first-child,
   .detail-numbers ul li p:first-child {
     font-size: 40px;
   }
@@ -322,20 +366,31 @@
     font-size: 20px;
   }
 
+  .ticket-countdown ul li:before,
   .detail-numbers ul li:before {
     content: "—";
   }
 
+  .ticket-countdown ul li:first-child:before,
   .detail-numbers ul li:first-child:before {
     content: "";
+  }
+
+  .ticket-countdown ul li:before {
+    padding-right: 60px;
   }
 
   .detail-numbers ul li:before {
     padding-right: 44px;
   }
 
+  .ticket-countdown ul li:first-child:before,
   .detail-numbers ul li:first-child:before {
     padding: 0;
+  }
+
+  .detail-numbers .content p {
+    font-size: 18px;
   }
 
   .speaker .info {
@@ -349,6 +404,48 @@
   .speaker .info p.job {
     font-size: 16px;
   }
+
+  .testimonial {
+    width: 48%;
+    display: inline-block;
+    margin: 37px 15px;
+  }
+
+  .testimonial:nth-child(odd) {
+    margin-left: 0;
+  }
+  .testimonial:nth-child(even) {
+    margin-right: 0;
+  }
+
+  .testimonial .description {
+    padding: 48px 15px 48px 78px;
+  }
+
+  .testimonial .description .person strong {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .testimonial .description .person p {
+    font-size: 16px;
+  }
+
+  .sponsors-list li {
+    width: calc(33.33% - 30px);
+  }
+
+  .card .icon-info .info-row p:last-child {
+    padding-left: 34px;
+  }
+
+  .card p {
+    font-size: 18px;
+  }
+
+  .col-about p {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -357,8 +454,24 @@
   }
 
   .container {
-    max-width: 1140px;
+    max-width: 1170px;
+    padding: 0;
   }
+
+  .col-about {
+    width: 41.66666667%;
+    padding-right: 100px;
+  }
+
+  .col-links {
+    width: 25%;
+    padding-right: 30px;
+  }
+
+  .col-instagram {
+    width: 33.33333333%;
+  }
+
   button.light,
   button.yellow,
   button.redline {
@@ -393,6 +506,23 @@
     padding: 0 50px;
   }
 
+  .grid-container {
+    max-width: 1200px;
+    padding: 0;
+  }
+
+  .col-lg-5 {
+    width: 41.66666667%;
+  }
+
+  .col-lg-4 {
+    width: 25%;
+  }
+
+  .col-lg-3 {
+    width: 33.33333333%;
+  }
+
   header nav ul {
     margin-right: 70px;
   }
@@ -408,6 +538,7 @@
   .confirmed-speakers {
     margin-top: -132px;
     z-index: 1;
+    position: relative;
   }
 
   .confirmed-speakers .content,
@@ -423,5 +554,39 @@
 
   .separator {
     margin-top: -62px;
+  }
+
+  .sponsors-list {
+    padding: 52px 0 0 0;
+    border-top: 1px solid #f3f3f3;
+    margin-top: 52px;
+  }
+
+  .sponsors-list li {
+    display: inline-block;
+    margin: 0 46px;
+    height: 118px;
+    width: auto;
+  }
+
+  .sponsors-list li:nth-child(odd) {
+    margin: 0 46px;
+  }
+
+  .sponsors-list li:nth-child(even) {
+    margin: 0 46px;
+  }
+
+  .sponsors-list li img {
+    max-height: 100%;
+  }
+
+  .sponsors-list h3 {
+    margin-bottom: 40px;
+    font-size: 24px;
+  }
+
+  .footer-row > div {
+    margin: 0;
   }
 }

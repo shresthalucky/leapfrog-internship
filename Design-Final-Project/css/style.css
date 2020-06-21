@@ -104,7 +104,7 @@ header .logo img {
   max-height: 100%;
 }
 
-header nav button,
+header .nav button,
 header .top-right-menu button.buy {
   display: none;
 }
@@ -117,7 +117,7 @@ button.toggle-nav {
   padding: 15px;
 }
 
-header nav {
+header .nav {
   display: none;
   position: absolute;
   width: 100%;
@@ -126,26 +126,26 @@ header nav {
   box-shadow: 0 10px 20px #1c1d1d;
 }
 
-header nav button {
+header .nav button {
   display: none;
 }
 
-header nav ul {
+header .nav ul {
   width: 100%;
 }
 
-header nav ul li {
+header .nav ul li {
   display: block;
   width: 100%;
 }
 
-header nav ul li a {
+header .nav ul li a {
   display: block;
   padding: 15px;
   color: #ffffff;
 }
 
-header .inner-wrapper:hover nav {
+header .inner-wrapper:hover .nav {
   display: block;
 }
 .hero .content h1 {
@@ -159,6 +159,10 @@ header .inner-wrapper:hover nav {
   height: calc(100% - 100px);
   width: 100%;
   display: table;
+}
+
+.hero-content p {
+  font-weight: 600;
 }
 
 .hero-content .container {
@@ -253,7 +257,7 @@ header .inner-wrapper:hover nav {
   color: #ffffff;
 }
 
-section .content {
+.content {
   padding: 60px 0;
 }
 
@@ -490,7 +494,10 @@ section .content {
   padding-left: 30px;
 }
 
-.event-detail .time span {
+.event-detail .time button {
+  border: 0;
+  padding: 0;
+  background: transparent;
   color: #7c7c7c;
 }
 

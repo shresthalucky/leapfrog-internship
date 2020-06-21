@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -8,7 +8,7 @@
   <title>Events</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./css/reset.css" />
   <link rel="stylesheet" type="text/css" href="./css/layout.css" />
@@ -25,7 +25,7 @@
           <div class="inner-wrapper">
             <div class="outer-container">
               <div class="top-container clearfix">
-                <a href="/leapfrog-internship/Design-Final-Project/" title="Home" class="logo">
+                <a href="/leapfrog-interheadernship/Design-Final-Project/" title="Home" class="logo">
                   <img src="./images/logo.png" alt="logo">
                 </a>
                 <div class="sm-md float-r top-right-menu">
@@ -33,7 +33,7 @@
                   <button class="toggle-nav"><i class="fas fa-bars"></i></button>
                 </div>
               </div>
-              <nav>
+              <div class="nav">
                 <ul>
                   <li><a href="#speakers" title="speakers">Speakers</a></li>
                   <li><a href="#schedule" title="schedule">Schedule</a></li>
@@ -42,8 +42,9 @@
                   <li><a href="#insights" title="insights">Insights</a></li>
                 </ul>
                 <button class="default light buy">BUY YOUR TICKET</button>
-              </nav>
+              </div>
             </div>
+          </div>
         </header>
         <div class="hero-content">
           <div class="container">
@@ -94,7 +95,7 @@
       </div>
     </section>
 
-    <section class="about">
+    <section class="about" id="insights">
       <div class="container">
         <div class="content">
           <h2>Empowering what design is</h2>
@@ -113,7 +114,7 @@
       </div>
     </section>
 
-    <section class="gradient-bg detail">
+    <div class="gradient-bg detail">
       <div class="container">
         <div class="content">
           <div class="counter detail-numbers">
@@ -152,9 +153,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="confirmed-speakers">
+    <section class="confirmed-speakers" id="speakers">
       <div class="outer-container">
         <div class="content">
           <h2>Confirmed Speakers</h2>
@@ -215,11 +216,12 @@
             </div>
           </div>
         </div>
+      </div>
     </section>
 
     <div class="gradient-bg separator xlg"></div>
 
-    <section class="schedule">
+    <section class="schedule" id="schedule">
       <div class="outer-container">
         <div class="content">
           <div class="container">
@@ -266,7 +268,7 @@
                   <img src="./images/speaker6.jpg" alt="Eva Theron">
                 </div>
                 <div class="event-detail">
-                  <p class="time">2:20 PM<span class="md-lg float-r"><i class="fas fa-minus"></i></span></p>
+                  <p class="time">2:20 PM<button class="md-lg float-r"><i class="fas fa-minus"></i></button></p>
                   <h4 class="task">Event registration & Breakfast</h4>
                   <p class="description md-lg">Nunc risus est nulla morbi, egestas lobortis dui maecenas lacinia qui
                     adipiscing, eget purus morbi, pellentesque ipsum tortor ipsum. Tincidunt elit magnis nulla
@@ -279,7 +281,7 @@
                   <img src="./images/speaker1.jpg" alt="Thomas Abruzzi Martin">
                 </div>
                 <div class="event-detail">
-                  <p class="time">3:00 PM<span class="md-lg float-r"><i class="fas fa-plus"></i></span></p>
+                  <p class="time">3:00 PM<button class="md-lg float-r"><i class="fas fa-plus"></i></button></p>
                   <h4 class="task">Scaling into crowded space</h4>
                 </div>
               </div>
@@ -288,7 +290,7 @@
                   <img src="./images/speaker2.jpg" alt="Ken Thomspon">
                 </div>
                 <div class="event-detail">
-                  <p class="time">3:00 PM<span class="md-lg float-r"><i class="fas fa-plus"></i></span></p>
+                  <p class="time">3:00 PM<button class="md-lg float-r"><i class="fas fa-plus"></i></button></p>
                   <h4 class="task">Open your business around the world</h4>
                 </div>
               </div>
@@ -359,9 +361,10 @@
             </div>
           </div>
         </div>
+      </div>
     </section>
 
-    <section class="testimonials">
+    <section class="testimonials" id="testimonials">
       <div class="container">
         <div class="content">
           <h2>Testimonials</h2>
@@ -384,7 +387,7 @@
                 <img src="./images/speaker4.jpg" alt="Barry Allen">
               </div>
               <div class="description">
-                <p>"Le site se veut minimaliste permettant au contenu de prendre toute sademant dimension le but étant
+                <p>"Le site se veut minimaliste permettant au contenu de prendre toute sademant dimension le but etant
                   de."</p>
                 <div class="person">
                   <strong>BOB</strong>
@@ -409,7 +412,7 @@
                 <img src="./images/speaker1.jpg" alt="Barry Allen">
               </div>
               <div class="description">
-                <p>"Le site se veut minimaliste permettant au contenu de prendre toute sademant dimension le but étant
+                <p>"Le site se veut minimaliste permettant au contenu de prendre toute sademant dimension le but etant
                   de."</p>
                 <div class="person">
                   <strong>KENDRICK</strong>
@@ -423,7 +426,7 @@
       </div>
     </section>
 
-    <section class="ticket gradient-bg">
+    <section class="ticket gradient-bg" id="ticket">
       <div class="container">
         <div class="content">
           <h2>Hurry Up For Early Bird Tickets!</h2>
@@ -460,7 +463,7 @@
       </div>
     </section>
 
-    <section class="sponsors">
+    <section class="sponsors" id="sponsors">
       <div class="container">
         <div class="content">
           <h2>Our Event Sponsors</h2>
@@ -506,7 +509,7 @@
       </div>
     </section>
 
-    <section class="location">
+    <section class="location" id="location">
       <div class="container">
         <div class="content">
           <div class="card">

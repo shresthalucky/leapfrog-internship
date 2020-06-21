@@ -3,7 +3,7 @@
     display: inline;
   }
 
-  section .content {
+  .content {
     padding: 80px 0;
   }
 
@@ -21,7 +21,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  section.hero {
+  .hero {
     min-height: 950px;
   }
 
@@ -221,7 +221,8 @@
     padding: 0 25px;
   }
 
-  .subscribe h2, .subscribe .input-field {
+  .subscribe h2,
+  .subscribe .input-field {
     display: inline-block;
     vertical-align: middle;
   }
@@ -277,7 +278,7 @@
     height: 83px;
   }
 
-  header nav {
+  header .nav {
     display: block;
     float: right;
     padding: 0;
@@ -289,41 +290,41 @@
     box-shadow: none;
   }
 
-  header nav ul,
-  header nav ul li {
+  header .nav ul,
+  header .nav ul li {
     width: auto;
   }
 
-  header nav ul {
+  header .nav ul {
     float: left;
     margin-right: 40px;
     padding: 27px 0 27px 0;
   }
 
-  header nav button {
+  header .nav button {
     float: right;
     margin: 10px 0 10px 0;
     display: block;
   }
 
-  header nav ul li {
+  header .nav ul li {
     display: inline-block;
     margin: 0 10px;
   }
 
-  header nav ul li:hover {
+  header .nav ul li:hover {
     border-bottom: 2px solid #ffffff;
   }
 
-  header nav ul li:first-child {
+  header .nav ul li:first-child {
     margin-left: 0;
   }
 
-  header nav ul li:last-child {
+  header .nav ul li:last-child {
     margin-right: 0;
   }
 
-  header nav ul li a {
+  header .nav ul li a {
     font-weight: 500;
     display: inline;
     padding: 0;
@@ -333,7 +334,7 @@
     height: calc(100% - 175px);
   }
 
-  section.hero .content p {
+  .hero .content p {
     font-size: 22px;
   }
 
@@ -523,11 +524,11 @@
     width: 33.33333333%;
   }
 
-  header nav ul {
+  header .nav ul {
     margin-right: 70px;
   }
 
-  header nav ul li {
+  header .nav ul li {
     margin: 0 35px;
   }
 

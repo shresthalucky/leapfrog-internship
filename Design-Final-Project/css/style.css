@@ -555,3 +555,192 @@ section .content {
 .sponsors-list h3 {
   margin-bottom: 20px;
 }
+
+.location {
+  background-image: url("../images/map.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 34px 30px;
+  text-align: left;
+  max-width: 370px;
+  box-shadow: 0 0 10.5px rgba(0, 0, 0, 0.07);
+}
+
+.card i {
+  color: #f0474a;
+}
+
+.card .icon-info {
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.card .icon-info .info-row {
+  margin: 20px 0;
+}
+
+.card .icon-info .info-row p:first-child {
+  float: left;
+}
+
+.card .icon-info .info-row p:last-child {
+  padding-left: 26px;
+}
+
+.social-media {
+  margin-top: 34px;
+}
+
+.social-media a {
+  margin: 0 10px;
+}
+
+.subscribe .input-field {
+  max-width: 390px;
+}
+
+.input-field {
+  border: 2px solid #ffffff;
+  border-radius: 34px;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 20px 40px;
+  color: #ffffff;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.input-field input {
+  letter-spacing: 1px;
+  background: transparent;
+  border: 0;
+  width: calc(100% - 30px);
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.input-field input:focus {
+  outline: none;
+}
+
+.input-field input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ffffff;
+  opacity: 1; /* Firefox */
+}
+
+.input-field input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #ffffff;
+}
+
+.input-field input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #ffffff;
+}
+
+.input-field span {
+  float: right;
+}
+
+.footer {
+  background-color: #1c1d1d;
+}
+
+.footer .content {
+  color: #ffffff;
+  text-align: left;
+}
+
+.footer-row > div {
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.col-about,
+.col-links,
+.col-instagram {
+  float: left;
+  width: 100%;
+}
+
+.col-about {
+  width: 100%;
+}
+
+.col-links {
+  width: 100%;
+}
+
+.col-instagram {
+  width: 100%;
+}
+
+.footer-row h4 {
+  font-size: 22px;
+  padding-bottom: 26px;
+}
+
+.col-links ul li {
+  list-style-type: none;
+  padding-bottom: 12px;
+}
+
+.col-about p,
+.col-about .social-media a,
+.col-links ul li a {
+  font-size: 16px;
+  color: #cecece;
+}
+
+.col-about .social-media a {
+  margin: 0 11px;
+}
+
+.col-about .social-media a:hover {
+  color: #ffffff;
+}
+
+.footer-row a:hover {
+  text-decoration: underline;
+}
+
+.instagram-showcase .row {
+  margin-bottom: 8px;
+}
+
+.instagram-showcase .row:last-child {
+  margin: 0;
+}
+
+.instagram-showcase .row div {
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  margin: 0 8px;
+}
+
+.instagram-showcase .row img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.instagram-showcase .row div:first-child {
+  margin-left: 0;
+}
+
+.instagram-showcase .row div:last-child {
+  margin-right: 0;
+}
+
+footer {
+  background-color: #272828;
+  text-align: center;
+  font-size: 16px;
+  color: #cecece;
+  padding: 36px 0;
+}

@@ -347,7 +347,41 @@ header .inner-wrapper:hover .nav {
 }
 
 .speaker:hover:before {
-  background-color: rgb(242, 85, 67, 0.7);
+  background: -webkit-linear-gradient(
+    top,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
+  background: -moz-linear-gradient(
+    top,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
 }
 
 .speakers-showcase {

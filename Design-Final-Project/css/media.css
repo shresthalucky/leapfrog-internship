@@ -431,10 +431,12 @@
     padding: 48px 15px 48px 78px;
   }
 
+  .testimonial .description p,
   .testimonial .description .person strong {
     font-size: 18px;
     letter-spacing: 1px;
   }
+
 
   .testimonial .description .person p {
     font-size: 16px;

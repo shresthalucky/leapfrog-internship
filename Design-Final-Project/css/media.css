@@ -1,3 +1,4 @@
+/* tablets and larger smart phones */
 @media only screen and (min-width: 480px) {
   header .top-right-menu button.buy {
     display: inline;
@@ -20,6 +21,7 @@
   }
 }
 
+/* laptops, larger tablets, small desktops */
 @media only screen and (min-width: 768px) {
   .hero {
     min-height: 950px;
@@ -39,10 +41,16 @@
 
   .col-about {
     width: 75%;
+    padding-right: 30px;
   }
 
   .col-links {
     width: 25%;
+  }
+
+  .instagram-showcase .row div {
+    height: 80px;
+    width: 80px;
   }
 
   .content h1 {
@@ -449,6 +457,7 @@
   }
 }
 
+/* large desktops and monitors */
 @media only screen and (min-width: 1200px) {
   .lg {
     display: block;
@@ -456,6 +465,11 @@
 
   .container {
     max-width: 1170px;
+    padding: 0;
+  }
+
+  .grid-container {
+    max-width: 1200px;
     padding: 0;
   }
 
@@ -498,6 +512,7 @@
   }
 }
 
+/* design is above 1200px */
 @media only screen and (min-width: 1400px) {
   .xlg {
     display: block;
@@ -505,11 +520,6 @@
 
   .outer-container {
     padding: 0 50px;
-  }
-
-  .grid-container {
-    max-width: 1200px;
-    padding: 0;
   }
 
   .col-lg-5 {
@@ -542,11 +552,14 @@
     position: relative;
   }
 
+  .confirmed-speakers .outer-container {
+    padding: 0 50px;
+  }
+
   .confirmed-speakers .content,
   .schedule .content {
     background-color: #ffffff;
     box-shadow: 0 0 10.5px rgba(0, 0, 0, 0.07);
-    padding: 116px 120px 50px 120px;
   }
 
   .schedule {

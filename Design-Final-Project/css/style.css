@@ -88,6 +88,7 @@
 
 .hero-container {
   position: relative;
+  height: 100%;
   z-index: 2;
 }
 
@@ -290,6 +291,10 @@ header .inner-wrapper:hover .nav {
 .col:nth-last-child(2) {
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.confirmed-speakers .outer-container {
+  padding: 0;
 }
 
 .speaker {
@@ -752,6 +757,7 @@ header .inner-wrapper:hover .nav {
 
 .instagram-showcase .row {
   margin-bottom: 8px;
+  font-size: 0;
 }
 
 .instagram-showcase .row:last-child {
@@ -760,8 +766,8 @@ header .inner-wrapper:hover .nav {
 
 .instagram-showcase .row div {
   display: inline-block;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   margin: 0 8px;
 }
 

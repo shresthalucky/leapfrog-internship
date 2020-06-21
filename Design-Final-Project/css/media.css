@@ -1,9 +1,10 @@
+/* tablets and larger smart phones */
 @media only screen and (min-width: 480px) {
   header .top-right-menu button.buy {
     display: inline;
   }
 
-  section .content {
+  .content {
     padding: 80px 0;
   }
 
@@ -20,8 +21,9 @@
   }
 }
 
+/* laptops, larger tablets, small desktops */
 @media only screen and (min-width: 768px) {
-  section.hero {
+  .hero {
     min-height: 950px;
   }
 
@@ -39,10 +41,16 @@
 
   .col-about {
     width: 75%;
+    padding-right: 30px;
   }
 
   .col-links {
     width: 25%;
+  }
+
+  .instagram-showcase .row div {
+    height: 80px;
+    width: 80px;
   }
 
   .content h1 {
@@ -221,7 +229,8 @@
     padding: 0 25px;
   }
 
-  .subscribe h2, .subscribe .input-field {
+  .subscribe h2,
+  .subscribe .input-field {
     display: inline-block;
     vertical-align: middle;
   }
@@ -277,7 +286,7 @@
     height: 83px;
   }
 
-  header nav {
+  header .nav {
     display: block;
     float: right;
     padding: 0;
@@ -289,41 +298,41 @@
     box-shadow: none;
   }
 
-  header nav ul,
-  header nav ul li {
+  header .nav ul,
+  header .nav ul li {
     width: auto;
   }
 
-  header nav ul {
+  header .nav ul {
     float: left;
     margin-right: 40px;
     padding: 27px 0 27px 0;
   }
 
-  header nav button {
+  header .nav button {
     float: right;
     margin: 10px 0 10px 0;
     display: block;
   }
 
-  header nav ul li {
+  header .nav ul li {
     display: inline-block;
     margin: 0 10px;
   }
 
-  header nav ul li:hover {
+  header .nav ul li:hover {
     border-bottom: 2px solid #ffffff;
   }
 
-  header nav ul li:first-child {
+  header .nav ul li:first-child {
     margin-left: 0;
   }
 
-  header nav ul li:last-child {
+  header .nav ul li:last-child {
     margin-right: 0;
   }
 
-  header nav ul li a {
+  header .nav ul li a {
     font-weight: 500;
     display: inline;
     padding: 0;
@@ -333,7 +342,7 @@
     height: calc(100% - 175px);
   }
 
-  section.hero .content p {
+  .hero .content p {
     font-size: 22px;
   }
 
@@ -448,6 +457,7 @@
   }
 }
 
+/* large desktops and monitors */
 @media only screen and (min-width: 1200px) {
   .lg {
     display: block;
@@ -455,6 +465,11 @@
 
   .container {
     max-width: 1170px;
+    padding: 0;
+  }
+
+  .grid-container {
+    max-width: 1200px;
     padding: 0;
   }
 
@@ -497,6 +512,7 @@
   }
 }
 
+/* design is above 1200px */
 @media only screen and (min-width: 1400px) {
   .xlg {
     display: block;
@@ -504,11 +520,6 @@
 
   .outer-container {
     padding: 0 50px;
-  }
-
-  .grid-container {
-    max-width: 1200px;
-    padding: 0;
   }
 
   .col-lg-5 {
@@ -523,11 +534,11 @@
     width: 33.33333333%;
   }
 
-  header nav ul {
+  header .nav ul {
     margin-right: 70px;
   }
 
-  header nav ul li {
+  header .nav ul li {
     margin: 0 35px;
   }
 
@@ -541,11 +552,14 @@
     position: relative;
   }
 
+  .confirmed-speakers .outer-container {
+    padding: 0 50px;
+  }
+
   .confirmed-speakers .content,
   .schedule .content {
     background-color: #ffffff;
     box-shadow: 0 0 10.5px rgba(0, 0, 0, 0.07);
-    padding: 116px 120px 50px 120px;
   }
 
   .schedule {

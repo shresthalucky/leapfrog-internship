@@ -42,13 +42,15 @@ button.redline:hover {
   color: #ffffff;
 }
 
-/* button.light:hover {
-  background: rgba(255, 255, 255, 0.2);
+button.light:active,
+button.yellow:active,
+button.redline:active {
+  background-color: #d0383b;
+  border: 2px solid #d0383b;
 }
 
-button.light:active {
-  background: #ffffff;
-  color: #1c1d1d;
+/* button.light:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 button.yellow:hover {

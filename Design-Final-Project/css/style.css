@@ -88,6 +88,7 @@
 
 .hero-container {
   position: relative;
+  height: 100%;
   z-index: 2;
 }
 
@@ -104,7 +105,7 @@ header .logo img {
   max-height: 100%;
 }
 
-header nav button,
+header .nav button,
 header .top-right-menu button.buy {
   display: none;
 }
@@ -117,7 +118,7 @@ button.toggle-nav {
   padding: 15px;
 }
 
-header nav {
+header .nav {
   display: none;
   position: absolute;
   width: 100%;
@@ -126,26 +127,26 @@ header nav {
   box-shadow: 0 10px 20px #1c1d1d;
 }
 
-header nav button {
+header .nav button {
   display: none;
 }
 
-header nav ul {
+header .nav ul {
   width: 100%;
 }
 
-header nav ul li {
+header .nav ul li {
   display: block;
   width: 100%;
 }
 
-header nav ul li a {
+header .nav ul li a {
   display: block;
   padding: 15px;
   color: #ffffff;
 }
 
-header .inner-wrapper:hover nav {
+header .inner-wrapper:hover .nav {
   display: block;
 }
 .hero .content h1 {
@@ -159,6 +160,10 @@ header .inner-wrapper:hover nav {
   height: calc(100% - 100px);
   width: 100%;
   display: table;
+}
+
+.hero-content p {
+  font-weight: 600;
 }
 
 .hero-content .container {
@@ -253,7 +258,7 @@ header .inner-wrapper:hover nav {
   color: #ffffff;
 }
 
-section .content {
+.content {
   padding: 60px 0;
 }
 
@@ -286,6 +291,10 @@ section .content {
 .col:nth-last-child(2) {
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.confirmed-speakers .outer-container {
+  padding: 0;
 }
 
 .speaker {
@@ -343,7 +352,41 @@ section .content {
 }
 
 .speaker:hover:before {
-  background-color: rgb(242, 85, 67, 0.7);
+  background: -webkit-linear-gradient(
+    top,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
+  background: -moz-linear-gradient(
+    top,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(242, 85, 67, 0.23) 40%,
+    rgba(242, 85, 67, 0.63) 60%,
+    rgba(242, 85, 67, 0.92) 80%,
+    rgba(242, 85, 67, 0.99) 100%
+  );
 }
 
 .speakers-showcase {
@@ -490,7 +533,10 @@ section .content {
   padding-left: 30px;
 }
 
-.event-detail .time span {
+.event-detail .time button {
+  border: 0;
+  padding: 0;
+  background: transparent;
   color: #7c7c7c;
 }
 
@@ -710,7 +756,8 @@ section .content {
 }
 
 .instagram-showcase .row {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+  font-size: 0;
 }
 
 .instagram-showcase .row:last-child {
@@ -719,8 +766,8 @@ section .content {
 
 .instagram-showcase .row div {
   display: inline-block;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   margin: 0 8px;
 }
 

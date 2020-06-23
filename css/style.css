@@ -1,168 +1,175 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 a.btn,
 a.btn:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a.btn,
 span.capsule {
-    display: inline-block;
-    border: 0;
-    padding: 8px 16px 8px 16px;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: bold;
+  display: inline-block;
+  border: 0;
+  padding: 8px 16px 8px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .btn-gray {
-    background-color: #eceff1;
-    color: #37474f;
+  background-color: #eceff1;
+  color: #37474f;
 }
 
 .btn-green {
-    background-color: #e8f5e9;
-    color: #2e7d32;
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }
 
 .btn-orange {
-    background-color: #fbe9e7;
-    color: #d84315;
+  background-color: #fbe9e7;
+  color: #d84315;
 }
 
 .btn-blue {
-    background-color: #e3f2fd;
-    color: #1565c0;
+  background-color: #e3f2fd;
+  color: #1565c0;
 }
 
 .btn-yellow {
-    background-color: #fffde7;
-    color: #f9a825;
+  background-color: #fffde7;
+  color: #f9a825;
 }
 
 span.capsule {
-    border-radius: 24px;
+  border-radius: 24px;
 }
 
-a.btn-black:hover {
-    background-color: #cfd8dc;
+a.btn-gray:hover {
+  background-color: #cfd8dc;
 }
 a.btn-green:hover {
-    background-color: #c8e6c9;
+  background-color: #c8e6c9;
 }
 a.btn-orange:hover {
-    background-color: #ffe0b2;
+  background-color: #ffe0b2;
 }
 a.btn-blue:hover {
-    background-color: #bbdefb;
+  background-color: #bbdefb;
+}
+
+a.btn-disabled {
+  background-color: #eceff1;
+  color: #37474f;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .main-wrapper {
-    height: 100vh;
-    min-width: 1000px;
-    background-color: #f4f6fa;
-    font-size: 16px;
-    font-family: "Roboto", sans-serif;
+  height: 100vh;
+  min-width: 1000px;
+  background-color: #f4f6fa;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
 }
 
 .container {
-    width: 960px;
-    margin: 0 auto;
-    padding-top: 30px;
+  width: 960px;
+  margin: 0 auto;
+  padding-top: 30px;
 }
 
 .content-wrapper {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    border: 1px solid #efefef;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #efefef;
 }
 
 .info {
-    padding-bottom: 28px;
-    border-bottom: 2px solid #f4f6fa;
+  padding-bottom: 28px;
+  border-bottom: 2px solid #f4f6fa;
 }
 
 .info h2.name {
-    font-size: 1.5rem;
-    padding-bottom: 0.5em;
-    color: #37474f;
+  font-size: 1.5rem;
+  padding-bottom: 0.5em;
+  color: #37474f;
 }
 
 .info .details p {
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #455a64;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #455a64;
 }
 
 .info .details p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .info .details span {
-    color: #78909c;
+  color: #78909c;
 }
 
 .table-wrapper {
-    padding-top: 28px;
+  padding-top: 28px;
 }
 
 .table-wrapper table {
-    width: 100%;
-    border-spacing: 0;
+  width: 100%;
+  border-spacing: 0;
 }
 
 .table-wrapper table thead {
-    background-color: #f5f8ff;
-    border-radius: 4px;
+  background-color: #f5f8ff;
+  border-radius: 4px;
 }
 
 .table-wrapper table thead th:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .table-wrapper table thead th:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .table-wrapper table tr:nth-child(2n) {
-    background-color: #f9fbfc;
+  background-color: #f9fbfc;
 }
 
 .table-wrapper table tr:nth-child(2n) td:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .table-wrapper table tr:nth-child(2n) td:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .table-wrapper table th,
 .table-wrapper table td {
-    padding: 20px 24px 20px 24px;
-    font-weight: 700;
-    text-align: left;
+  padding: 20px 24px 20px 24px;
+  font-weight: 700;
+  text-align: left;
 }
 
 .table-wrapper table td {
-    color: #37474f;
+  color: #37474f;
 }
 
 table.list-assignment td a.btn {
-    margin: 0 4px 0 4px;
+  margin: 0 4px 0 4px;
 }
 
 table.list-assignment td a.btn:first-child {
-    margin: 0 4px 0 0;
+  margin: 0 4px 0 0;
 }
 
 table.list-assignment td a.btn:last-child {
-    margin: 0 0 0 4px;
+  margin: 0 0 0 4px;
 }

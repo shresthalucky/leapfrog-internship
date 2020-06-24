@@ -1,4 +1,4 @@
-function normalization(object) {
+function normalize(object) {
 
   var result = {}
 
@@ -10,9 +10,7 @@ function normalization(object) {
 
       result[person.id] = obj;
 
-      if ((Object.keys(person)).some(function (val) {
-        return val === 'children';
-      })) {
+      if (person.children) {
         result[person.id]['children'] = (person.children).map(function (child) {
           return child.id;
         });
@@ -22,7 +20,7 @@ function normalization(object) {
   }
 
   children(Object.values(object));
-  
+
   return result;
 }
 
@@ -42,4 +40,4 @@ var input = {
   }
 };
 
-console.log(normalization(input));
+console.log(normalize(input));

@@ -3,19 +3,23 @@ var carouselWrapper = document.querySelector('.carousel-image-wrapper');
 
 var images = carouselWrapper.children;
 var totalImages = images.length;
-var activeIndex = 1;
+
+// active default to first image
+var activeIndex = 0;
 var activeImage = images[activeIndex];
-activeImage.classList.add('active');
+activeImage.setAttribute('class', 'active');
 
 for (var i = 0; i < totalImages; i++) {
   images[i].setAttribute('data-id', i);
 }
 
 function slideLeft() {
-  var imageList = carouselWrapper.children;
-  var toLeft = imageList[activeIndex];
-  var toActive = imageList[activeIndex + 1];
-  var toEnd = imageList[activeIndex - 1];
+  var toLeft = images[activeIndex];
+
+  var nextIndex = activeIndex + 1;
+
+  nextIndex %= totalImages;
+  var toActive = images[nextIndex];
 
   toActive.classList.add('active', 'right');
 
@@ -26,19 +30,22 @@ function slideLeft() {
   }, 100)
 
   setTimeout(function () {
-    toLeft.classList.remove('left', 'inactive');
-    carouselWrapper.removeChild(toEnd);
-    carouselWrapper.appendChild(toEnd);
+    toLeft.removeAttribute('class');
+    activeIndex = nextIndex;
     refreshIndicator();
   }, 600);
-
 }
 
 function slideRight() {
-  var imageList = carouselWrapper.children;
-  var toRight = imageList[activeIndex];
-  var toActive = imageList[activeIndex - 1];
-  var toTop = imageList[totalImages - 1];
+  var toRight = images[activeIndex];
+
+  var nextIndex = activeIndex - 1;
+
+  if (nextIndex < 0) {
+    nextIndex = totalImages + nextIndex;
+  }
+
+  var toActive = images[nextIndex];
 
   toActive.classList.add('active', 'left');
 
@@ -49,12 +56,10 @@ function slideRight() {
   }, 100)
 
   setTimeout(function () {
-    toRight.classList.remove('right', 'inactive');
-    carouselWrapper.removeChild(toTop);
-    carouselWrapper.prepend(toTop);
+    toRight.removeAttribute('class');
+    activeIndex = nextIndex;
     refreshIndicator();
   }, 600);
-
 }
 
 var prevButton = document.createElement('button');
@@ -78,6 +83,7 @@ carouselContainer.appendChild(indicatorWrapper);
 for (var i = 0; i < totalImages; i++) {
   var indicator = document.createElement('div');
   indicator.classList.add('indicator');
+  indicator.setAttribute('data-id', i);
   indicatorWrapper.appendChild(indicator);
 }
 
@@ -93,15 +99,18 @@ function refreshIndicator() {
 
 refreshIndicator();
 
-var isOverCarousel = false;
-var autoScroll = setInterval(function () {
-  if (!isOverCarousel) slideLeft();
-}, 2000);
+indicatorWrapper.onclick = function (event) {
+  if (event.srcElement.classList.contains('indicator')) {
+    var clickedIndex = Number(event.srcElement.getAttribute('data-id'));
+    var clickedImage = images[clickedIndex];
 
-carouselContainer.onmouseover = function () {
-  isOverCarousel = true;
-}
+    if (!clickedImage.classList.contains('active')) {
 
-carouselContainer.onmouseout = function () {
-  isOverCarousel = false;
+      images[activeIndex].removeAttribute('class');
+      clickedImage.classList.add('active');
+
+      activeIndex = clickedIndex;
+      refreshIndicator();
+    }
+  }
 }

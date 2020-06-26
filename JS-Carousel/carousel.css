@@ -95,6 +95,7 @@
   display: inline-block;
   margin: 10px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .carousel-container .carousel-indicator .indicator.active {

@@ -1,4 +1,4 @@
-var Carousel = function (carouselId) {
+var Carousel = function (carouselId, intervalTime) {
 
   var self = this;
 
@@ -18,10 +18,16 @@ var Carousel = function (carouselId) {
   this.activeImage = this.images[this.activeIndex];
   this.activeImage.setAttribute('class', 'active');
 
+  // slider navigation and indicator elements
   this.prevButton = document.createElement('button');
   this.nextButton = document.createElement('button');
   this.indicatorWrapper = document.createElement('div');
 
+  // auto animate options
+  this.intervalTime = intervalTime ? intervalTime : 2000;
+  this.isHover = false;
+
+  // assign index to image elements
   for (var i = 0; i < this.totalImages; i++) {
     this.images[i].setAttribute('data-id', i);
   }
@@ -59,9 +65,7 @@ var Carousel = function (carouselId) {
     var toActive = this.images[nextIndex];
 
     toActive.classList.add('active', 'right');
-
     animate.call(self, toLeft, toActive, 'left');
-
     this.activeIndex = nextIndex;
   }
 
@@ -74,11 +78,8 @@ var Carousel = function (carouselId) {
     }
 
     var toActive = this.images[nextIndex];
-
     toActive.classList.add('active', 'left');
-
     animate.call(self, toRight, toActive, 'right');
-
     this.activeIndex = nextIndex;
   }
 
@@ -123,17 +124,39 @@ var Carousel = function (carouselId) {
       var clickedImage = self.images[clickedIndex];
 
       if (!clickedImage.classList.contains('active')) {
+        var direction = (clickedIndex - self.activeIndex) > 0 ? 'left' : 'right';
         clickedImage.classList.add('active', 'right');
-        animate.call(self, self.images[self.activeIndex], clickedImage, 'left');
+        animate.call(self, self.images[self.activeIndex], clickedImage, direction);
         self.activeIndex = clickedIndex;
       }
     }
+  }
+
+  function autoAnimate() {
+    this.autoAnimateInterval = setInterval(function () {
+      if (!self.isHover) slideLeft.call(self);
+    }, self.intervalTime);
+  }
+
+  this.changeAnimationInterval = function (time) {
+    clearInterval(self.autoAnimateInterval);
+    self.intervalTime = time;
+    autoAnimate.call(self);
+  }
+
+  this.carouselContainer.onmouseover = function () {
+    self.isHover = true;
+  }
+
+  this.carouselContainer.onmouseout = function () {
+    self.isHover = false;
   }
 
   this.render = function () {
     renderNavigationButtons.call(self);
     renderIndicators.call(self);
     refreshIndicator.call(self);
+    autoAnimate.call(self);
   }
 
 }

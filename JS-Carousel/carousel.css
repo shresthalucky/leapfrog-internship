@@ -85,7 +85,6 @@
   z-index: 10;
   text-align: center;
   box-sizing: border-box;
-  cursor: pointer;
 }
 
 .carousel-container .carousel-indicator .indicator {
@@ -96,6 +95,7 @@
   display: inline-block;
   margin: 10px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .carousel-container .carousel-indicator .indicator.active {

@@ -3,11 +3,13 @@ var carouselWrapper = document.querySelector('.carousel-image-wrapper');
 
 var images = carouselWrapper.children;
 var totalImages = images.length;
-
 var activeIndex = 1;
-var activeIndicator = 1;
 var activeImage = images[activeIndex];
 activeImage.classList.add('active');
+
+for (var i = 0; i < totalImages; i++) {
+  images[i].setAttribute('data-id', i);
+}
 
 function slideLeft() {
   var imageList = carouselWrapper.children;
@@ -27,11 +29,9 @@ function slideLeft() {
     toLeft.classList.remove('left', 'inactive');
     carouselWrapper.removeChild(toEnd);
     carouselWrapper.appendChild(toEnd);
+    refreshIndicator();
   }, 600);
 
-  activeIndicator++;
-  activeIndicator %= totalImages;
-  refreshIndicator();
 }
 
 function slideRight() {
@@ -52,14 +52,9 @@ function slideRight() {
     toRight.classList.remove('right', 'inactive');
     carouselWrapper.removeChild(toTop);
     carouselWrapper.prepend(toTop);
+    refreshIndicator();
   }, 600);
 
-  activeIndicator--;
-  if (activeIndicator < 0) {
-    activeIndicator = totalImages + activeIndicator;
-  }
-
-  refreshIndicator();
 }
 
 var prevButton = document.createElement('button');
@@ -87,9 +82,12 @@ for (var i = 0; i < totalImages; i++) {
 }
 
 function refreshIndicator() {
+
   if (indicatorWrapper.querySelector('.active')) {
     indicatorWrapper.querySelector('.active').classList.remove('active');
   }
+
+  var activeIndicator = carouselWrapper.children[activeIndex].getAttribute('data-id');
   indicatorWrapper.children.item(activeIndicator).classList.add('active');
 }
 

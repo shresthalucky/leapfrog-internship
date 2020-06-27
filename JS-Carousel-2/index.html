@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/carousel.css">
+  <title>Image Carousel</title>
+</head>
+
+<body>
+
+  <div class="main-container">
+
+    <div class="carousel-container" id="carousel-1">
+      <div class="carousel-image-wrapper">
+        <img src="./images/image1.jpg" alt="image1">
+        <img src="./images/image2.jpg" alt="image2">
+        <img src="./images/image3.jpg" alt="image3">
+        <img src="./images/image4.jpg" alt="image4">
+        <img src="./images/image5.jpg" alt="image5">
+      </div>
+    </div>
+
+  </div>
+
+</body>
+<script src="./script/carousel.js"></script>
+<script>
+
+  // configure carousel
+  var config = {
+    'intervalTime': 3000,
+    'transitionTime': 1000,
+    'startImage': 1
+  }
+
+  // initialize and render carousel
+  var carousel1 = new Carousel('carousel-1');
+  carousel1.init(config);
+  carousel1.render();
+</script>
+
+</html>

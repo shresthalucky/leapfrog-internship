@@ -1,0 +1,92 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-image-wrapper:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.carousel-image-wrapper img {
+  float: left;
+  max-width: 100%;
+  display: none;
+}
+
+.carousel-image-wrapper img.active.right {
+  position: absolute;
+  display: block;
+  left: 100%;
+}
+
+.carousel-image-wrapper img.active.left {
+  position: absolute;
+  display: block;
+  left: -100%;
+}
+
+.carousel-image-wrapper img.active {
+  display: block;
+  margin-left: 0;
+  width: 100%;
+}
+
+.carousel-btn {
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  padding: 20px;
+  transform: translateY(-30px);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  border: 0;
+  cursor: pointer;
+}
+
+.carousel-btn:focus {
+  outline: none;
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+.carousel-container .carousel-indicator {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 10px;
+  z-index: 10;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.carousel-container .carousel-indicator .indicator {
+  width: 14px;
+  height: 14px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  margin: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.carousel-container .carousel-indicator .indicator.active {
+  background-color: #2196F3;
+  border: 2px solid #ffffff;
+}

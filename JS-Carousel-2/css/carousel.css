@@ -1,10 +1,8 @@
 .carousel-container {
   position: relative;
-  width: 600px;
-  height: 380px;
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
-  display: table;
 }
 
 .carousel-image-wrapper {
@@ -12,12 +10,20 @@
   width: 100%;
 }
 
+.carousel-image-wrapper:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
 .carousel-image-wrapper img {
+  float: left;
   max-width: 100%;
   display: none;
 }
 
 .carousel-image-wrapper img.active.right {
+  position: absolute;
   display: block;
   left: 100%;
 }
@@ -29,9 +35,8 @@
 }
 
 .carousel-image-wrapper img.active {
-  position: absolute;
   display: block;
-  left: 0;
+  margin-left: 0;
   width: 100%;
 }
 
@@ -84,4 +89,4 @@
 .carousel-container .carousel-indicator .indicator.active {
   background-color: #2196F3;
   border: 2px solid #ffffff;
-} 
+}

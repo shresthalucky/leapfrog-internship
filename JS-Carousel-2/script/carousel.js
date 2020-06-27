@@ -61,7 +61,7 @@ var Carousel = function (carouselId) {
       if (elapsedTime <= self.transitionTime) {
         fromImageInitialPosition = speed * elapsedTime;
         toImage.style.left = toImageInitalPosition + fromImageInitialPosition + '%';
-        fromImage.style.left = fromImageInitialPosition + '%';
+        fromImage.style.marginLeft = fromImageInitialPosition + '%';
         requestAnimationFrame(animateCallback);
       } else {
         cancelAnimationFrame(self.animationId);

@@ -23,7 +23,17 @@
 </body>
 <script src="./carousel.js"></script>
 <script>
-  var carousel1 = new Carousel('carousel-1', 2000, 500, 4);
+
+  // configure carousel
+  var config = {
+    'intervalTime': 2000,
+    'transitionTime': 500,
+    'startImage': 3
+  }
+
+  // initialize carousel
+  var carousel1 = new Carousel('carousel-1');
+  carousel1.init(config);
   carousel1.render();
 </script>
 

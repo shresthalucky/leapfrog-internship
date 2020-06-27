@@ -50,6 +50,11 @@
   background-color: rgba(0, 0, 0, 0.3);
   color: #ffffff;
   border: 0;
+  cursor: pointer;
+}
+
+.carousel-btn:focus {
+  outline: none;
 }
 
 .carousel-btn.prev {

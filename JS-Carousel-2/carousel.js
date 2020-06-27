@@ -1,4 +1,4 @@
-var Carousel = function (carouselId, intervalTime, transitionTime, startImage) {
+var Carousel = function (carouselId) {
 
   var self = this;
 
@@ -10,15 +10,13 @@ var Carousel = function (carouselId, intervalTime, transitionTime, startImage) {
   this.totalImages = this.images.length;
 
   // default transition of carousel
-  this.transitionTime = (transitionTime === undefined) ? 1000 : transitionTime;
-  this.percentage = 100 / this.transitionTime;
+  this.transitionTime;
+  this.percentage;
   this.animationId;
 
   // active default to first image
-  this.activeIndex = (startImage === undefined) ? 0
-    : (startImage - 1 <= this.totalImages && startImage - 1 > 0) ? startImage - 1 : 0;
-  this.activeImage = this.images[this.activeIndex];
-  this.activeImage.setAttribute('class', 'active');
+  this.activeIndex;
+  this.activeImage;
 
   // slider navigation and indicator elements
   this.prevButton = document.createElement('button');
@@ -26,19 +24,33 @@ var Carousel = function (carouselId, intervalTime, transitionTime, startImage) {
   this.indicatorWrapper = document.createElement('div');
 
   // auto animate options
-  this.intervalTime = intervalTime ? intervalTime : 2000;
-  this.isHover = false;
+  this.intervalTime;
+  this.autoAnimateInterval;
 
   // assign index to image elements
   for (var i = 0; i < this.totalImages; i++) {
     this.images[i].setAttribute('data-id', i);
   }
 
+  this.init = function (config) {
+    this.transitionTime = (config.transitionTime === undefined) ? 1000 : config.transitionTime;
+    this.percentage = 100 / this.transitionTime;
+    this.activeIndex = (config.startImage === undefined) ? 0
+      : (config.startImage - 1 <= this.totalImages && config.startImage - 1 > 0) ? config.startImage - 1 : 0;
+    this.activeImage = this.images[this.activeIndex];
+    this.activeImage.setAttribute('class', 'active');
+    this.intervalTime = config.intervalTime ? config.intervalTime : 2000;
+  }
+
   function animate(fromImage, toImage, toDirection) {
+
+    navHandler(0);
+
     var toImageInitalPosition = toDirection === 'left' ? 100 : -100;
     var fromImageInitialPosition = 0;
     var speed = toDirection === 'left' ? -this.percentage : this.percentage;
     var startTime;
+
 
     function animateCallback(now) {
 
@@ -52,16 +64,17 @@ var Carousel = function (carouselId, intervalTime, transitionTime, startImage) {
         fromImage.style.left = fromImageInitialPosition + '%';
         requestAnimationFrame(animateCallback);
       } else {
-        cancelAnimationFrame(this.animationId);
+        cancelAnimationFrame(self.animationId);
         toImage.classList.remove('right', 'left');
         toImage.removeAttribute('style');
         fromImage.removeAttribute('class');
         fromImage.removeAttribute('style');
+        navHandler(1);
         refreshIndicator.call(self);
       }
     }
 
-    this.animationId = requestAnimationFrame(animateCallback.bind(this));
+    this.animationId = requestAnimationFrame(animateCallback);
   }
 
   function slideLeft() {
@@ -147,31 +160,35 @@ var Carousel = function (carouselId, intervalTime, transitionTime, startImage) {
     }
   }
 
+  function navHandler(state) {
+    if (state === 0) {
+      self.prevButton.setAttribute('disabled', 'disabled');
+      self.nextButton.setAttribute('disabled', 'disabled');
+    } else if (state === 1) {
+      self.prevButton.removeAttribute('disabled');
+      self.nextButton.removeAttribute('disabled');
+    }
+  }
+
   function autoAnimate() {
-    this.autoAnimateInterval = setInterval(function () {
-      if (!self.isHover) slideLeft.call(self);
+    self.autoAnimateInterval = setInterval(function () {
+      slideLeft.call(self);
     }, self.intervalTime);
   }
 
-  this.changeAnimationInterval = function (time) {
-    clearInterval(self.autoAnimateInterval);
-    self.intervalTime = time;
-    autoAnimate.call(self);
-  }
-
   this.carouselContainer.onmouseover = function () {
-    self.isHover = true;
+    clearInterval(self.autoAnimateInterval);
   }
 
   this.carouselContainer.onmouseout = function () {
-    self.isHover = false;
+    autoAnimate.call(self);
   }
 
   this.render = function () {
     renderNavigationButtons.call(self);
     renderIndicators.call(self);
     refreshIndicator.call(self);
-    // autoAnimate.call(self);
+    autoAnimate.call(self);
   }
 
 }

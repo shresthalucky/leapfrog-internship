@@ -113,9 +113,6 @@ var Carousel = function (carouselId) {
     this.carouselContainer.appendChild(this.nextButton);
   }
 
-  // this.prevButton.onclick = slideRight.bind(self);
-  // this.nextButton.onclick = slideLeft.bind(self);
-
   this.prevButton.onclick = function (event) {
     if (event.detail === 1) slideRight.call(self);
   }
@@ -185,10 +182,12 @@ var Carousel = function (carouselId) {
   }
 
   this.render = function () {
-    renderNavigationButtons.call(self);
-    renderIndicators.call(self);
-    refreshIndicator.call(self);
-    autoAnimate.call(self);
+    if (self.totalImages > 1) {
+      renderNavigationButtons.call(self);
+      renderIndicators.call(self);
+      refreshIndicator.call(self);
+      autoAnimate.call(self);
+    }
   }
 
 }

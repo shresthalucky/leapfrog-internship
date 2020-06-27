@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./carousel.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/carousel.css">
   <title>Image Carousel</title>
 </head>
 
@@ -21,17 +22,17 @@
   </div>
 
 </body>
-<script src="./carousel.js"></script>
+<script src="./script/carousel.js"></script>
 <script>
 
   // configure carousel
   var config = {
-    'intervalTime': 2000,
+    'intervalTime': 2500,
     'transitionTime': 500,
-    'startImage': 3
+    'startImage': 1
   }
 
-  // initialize carousel
+  // initialize and render carousel
   var carousel1 = new Carousel('carousel-1');
   carousel1.init(config);
   carousel1.render();

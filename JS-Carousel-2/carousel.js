@@ -1,4 +1,4 @@
-var Carousel = function (carouselId, intervalTime) {
+var Carousel = function (carouselId, intervalTime, transitionTime, startImage) {
 
   var self = this;
 
@@ -10,11 +10,13 @@ var Carousel = function (carouselId, intervalTime) {
   this.totalImages = this.images.length;
 
   // default transition of carousel
-  this.percentage = 5;
+  this.transitionTime = (transitionTime === undefined) ? 1000 : transitionTime;
+  this.percentage = 100 / this.transitionTime;
   this.animationId;
 
   // active default to first image
-  this.activeIndex = 0;
+  this.activeIndex = (startImage === undefined) ? 0
+    : (startImage - 1 <= this.totalImages && startImage - 1 > 0) ? startImage - 1 : 0;
   this.activeImage = this.images[this.activeIndex];
   this.activeImage.setAttribute('class', 'active');
 
@@ -36,12 +38,17 @@ var Carousel = function (carouselId, intervalTime) {
     var toImageInitalPosition = toDirection === 'left' ? 100 : -100;
     var fromImageInitialPosition = 0;
     var speed = toDirection === 'left' ? -this.percentage : this.percentage;
+    var startTime;
 
-    function animateCallback() {
-      if (toImageInitalPosition !== 0) {
-        toImageInitalPosition += speed;
-        fromImageInitialPosition += speed;
-        toImage.style.left = toImageInitalPosition + '%';
+    function animateCallback(now) {
+
+      if (startTime === undefined)
+        startTime = now;
+
+      var elapsedTime = now - startTime;
+      if (elapsedTime <= self.transitionTime) {
+        fromImageInitialPosition = speed * elapsedTime;
+        toImage.style.left = toImageInitalPosition + fromImageInitialPosition + '%';
         fromImage.style.left = fromImageInitialPosition + '%';
         requestAnimationFrame(animateCallback);
       } else {
@@ -93,8 +100,16 @@ var Carousel = function (carouselId, intervalTime) {
     this.carouselContainer.appendChild(this.nextButton);
   }
 
-  this.prevButton.onclick = slideRight.bind(self);
-  this.nextButton.onclick = slideLeft.bind(self);
+  // this.prevButton.onclick = slideRight.bind(self);
+  // this.nextButton.onclick = slideLeft.bind(self);
+
+  this.prevButton.onclick = function (event) {
+    if (event.detail === 1) slideRight.call(self);
+  }
+
+  this.nextButton.onclick = function (event) {
+    if (event.detail === 1) slideLeft.call(self);
+  }
 
   function renderIndicators() {
     this.indicatorWrapper.classList.add('carousel-indicator');
@@ -156,7 +171,7 @@ var Carousel = function (carouselId, intervalTime) {
     renderNavigationButtons.call(self);
     renderIndicators.call(self);
     refreshIndicator.call(self);
-    autoAnimate.call(self);
+    // autoAnimate.call(self);
   }
 
 }

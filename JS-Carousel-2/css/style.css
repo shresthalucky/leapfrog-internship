@@ -20,7 +20,7 @@
   float: left;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 480px) {
   .col {
     width: 50%;
   }

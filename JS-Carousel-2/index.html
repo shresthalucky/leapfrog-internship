@@ -13,13 +13,57 @@
 
   <div class="main-container">
 
-    <div class="carousel-container" id="carousel-1">
-      <div class="carousel-image-wrapper">
-        <img src="./images/image1.jpg" alt="image1">
-        <img src="./images/image2.jpg" alt="image2">
-        <img src="./images/image3.jpg" alt="image3">
-        <img src="./images/image4.jpg" alt="image4">
-        <img src="./images/image5.jpg" alt="image5">
+    <div class="row clearfix">
+
+      <div class="col">
+        <div class="carousel-container" id="carousel-1">
+          <div class="carousel-image-wrapper">
+            <img src="./images/image1.jpg" alt="image1">
+            <img src="./images/image2.jpg" alt="image2">
+            <img src="./images/image3.jpg" alt="image3">
+            <img src="./images/image4.jpg" alt="image4">
+            <img src="./images/image5.jpg" alt="image5">
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="carousel-container" id="carousel-2">
+          <div class="carousel-image-wrapper">
+            <img src="./images/image1.jpg" alt="image1">
+            <img src="./images/image2.jpg" alt="image2">
+            <img src="./images/image3.jpg" alt="image3">
+            <img src="./images/image4.jpg" alt="image4">
+            <img src="./images/image5.jpg" alt="image5">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row clearfix">
+      <div class="col">
+        <div class="carousel-container" id="carousel-3">
+          <div class="carousel-image-wrapper">
+            <img src="./images/image1.jpg" alt="image1">
+            <img src="./images/image2.jpg" alt="image2">
+            <img src="./images/image3.jpg" alt="image3">
+            <img src="./images/image4.jpg" alt="image4">
+            <img src="./images/image5.jpg" alt="image5">
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="carousel-container" id="carousel-4">
+          <div class="carousel-image-wrapper">
+            <img src="./images/image1.jpg" alt="image1">
+            <img src="./images/image2.jpg" alt="image2">
+            <img src="./images/image3.jpg" alt="image3">
+            <img src="./images/image4.jpg" alt="image4">
+            <img src="./images/image5.jpg" alt="image5">
+          </div>
+        </div>
       </div>
     </div>
 
@@ -29,17 +73,54 @@
 <script src="./script/carousel.js"></script>
 <script>
 
-  // configure carousel
-  var config = {
-    'intervalTime': 3000,
-    'transitionTime': 500,
+  // configure carousel-1
+  var config1 = {
+    'intervalTime': 2000,
+    'transitionTime': 600,
     'startImage': 1
   }
 
-  // initialize and render carousel
+  // initialize and render carousel-1
   var carousel1 = new Carousel('carousel-1');
-  carousel1.init(config);
+  carousel1.init(config1);
   carousel1.render();
+
+  // configure carousel-2
+  var config2 = {
+    'intervalTime': 2000,
+    'transitionTime': 600,
+    'startImage': 2
+  }
+
+  // initialize and render carousel-2
+  var carousel2 = new Carousel('carousel-2');
+  carousel2.init(config2);
+  carousel2.render();
+
+  // configure carousel-3
+  var config3 = {
+    'intervalTime': 3000,
+    'transitionTime': 600,
+    'startImage': 3
+  }
+
+  // initialize and render carousel-3
+  var carousel3 = new Carousel('carousel-3');
+  carousel3.init(config3);
+  carousel3.render();
+
+  // configure carousel-4
+  var config4 = {
+    'intervalTime': 4000,
+    'transitionTime': 600,
+    'startImage': 4
+  }
+
+  // initialize and render carousel-4
+  var carousel4 = new Carousel('carousel-4');
+  carousel4.init(config4);
+  carousel4.render();
+
 </script>
 
 </html>

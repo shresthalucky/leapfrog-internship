@@ -11,8 +11,11 @@ var Carousel = function (carouselId) {
 
   // default transition of carousel
   this.transitionTime;
-  this.percentage;
+  this.percentPerFrame;
   this.animationId;
+  this.WIDTH = 100;
+  this.TRANSITION_TIME = 500;
+  this.INTERVAL_TIME = 2000;
 
   // active default to first image
   this.activeIndex;
@@ -33,31 +36,32 @@ var Carousel = function (carouselId) {
     this.images[i].setAttribute('data-id', i);
   }
 
+  // declear all required variables
   this.init = function (config) {
-    self.transitionTime = config.transitionTime ? config.transitionTime : 1000;
-    self.percentage = 100 / self.transitionTime;
+    self.transitionTime = config.transitionTime ? config.transitionTime : self.TRANSITION_TIME;
+    self.percentPerFrame = self.WIDTH / self.transitionTime;
 
     if (config.startImage) {
-      self.activeIndex = (config.startImage - 1 <= self.totalImages && config.startImage - 1 > 0) ? 
-      config.startImage - 1 : 0;
+      self.activeIndex = (config.startImage - 1 <= self.totalImages && config.startImage - 1 > 0) ?
+        config.startImage - 1 : 0;
     } else {
       self.activeIndex = 0;
     }
-    
+
     self.activeImage = self.images[self.activeIndex];
     self.activeImage.setAttribute('class', 'active');
-    self.intervalTime = config.intervalTime ? config.intervalTime : 2000;
+    self.intervalTime = config.intervalTime ? config.intervalTime : self.INTERVAL_TIME;
   }
 
+  // animate from one image to another in specific direction
   function animate(fromImage, toImage, toDirection) {
 
-    // navHandler(0);
-
-    var toImageInitalPosition = toDirection === 'left' ? 100 : -100;
+    navHandler(0); // disable controllers before animation
+    
+    var toImageInitalPosition = toDirection === 'left' ? self.WIDTH : -self.WIDTH;
     var fromImageInitialPosition = 0;
-    var speed = toDirection === 'left' ? -this.percentage : this.percentage;
+    var speed = toDirection === 'left' ? -self.percentPerFrame : self.percentPerFrame;
     var startTime;
-
 
     function animateCallback(now) {
 
@@ -76,112 +80,120 @@ var Carousel = function (carouselId) {
         toImage.removeAttribute('style');
         fromImage.removeAttribute('class');
         fromImage.removeAttribute('style');
-        // navHandler(1);
+        navHandler(1);
         refreshIndicator.call(self);
       }
     }
-
-    this.animationId = requestAnimationFrame(animateCallback);
+    self.animationId = requestAnimationFrame(animateCallback);
   }
 
   function slideLeft() {
-    var toLeft = this.images[this.activeIndex];
-    var nextIndex = this.activeIndex + 1;
+    var toLeft = self.images[self.activeIndex];
+    var nextIndex = self.activeIndex + 1;
 
-    nextIndex %= this.totalImages;
-    var toActive = this.images[nextIndex];
+    nextIndex %= self.totalImages;
+    var toActive = self.images[nextIndex];
 
     toActive.classList.add('active', 'right');
     animate.call(self, toLeft, toActive, 'left');
-    this.activeIndex = nextIndex;
+    self.activeIndex = nextIndex;
   }
 
   function slideRight() {
-    var toRight = this.images[this.activeIndex];
-    var nextIndex = this.activeIndex - 1;
+    var toRight = self.images[self.activeIndex];
+    var nextIndex = self.activeIndex - 1;
 
     if (nextIndex < 0) {
-      nextIndex = this.totalImages + nextIndex;
+      nextIndex = self.totalImages + nextIndex;
     }
 
-    var toActive = this.images[nextIndex];
+    var toActive = self.images[nextIndex];
     toActive.classList.add('active', 'left');
     animate.call(self, toRight, toActive, 'right');
-    this.activeIndex = nextIndex;
+    self.activeIndex = nextIndex;
   }
 
   function renderNavigationButtons() {
-    this.prevButton.classList.add('carousel-btn', 'prev');
-    this.prevButton.innerHTML = '&#10094';
-    this.carouselContainer.appendChild(this.prevButton);
+    self.prevButton.classList.add('carousel-btn', 'prev');
+    self.prevButton.innerHTML = '&#10094';
+    self.carouselContainer.appendChild(self.prevButton);
 
-    this.nextButton.classList.add('carousel-btn', 'next');
-    this.nextButton.innerHTML = '&#10095'
-    this.carouselContainer.appendChild(this.nextButton);
-  }
-
-  this.prevButton.onclick = function (event) {
-    if (event.detail === 1) slideRight.call(self);
-  }
-
-  this.nextButton.onclick = function (event) {
-    if (event.detail === 1) slideLeft.call(self);
+    self.nextButton.classList.add('carousel-btn', 'next');
+    self.nextButton.innerHTML = '&#10095'
+    self.carouselContainer.appendChild(self.nextButton);
   }
 
   function renderIndicators() {
-    this.indicatorWrapper.classList.add('carousel-indicator');
-    this.carouselContainer.appendChild(this.indicatorWrapper);
+    self.indicatorWrapper.classList.add('carousel-indicator');
+    self.carouselContainer.appendChild(self.indicatorWrapper);
 
-    for (var i = 0; i < this.totalImages; i++) {
-      var indicator = document.createElement('div');
+    for (var i = 0; i < self.totalImages; i++) {
+      var indicator = document.createElement('button');
       indicator.classList.add('indicator');
       indicator.setAttribute('data-id', i);
-      this.indicatorWrapper.appendChild(indicator);
+      self.indicatorWrapper.appendChild(indicator);
+
+      indicator.onclick = function (event) {
+        var clickedIndex = parseInt(event.target.getAttribute('data-id'));
+
+        if (!event.target.classList.contains('active')) {
+          var direction = (clickedIndex - self.activeIndex) > 0 ? 'left' : 'right';
+          self.images[clickedIndex].classList.add('active', 'right');
+          animate.call(self, self.images[self.activeIndex], self.images[clickedIndex], direction);
+          self.activeIndex = clickedIndex;
+        }
+      }
     }
+  }
+
+  this.prevButton.onclick = function (event) {
+    if (event.detail === 1) slideRight();
+  }
+
+  this.nextButton.onclick = function (event) {
+    if (event.detail === 1) slideLeft();
   }
 
   function refreshIndicator() {
-
-    if (this.indicatorWrapper.querySelector('.active')) {
-      this.indicatorWrapper.querySelector('.active').classList.remove('active');
+    if (self.indicatorWrapper.querySelector('.active')) {
+      self.indicatorWrapper.querySelector('.active').classList.remove('active');
     }
 
-    var activeIndicator = this.images[this.activeIndex].getAttribute('data-id');
-    this.indicatorWrapper.children.item(activeIndicator).classList.add('active');
-  }
-
-  this.indicatorWrapper.onclick = function (event) {
-    if (event.srcElement.classList.contains('indicator')) {
-      var clickedIndex = parseInt(event.srcElement.getAttribute('data-id'));
-      var clickedImage = self.images[clickedIndex];
-
-      if (!clickedImage.classList.contains('active')) {
-        var direction = (clickedIndex - self.activeIndex) > 0 ? 'left' : 'right';
-        clickedImage.classList.add('active', 'right');
-        animate.call(self, self.images[self.activeIndex], clickedImage, direction);
-        self.activeIndex = clickedIndex;
-      }
-    }
+    var activeIndicator = self.images[self.activeIndex].getAttribute('data-id');
+    self.indicatorWrapper.children.item(activeIndicator).classList.add('active');
   }
 
   function navHandler(state) {
     if (state === 0) {
       self.prevButton.disabled = true;
       self.nextButton.disabled = true;
+      var indicators = self.indicatorWrapper.children;
+      for (var i = 0; i < self.totalImages; i++) {
+        indicators[i].disabled = true;
+      }
+
     } else if (state === 1) {
       self.prevButton.disabled = false;
       self.nextButton.disabled = false;
+      var indicators = self.indicatorWrapper.children;
+      for (var i = 0; i < self.totalImages; i++) {
+        indicators[i].disabled = false;
+      }
     }
   }
 
   function autoAnimate() {
     var start;
+    var additionalTime = 0;
+
     function rafInterval(now) {
       if (!start) start = now;
       var elapsed = now - start;
-      if (elapsed >= self.intervalTime) {
+      
+      if (elapsed >= self.intervalTime + additionalTime) {
         slideLeft.call(self);
         start = now;
+        additionalTime = self.transitionTime;
       }
       if (self.isHover) {
         cancelAnimationFrame(self.intervalId);
@@ -201,13 +213,13 @@ var Carousel = function (carouselId) {
     autoAnimate.call(self);
   }
 
+  // render all and start animation
   this.render = function () {
     if (self.totalImages > 1) {
-      renderNavigationButtons.call(self);
-      renderIndicators.call(self);
-      refreshIndicator.call(self);
-      autoAnimate.call(self);
+      renderNavigationButtons();
+      renderIndicators();
+      refreshIndicator();
+      autoAnimate();
     }
   }
-
 }

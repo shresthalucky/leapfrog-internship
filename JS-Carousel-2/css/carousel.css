@@ -52,7 +52,7 @@
   cursor: pointer;
 }
 
-.carousel-btn:focus {
+.carousel-btn:focus, .indicator:focus {
   outline: none;
 }
 

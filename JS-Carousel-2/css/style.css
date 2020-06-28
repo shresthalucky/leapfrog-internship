@@ -4,7 +4,24 @@
   box-sizing: border-box;
 }
 
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
 .main-container {
-  max-width: 650px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+.col {
+  width: 100%;
+  float: left;
+}
+
+@media screen and (min-width: 1200px) {
+  .col {
+    width: 50%;
+  }
 }

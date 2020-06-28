@@ -25,7 +25,8 @@ var Carousel = function (carouselId) {
 
   // auto animate options
   this.intervalTime;
-  this.autoAnimateInterval;
+  this.intervalId;
+  this.isHover;
 
   // assign index to image elements
   for (var i = 0; i < this.totalImages; i++) {
@@ -33,18 +34,24 @@ var Carousel = function (carouselId) {
   }
 
   this.init = function (config) {
-    this.transitionTime = (config.transitionTime === undefined) ? 1000 : config.transitionTime;
-    this.percentage = 100 / this.transitionTime;
-    this.activeIndex = (config.startImage === undefined) ? 0
-      : (config.startImage - 1 <= this.totalImages && config.startImage - 1 > 0) ? config.startImage - 1 : 0;
-    this.activeImage = this.images[this.activeIndex];
-    this.activeImage.setAttribute('class', 'active');
-    this.intervalTime = config.intervalTime ? config.intervalTime : 2000;
+    self.transitionTime = config.transitionTime ? config.transitionTime : 1000;
+    self.percentage = 100 / self.transitionTime;
+
+    if (config.startImage) {
+      self.activeIndex = (config.startImage - 1 <= self.totalImages && config.startImage - 1 > 0) ? 
+      config.startImage - 1 : 0;
+    } else {
+      self.activeIndex = 0;
+    }
+    
+    self.activeImage = self.images[self.activeIndex];
+    self.activeImage.setAttribute('class', 'active');
+    self.intervalTime = config.intervalTime ? config.intervalTime : 2000;
   }
 
   function animate(fromImage, toImage, toDirection) {
 
-    navHandler(0);
+    // navHandler(0);
 
     var toImageInitalPosition = toDirection === 'left' ? 100 : -100;
     var fromImageInitialPosition = 0;
@@ -54,10 +61,10 @@ var Carousel = function (carouselId) {
 
     function animateCallback(now) {
 
-      if (startTime === undefined)
-        startTime = now;
+      if (!startTime) startTime = now;
 
       var elapsedTime = now - startTime;
+
       if (elapsedTime <= self.transitionTime) {
         fromImageInitialPosition = speed * elapsedTime;
         toImage.style.left = toImageInitalPosition + fromImageInitialPosition + '%';
@@ -69,7 +76,7 @@ var Carousel = function (carouselId) {
         toImage.removeAttribute('style');
         fromImage.removeAttribute('class');
         fromImage.removeAttribute('style');
-        navHandler(1);
+        // navHandler(1);
         refreshIndicator.call(self);
       }
     }
@@ -159,25 +166,38 @@ var Carousel = function (carouselId) {
 
   function navHandler(state) {
     if (state === 0) {
-      self.prevButton.setAttribute('disabled', 'disabled');
-      self.nextButton.setAttribute('disabled', 'disabled');
+      self.prevButton.disabled = true;
+      self.nextButton.disabled = true;
     } else if (state === 1) {
-      self.prevButton.removeAttribute('disabled');
-      self.nextButton.removeAttribute('disabled');
+      self.prevButton.disabled = false;
+      self.nextButton.disabled = false;
     }
   }
 
   function autoAnimate() {
-    self.autoAnimateInterval = setInterval(function () {
-      slideLeft.call(self);
-    }, self.intervalTime);
+    var start;
+    function rafInterval(now) {
+      if (!start) start = now;
+      var elapsed = now - start;
+      if (elapsed >= self.intervalTime) {
+        slideLeft.call(self);
+        start = now;
+      }
+      if (self.isHover) {
+        cancelAnimationFrame(self.intervalId);
+      } else {
+        requestAnimationFrame(rafInterval);
+      }
+    }
+    self.intervalId = requestAnimationFrame(rafInterval);
   }
 
   this.carouselContainer.onmouseover = function () {
-    clearInterval(self.autoAnimateInterval);
+    self.isHover = true;
   }
 
   this.carouselContainer.onmouseout = function () {
+    self.isHover = false;
     autoAnimate.call(self);
   }
 

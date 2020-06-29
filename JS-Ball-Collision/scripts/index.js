@@ -23,7 +23,7 @@ function init() {
 
       while (exists === true) {
         var [x, y, radius] = generateValues();
-        ball = new Ball(x, y, radius, i);
+        ball = new Ball(x, y, radius);
 
         if (i === 0) break;
 

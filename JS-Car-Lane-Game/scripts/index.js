@@ -23,15 +23,18 @@ function init() {
   const laneSep1 = new LaneSeparator(new Position(LANE_WIDTH, 0), new Position(LANE_WIDTH + SEP, CANVAS_HEIGHT), SEP);
   const laneSep2 = new LaneSeparator(new Position(2 * LANE_WIDTH + SEP, 0), new Position(2 * LANE_WIDTH + 2 * SEP, CANVAS_HEIGHT), SEP);
 
-  const PLAYER_CAR_INITIAL = new Position(secondLane.position.start.x + CAR_START, CANVAS_HEIGHT - CAR_HEIGHT);
-
-  const playerCar = new Car(PLAYER_CAR_INITIAL, CAR_WIDTH, CAR_HEIGHT);
-
+  let rafId;
+  
   const initialCarX = [
     firstLane.position.start.x + CAR_START,
     secondLane.position.start.x + CAR_START,
     thirdLane.position.start.x + CAR_START
   ]
+
+  let currentLane = 1;
+
+  const PLAYER_CAR_INITIAL = new Position(initialCarX[currentLane], CANVAS_HEIGHT - CAR_HEIGHT);
+  const playerCar = new Car(PLAYER_CAR_INITIAL, CAR_WIDTH, CAR_HEIGHT);
 
   const opponentCar = new Car(new Position(initialCarX[0], 0), CAR_WIDTH, CAR_HEIGHT);
 
@@ -44,6 +47,9 @@ function init() {
   // playerCar.draw(ctx);
   // opponentCar.draw(ctx);
 
+  function gameOver() {
+    console.log('game over');
+  }
 
   function play() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -56,30 +62,34 @@ function init() {
     playerCar.draw(ctx);
     opponentCar.moveDown();
     opponentCar.draw(ctx);
-    requestAnimationFrame(play);
+    
+    if (playerCar.checkCollision(opponentCar)) {
+      cancelAnimationFrame(rafId);
+      gameOver();
+    } else {
+      requestAnimationFrame(play);
+    }
   }
 
-  requestAnimationFrame(play);
+  rafId = requestAnimationFrame(play);
 
 
   document.addEventListener('keydown', (event) => {
 
     let key = event.key;
 
-    // if car in first lane
-    if (playerCar.position.start.x === initialCarX[0]) {
-
+    if (key === 'a') {
+      if(currentLane !== 0) {
+        currentLane -= 1;
+        playerCar.position.start.x = initialCarX[currentLane];
+      }
+    } else if (key === 'd') {
+      if (currentLane !== 2) {
+        currentLane += 1;
+        playerCar.position.start.x = initialCarX[currentLane];
+      } 
     }
 
-    // if car in second lane
-    if (playerCar.position.start.x === initialCarX[1]) {
-
-    }
-
-    // if car in third lane
-    if (playerCar.position.start.x === initialCarX[1]) {
-
-    }
   });
 
 }

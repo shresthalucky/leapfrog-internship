@@ -9,9 +9,9 @@ var Ball = function (x, y, radius) {
 
   function generateColor() {
 
-    var red = Math.floor(Math.random() * 254);
-    var green = Math.floor(Math.random() * 254);
-    var blue = Math.floor(Math.random() * 254);
+    var red = Math.floor(Math.random() * 255);
+    var green = Math.floor(Math.random() * 255);
+    var blue = Math.floor(Math.random() * 255);
 
     return `rgb(${red}, ${green}, ${blue})`;
   }

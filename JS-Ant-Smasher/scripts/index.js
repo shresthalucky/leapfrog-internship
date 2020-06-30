@@ -13,9 +13,22 @@ function init() {
   var HEIGHT = 39;
   var TOTAL_ANTS = 25;
 
+  var BG_WIDTH = Math.floor(CANVAS_WIDTH / 500);
+  var BG_HEIGHT = Math.floor(CANVAS_HEIGHT / 500);
+
   var antsList = generateAnts(TOTAL_ANTS);
 
   var score = 0;
+
+  function drawBackground() {
+    var img = new Image();
+    img.src = './images/texture.jpg'
+    for (let i = 0; i < BG_WIDTH; i++) {
+      for (let j = 0; j < BG_HEIGHT; j++) {
+        ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      }
+    }
+  }
 
   function generateAnts() {
     var antsList = [];
@@ -67,6 +80,7 @@ function init() {
     if (antsList.length === 0) {
       displayGameOver();
     } else {
+      drawBackground();
       for (ant of antsList) {
         ant.checkCollision(antsList);
         ant.move(CANVAS_WIDTH, CANVAS_HEIGHT);

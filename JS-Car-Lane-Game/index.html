@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <title>Car Lane Game</title>
 </head>
+
 <body>
-  <canvas id="game"></canvas>
+  <div class="main-container">
+    
+    <canvas id="game"></canvas>
+    
+    <div class="card" id="intro">
+      <h1>CAR LANE GAME</h1>
+      <p>
+        <b>A</b> TO CHANGE LANE TO LEFT
+      </p>
+      <p>
+        <b>D</b> TO CHANGE LANE TO RIGHT
+      </p>
+      <button id="btn-play">PLAY!</button>
+    </div>
+
+    <div class="card" id="score">
+      <h1>SCORE</h1>
+      <p id="gameplay-score"></p>
+      <p id="highscore"></p>
+      <button id="btn-play">REPLAY!</button>
+    </div>
+
+  </div>
   <script src="./scripts/extras.js"></script>
   <script src="./scripts/road.js"></script>
   <script src="./scripts/car.js"></script>
+  <script src="./scripts/obstacle.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
+
 </html>

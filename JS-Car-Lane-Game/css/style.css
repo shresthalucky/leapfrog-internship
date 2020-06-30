@@ -5,5 +5,24 @@
 
 body {
   width: 100%;
-  height: 100vh;
+}
+
+.main-container {
+  width: 100%;
+  text-align: center;
+}
+
+canvas {
+  display: none;
+  margin: 0 auto;
+}
+
+.card {
+  height: 600px;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.card#score {
+  display: none;
 }

@@ -9,8 +9,8 @@ class Background {
       Background.sprite.sy,
       Background.sprite.sw,
       Background.sprite.sh,
-      this.position.startX,
-      this.position.startY,
+      this.position.coordinates.top.x,
+      this.position.coordinates.top.y,
       this.position.width,
       this.position.height);
 
@@ -19,15 +19,15 @@ class Background {
       Background.sprite.sy,
       Background.sprite.sw,
       Background.sprite.sh,
-      this.position.width + this.position.startX,
-      this.position.startY,
+      this.position.width + this.position.coordinates.top.x,
+      this.position.coordinates.top.y,
       this.position.width,
       this.position.height);
 
-    this.position.startX -= 1;
+    this.position.coordinates.top.x -= 1;
 
-    if (this.position.startX < -this.position.width) {
-      this.position.startX = 0;
+    if (this.position.coordinates.top.x < -this.position.width) {
+      this.position.coordinates.top.x = 0;
     }
   }
 }
@@ -43,8 +43,8 @@ class Foreground {
       Foreground.sprite.sy,
       Foreground.sprite.sw,
       Foreground.sprite.sh,
-      this.position.startX,
-      this.position.startY,
+      this.position.coordinates.top.x,
+      this.position.coordinates.top.y,
       this.position.width,
       this.position.height);
 
@@ -53,18 +53,17 @@ class Foreground {
       Foreground.sprite.sy,
       Foreground.sprite.sw,
       Foreground.sprite.sh,
-      this.position.width + this.position.startX,
-      this.position.startY,
+      this.position.width + this.position.coordinates.top.x,
+      this.position.coordinates.top.y,
       this.position.width,
       this.position.height);
 
-    this.position.startX -= 10;
+    this.position.coordinates.top.x -= 10;
 
 
-    if (this.position.startX < -this.position.width) {
-      this.position.startX = 0;
+    if (this.position.coordinates.top.x < -this.position.width) {
+      this.position.coordinates.top.x = 0;
     }
-
   }
 }
 

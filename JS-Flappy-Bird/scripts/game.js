@@ -19,8 +19,6 @@ function initForeground() {
 }
 
 function initBird() {
-  const BIRD_X = 10;
-  const BIRD_Y = 10;
   const BIRD_WIDTH = 34;
   const BIRD_HEIGHT = 24;
   const flappyBird = new Bird(new Position(BIRD_X, BIRD_Y, BIRD_WIDTH, BIRD_HEIGHT));
@@ -49,11 +47,9 @@ function generatePipeCouple() {
   let topPipeHeight = Math.floor(Math.random() * (MAX_PIPE_HEIGHT - MIN_PIPE_HEIGHT)) + MIN_PIPE_HEIGHT;
   let bottomPipeHeight = GROUND_Y - (topPipeHeight + PIPE_VERTICAL_SPACE);
 
-  console.log(topPipeHeight + bottomPipeHeight);
-
   let topPipe = generateTopPipe(topPipeHeight, PIPE_WIDTH);
   let bottomPipe = generateBottomPipe(bottomPipeHeight, PIPE_WIDTH);
-  console.log(topPipe, bottomPipe);
+
   pipes.push(topPipe);
   pipes.push(bottomPipe);
 }
@@ -70,8 +66,17 @@ function generatePipes() {
   } else {
     generatePipeCouple();
   }
+}
 
-
+function pipesController() {
+  generatePipes();
+  for (pipe of pipes) {
+    if(pipe.active) {
+      pipe.draw();
+      pipe.shift();
+      pipe.checkCollision();
+    }
+  }
 }
 
 function play() {
@@ -85,14 +90,8 @@ function play() {
   background.draw();
   foreground.draw();
   flappyBird.draw();
-
-  generatePipes();
-
-  for (pipe of pipes) {
-    pipe.draw();
-    pipe.shift();
-  }
-
+  pipesController();
+  
   requestAnimationFrame(play);
 }
 

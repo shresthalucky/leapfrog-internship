@@ -3,6 +3,7 @@ class Pipe {
     this.position = position;
     this.state = state;
     this.sx;
+    this.active = true;
 
     if (this.state === 'top') {
       this.sy = Pipe.sprite.top.by - this.position.height;
@@ -17,16 +18,33 @@ class Pipe {
       this.sy,
       Pipe.sprite[this.state].sw,
       this.position.height,
-      this.position.startX,
-      this.position.startY,
+      this.position.coordinates.top.x,
+      this.position.coordinates.top.y,
       this.position.width,
       this.position.height);
   }
 
   shift = () => {
-    this.position.startX -= 10;
+    this.position.coordinates.top.x -= 10;
     this.position.coordinates.bottom.x -= 10;
+    this.deactivate();
   }
+
+  deactivate = () => {
+    if (this.position.coordinates.bottom.x < 0) {
+      this.active = false;
+    }
+  }
+
+  checkCollision = () => {
+    if (this.position.coordinates.top.x < flappyBird.position.coordinates.bottom.x
+      && this.position.coordinates.bottom.x > flappyBird.position.coordinates.top.x
+      && this.position.coordinates.top.y < flappyBird.position.coordinates.bottom.y
+      && this.position.coordinates.bottom.y > flappyBird.position.coordinates.top.y) {
+      console.log('collide');
+    }
+  }
+
 }
 
 

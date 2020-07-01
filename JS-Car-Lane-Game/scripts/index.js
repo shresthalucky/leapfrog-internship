@@ -6,8 +6,7 @@ function init() {
   const CANVAS_WIDTH = canvas.width;
   const CANVAS_HEIGHT = canvas.height;
 
-  const SEP = 0;
-  const LANE_WIDTH = (CANVAS_WIDTH / 3) - SEP;
+  const LANE_WIDTH = Math.floor(CANVAS_WIDTH / 3);
 
   const CAR_WIDTH = 80;
   const CAR_HEIGHT = 164;
@@ -17,13 +16,10 @@ function init() {
   const BULLET_SIZE = 20;
 
   const firstLane = new Lane(new Position(0, 0), new Position(LANE_WIDTH, CANVAS_HEIGHT), LANE_WIDTH, CAR_START);
-  const secondLane = new Lane(new Position(LANE_WIDTH + SEP, 0), new Position(2 * LANE_WIDTH + SEP, CANVAS_HEIGHT), LANE_WIDTH, CAR_START);
-  const thirdLane = new Lane(new Position(2 * LANE_WIDTH + 2 * SEP, 0), new Position(CANVAS_WIDTH, CANVAS_HEIGHT), LANE_WIDTH, CAR_START);
+  const secondLane = new Lane(new Position(LANE_WIDTH, 0), new Position(2 * LANE_WIDTH, CANVAS_HEIGHT), LANE_WIDTH, CAR_START);
+  const thirdLane = new Lane(new Position(2 * LANE_WIDTH + 2, 0), new Position(CANVAS_WIDTH, CANVAS_HEIGHT), LANE_WIDTH, CAR_START);
 
   const lanes = [firstLane, secondLane, thirdLane];
-
-  // const laneSep1 = new LaneSeparator(new Position(LANE_WIDTH, 0), new Position(LANE_WIDTH + SEP, CANVAS_HEIGHT), SEP);
-  // const laneSep2 = new LaneSeparator(new Position(2 * LANE_WIDTH + SEP, 0), new Position(2 * LANE_WIDTH + 2 * SEP, CANVAS_HEIGHT), SEP);
 
   let rafId;
 
@@ -34,8 +30,9 @@ function init() {
   ]
 
   let currentLane = 1;
+  const OFFSET = 20;
 
-  const PLAYER_CAR_INITIAL = new Position(initialCarX[currentLane], CANVAS_HEIGHT - CAR_HEIGHT);
+  const PLAYER_CAR_INITIAL = new Position(initialCarX[currentLane], CANVAS_HEIGHT - CAR_HEIGHT - OFFSET);
   const playerCar = new Car(PLAYER_CAR_INITIAL, CAR_WIDTH, CAR_HEIGHT);
 
   let coolDown = false;
@@ -50,7 +47,12 @@ function init() {
     if (!recentObs) {
       recentObs = lane.generateObstacle(CAR_WIDTH, CAR_HEIGHT);
     } else {
-      if (recentObs.position.start.y > CAR_HEIGHT * 2) {
+      if (recentObs.active) {
+        if (recentObs.position.start.y > CAR_HEIGHT * 2) {
+          recentObs = lane.generateObstacle(CAR_WIDTH, CAR_HEIGHT);
+        }
+      } else {
+        console.log(recentObs);
         recentObs = lane.generateObstacle(CAR_WIDTH, CAR_HEIGHT);
       }
     }
@@ -73,7 +75,7 @@ function init() {
       lane.moveObstacles(ctx, CANVAS_HEIGHT);
       lane.bulletCollision(ctx);
     }
-    
+
     showCoolDown();
 
     updateScore();
@@ -91,7 +93,7 @@ function init() {
 
 
   function showCoolDown() {
-    if(coolDown) {
+    if (coolDown) {
       ctx.font = 'bold 50px Arial';
       ctx.fillStyle = "#ffffff";
       ctx.fillText(coolDownTime, CANVAS_WIDTH / 2 - 20, CANVAS_HEIGHT / 2 - 20);
@@ -121,7 +123,7 @@ function init() {
 
     bullet.draw(ctx);
     lane.collectBullet(bullet);
-    
+
     console.log(bullet);
 
     coolDown = true;
@@ -180,7 +182,7 @@ playButton.onclick = function () {
   init();
 }
 
-replayButton.onclick = function() {
+replayButton.onclick = function () {
   scoreCard.style.display = 'none';
   init();
   Game.reset();

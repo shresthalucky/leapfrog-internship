@@ -19,7 +19,6 @@ const Bullet = function (startPosition, size) {
       if (this.position.start.y < 0) {
         this.active = false;
       }
-
     }
   }
 

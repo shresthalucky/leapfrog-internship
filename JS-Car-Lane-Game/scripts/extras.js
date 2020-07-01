@@ -3,7 +3,7 @@ const Position = function (x, y) {
   this.y = y;
 }
 
-const images = new function() {
+const images = new function () {
   this.road = new Image();
   this.road.src = './assets/road.jpg';
 
@@ -22,7 +22,7 @@ const images = new function() {
 
 const opponentImages = [images.opponent1, images.opponent2, images.opponent3];
 
-let Game = new function() {
+let Game = new function () {
   this.speed = 14;
   this.score = 0;
   this.highscore = localStorage.getItem('highscore') | 0;
@@ -35,7 +35,7 @@ let Game = new function() {
       console.log(this.speed);
     }
   }
-  
+
   this.setHighscore = () => {
     if (this.score > this.highscore) {
       this.highscore = this.score;

@@ -20,6 +20,8 @@ body {
 canvas {
   display: none;
   margin: 0 auto;
+  border-right: 30px solid #1B5E20;
+  border-left: 30px solid #1B5E20;
 }
 
 .card {

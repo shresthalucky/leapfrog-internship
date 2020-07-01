@@ -9,13 +9,11 @@ const Lane = function (startPosition, endPosition, width, beginX) {
   this.bullets = [];
 
   this.draw = (ctx) => {
-    for (let i = 0; i < 290; i++) {
+    for (let i = 0; i < 3; i++) {
       ctx.drawImage(images.road, this.position.start.x, this.position.start.y, this.width, this.position.end.y);
     }
     this.position.start.y += Game.speed;
-    for (let i = 0; i < 290; i++) {
-      ctx.drawImage(images.road, this.position.start.x, this.position.start.y - this.position.end.y, this.width, this.position.end.y);
-    }
+    ctx.drawImage(images.road, this.position.start.x, this.position.start.y - this.position.end.y, this.width, this.position.end.y);
     if (this.position.start.y > this.position.end.y) {
       this.position.start.y = 0;
     }

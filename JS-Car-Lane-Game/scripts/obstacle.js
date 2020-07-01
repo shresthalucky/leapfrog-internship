@@ -27,4 +27,8 @@ const Obstacle = function (startPosition, width, height) {
     }
   }
 
+  this.deactivate = () => {
+      this.active = false;
+  }
+
 }

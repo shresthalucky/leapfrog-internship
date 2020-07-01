@@ -1,11 +1,12 @@
 const Lane = function (startPosition, endPosition, width, beginX) {
   this.position = {
-    'start' : startPosition,
-    'end' : endPosition
+    'start': startPosition,
+    'end': endPosition
   }
   this.width = width;
   this.beginX = this.position.start.x + beginX;
   this.cars = [];
+  this.bullets = [];
 
   this.draw = (ctx) => {
     for (let i = 0; i < 290; i++) {
@@ -15,7 +16,7 @@ const Lane = function (startPosition, endPosition, width, beginX) {
     for (let i = 0; i < 290; i++) {
       ctx.drawImage(images.road, this.position.start.x, this.position.start.y - this.position.end.y, this.width, this.position.end.y);
     }
-    if(this.position.start.y > this.position.end.y) {
+    if (this.position.start.y > this.position.end.y) {
       this.position.start.y = 0;
     }
   }
@@ -27,20 +28,21 @@ const Lane = function (startPosition, endPosition, width, beginX) {
   }
 
   this.moveObstacles = (ctx, height) => {
-    for(let i=0; i<this.cars.length; i++) {
+    for (let i = 0; i < this.cars.length; i++) {
       let obs = this.cars[i];
 
-      if(obs.active){
+      if (obs.active) {
         obs.moveDown(height);
         obs.draw(ctx);
+        this.bulletCollision(ctx, obs);
       }
     }
   }
 
   this.checkCollision = (playerCar) => {
-    for(let i=0; i<this.cars.length; i++) {
+    for (let i = 0; i < this.cars.length; i++) {
       let obs = this.cars[i];
-      if(obs.active){
+      if (obs.active) {
         if (playerCar.position.start.x < obs.position.end.x &&
           playerCar.position.end.x > obs.position.start.x &&
           playerCar.position.start.y < obs.position.end.y &&
@@ -52,12 +54,38 @@ const Lane = function (startPosition, endPosition, width, beginX) {
     return false;
   }
 
+  this.collectBullet = (bullet) => {
+    this.bullets.push(bullet);
+  }
+
+  this.bulletCollision = (ctx, obs) => {
+    for (let i = 0; i < this.bullets.length; i++) {
+      let bullet = this.bullets[i];
+
+      if (bullet.active) {
+
+        bullet.move();
+        bullet.draw(ctx);
+
+        if (bullet.position.start.x < obs.position.end.x &&
+          bullet.position.end.x > obs.position.start.x &&
+          bullet.position.start.y < obs.position.end.y &&
+          bullet.position.end.y > obs.position.start.y) {
+
+          bullet.deactivate();
+          obs.deactivate();
+
+        }
+      }
+    }
+  }
+
 }
 
 const LaneSeparator = function (startPosition, endPosition, width) {
   this.position = {
-    'start' : startPosition,
-    'end' : endPosition
+    'start': startPosition,
+    'end': endPosition
   }
   this.width = width;
 

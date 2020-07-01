@@ -23,14 +23,15 @@ const images = new function() {
 const opponentImages = [images.opponent1, images.opponent2, images.opponent3];
 
 let Game = new function() {
-  this.speed = 10;
+  this.speed = 14;
   this.score = 0;
   this.highscore = localStorage.getItem('highscore') | 0;
+  this.bulletSpeed = 16;
 
   this.increaseScore = () => {
     this.score += 10;
     if (this.score % 50 === 0) {
-      this.speed += 4;
+      this.speed += 2;
       console.log(this.speed);
     }
   }

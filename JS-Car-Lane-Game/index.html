@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
   <title>Car Lane Game</title>
 </head>
@@ -12,28 +13,27 @@
   <div class="main-container">
     
     <canvas id="game"></canvas>
-    
-    <div id="bullet-timer"></div>
 
     <div class="card" id="intro">
       <h1>CAR LANE GAME</h1>
       <p>
-        <b>A</b> TO CHANGE LANE TO LEFT
+        <b>"A"</b> TO MOVE LEFT
       </p>
       <p>
-        <b>D</b> TO CHANGE LANE TO RIGHT
+        <b>"D"</b> TO MOVE RIGHT
       </p>
       <p>
-        <b>SPACE</b> TO SHOOT
+        <b>"SPACE"</b> TO SHOOT
       </p>
       <button id="btn-play">PLAY!</button>
     </div>
 
     <div class="card" id="score">
-      <h1>SCORE</h1>
+      <h1>CRASHED!</h1>
       <p id="gameplay-score"></p>
+      <p id="desc">HIGHSCORE</p>
       <p id="highscore"></p>
-      <button id="btn-play">REPLAY!</button>
+      <button id="btn-replay">REPLAY!</button>
     </div>
 
   </div>

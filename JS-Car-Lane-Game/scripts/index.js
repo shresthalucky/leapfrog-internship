@@ -39,7 +39,7 @@ function init() {
   const playerCar = new Car(PLAYER_CAR_INITIAL, CAR_WIDTH, CAR_HEIGHT);
 
   let coolDown = false;
-  let coolDownTime = 3;
+  let coolDownTime = 5;
 
   let recentObs;
 
@@ -57,7 +57,6 @@ function init() {
   }
 
   function play() {
-
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     firstLane.draw(ctx);
     // laneSep1.draw(ctx);
@@ -72,7 +71,10 @@ function init() {
     for (let i = 0; i < lanes.length; i++) {
       let lane = lanes[i];
       lane.moveObstacles(ctx, CANVAS_HEIGHT);
+      lane.bulletCollision(ctx);
     }
+    
+    showCoolDown();
 
     updateScore();
     Game.setHighscore();
@@ -87,10 +89,19 @@ function init() {
 
   rafId = requestAnimationFrame(play);
 
+
+  function showCoolDown() {
+    if(coolDown) {
+      ctx.font = 'bold 50px Arial';
+      ctx.fillStyle = "#ffffff";
+      ctx.fillText(coolDownTime, CANVAS_WIDTH / 2 - 20, CANVAS_HEIGHT / 2 - 20);
+    }
+  }
+
   function gameOver() {
     localStorage.setItem('highscore', Game.highscore);
     scoreCard.style.display = 'block';
-    highscore.innerHTML = `<span>${Game.score}</span>`;
+    gameScoreElement.innerHTML = `<span>${Game.score}</span>`;
     highscore.innerHTML = `<span>${Game.highscore}</span>`;
   }
 
@@ -110,6 +121,9 @@ function init() {
 
     bullet.draw(ctx);
     lane.collectBullet(bullet);
+    
+    console.log(bullet);
+
     coolDown = true;
 
     setTimeout(function () {
@@ -119,10 +133,8 @@ function init() {
     let coolTime = setInterval(function () {
       if (!coolDown) {
         clearInterval(coolTime);
-        coolDownTime = 3;
-        bulletTimer.innerHTML = ' ';
+        coolDownTime = 5;
       } else {
-        bulletTimer.innerHTML = coolDownTime;
         coolDownTime--;
       }
     }, 1000);
@@ -156,14 +168,20 @@ function init() {
 
 const canvas = document.getElementById('game');
 const playButton = document.getElementById('btn-play');
+const replayButton = document.getElementById('btn-replay');
 const introCard = document.getElementById('intro');
 const scoreCard = document.getElementById('score');
 const gameScoreElement = document.getElementById('gameplay-score');
 const highscoreElement = document.getElementById('highscore');
-const bulletTimer = document.getElementById('bullet-timer');
 
 playButton.onclick = function () {
   introCard.style.display = 'none';
   canvas.style.display = 'block';
   init();
+}
+
+replayButton.onclick = function() {
+  scoreCard.style.display = 'none';
+  init();
+  Game.reset();
 }

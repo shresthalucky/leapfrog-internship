@@ -42,4 +42,10 @@ let Game = new function() {
     }
   }
 
+  this.reset = () => {
+    this.speed = 14;
+    this.score = 0;
+    this.highscore = localStorage.getItem('highscore') | 0;
+  }
+
 }

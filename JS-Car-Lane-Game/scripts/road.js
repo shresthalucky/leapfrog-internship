@@ -34,7 +34,6 @@ const Lane = function (startPosition, endPosition, width, beginX) {
       if (obs.active) {
         obs.moveDown(height);
         obs.draw(ctx);
-        this.bulletCollision(ctx, obs);
       }
     }
   }
@@ -58,7 +57,7 @@ const Lane = function (startPosition, endPosition, width, beginX) {
     this.bullets.push(bullet);
   }
 
-  this.bulletCollision = (ctx, obs) => {
+  this.bulletCollision = (ctx) => {
     for (let i = 0; i < this.bullets.length; i++) {
       let bullet = this.bullets[i];
 
@@ -67,19 +66,23 @@ const Lane = function (startPosition, endPosition, width, beginX) {
         bullet.move();
         bullet.draw(ctx);
 
-        if (bullet.position.start.x < obs.position.end.x &&
-          bullet.position.end.x > obs.position.start.x &&
-          bullet.position.start.y < obs.position.end.y &&
-          bullet.position.end.y > obs.position.start.y) {
+        for (let j = 0; j < this.cars.length; j++) {
+          let obs = this.cars[j];
+          if (obs.active) {
+            if (bullet.position.start.x < obs.position.end.x &&
+              bullet.position.end.x > obs.position.start.x &&
+              bullet.position.start.y < obs.position.end.y &&
+              bullet.position.end.y > obs.position.start.y) {
 
-          bullet.deactivate();
-          obs.deactivate();
-
+              bullet.deactivate();
+              obs.deactivate();
+            }
+          }
         }
       }
     }
-  }
 
+  }
 }
 
 const LaneSeparator = function (startPosition, endPosition, width) {

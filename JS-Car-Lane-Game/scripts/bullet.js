@@ -1,7 +1,7 @@
 const Bullet = function (startPosition, size) {
   this.position = {
-    'start' : startPosition,
-    'end' : new Position(startPosition.x + size, startPosition.y + size)
+    'start': startPosition,
+    'end': new Position(startPosition.x + size, startPosition.y + size)
   }
   this.size = size;
   this.active = true;
@@ -15,6 +15,11 @@ const Bullet = function (startPosition, size) {
     if (this.active) {
       this.position.start.y -= Game.bulletSpeed;
       this.position.end.y -= Game.bulletSpeed;
+
+      if (this.position.start.y < 0) {
+        this.active = false;
+      }
+
     }
   }
 

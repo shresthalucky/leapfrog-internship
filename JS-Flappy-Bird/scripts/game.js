@@ -4,7 +4,7 @@ function initBackground() {
   const BACKGROUND_WIDTH = 288;
   const BACKGROUND_HEIGHT = GROUND_Y;
   const background = new Background(new Position(BACKGROUND_START_X, BACKGROUND_START_Y, BACKGROUND_WIDTH, BACKGROUND_HEIGHT));
-  
+
   return background;
 }
 
@@ -14,7 +14,7 @@ function initForeground() {
   const FOREGROUND_WIDTH = 288;
   const FOREGROUND_HEIGHT = 112;
   const foreground = new Foreground(new Position(FOREGROUND_START_X, FOREGROUND_START_Y, FOREGROUND_WIDTH, FOREGROUND_HEIGHT));
-  
+
   return foreground;
 }
 
@@ -43,10 +43,13 @@ function generateTopPipe(pipeHeight, pipeWidth) {
 }
 
 
-function generatePipes() {
+
+function generatePipeCouple() {
   const PIPE_WIDTH = 52;
   let topPipeHeight = Math.floor(Math.random() * (MAX_PIPE_HEIGHT - MIN_PIPE_HEIGHT)) + MIN_PIPE_HEIGHT;
-  let bottomPipeHeight = MAX_PIPE_HEIGHT - topPipeHeight;
+  let bottomPipeHeight = GROUND_Y - (topPipeHeight + PIPE_VERTICAL_SPACE);
+
+  console.log(topPipeHeight + bottomPipeHeight);
 
   let topPipe = generateTopPipe(topPipeHeight, PIPE_WIDTH);
   let bottomPipe = generateBottomPipe(bottomPipeHeight, PIPE_WIDTH);
@@ -55,27 +58,46 @@ function generatePipes() {
   pipes.push(bottomPipe);
 }
 
+function generatePipes() {
+
+  if (pipes.length > 0) {
+    let lastPipe = pipes[pipes.length - 1];
+    let pipesHorizontalSpace = CANVAS_WIDTH - lastPipe.position.coordinates.bottom.x;
+
+    if (pipesHorizontalSpace > PIPE_HORIZONTAL_SPACE) {
+      generatePipeCouple();
+    }
+  } else {
+    generatePipeCouple();
+  }
+
+
+}
+
 function play() {
   frame++;
-  // if(frame < 10) {
-  //   requestAnimationFrame(play);
-  //   return;
-  // }
+  if (frame < 10) {
+    requestAnimationFrame(play);
+    return;
+  }
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   frame = 0;
   background.draw();
   foreground.draw();
   flappyBird.draw();
 
+  generatePipes();
+
   for (pipe of pipes) {
     pipe.draw();
+    pipe.shift();
   }
 
-  // requestAnimationFrame(play);
+  requestAnimationFrame(play);
 }
 
 function initController() {
-  document.addEventListener('keydown', function(event) {
+  document.addEventListener('keydown', function (event) {
     if (event.key === ' ') {
       flappyBird.flap();
     }

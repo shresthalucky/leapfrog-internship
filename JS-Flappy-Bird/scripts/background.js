@@ -26,7 +26,6 @@ class Background {
 
     this.position.startX -= 1;
 
-
     if (this.position.startX < -this.position.width) {
       this.position.startX = 0;
     }

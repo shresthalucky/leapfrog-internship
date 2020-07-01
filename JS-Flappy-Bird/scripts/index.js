@@ -8,9 +8,12 @@ const CANVAS_WIDTH = canvas.width;
 const ctx = canvas.getContext('2d');
 
 const GROUND_Y = 512;
-const INITIAL_PIPE_X = CANVAS_WIDTH - 60;
-const MIN_PIPE_HEIGHT = 50;
-const MAX_PIPE_HEIGHT = 320;
+const INITIAL_PIPE_X = CANVAS_WIDTH;
+const PIPE_VERTICAL_SPACE = 96;
+const MIN_PIPE_HEIGHT = 96;
+const MAX_PIPE_HEIGHT = (GROUND_Y - PIPE_VERTICAL_SPACE) / 2;
+const PIPE_HORIZONTAL_SPACE = PIPE_VERTICAL_SPACE * 2;
+
 
 let rafId;
 let background;
@@ -28,8 +31,6 @@ sprite.onload = function() {
   background = initBackground();
   foreground = initForeground();
   flappyBird = initBird();
-
-  generatePipes();
 
   initController();
 

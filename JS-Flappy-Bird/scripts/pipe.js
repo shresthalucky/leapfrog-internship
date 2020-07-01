@@ -22,6 +22,11 @@ class Pipe {
       this.position.width,
       this.position.height);
   }
+
+  shift = () => {
+    this.position.startX -= 10;
+    this.position.coordinates.bottom.x -= 10;
+  }
 }
 
 

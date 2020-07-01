@@ -1,0 +1,77 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.main-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: #388E3C;
+}
+
+canvas {
+  display: none;
+  margin: 0 auto;
+  border-right: 30px solid #1B5E20;
+  border-left: 30px solid #1B5E20;
+}
+
+.card {
+  padding: 50px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: #ffffff;
+  border: 2px solid #424242;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+.card h1 {
+  padding-bottom: 30px;
+}
+
+.card p{
+  margin: 14px 0;
+}
+
+.card button {
+  width: 100%;
+  padding: 20px 10px;
+  border-radius: 10px;
+  margin-top: 30px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  background-color: #03A9F4;
+  color: #ffffff;
+  border: 2px solid #1565C0;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #42A5F5;
+}
+
+.card button:focus {
+  outline: none;
+}
+
+.card button:active {
+  background-color: #1565C0;
+}
+
+.card#score {
+  display: none;
+}
+
+p#gameplay-score {
+  font-size: 60px;
+}

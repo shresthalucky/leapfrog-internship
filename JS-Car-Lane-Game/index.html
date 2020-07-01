@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Car Lane Game</title>
+</head>
+
+<body>
+  <div class="main-container">
+    
+    <canvas id="game"></canvas>
+
+    <div class="card" id="intro">
+      <h1>CAR LANE GAME</h1>
+      <p>
+        <b>"A"</b> TO MOVE LEFT
+      </p>
+      <p>
+        <b>"D"</b> TO MOVE RIGHT
+      </p>
+      <p>
+        <b>"SPACE"</b> TO SHOOT
+      </p>
+      <button id="btn-play">PLAY!</button>
+    </div>
+
+    <div class="card" id="score">
+      <h1>CRASHED!</h1>
+      <p id="gameplay-score"></p>
+      <p id="desc">HIGHSCORE</p>
+      <p id="highscore"></p>
+      <button id="btn-replay">REPLAY!</button>
+    </div>
+
+  </div>
+  <script src="./scripts/extras.js"></script>
+  <script src="./scripts/road.js"></script>
+  <script src="./scripts/car.js"></script>
+  <script src="./scripts/obstacle.js"></script>
+  <script src="./scripts/bullet.js"></script>
+  <script src="./scripts/index.js"></script>
+</body>
+
+</html>

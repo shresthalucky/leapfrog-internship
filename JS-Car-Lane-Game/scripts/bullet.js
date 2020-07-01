@@ -7,8 +7,7 @@ const Bullet = function (startPosition, size) {
   this.active = true;
 
   this.draw = (ctx) => {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(this.position.start.x, this.position.start.y, this.size, this.size);
+    ctx.drawImage(images.bullet, this.position.start.x, this.position.start.y, this.size, this.size);
   }
 
   this.move = () => {

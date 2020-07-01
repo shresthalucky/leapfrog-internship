@@ -13,7 +13,7 @@ function init() {
 
   const CAR_START = (LANE_WIDTH - CAR_WIDTH) / 2;
 
-  const BULLET_SIZE = 20;
+  const BULLET_SIZE = 32;
 
   const firstLane = new Lane(new Position(0, 0), new Position(LANE_WIDTH, CANVAS_HEIGHT), LANE_WIDTH, CAR_START);
   const secondLane = new Lane(new Position(LANE_WIDTH, 0), new Position(2 * LANE_WIDTH, CANVAS_HEIGHT), LANE_WIDTH, CAR_START);
@@ -52,7 +52,6 @@ function init() {
           recentObs = lane.generateObstacle(CAR_WIDTH, CAR_HEIGHT);
         }
       } else {
-        console.log(recentObs);
         recentObs = lane.generateObstacle(CAR_WIDTH, CAR_HEIGHT);
       }
     }
@@ -61,9 +60,7 @@ function init() {
   function play() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     firstLane.draw(ctx);
-    // laneSep1.draw(ctx);
     secondLane.draw(ctx);
-    // laneSep2.draw(ctx);
     thirdLane.draw(ctx);
 
     playerCar.draw(ctx);
@@ -123,9 +120,6 @@ function init() {
 
     bullet.draw(ctx);
     lane.collectBullet(bullet);
-
-    console.log(bullet);
-
     coolDown = true;
 
     setTimeout(function () {

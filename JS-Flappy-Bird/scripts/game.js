@@ -1,3 +1,4 @@
+// Create and return background
 function initBackground() {
   const BACKGROUND_START_X = 0;
   const BACKGROUND_START_Y = 0;
@@ -8,6 +9,7 @@ function initBackground() {
   return background;
 }
 
+// Create and return foreground
 function initForeground() {
   const FOREGROUND_START_X = 0;
   const FOREGROUND_START_Y = GROUND_Y;
@@ -18,6 +20,7 @@ function initForeground() {
   return foreground;
 }
 
+// Create and return bird
 function initBird() {
   const BIRD_X = 40;
   const BIRD_Y = CANVAS_WIDTH / 2;
@@ -28,6 +31,12 @@ function initBird() {
   return flappyBird;
 }
 
+/**
+ * Generate bottom pipe
+ * @param {Integer} pipeHeight - height of bottom pipe
+ * @param {Integer} pipeWidth - width of bottom pipe
+ * @returns {Pipe} - generated bottom pipe object
+ */
 function generateBottomPipe(pipeHeight, pipeWidth) {
   const pipeY = GROUND_Y - pipeHeight;
   const pipe = new Pipe(new Position(INITIAL_PIPE_X, pipeY, pipeWidth, pipeHeight), 'bottom', true);
@@ -35,6 +44,12 @@ function generateBottomPipe(pipeHeight, pipeWidth) {
   return pipe;
 }
 
+/**
+ * Generate bottom pipe
+ * @param {Integer} pipeHeight - height of top pipe
+ * @param {Integer} pipeWidth - width of top pipe
+ * @returns {Pipe} - generated top pipe object
+ */
 function generateTopPipe(pipeHeight, pipeWidth) {
   const pipeY = 0;
   const pipe = new Pipe(new Position(INITIAL_PIPE_X, pipeY, pipeWidth, pipeHeight), 'top', false);
@@ -42,18 +57,28 @@ function generateTopPipe(pipeHeight, pipeWidth) {
   return pipe;
 }
 
+/**
+ * Generate top and bottom pipe once
+ */
 function generatePipeCouple() {
   const PIPE_WIDTH = 52;
+
+  // Calcute required height for top and bottom pipes
   let topPipeHeight = Math.floor(Math.random() * (MAX_PIPE_HEIGHT - MIN_PIPE_HEIGHT)) + MIN_PIPE_HEIGHT;
   let bottomPipeHeight = GROUND_Y - (topPipeHeight + PIPE_VERTICAL_SPACE);
 
+  // Generate top and bottom pipes
   let topPipe = generateTopPipe(topPipeHeight, PIPE_WIDTH);
   let bottomPipe = generateBottomPipe(bottomPipeHeight, PIPE_WIDTH);
 
+  // Add generated pipes to array
   pipes.push(topPipe);
   pipes.push(bottomPipe);
 }
 
+/**
+ * Generate top and bottom pipes periodically
+ */
 function generatePipes() {
   if (pipes.length > 0) {
     let lastPipe = pipes[pipes.length - 1];
@@ -67,6 +92,9 @@ function generatePipes() {
   }
 }
 
+/**
+ * Control the movement and collision bird on of pipes
+ */
 function pipesController() {
   generatePipes();
   for (pipe of pipes) {
@@ -78,24 +106,39 @@ function pipesController() {
   }
 }
 
+/**
+ * Recursively called function for animation
+ */
 function play() {
   if (!game.over) {
+    // if game state is playing
+
     frame++;
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    background.draw();
-    foreground.draw();
-    flappyBird.draw();
+
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT); // clear canvas
+
+    background.draw(); // draw background on canvas
+    foreground.draw(); // draw foreground on canvas
+    flappyBird.draw(); // draw bird on canvas
+
     pipesController();
-    flappyBird.groundCheck();
+    flappyBird.groundCheck(); // check for ground collision
+
     updateScore();
     requestAnimationFrame(play);
+
   } else {
+    // if game state is over
+
     cancelAnimationFrame(rafId);
     gameOver();
   }
 
 }
 
+/**
+ * Control the key press
+ */
 function initController() {
 
   let keyDown = false;
@@ -115,9 +158,13 @@ function initController() {
   });
 }
 
+/**
+ * Show current score and highscore
+ */
 function gameOver() {
   game.over = true;
 
+  // Get position of scoreboard and gameover image in sprite
   let image = {
     'scoreboard': {
       'sx': 6,
@@ -133,6 +180,7 @@ function gameOver() {
     }
   }
 
+  // Draw scoreboard on canvas
   ctx.drawImage(sprite,
     image.scoreboard.sx,
     image.scoreboard.sy,
@@ -143,6 +191,7 @@ function gameOver() {
     image.scoreboard.sw,
     image.scoreboard.sh);
 
+  // Draw gameover on canvas
   ctx.drawImage(sprite,
     image.gameover.sx,
     image.gameover.sy,
@@ -153,9 +202,10 @@ function gameOver() {
     image.gameover.sw,
     image.gameover.sh);
 
+  // Save highscore to local storage
+  localStorage.setItem('birdhighscore', score.highscore);
 
-  localStorage.setItem('highscore', score.highscore);
-
+  // Draw score to canvas
   ctx.font = 'bold 20px Arial';
   ctx.strokeStyle = '#000';
   ctx.lineWidth = 4;
@@ -171,6 +221,9 @@ function gameOver() {
   ctx.fillText(score.highscore, CANVAS_WIDTH - 80, (CANVAS_HEIGHT - image.scoreboard.sh) / 2 + 90);
 }
 
+/**
+ * Update score and draw on top of canvas
+ */
 function updateScore() {
 
   if (score.highscore < score.current) {

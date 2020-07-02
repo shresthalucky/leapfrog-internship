@@ -33,7 +33,7 @@ class Bird {
   }
 
   flap = () => {
-    if(this.position.coordinates.top.y > 0) {     
+    if (this.position.coordinates.top.y > 0) {
       this.speed = 0;
       this.position.coordinates.top.y -= this.thrust;
       this.position.coordinates.bottom.y -= this.thrust;
@@ -41,11 +41,10 @@ class Bird {
   }
 
   groundCheck = () => {
-    if(this.position.coordinates.bottom.y >= GROUND_Y) {
+    if (this.position.coordinates.bottom.y >= GROUND_Y) {
       game.over = true;
     }
   }
-
 }
 
 Bird.sprite = {

@@ -61,7 +61,6 @@ class Pipe {
 
 }
 
-
 Pipe.sprite = {
   'top': {
     'sx': 112,

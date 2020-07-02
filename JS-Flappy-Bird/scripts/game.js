@@ -166,9 +166,9 @@ function gameOver() {
   ctx.font = 'bold 20px Arial';
   ctx.strokeStyle = '#000';
   ctx.lineWidth = 4;
-  ctx.strokeText(score.current, CANVAS_WIDTH - 80, (CANVAS_HEIGHT - image.scoreboard.sh) / 2 + 90);
+  ctx.strokeText(score.highscore, CANVAS_WIDTH - 80, (CANVAS_HEIGHT - image.scoreboard.sh) / 2 + 90);
   ctx.fillStyle = '#ffffff';
-  ctx.fillText(score.current, CANVAS_WIDTH - 80, (CANVAS_HEIGHT - image.scoreboard.sh) / 2 + 90);
+  ctx.fillText(score.highscore, CANVAS_WIDTH - 80, (CANVAS_HEIGHT - image.scoreboard.sh) / 2 + 90);
 }
 
 function updateScore() {

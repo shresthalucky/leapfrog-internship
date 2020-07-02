@@ -4,7 +4,7 @@ class Bird {
     this.flapLoop = [Bird.sprite.flap1, Bird.sprite.flap2, Bird.sprite.flap3]
     this.flapLoopIndex = 0;
     this.gravity = 0.1;
-    this.thrust = 4;
+    this.thrust = 40;
     this.speed = 0;
   }
 
@@ -33,8 +33,10 @@ class Bird {
   }
 
   flap = () => {
-    if(this.position.coordinates.top.y > 0) {        
-      this.speed -= this.thrust;
+    if(this.position.coordinates.top.y > 0) {     
+      this.speed = 0;
+      this.position.coordinates.top.y -= this.thrust;
+      this.position.coordinates.bottom.y -= this.thrust;
     }
   }
 

@@ -60,7 +60,6 @@ class Foreground {
 
     this.position.coordinates.top.x -= 3;
 
-
     if (this.position.coordinates.top.x < -this.position.width) {
       this.position.coordinates.top.x = 0;
     }

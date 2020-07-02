@@ -24,7 +24,7 @@ class Background {
       this.position.width,
       this.position.height);
 
-    this.position.coordinates.top.x -= 1;
+    this.position.coordinates.top.x -= 0.5;
 
     if (this.position.coordinates.top.x < -this.position.width) {
       this.position.coordinates.top.x = 0;
@@ -58,7 +58,7 @@ class Foreground {
       this.position.width,
       this.position.height);
 
-    this.position.coordinates.top.x -= 10;
+    this.position.coordinates.top.x -= 3;
 
 
     if (this.position.coordinates.top.x < -this.position.width) {

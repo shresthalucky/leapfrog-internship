@@ -3,28 +3,45 @@ class Bird {
     this.position = position;
     this.flapLoop = [Bird.sprite.flap1, Bird.sprite.flap2, Bird.sprite.flap3]
     this.flapLoopIndex = 0;
+    this.gravity = 0.1;
+    this.thrust = 4;
+    this.speed = 0;
   }
 
   draw = () => {
-    this.flapLoopIndex %= this.flapLoop.length;
+    if (frame % 10 === 0) {
+      this.flapLoopIndex++;
+      this.flapLoopIndex %= this.flapLoop.length;
+    }
+
     let flapPos = this.flapLoop[this.flapLoopIndex];
-    this.flapLoopIndex++;
 
     ctx.drawImage(sprite,
       flapPos.sx,
       flapPos.sy,
       flapPos.sw,
       flapPos.sh,
-      this.position.startX,
-      this.position.startY,
+      this.position.coordinates.top.x,
+      this.position.coordinates.top.y,
       this.position.width,
       this.position.height);
 
-    // this.position.startY++;
+    this.speed += this.gravity;
+    this.position.coordinates.top.y += this.speed;
+    this.position.coordinates.bottom.y += this.speed;
+
   }
 
   flap = () => {
-    this.position.startY -= 20;
+    if(this.position.coordinates.top.y > 0) {        
+      this.speed -= this.thrust;
+    }
+  }
+
+  groundCheck = () => {
+    if(this.position.coordinates.bottom.y >= GROUND_Y) {
+      game.over = true;
+    }
   }
 
 }

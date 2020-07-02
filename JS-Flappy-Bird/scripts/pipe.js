@@ -1,9 +1,12 @@
 class Pipe {
-  constructor(position, state) {
+  constructor(position, state, bottom) {
     this.position = position;
     this.state = state;
     this.sx;
     this.active = true;
+    this.speed = 2;
+    this.passed = false;
+    this.bottom = bottom;
 
     if (this.state === 'top') {
       this.sy = Pipe.sprite.top.by - this.position.height;
@@ -25,8 +28,9 @@ class Pipe {
   }
 
   shift = () => {
-    this.position.coordinates.top.x -= 10;
-    this.position.coordinates.bottom.x -= 10;
+    this.position.coordinates.top.x -= this.speed;
+    this.position.coordinates.bottom.x -= this.speed;
+    this.updateScore();
     this.deactivate();
   }
 
@@ -36,12 +40,22 @@ class Pipe {
     }
   }
 
+  updateScore = () => {
+    if (this.position.coordinates.top.x + this.position.width / 2 < flappyBird.position.startX
+      && !this.passed
+      && this.bottom
+    ) {
+      score.current++;
+      this.passed = true;
+    }
+  }
+
   checkCollision = () => {
     if (this.position.coordinates.top.x < flappyBird.position.coordinates.bottom.x
       && this.position.coordinates.bottom.x > flappyBird.position.coordinates.top.x
       && this.position.coordinates.top.y < flappyBird.position.coordinates.bottom.y
       && this.position.coordinates.bottom.y > flappyBird.position.coordinates.top.y) {
-      console.log('collide');
+      game.over = true;
     }
   }
 

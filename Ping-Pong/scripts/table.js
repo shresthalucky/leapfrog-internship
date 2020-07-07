@@ -1,10 +1,10 @@
 class Board {
   constructor() {
-    this.width = 1000;
-    this.length = this.width * 5 / 9;
+    this.width = 700;
+    this.length = this.width * 9 / 5;
     this.height = 200;
     this.thickness = 20;
-    this.z = 50;
+    this.z = 100;
     this.borderWidth = 10;
 
     const halfWidth = this.width / 2;
@@ -104,11 +104,11 @@ class Board {
   }
 
   draw = () => {
-    let tx = canvasWidth / 2;
-    ctx.translate(tx, 0);
+    // let tx = canvasWidth / 2;
+    // ctx.translate(tx, 400);
     this.drawOuterSurface();
     this.drawInnerSurface();
-    this.drawThickness();
+    // this.drawThickness();
     this.drawMidLine();
   }
 

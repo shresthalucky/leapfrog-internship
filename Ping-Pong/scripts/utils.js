@@ -14,13 +14,21 @@ class Position {
 }
 
 const projection = {
+
+  // sideview
+  // 'camera': {
+  //   'position': new Position(700, -1000, 680),
+  //   'orientation': { 'thetaX': 0, 'thetaY': - 90 * Math.PI/180, 'thetaZ': 0 }
+  // },
+  
+
+  // topview
   'camera': {
-    'position': new Position(0, -500, -200),
-    // 'orientation': { 'thetaX': - 30 * Math.PI/180, 'thetaY': 0, 'thetaZ': 0 }
-    'orientation': { 'thetaX': 0, 'thetaY': 0, 'thetaZ': 0 }
+    'position': new Position(0, -200, 630),
+    'orientation': { 'thetaX':  90 * Math.PI/180, 'thetaY': - 0 * Math.PI/180, 'thetaZ': 0 }
   },
 
-  'viewplane': new Position(0, 0, 400),
+  'viewplane': new Position(0, 0, 100),
 
   'get2dProjection': (position3d) => {
     let d = position3d.subtract(projection.camera.position);
@@ -48,4 +56,8 @@ const projection = {
     return new Position(bx, by);
   }
 
+}
+
+const ENV = {
+  'gravity': 9.82
 }

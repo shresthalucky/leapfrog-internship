@@ -1,41 +1,46 @@
 class Board {
   constructor() {
-    this.width = 700;
+    this.width = 1000;
     this.length = this.width * 9 / 5;
     this.height = 200;
     this.thickness = 20;
-    this.z = 100;
+    this.z = 160;
     this.borderWidth = 10;
 
     const halfWidth = this.width / 2;
+    const leftX = halfCanvasWidth - halfWidth;
+    const rightX = halfCanvasWidth + halfWidth;
+
+    const midLeftX = leftX + halfWidth - this.borderWidth / 2;
+    const midRightX = rightX - halfWidth + this.borderWidth / 2;
 
     this.surface3d = {
       'outer': [
-        new Position(-halfWidth, 0, this.z),
-        new Position(halfWidth, 0, this.z),
-        new Position(halfWidth, 0, this.length + this.z),
-        new Position(-halfWidth, 0, this.length + this.z)
+        new Position(leftX, 0, this.z),
+        new Position(rightX, 0, this.z),
+        new Position(rightX, 0, this.length + this.z),
+        new Position(leftX, 0, this.length + this.z)
       ],
 
       'thickness': [
-        new Position(-halfWidth, 0, this.z),
-        new Position(halfWidth, 0, this.z),
-        new Position(halfWidth, this.thickness, this.z),
-        new Position(-halfWidth, this.thickness, this.z)
+        new Position(leftX, 0, this.z),
+        new Position(rightX, 0, this.z),
+        new Position(rightX, this.thickness, this.z),
+        new Position(leftX, this.thickness, this.z)
       ],
 
       'inner': [
-        new Position(-halfWidth + this.borderWidth * 2, 0, this.z + this.borderWidth),
-        new Position(halfWidth - this.borderWidth * 2, 0, this.z + this.borderWidth),
-        new Position(halfWidth - this.borderWidth, 0, this.length + this.z - this.borderWidth),
-        new Position(-halfWidth + this.borderWidth, 0, this.length + this.z - this.borderWidth)
+        new Position(leftX + this.borderWidth * 2, 0, this.z + this.borderWidth),
+        new Position(rightX - this.borderWidth * 2, 0, this.z + this.borderWidth),
+        new Position(rightX - this.borderWidth, 0, this.length + this.z - this.borderWidth),
+        new Position(leftX + this.borderWidth, 0, this.length + this.z - this.borderWidth)
       ],
 
       'midLine': [
-        new Position(-this.borderWidth / 2, 0, this.z + 1),
-        new Position(this.borderWidth / 2, 0, this.z + 1),
-        new Position(this.borderWidth / 2, 0, this.length + this.z - 1),
-        new Position(-this.borderWidth / 2, 0, this.length + this.z - 1)
+        new Position(midLeftX, 0, this.z + 1),
+        new Position(midRightX, 0, this.z + 1),
+        new Position(midRightX, 0, this.length + this.z - 1),
+        new Position(midLeftX, 0, this.length + this.z - 1)
       ]
     }
 
@@ -55,7 +60,7 @@ class Board {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = '#FFF';
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
@@ -97,18 +102,16 @@ class Board {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = '#FFF';
     ctx.fill();
     // ctx.stroke();
     ctx.closePath();
   }
 
   draw = () => {
-    // let tx = canvasWidth / 2;
-    // ctx.translate(tx, 400);
     this.drawOuterSurface();
     this.drawInnerSurface();
-    // this.drawThickness();
+    this.drawThickness();
     this.drawMidLine();
   }
 

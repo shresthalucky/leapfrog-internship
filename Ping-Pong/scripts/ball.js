@@ -1,7 +1,7 @@
 class Ball {
   constructor(startPos) {
-    this.intial3dPos = startPos;
-    this.current3dPos = startPos;
+    this.intial3dPos = new Position(startPos.x, startPos.y, startPos.z);
+    this.current3dPos = new Position(startPos.x, startPos.y, startPos.z);
     this.radius = 20;
     this.angle = 30;
     this.intialVel = 50;
@@ -15,8 +15,6 @@ class Ball {
     }
     this.time = 0;
     this.rebound = false;
-    // this.intial2dPos = projection.get2dProjection(this.intial3dPos);
-    // this.current2dPos = projection.get2dProjection(this.current3dPos);
   }
 
 
@@ -25,7 +23,7 @@ class Ball {
     if(!this.rebound) {
 
       let current2dPos = projection.get2dProjection(this.current3dPos);
-      console.log(current2dPos.y);
+      console.log(current2dPos);
 
       ctx.beginPath();
       ctx.arc(current2dPos.x, current2dPos.y, this.radius, 0, 360);
@@ -34,8 +32,8 @@ class Ball {
       ctx.closePath();
 
       this.current3dPos.z = this.intial3dPos.z + this.velocity.z * this.time;
-      debugger
-      console.log(this.current3dPos.z);
+      // debugger
+      // console.log(this.current3dPos.z);
 
       let vy = this.intialVel * Math.sin(this.angle);
 

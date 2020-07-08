@@ -1,6 +1,6 @@
 class Board {
   constructor() {
-    this.width = 1000;
+    this.width = 800;
     this.length = this.width * 9 / 5;
     this.height = 200;
     this.thickness = 20;
@@ -111,7 +111,7 @@ class Board {
   draw = () => {
     this.drawOuterSurface();
     this.drawInnerSurface();
-    this.drawThickness();
+    // this.drawThickness();
     this.drawMidLine();
   }
 

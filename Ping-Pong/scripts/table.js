@@ -7,6 +7,8 @@ class Board {
     this.z = 160;
     this.borderWidth = 10;
 
+    this.y = 0;
+
     const halfWidth = this.width / 2;
     const leftX = halfCanvasWidth - halfWidth;
     const rightX = halfCanvasWidth + halfWidth;
@@ -16,31 +18,31 @@ class Board {
 
     this.surface3d = {
       'outer': [
-        new Position(leftX, 0, this.z),
-        new Position(rightX, 0, this.z),
-        new Position(rightX, 0, this.length + this.z),
-        new Position(leftX, 0, this.length + this.z)
+        new Position(leftX, this.y, this.z),
+        new Position(rightX, this.y, this.z),
+        new Position(rightX, this.y, this.length + this.z),
+        new Position(leftX, this.y, this.length + this.z)
       ],
 
       'thickness': [
-        new Position(leftX, 0, this.z),
-        new Position(rightX, 0, this.z),
+        new Position(leftX, this.y, this.z),
+        new Position(rightX, this.y, this.z),
         new Position(rightX, this.thickness, this.z),
         new Position(leftX, this.thickness, this.z)
       ],
 
       'inner': [
-        new Position(leftX + this.borderWidth * 2, 0, this.z + this.borderWidth),
-        new Position(rightX - this.borderWidth * 2, 0, this.z + this.borderWidth),
-        new Position(rightX - this.borderWidth, 0, this.length + this.z - this.borderWidth),
-        new Position(leftX + this.borderWidth, 0, this.length + this.z - this.borderWidth)
+        new Position(leftX + this.borderWidth * 2, this.y, this.z + this.borderWidth),
+        new Position(rightX - this.borderWidth * 2, this.y, this.z + this.borderWidth),
+        new Position(rightX - this.borderWidth, this.y, this.length + this.z - this.borderWidth),
+        new Position(leftX + this.borderWidth, this.y, this.length + this.z - this.borderWidth)
       ],
 
       'midLine': [
-        new Position(midLeftX, 0, this.z + 1),
-        new Position(midRightX, 0, this.z + 1),
-        new Position(midRightX, 0, this.length + this.z - 1),
-        new Position(midLeftX, 0, this.length + this.z - 1)
+        new Position(midLeftX, this.y, this.z + 1),
+        new Position(midRightX, this.y, this.z + 1),
+        new Position(midRightX, this.y, this.length + this.z - 1),
+        new Position(midLeftX, this.y, this.length + this.z - 1)
       ]
     }
 

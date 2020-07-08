@@ -7,13 +7,15 @@ const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
 const ctx = canvas.getContext('2d');
 
-const BALL_START_HEIGHT = 200; // vertical height from the board
+const BALL_START_HEIGHT = 100; // vertical height from the board
 
 let animationId;
 const halfCanvasWidth = canvasWidth / 2;
 
 projection.camera.position.x = halfCanvasWidth;
 projection.viewplane.x = halfCanvasWidth;
+
+// projection.camera.orientation.thetaX = -10 * Math.PI/180; 
 
 
 // persective sideview inverted
@@ -24,7 +26,12 @@ projection.viewplane.x = halfCanvasWidth;
 // ctx.translate(0, canvasHeight/2);
 
 const table = new Board();
-const ball = new Ball(new Position(halfCanvasWidth, -BALL_START_HEIGHT, table.z));
+const ballStartPosition = new Position(halfCanvasWidth, table.y - BALL_START_HEIGHT, table.z);
+const ball = new Ball(ballStartPosition);
+
+// console.log(ballStartPosition)
+
+// ctx.translate(0, canvasWidth/2);
 
 table.draw();
 ball.draw();

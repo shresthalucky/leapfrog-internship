@@ -15,12 +15,11 @@ class Position {
 
 const projection = {
   'camera': {
-    'position': new Position(0, -500, -200),
-    // 'orientation': { 'thetaX': - 30 * Math.PI/180, 'thetaY': 0, 'thetaZ': 0 }
+    'position': new Position(0, -600, -200),
     'orientation': { 'thetaX': 0, 'thetaY': 0, 'thetaZ': 0 }
   },
 
-  'viewplane': new Position(0, 0, 400),
+  'viewplane': new Position(0, 0, 500),
 
   'get2dProjection': (position3d) => {
     let d = position3d.subtract(projection.camera.position);
@@ -48,4 +47,8 @@ const projection = {
     return new Position(bx, by);
   }
 
+}
+
+const ENV = {
+  'gravity': 9.82
 }

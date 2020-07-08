@@ -11,6 +11,10 @@ class Position {
     let z = this.z - position.z;
     return new Position(x, y, z);
   }
+
+  reflectXAxis = () => {
+    return new Position(this.x, -this.y, this.z);
+  }
 }
 
 const projection = {

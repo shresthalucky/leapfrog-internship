@@ -2,7 +2,7 @@ class Ball {
   constructor(startPos) {
     this.intial3dPos = new Position(startPos.x, startPos.y, startPos.z);
     this.current3dPos = new Position(startPos.x, startPos.y, startPos.z);
-    this.radius = 16;
+    this.radius = 24;
     this.angle = 60 * Math.PI / 180;
     this.intialVel = 50;
     this.velocity = {
@@ -32,6 +32,7 @@ class Ball {
   bounce = () => {
     if (!this.rebound) {
       let current2dPos = projection.get2dProjection(this.current3dPos.reflectXAxis());
+      this.radius = current2dPos.y * 0.03;
 
       ctx.beginPath();
       ctx.arc(current2dPos.x, current2dPos.y, this.radius, 0, 360);
@@ -41,6 +42,8 @@ class Ball {
 
       this.current3dPos.z = this.intial3dPos.z + this.velocity.z * this.time;
 
+      // console.log(this.current3dPos.z);
+
       let vy = this.intialVel * Math.sin(this.angle);
 
       this.velocity.y = vy - ENV.gravity * this.time;
@@ -49,9 +52,9 @@ class Ball {
       // debugger
 
       if (this.current3dPos.y < this.intial3dPos.y) {
-        console.log(this.current3dPos.z, this.current3dPos.y);
+        // console.log(this.current3dPos.z, this.current3dPos.y);
         this.rebound = true;
-        console.log('bounce');
+        // console.log('bounce');
       }
 
       this.time += 0.1;

@@ -9,7 +9,16 @@ class Position {
     let x = this.x - position.x;
     let y = this.y - position.y;
     let z = this.z - position.z;
+
     return new Position(x, y, z);
+  }
+
+  getDistance = (position) => {
+    let x = this.x - position.x;
+    let y = this.y - position.y;
+    let z = this.z - position.z;
+
+    return (Math.sqrt(x * x + y * y + z * z));
   }
 
   reflectXAxis = () => {

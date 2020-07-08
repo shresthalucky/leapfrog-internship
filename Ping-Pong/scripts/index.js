@@ -27,6 +27,10 @@ const ball = new Ball(new Position(halfCanvasWidth, -16, table.z));
 table.draw();
 ball.draw();
 
+
+console.log(table);
+console.log(ball);
+
 function render(){
   ctx.clearRect(-500, -500, canvasWidth + 500, canvasHeight + 500);
   table.draw();
@@ -38,5 +42,3 @@ function render(){
 animationId = requestAnimationFrame(render);
 
 
-console.log(table);
-console.log(ball);

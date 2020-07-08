@@ -111,7 +111,7 @@ class Board {
   draw = () => {
     this.drawOuterSurface();
     this.drawInnerSurface();
-    // this.drawThickness();
+    this.drawThickness();
     this.drawMidLine();
   }
 

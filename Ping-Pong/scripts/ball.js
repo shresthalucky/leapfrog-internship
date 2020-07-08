@@ -3,8 +3,8 @@ class Ball {
     this.intial3dPos = new Position(startPos.x, startPos.y, startPos.z);
     this.current3dPos = new Position(startPos.x, startPos.y, startPos.z);
     this.radius = 16;
-    this.angle = 50 * Math.PI / 180;
-    this.intialVel = 10;
+    this.angle = 60 * Math.PI / 180;
+    this.intialVel = 50;
     this.velocity = {
       'z': this.intialVel * Math.cos(this.angle),
       'y': 0
@@ -18,8 +18,20 @@ class Ball {
   }
 
   draw = () => {
-    if(!this.rebound) {
-      let current2dPos = projection.get2dProjection(this.current3dPos);
+    let current2dPos = projection.get2dProjection(this.current3dPos);
+
+    ctx.beginPath();
+    ctx.arc(current2dPos.x, current2dPos.y, this.radius, 0, 360);
+    ctx.fillStyle = "#000";
+    ctx.fill();
+    ctx.closePath();
+
+    console.log(current2dPos.x, -current2dPos.y);
+  }
+
+  bounce = () => {
+    if (!this.rebound) {
+      let current2dPos = projection.get2dProjection(this.current3dPos.reflectXAxis());
 
       ctx.beginPath();
       ctx.arc(current2dPos.x, current2dPos.y, this.radius, 0, 360);
@@ -34,14 +46,15 @@ class Ball {
       this.velocity.y = vy - ENV.gravity * this.time;
       this.current3dPos.y = this.intial3dPos.y + (vy * this.time) - (ENV.gravity * this.time * this.time * 0.5);
 
-      // console.log(this.current3dPos.z, this.current3dPos.y);
+      // debugger
 
-      if(this.current3dPos.y >= 0) {
+      if (this.current3dPos.y < this.intial3dPos.y) {
+        console.log(this.current3dPos.z, this.current3dPos.y);
         this.rebound = true;
         console.log('bounce');
       }
 
-      this.time += 1/100;
+      this.time += 0.1;
 
     } else {
 

@@ -13,12 +13,19 @@ class Position {
     return new Position(x, y, z);
   }
 
-  getDistance = (position) => {
+  get3dDistance = (position) => {
     let x = this.x - position.x;
     let y = this.y - position.y;
     let z = this.z - position.z;
 
     return (Math.sqrt(x * x + y * y + z * z));
+  }
+
+  get2dDistance = (position) => {
+    let x = this.x - position.x;
+    let y = this.y - position.y;
+
+    return (Math.sqrt(x * x + y * y));
   }
 
   // reflectXAxis = () => {

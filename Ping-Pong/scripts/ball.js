@@ -42,8 +42,8 @@ class Ball {
   }
 
   getBounceAngle = () => {
-    let d = this.lastPosition.getDistance(this.current3dPos);
-    let dx = this.current3dPos.getDistance(new Position(this.lastPosition.x, 0, this.lastPosition.z));
+    let d = this.lastPosition.get3dDistance(this.current3dPos);
+    let dx = this.current3dPos.get3dDistance(new Position(this.lastPosition.x, 0, this.lastPosition.z));
     // debugger
     return Math.atan(d / dx);
   }

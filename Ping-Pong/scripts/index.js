@@ -29,14 +29,21 @@ const table = new Board();
 const ballStartPosition = new Position(halfCanvasWidth, table.y - BALL_START_HEIGHT, table.z);
 const ball = new Ball(ballStartPosition);
 
+
+const playerPosition = new Position(halfCanvasWidth, table.y - BALL_START_HEIGHT, table.z);
+const player = new Player(playerPosition);
+
 // console.log(ballStartPosition)
 
 // ctx.translate(0, canvasWidth/2);
 
 table.draw();
+ball.draw();
+player.drawBat();
 
 console.log(table);
 console.log(ball);
+console.log(player);
 
 function render() {
   ctx.clearRect(-500, -500, canvasWidth + 500, canvasHeight + 500);
@@ -47,6 +54,6 @@ function render() {
   requestAnimationFrame(render);
 }
 
-animationId = requestAnimationFrame(render);
+// animationId = requestAnimationFrame(render);
 
 

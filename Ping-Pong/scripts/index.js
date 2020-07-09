@@ -49,11 +49,16 @@ function render() {
   ctx.clearRect(-500, -500, canvasWidth + 500, canvasHeight + 500);
   table.draw();
   ball.draw();
+  player.drawBat();
   // ball.bounce();
 
   requestAnimationFrame(render);
 }
 
-// animationId = requestAnimationFrame(render);
+animationId = requestAnimationFrame(render);
 
+
+document.addEventListener('mousemove', function(e) {
+  player.handleBatMovement(e);
+})
 

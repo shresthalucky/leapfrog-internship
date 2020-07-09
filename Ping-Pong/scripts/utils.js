@@ -1,3 +1,10 @@
+const ENV = {
+  'gravity': 9.82,
+  'toRadian': (deg) => {
+    return deg * Math.PI / 180;
+  },
+  'startBoardZ': 160
+}
 class Position {
   constructor(x, y, z) {
     this.x = x;
@@ -35,7 +42,7 @@ class Position {
 
 const projection = {
   'camera': {
-    'position': new Position(0, -600, -200),
+    'position': new Position(0, -600, -300),
     'orientation': { 'thetaX': 0, 'thetaY': 0, 'thetaZ': 0 }
   },
 
@@ -44,34 +51,40 @@ const projection = {
   'get2dProjection': (position3d) => {
     let d = position3d.subtract(projection.camera.position);
 
-    let sin = {
-      'x': Math.sin(projection.camera.orientation.thetaX),
-      'y': Math.sin(projection.camera.orientation.thetaY),
-      'z': Math.sin(projection.camera.orientation.thetaZ)
-    }
+    // let sin = {
+    //   'x': Math.sin(projection.camera.orientation.thetaX),
+    //   'y': Math.sin(projection.camera.orientation.thetaY),
+    //   'z': Math.sin(projection.camera.orientation.thetaZ)
+    // }
 
-    let cos = {
-      'x': Math.cos(projection.camera.orientation.thetaX),
-      'y': Math.cos(projection.camera.orientation.thetaY),
-      'z': Math.cos(projection.camera.orientation.thetaZ)
-    }
+    // let cos = {
+    //   'x': Math.cos(projection.camera.orientation.thetaX),
+    //   'y': Math.cos(projection.camera.orientation.thetaY),
+    //   'z': Math.cos(projection.camera.orientation.thetaZ)
+    // }
 
-    let dx = cos.y * (sin.z * d.y + cos.z * d.x) - (sin.y * d.z);
-    let dy = sin.x * (cos.y * d.z + sin.y * (sin.z * d.y + cos.z * d.x)) + cos.x * (cos.z * d.y - sin.z * d.x);
-    let dz = cos.x * (cos.y * d.z + sin.y * (sin.z * d.y + cos.z * d.x)) - sin.x * (cos.z * d.y - sin.z * d.x);
+    // let yx = sin.z * d.y + cos.z * d.x;
 
-    let vz = projection.viewplane.z / dz;
-    let bx = vz * dx + projection.viewplane.x;
-    let by = vz * dy + projection.viewplane.y;
+    // let dx = cos.y * yx - (sin.y * d.z);
+    // let dy = sin.x * (cos.y * d.z + sin.y * yx) + cos.x * (cos.z * d.y - sin.z * d.x);
+    // let dz = cos.x * (cos.y * d.z + sin.y * yx) - sin.x * (cos.z * d.y - sin.z * d.x);
+
+    let vz = projection.viewplane.z / d.z;
+    let bx = vz * d.x + projection.viewplane.x;
+    let by = vz * d.y + projection.viewplane.y;
 
     return new Position(bx, by);
+  },
+
+  'get3dPosition': (bx, by) => {
+
+    // let dz = ENV.startBoardZ - projection.camera.position.z;
+    let dz = ENV.startBoardZ;
+
+    let ax = (((bx - projection.viewplane.x) * dz - projection.camera.position.z) / projection.viewplane.z) + projection.camera.position.x;
+    let ay = (((by - projection.viewplane.y) * dz - projection.camera.position.z) / projection.viewplane.z) + projection.camera.position.y;
+
+    return new Position(Math.floor(ax), Math.floor(ay), Math.floor(dz));
   }
 
-}
-
-const ENV = {
-  'gravity': 9.82,
-  'toRadian': (deg) => {
-    return deg * Math.PI / 180;
-  }
 }

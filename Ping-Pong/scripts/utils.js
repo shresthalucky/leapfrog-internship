@@ -63,5 +63,8 @@ const projection = {
 }
 
 const ENV = {
-  'gravity': 9.82
+  'gravity': 9.82,
+  'toRadian': (deg) => {
+    return deg * Math.PI / 180;
+  }
 }

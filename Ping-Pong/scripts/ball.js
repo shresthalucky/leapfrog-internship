@@ -7,11 +7,13 @@ class Ball {
     this.intialVel = 100;
     this.velocity = {
       'z': this.intialVel * Math.cos(this.angle),
-      'y': 0
+      'y': 0,
+      'x': 0
     }
     this.acceleration = {
       'z': 0,
-      'y': 0
+      'y': 0,
+      'x': 0
     }
     this.time = 0;
     this.rebound = false;
@@ -23,7 +25,7 @@ class Ball {
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
     let current2dPos = projection.get2dProjection(new Position(this.current3dPos.x, current3dY, this.current3dPos.z));
     this.radius = current2dPos.y * 0.03;
-    
+
     // console.log(current2dPos);
 
     this.drawShadow();
@@ -33,8 +35,8 @@ class Ball {
     ctx.fillStyle = "#000";
     ctx.fill();
     ctx.closePath();
-    
-    if(this.inPlay) {
+
+    if (this.inPlay) {
       this.bounce();
     }
   }
@@ -43,7 +45,7 @@ class Ball {
     let d = this.lastPosition.getDistance(this.current3dPos);
     let dx = this.current3dPos.getDistance(new Position(this.lastPosition.x, 0, this.lastPosition.z));
     // debugger
-    return Math.atan(d/dx);
+    return Math.atan(d / dx);
   }
 
   bounce = () => {
@@ -55,6 +57,8 @@ class Ball {
 
       this.current3dPos.z = this.intial3dPos.z + this.velocity.z * this.time;
 
+      this.current3dPos.x = this.current3dPos.x + this.velocity.x * this.time;
+
       let vy = this.intialVel * Math.sin(this.angle);
 
       this.velocity.y = vy - ENV.gravity * this.time;
@@ -65,10 +69,10 @@ class Ball {
       if (this.current3dPos.y < 0) {
         this.rebound = true;
       }
-      
+
       // this.draw();
 
-      this.time += 0.1;
+      this.time += 0.2;
 
     } else {
       this.intialVel = -this.velocity.y;
@@ -98,14 +102,26 @@ class Ball {
     ctx.closePath();
   }
 
-  hit = () => {
+  hit = (velocity, angleUp, angleSide) => {
     // this.intial3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
     // this.current3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
 
     this.intial3dPos = new Position(this.current3dPos.x, this.current3dPos.y, this.current3dPos.z);
-    
-    this.angle = 30 * Math.PI / 180;
-    this.intialVel = 100;
+
+    this.angle = ENV.toRadian(angleUp);
+    this.velocity.x = ENV.toRadian(angleSide);
+
+    this.intialVel = velocity;
+    this.velocity.z = this.intialVel * Math.cos(this.angle);
+    this.inPlay = true;
+  }
+
+  serve = (velocity, angleSide) => {
+
+    this.velocity.x = ENV.toRadian(angleSide);
+
+    this.angle = ENV.toRadian(-60);
+    this.intialVel = velocity;
     this.velocity.z = this.intialVel * Math.cos(this.angle);
     this.inPlay = true;
   }

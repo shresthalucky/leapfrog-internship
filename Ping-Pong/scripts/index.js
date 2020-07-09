@@ -7,7 +7,7 @@ const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
 const ctx = canvas.getContext('2d');
 
-const BALL_START_HEIGHT = 100; // vertical height from the board
+const BALL_START_HEIGHT = 200; // vertical height from the board
 
 let animationId;
 const halfCanvasWidth = canvasWidth / 2;
@@ -34,7 +34,6 @@ const ball = new Ball(ballStartPosition);
 // ctx.translate(0, canvasWidth/2);
 
 table.draw();
-ball.draw();
 
 console.log(table);
 console.log(ball);
@@ -42,7 +41,8 @@ console.log(ball);
 function render() {
   ctx.clearRect(-500, -500, canvasWidth + 500, canvasHeight + 500);
   table.draw();
-  ball.bounce();
+  ball.draw();
+  // ball.bounce();
 
   requestAnimationFrame(render);
 }

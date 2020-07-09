@@ -21,9 +21,9 @@ class Position {
     return (Math.sqrt(x * x + y * y + z * z));
   }
 
-  reflectXAxis = () => {
-    return new Position(this.x, -this.y, this.z);
-  }
+  // reflectXAxis = () => {
+  //   return new Position(this.x, -this.y, this.z);
+  // }
 }
 
 const projection = {

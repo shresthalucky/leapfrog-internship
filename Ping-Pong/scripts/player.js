@@ -12,6 +12,7 @@ class Player {
 
     this.surface3d;
     this.surface2d;
+    this.batThickness = 50;
 
     // this.surface3d = [
     //   new Position(position.x - this.halfSize.width, position.y - this.halfSize.long, position.z),

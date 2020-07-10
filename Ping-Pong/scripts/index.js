@@ -30,7 +30,7 @@ const ballStartPosition = new Position(halfCanvasWidth, table.y - BALL_START_HEI
 const ball = new Ball(ballStartPosition);
 
 
-const playerPosition = new Position(halfCanvasWidth, table.y - BALL_START_HEIGHT, table.z);
+const playerPosition = new Position(0, table.y - BALL_START_HEIGHT, table.z);
 const player = new Player(playerPosition);
 
 // console.log(ballStartPosition)
@@ -50,7 +50,9 @@ function render() {
   table.draw();
   ball.draw();
   player.drawBat();
-
+  if(ball.ballHit(player)) {
+    ball.serve(80, 0);
+  }
   requestAnimationFrame(render);
 }
 

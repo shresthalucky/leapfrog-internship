@@ -4,7 +4,7 @@ const ENV = {
     return deg * Math.PI / 180;
   },
   // 'startBoardZ': 160
-  'startY': -160
+  'startY': -120
 }
 class Position {
   constructor(x, y, z) {

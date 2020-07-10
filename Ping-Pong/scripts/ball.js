@@ -120,10 +120,31 @@ class Ball {
 
     this.velocity.x = ENV.toRadian(sideAngle);
 
-    this.angle = ENV.toRadian(-60);
+    this.angle = ENV.toRadian(-45);
     this.intialVel = velocity;
     this.velocity.z = this.intialVel * Math.cos(this.angle);
     this.inPlay = true;
+  }
+
+  ballHit = (player) => {
+
+    let ball = this.current3dPos;
+    let bat = player.surface3d;
+    if (ball.x >= bat.topLeft.x
+      && ball.y >= bat.topLeft.y
+      && ball.x <= bat.topRight.x
+      && ball.y >= bat.topRight.y
+      && ball.x <= bat.bottomRight.x
+      && ball.y <= bat.bottomRight.y
+      && ball.x >= bat.bottomLeft.x
+      && ball.y <= bat.bottomLeft.y
+      && ball.z >= bat.topLeft.z
+      && ball.z <= bat.topLeft.z + player.batThickness
+    ) {
+      console.log('hit')
+      return true;
+    }
+    return false;
   }
 
 }

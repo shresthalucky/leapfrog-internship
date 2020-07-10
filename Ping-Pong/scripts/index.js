@@ -7,7 +7,7 @@ const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
 const ctx = canvas.getContext('2d');
 
-const BALL_START_HEIGHT = 200; // vertical height from the board
+const BALL_START_HEIGHT = 120; // vertical height from the board
 
 let animationId;
 const halfCanvasWidth = canvasWidth / 2;
@@ -50,7 +50,6 @@ function render() {
   table.draw();
   ball.draw();
   player.drawBat();
-  // ball.bounce();
 
   requestAnimationFrame(render);
 }

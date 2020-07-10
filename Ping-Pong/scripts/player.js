@@ -56,7 +56,8 @@ class Player {
   handleBatMovement = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    this.position = projection.get3dPosition(event.clientX, event.clientY - projection.camera.position.y);
+    this.position = projection.get3dPosition(event.clientX, event.clientY);
+    // this.position = projection.get3dPosition(event.clientX, event.clientY - projection.camera.position.y);
   }
 
 }

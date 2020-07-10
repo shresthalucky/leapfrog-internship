@@ -102,23 +102,23 @@ class Ball {
     ctx.closePath();
   }
 
-  hit = (velocity, angleUp, angleSide) => {
+  hit = (velocity, upAngle, sideAngle) => {
     // this.intial3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
     // this.current3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
 
     this.intial3dPos = new Position(this.current3dPos.x, this.current3dPos.y, this.current3dPos.z);
 
-    this.angle = ENV.toRadian(angleUp);
-    this.velocity.x = ENV.toRadian(angleSide);
+    this.angle = ENV.toRadian(upAngle);
+    this.velocity.x = ENV.toRadian(sideAngle);
 
     this.intialVel = velocity;
     this.velocity.z = this.intialVel * Math.cos(this.angle);
     this.inPlay = true;
   }
 
-  serve = (velocity, angleSide) => {
+  serve = (velocity, sideAngle) => {
 
-    this.velocity.x = ENV.toRadian(angleSide);
+    this.velocity.x = ENV.toRadian(sideAngle);
 
     this.angle = ENV.toRadian(-60);
     this.intialVel = velocity;

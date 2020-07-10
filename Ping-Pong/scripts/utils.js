@@ -3,7 +3,8 @@ const ENV = {
   'toRadian': (deg) => {
     return deg * Math.PI / 180;
   },
-  'startBoardZ': 160
+  // 'startBoardZ': 160
+  'startY': -160
 }
 class Position {
   constructor(x, y, z) {
@@ -78,13 +79,24 @@ const projection = {
 
   'get3dPosition': (bx, by) => {
 
+    let dy = ENV.startY - projection.camera.position.y;
+    let dz = projection.viewplane.z * dy / (by - projection.viewplane.y);
+    let dx = ((bx - projection.viewplane.x) * dz / projection.viewplane.z);
+
+    let ax = projection.camera.position.x + dx;
+    let ay = projection.camera.position.y + dy;
+    let az = projection.camera.position.z + dz;
+
+    // console.log(ax, ay, az);
+
+    // debugger
     // let dz = ENV.startBoardZ - projection.camera.position.z;
-    let dz = ENV.startBoardZ;
+    // let dz = ENV.startBoardZ;
 
-    let ax = (((bx - projection.viewplane.x) * dz - projection.camera.position.z) / projection.viewplane.z) + projection.camera.position.x;
-    let ay = (((by - projection.viewplane.y) * dz - projection.camera.position.z) / projection.viewplane.z) + projection.camera.position.y;
+    // let ax = (((bx - projection.viewplane.x) * dz - projection.camera.position.z) / projection.viewplane.z) + projection.camera.position.x;
+    // let ay = (((by - projection.viewplane.y) * dz - projection.camera.position.z) / projection.viewplane.z) + projection.camera.position.y;
 
-    return new Position(Math.floor(ax), Math.floor(ay), Math.floor(dz));
+    return new Position(ax, ay, az);
   }
 
 }

@@ -1,13 +1,11 @@
 class Board {
   constructor() {
-    this.width = 800;
-    this.length = this.width * 6 / 5;
-    this.height = 200;
-    this.thickness = 20;
-    this.z = 160;
-    this.borderWidth = 10;
-
-    this.y = 0;
+    this.width = BOARD_WIDTH;
+    this.length = BOARD_LENGTH;
+    this.thickness = BOARD_THICKNESS;
+    this.z = BOARD_Z;
+    this.borderWidth = BORDER_WIDTH;
+    this.y = BOARD_Y;
 
     const halfWidth = this.width / 2;
     const leftX = halfCanvasWidth - halfWidth;

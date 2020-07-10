@@ -2,8 +2,8 @@ class Player {
   constructor(position) {
     this.position = new Position(position.x, position.y, position.z);
     this.size = {
-      'long': 150,
-      'width': 120
+      'long': BAT_LENGTH,
+      'width': BAT_WIDTH
     }
     this.halfSize = {
       'long': this.size.long / 2,
@@ -12,16 +12,7 @@ class Player {
 
     this.surface3d;
     this.surface2d;
-    this.batThickness = 50;
-
-    // this.surface3d = [
-    //   new Position(position.x - this.halfSize.width, position.y - this.halfSize.long, position.z),
-    //   new Position(position.x + this.halfSize.width, position.y - this.halfSize.long, position.z), 
-    //   new Position(position.x + this.halfSize.width, position.y + this.halfSize.long, position.z),
-    //   new Position(position.x - this.halfSize.width, position.y + this.halfSize.long, position.z)
-    // ];
-
-    // this.surface2d = this.surface3d.map(projection.get2dProjection);
+    this.batThickness = BAT_THICKNESS;
   }
 
   loadSurface = () => {

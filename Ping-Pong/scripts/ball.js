@@ -2,9 +2,9 @@ class Ball {
   constructor(startPos) {
     this.intial3dPos = new Position(startPos.x, startPos.y, startPos.z);
     this.current3dPos = new Position(startPos.x, startPos.y, startPos.z);
-    this.radius = 24; // default radius of ball
-    this.angle = 30 * Math.PI / 180; // drive ball with an angle with the horizontal plane
-    this.intialVel = 100;
+    this.radius = BALL_RADIUS; // default radius of ball
+    this.angle = BALL_ANGLE; // drive ball with an angle with the horizontal plane
+    this.intialVel = BALL_INITAL_VEL;
     this.velocity = {
       'z': this.intialVel * Math.cos(this.angle),
       'y': 0,
@@ -18,16 +18,14 @@ class Ball {
     this.time = 0;
     this.rebound = false;
     this.lastPosition = new Position(startPos.x, startPos.y, startPos.z);
-    this.inPlay = false;
-    this.playerToServe;
   }
 
   draw = () => {
 
-    if (this.inPlay) {
+    if (Game.state.inPlay) {
       this.bounce();
     } else {
-      this.current3dPos.x = this.playerToServe.position.x;
+      this.current3dPos.x = Game.state.service.position.x;
     }
 
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
@@ -44,8 +42,6 @@ class Ball {
     ctx.fillStyle = "#000";
     ctx.fill();
     ctx.closePath();
-
-
   }
 
   getBounceAngle = () => {
@@ -120,17 +116,16 @@ class Ball {
 
     this.intialVel = velocity;
     this.velocity.z = this.intialVel * Math.cos(this.angle);
-    this.inPlay = true;
   }
 
   serve = (velocity, sideAngle) => {
 
     this.velocity.x = ENV.toRadian(sideAngle);
 
-    this.angle = ENV.toRadian(-45);
+    this.angle = SERVE_ANGLE;
     this.intialVel = velocity;
     this.velocity.z = this.intialVel * Math.cos(this.angle);
-    this.inPlay = true;
+    Game.state.inPlay = true;
   }
 
   ballHit = (player) => {

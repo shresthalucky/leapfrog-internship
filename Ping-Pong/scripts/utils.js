@@ -1,11 +1,3 @@
-const ENV = {
-  'gravity': 9.82,
-  'toRadian': (deg) => {
-    return deg * Math.PI / 180;
-  },
-  // 'startBoardZ': 160
-  'startY': -120
-}
 class Position {
   constructor(x, y, z) {
     this.x = x;
@@ -35,10 +27,6 @@ class Position {
 
     return (Math.sqrt(x * x + y * y));
   }
-
-  // reflectXAxis = () => {
-  //   return new Position(this.x, -this.y, this.z);
-  // }
 }
 
 const projection = {
@@ -79,7 +67,7 @@ const projection = {
 
   'get3dPosition': (bx, by) => {
 
-    let dy = ENV.startY - projection.camera.position.y;
+    let dy = -BALL_START_HEIGHT - projection.camera.position.y;
     let dz = projection.viewplane.z * dy / (by - projection.viewplane.y);
     let dx = ((bx - projection.viewplane.x) * dz / projection.viewplane.z);
 

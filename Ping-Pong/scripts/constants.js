@@ -31,7 +31,8 @@ const BAT_WIDTH = 120;
 const BAT_THICKNESS = 50;
 
 // player constants and defaults
-const PLAYER_POSITION = BOARD_Z - 100;
+const PLAYER_Z_POSITION = BOARD_Z - 100;
+const OPPONENT_Z_POSITION = BOARD_LENGTH + BOARD_Z; 
 
 // gameplay constants
 const SERVE_ANGLE = ENV.toRadian(-45);

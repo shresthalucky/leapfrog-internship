@@ -1,12 +1,12 @@
 class Ball {
   constructor(startPos) {
-    this.intial3dPos = new Position(startPos.x, startPos.y, startPos.z);
+    this.initial3dPos = new Position(startPos.x, startPos.y, startPos.z);
     this.current3dPos = new Position(startPos.x, startPos.y, startPos.z);
     this.radius = BALL_RADIUS; // default radius of ball
     this.angle = BALL_ANGLE; // drive ball with an angle with the horizontal plane
-    this.intialVel = BALL_INITAL_VEL;
+    this.initialVel = BALL_INITAL_VEL;
     this.velocity = {
-      'z': this.intialVel * Math.cos(this.angle),
+      'z': this.initialVel * Math.cos(this.angle),
       'y': 0,
       'x': 0
     }
@@ -18,6 +18,7 @@ class Ball {
     this.time = 0;
     this.rebound = false;
     this.lastPosition = new Position(startPos.x, startPos.y, startPos.z);
+    this.bounceCount = 0;
   }
 
   draw = () => {
@@ -25,7 +26,7 @@ class Ball {
     if (Game.state.inPlay) {
       this.bounce();
     } else {
-      this.current3dPos.x = Game.state.service.position.x;
+      this.current3dPos.x = Game.state.server.position.x;
     }
 
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
@@ -58,35 +59,35 @@ class Ball {
       this.lastPosition.y = this.current3dPos.y;
       this.lastPosition.z = this.current3dPos.z;
 
-      this.current3dPos.z = this.intial3dPos.z + this.velocity.z * this.time;
+      this.current3dPos.z = this.initial3dPos.z + this.velocity.z * this.time;
 
       this.current3dPos.x = this.current3dPos.x + this.velocity.x * this.time;
 
-      let vy = this.intialVel * Math.sin(this.angle);
+      let vy = this.initialVel * Math.sin(this.angle);
 
       this.velocity.y = vy - ENV.gravity * this.time;
-      // this.current3dPos.y = this.intial3dPos.y + (vy * this.time) - (ENV.gravity * this.time * this.time * 0.5);
-      this.current3dPos.y = -this.intial3dPos.y + (vy * this.time) - (ENV.gravity * this.time * this.time * 0.5);
+      // this.current3dPos.y = this.initial3dPos.y + (vy * this.time) - (ENV.gravity * this.time * this.time * 0.5);
+      this.current3dPos.y = -this.initial3dPos.y + (vy * this.time) - (ENV.gravity * this.time * this.time * 0.5);
       // this.current3dPos.y = -this.current3dPos.y;
 
       if (this.current3dPos.y < 0) {
         this.rebound = true;
       }
 
-      // this.draw();
-
       this.time += 0.2;
 
     } else {
-      this.intialVel = -this.velocity.y;
-      this.intial3dPos.z = this.current3dPos.z;
+      this.initialVel = -this.velocity.y;
+      this.initial3dPos.z = this.current3dPos.z;
       this.current3dPos.y = 0;
-      this.intial3dPos.y = 0;
-      this.velocity.z = this.intialVel * Math.cos(this.angle);
+      this.initial3dPos.y = 0;
+      // this.velocity.z = this.initialVel * Math.cos(this.angle);
       this.rebound = false;
       this.time = 0;
       // this.draw();
       this.angle = this.getBounceAngle();
+
+      this.bounceCount++;
       // console.log(this.lastPosition);
       // console.log(this.current3dPos);
       // console.log(this.getBounceAngle() * 180/Math.PI);
@@ -106,45 +107,63 @@ class Ball {
   }
 
   hit = (velocity, upAngle, sideAngle) => {
-    // this.intial3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
+    // this.initial3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
     // this.current3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
 
-    this.intial3dPos = new Position(this.current3dPos.x, this.current3dPos.y, this.current3dPos.z);
+    this.initial3dPos = new Position(this.current3dPos.x, this.current3dPos.y, this.current3dPos.z);
 
-    this.angle = ENV.toRadian(upAngle);
+    this.angle = -ENV.toRadian(upAngle);
     this.velocity.x = ENV.toRadian(sideAngle);
 
-    this.intialVel = velocity;
-    this.velocity.z = this.intialVel * Math.cos(this.angle);
+    this.initialVel = -velocity;
+    this.velocity.z = this.initialVel * Math.cos(this.angle);
+
+    this.bounceCount = 0;
+    console.log('hit');
+    debugger
   }
 
   serve = (velocity, sideAngle) => {
 
-    this.velocity.x = ENV.toRadian(sideAngle);
-
     this.angle = SERVE_ANGLE;
-    this.intialVel = velocity;
-    this.velocity.z = this.intialVel * Math.cos(this.angle);
+    this.velocity.x = ENV.toRadian(sideAngle);
+    this.initialVel = velocity;
+    
+    this.velocity.z = this.initialVel * Math.cos(this.angle);
     Game.state.inPlay = true;
+    // Game.state.ballStart = false;
+    // debugger
   }
 
-  ballHit = (player) => {
+  checkCollision = (side) => {
 
     let ball = this.current3dPos;
-    let bat = player.surface3d;
+    let ballY = Game.state.inPlay ? -ball.y : ball.y;
+
+    let bat = side.surface3d;
+
     if (ball.x >= bat.topLeft.x
-      && ball.y >= bat.topLeft.y
+      && ballY >= bat.topLeft.y
       && ball.x <= bat.topRight.x
-      && ball.y >= bat.topRight.y
+      && ballY >= bat.topRight.y
       && ball.x <= bat.bottomRight.x
-      && ball.y <= bat.bottomRight.y
+      && ballY <= bat.bottomRight.y
       && ball.x >= bat.bottomLeft.x
-      && ball.y <= bat.bottomLeft.y
-      && ball.z >= bat.topLeft.z
-      && ball.z <= bat.topLeft.z + player.batThickness
+      && ballY <= bat.bottomLeft.y
     ) {
-      console.log('hit')
-      return true;
+
+      if (side === player) {
+        if (ball.z <= side.position.z) {
+          ball.z = side.position.z;
+          return true;
+        }
+      } else if (side === opponent) {
+        if (ball.z >= side.position.z) {
+          ball.z = side.position.z;
+          return true;
+        }
+      }
+
     }
     return false;
   }

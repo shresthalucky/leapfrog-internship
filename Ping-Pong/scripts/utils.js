@@ -43,7 +43,7 @@ class Position {
 
 const projection = {
   'camera': {
-    'position': new Position(0, -600, -300),
+    'position': new Position(0, -700, -300),
     'orientation': { 'thetaX': 0, 'thetaY': 0, 'thetaZ': 0 }
   },
 

@@ -15,31 +15,20 @@ const halfCanvasWidth = canvasWidth / 2;
 projection.camera.position.x = halfCanvasWidth;
 projection.viewplane.x = halfCanvasWidth;
 
-// projection.camera.orientation.thetaX = -10 * Math.PI/180; 
-
-
-// persective sideview inverted
-// projection.camera.position.x = -100;
-// projection.camera.position.y = -100;
-// projection.camera.position.z = 1060;
-// projection.camera.orientation.thetaY = 90 * Math.PI/180;
-// ctx.translate(0, canvasHeight/2);
-
 const table = new Board();
 const ballStartPosition = new Position(halfCanvasWidth, table.y - BALL_START_HEIGHT, table.z);
 const ball = new Ball(ballStartPosition);
 
-
-const playerPosition = new Position(0, table.y - BALL_START_HEIGHT, table.z);
+const playerPosition = new Position(0, table.y - BALL_START_HEIGHT, table.z - 100);
 const player = new Player(playerPosition);
 
 // console.log(ballStartPosition)
 
 // ctx.translate(0, canvasWidth/2);
 
+ball.playerToServe = player;
+
 table.draw();
-ball.draw();
-player.drawBat();
 
 console.log(table);
 console.log(ball);
@@ -51,7 +40,7 @@ function render() {
   ball.draw();
   player.drawBat();
   if(ball.ballHit(player)) {
-    ball.serve(80, 0);
+    ball.serve(90, 0);
   }
   requestAnimationFrame(render);
 }

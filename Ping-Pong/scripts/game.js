@@ -16,6 +16,7 @@ function renderGame() {
   table.draw();
   opponent.position.x = ball.current3dPos.x;
   opponent.drawBat();
+  net.draw();
   ball.draw();
   player.drawBat();
 

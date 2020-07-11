@@ -33,10 +33,11 @@ class Ball {
     }
 
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
-
     let current2dPos = projection.get2dProjection(new Position(this.current3dPos.x, current3dY, this.current3dPos.z));
-    // this.radius = current2dPos.y * 0.03;
-    this.radius = this.getRadius();
+    
+    if(this.current3dPos.z > 0) {
+      this.radius = this.getRadius();
+    }
 
     this.drawShadow();
 

@@ -8,6 +8,7 @@ let animationId;
 const halfCanvasWidth = CANVAS_WIDTH / 2;
 
 let table;
+let net;
 let ball;
 let player;
 let opponent;
@@ -21,16 +22,19 @@ function init() {
   const opponentPosition = new Position(1000, BOARD_Y - BALL_START_HEIGHT, OPPONENT_Z_POSITION);
   
   table = new Board();
+  net = new Net();
   ball = new Ball(ballStartPosition);
   player = new Player(playerPosition);
   opponent = new Player(opponentPosition);
-
+  
   console.log(table);
+  console.log(net);
   console.log(ball);
   console.log(player);
   console.log(opponent);
 
   table.draw();
+  net.draw();
 
   initEvents();
 

@@ -1,24 +1,17 @@
 let Game = {
   'state': {
-    'start': false,
+    'begin': true,
     'inPlay': false,
-    'isOver': true,
+    'isOver': false,
     'ballStart': true,
     'server': undefined,
     'served': false
   }
 }
 
-function play() {
+function renderGame() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
   Game.state.server = player;
-
-  drawGameElements();
-
-  requestAnimationFrame(play);
-}
-
-function drawGameElements() {
 
   table.draw();
   opponent.position.x = ball.current3dPos.x;
@@ -26,21 +19,52 @@ function drawGameElements() {
   ball.draw();
   player.drawBat();
 
-  if (Game.state.ballStart) {
-    if (ball.checkCollision(player)) {
-      ball.serve(90, 0);
+  if (Game.state.begin && !Game.state.isOver) {
+    if(Game.state.ballStart) {
+      beginGame();
+    } else {
+      if (Game.state.inPlay) {
+        playGame();
+      } else {
+        restartGame();
+      }
     }
+  } else {
+    // TODO: start game menu
   }
 
-  if (ball.checkCollision(player) && !Game.state.ballStart) {
+  requestAnimationFrame(renderGame);
+}
+
+// choose ball server and serve the ball
+function beginGame() {
+  if (ball.checkCollision(player)) {
+    console.log('serve');
+    ball.serve(90, 0);
+    Game.state.served = true;
+  }
+  
+  if(ball.bounceCount === 1) {
+    Game.state.ballStart = false;
+    Game.state.inPlay = true;
+  }
+}
+
+// ball inside board conditions
+function playGame() {
+  
+  if (ball.checkCollision(player)) {
     console.log('ping');
-    ball.hit(player, 90, 30, -45);
+    ball.hit(player, 90, 30, 0);
   }
 
   if (ball.checkCollision(opponent)) {
-    ball.hit(opponent, 90, 30, 45);
+    ball.hit(opponent, 90, 30, 0);
     console.log('pong');
-    Game.state.ballStart = false;
   }
+}
+
+// update scoreboard and restart
+function restartGame() {
 
 }

@@ -2,7 +2,7 @@ class Ball {
   constructor(startPos) {
     this.initial3dPos = new Position(startPos.x, startPos.y, startPos.z);
     this.current3dPos = new Position(startPos.x, startPos.y, startPos.z);
-    this.radius = BALL_RADIUS; // default radius of ball
+    this.radius = BALL_MAX_RADIUS; // default radius of ball
     this.angle = BALL_ANGLE; // drive ball with an angle with the horizontal plane
     this.initialVel = BALL_INITAL_VEL;
     this.velocity = {
@@ -19,11 +19,14 @@ class Ball {
     this.rebound = false;
     this.lastPosition = new Position(startPos.x, startPos.y, startPos.z);
     this.bounceCount = 0;
+    this.active = true;
   }
 
+  getRadius = () => SLOPE * (this.current3dPos.z - BOARD_Z) + BALL_MAX_RADIUS;
+  
   draw = () => {
 
-    if (Game.state.inPlay) {
+    if (Game.state.served) {
       this.bounce();
     } else {
       this.current3dPos.x = Game.state.server.position.x;
@@ -32,7 +35,8 @@ class Ball {
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
 
     let current2dPos = projection.get2dProjection(new Position(this.current3dPos.x, current3dY, this.current3dPos.z));
-    this.radius = current2dPos.y * 0.03;
+    // this.radius = current2dPos.y * 0.03;
+    this.radius = this.getRadius();
 
     this.drawShadow();
 
@@ -133,7 +137,6 @@ class Ball {
     this.velocity.x = ENV.toRadian(sideAngle);
     this.initialVel = velocity;
     this.velocity.z = this.initialVel * Math.cos(this.angle);
-    Game.state.inPlay = true;
   }
 
   checkCollision = (side) => {

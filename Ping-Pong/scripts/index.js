@@ -34,7 +34,7 @@ function init() {
 
   initEvents();
 
-  animationId = requestAnimationFrame(play);
+  animationId = requestAnimationFrame(renderGame);
 }
 
 function initEvents() {

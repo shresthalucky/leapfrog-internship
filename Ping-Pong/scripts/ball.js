@@ -34,8 +34,6 @@ class Ball {
     let current2dPos = projection.get2dProjection(new Position(this.current3dPos.x, current3dY, this.current3dPos.z));
     this.radius = current2dPos.y * 0.03;
 
-    // console.log(current2dPos);
-
     this.drawShadow();
 
     ctx.beginPath();
@@ -88,9 +86,7 @@ class Ball {
       this.angle = this.getBounceAngle();
 
       this.bounceCount++;
-      // console.log(this.lastPosition);
-      // console.log(this.current3dPos);
-      // console.log(this.getBounceAngle() * 180/Math.PI);
+      console.log('bounce');
     }
   }
 
@@ -106,33 +102,38 @@ class Ball {
     ctx.closePath();
   }
 
-  hit = (velocity, upAngle, sideAngle) => {
-    // this.initial3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
-    // this.current3dPos = new Position(this.lastPosition.x, this.lastPosition.y, this.lastPosition.z);
+  hit = (side, velocity, upAngle, sideAngle) => {
+    
+    let offsetZ;
+    let v;
 
-    this.initial3dPos = new Position(this.current3dPos.x, this.current3dPos.y, this.current3dPos.z);
-
-    this.angle = -ENV.toRadian(upAngle);
+    this.angle = ENV.toRadian(upAngle);
     this.velocity.x = ENV.toRadian(sideAngle);
+    this.initialVel = velocity;
 
-    this.initialVel = -velocity;
-    this.velocity.z = this.initialVel * Math.cos(this.angle);
+    if (side === player) {
+      offsetZ = side.position.z + 10;
+      v = this.initialVel;
+    } else {
+      offsetZ = side.position.z - 10;
+      v = -this.initialVel;
+    }
 
+    this.initial3dPos = new Position(this.current3dPos.x, -this.current3dPos.y, offsetZ);
+    this.current3dPos = new Position(this.current3dPos.x, -this.current3dPos.y, offsetZ);
+
+    this.velocity.z = v * Math.cos(this.angle)
+
+    this.time = 0;
     this.bounceCount = 0;
-    console.log('hit');
-    debugger
   }
 
   serve = (velocity, sideAngle) => {
-
     this.angle = SERVE_ANGLE;
     this.velocity.x = ENV.toRadian(sideAngle);
     this.initialVel = velocity;
-    
     this.velocity.z = this.initialVel * Math.cos(this.angle);
     Game.state.inPlay = true;
-    // Game.state.ballStart = false;
-    // debugger
   }
 
   checkCollision = (side) => {
@@ -163,7 +164,6 @@ class Ball {
           return true;
         }
       }
-
     }
     return false;
   }

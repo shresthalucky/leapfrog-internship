@@ -9,50 +9,36 @@ let Game = {
   }
 }
 
-function play () {
+function play() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
   Game.state.server = player;
-  
-  renderGameElements();
-  
+
+  drawGameElements();
+
   requestAnimationFrame(play);
 }
 
-function renderGameElements() {
-  
+function drawGameElements() {
+
   table.draw();
   opponent.position.x = ball.current3dPos.x;
   opponent.drawBat();
   ball.draw();
   player.drawBat();
 
-  if(Game.state.ballStart) {
-    ballService();
+  if (Game.state.ballStart) {
+    if (ball.checkCollision(player)) {
+      ball.serve(90, 0);
+    }
   }
-  
-  opponentReturn();
 
-  if(ball.checkCollision(player) && !Game.state.ballStart) {
+  if (ball.checkCollision(player) && !Game.state.ballStart) {
     console.log('ping');
-    // ball.hit(90, 60, 0);
-    // debugger
+    ball.hit(player, 90, 30, -45);
   }
-}
 
-function ballService() {
-
-  if(ball.checkCollision(player)) {
-    ball.serve(90, 0);
-    // ball.hit(90, 60, 0);
-    
-  }
-}
-
-
-function opponentReturn() {
-
-  if(ball.checkCollision(opponent)) {
-    ball.hit(100, 60, 10);
+  if (ball.checkCollision(opponent)) {
+    ball.hit(opponent, 90, 30, 45);
     console.log('pong');
     Game.state.ballStart = false;
   }

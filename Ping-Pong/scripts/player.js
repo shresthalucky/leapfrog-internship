@@ -37,7 +37,7 @@ class Player {
     
     let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
-    
+
     ctx.beginPath();
     ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
     ctx.fillStyle = "#FF0000";
@@ -50,6 +50,21 @@ class Player {
     event.stopPropagation();
     this.position = projection.get3dPosition(event.clientX, event.clientY);
     // this.position = projection.get3dPosition(event.clientX, event.clientY - projection.camera.position.y);
+    this.fitToCourt();
+  }
+
+  fitToCourt = () => {
+    if (this.position.x > table.surface3d.outer[1].x - BALL_MAX_RADIUS) {
+      this.position.x = table.surface3d.outer[1].x - BALL_MAX_RADIUS;
+    }
+
+    if (this.position.x < table.surface3d.outer[0].x + BALL_MAX_RADIUS) {
+      this.position.x = table.surface3d.outer[0].x + BALL_MAX_RADIUS;
+    }
+
+    if (this.position.z > BOARD_Z + BOARD_HALF_LENGTH) {
+      this.position.z = BOARD_Z + BOARD_HALF_LENGTH;
+    }
   }
 
 }

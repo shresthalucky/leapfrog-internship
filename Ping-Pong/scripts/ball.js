@@ -28,7 +28,7 @@ class Ball {
 
     if (Game.state.served) {
       this.bounce();
-      console.log(this.velocity.z);
+      // console.log(this.velocity.z);
     } else {
       this.current3dPos.x = Game.state.server.position.x;
     }

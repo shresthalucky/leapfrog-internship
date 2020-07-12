@@ -14,6 +14,7 @@ const CANVAS_HEIGHT = window.innerHeight;
 const TABLE_HEIGHT = 200;
 const BOARD_WIDTH = 800;
 const BOARD_LENGTH = BOARD_WIDTH * 6 / 5;
+const BOARD_HALF_LENGTH = BOARD_LENGTH / 2;
 const BOARD_THICKNESS = 20;
 const BOARD_Y = 0;
 const BOARD_Z = 160;

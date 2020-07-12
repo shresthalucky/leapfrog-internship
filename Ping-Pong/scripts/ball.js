@@ -16,6 +16,7 @@ class Ball {
       'x': 0
     }
     this.time = 0;
+    this.period = 0;
     this.rebound = false;
     this.lastPosition = new Position(startPos.x, startPos.y, startPos.z);
     this.bounceCount = 0;
@@ -28,7 +29,7 @@ class Ball {
 
     if (Game.state.served) {
       this.bounce();
-      // console.log(this.velocity.z);
+      // console.log(this.velocity.x);
     } else {
       this.current3dPos.x = Game.state.server.position.x;
     }
@@ -65,8 +66,11 @@ class Ball {
 
       this.current3dPos.z = this.initial3dPos.z + this.velocity.z * this.time;
 
-      this.current3dPos.x = this.current3dPos.x + this.velocity.x * this.time;
-
+      if (this.velocity.x !== 0) {
+        this.current3dPos.x = this.current3dPos.x + this.velocity.x * this.period;
+        this.period += 0.1;
+      }
+      
       let vy = this.initialVel * Math.sin(this.angle);
 
       this.velocity.y = vy - ENV.gravity * this.time;
@@ -113,8 +117,9 @@ class Ball {
     let offsetZ;
     let v;
 
+    this.period = 0;
     this.angle = ENV.toRadian(upAngle);
-    this.velocity.x = ENV.toRadian(sideAngle);
+    this.velocity.x = Math.sin(sideAngle);
     this.initialVel = velocity;
 
     if (side === player) {
@@ -141,6 +146,7 @@ class Ball {
       ballPosition = new Position(player.position.x , BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
     }
 
+    this.period = 0;
     this.initial3dPos = ballPosition;
     this.current3dPos = ballPosition;
 
@@ -150,7 +156,7 @@ class Ball {
 
   serve = (velocity, sideAngle) => {
     this.angle = SERVE_ANGLE;
-    this.velocity.x = ENV.toRadian(sideAngle);
+    this.velocity.x = Math.sin(sideAngle);
     this.initialVel = velocity;
     this.velocity.z = this.initialVel * Math.cos(this.angle);
     // debugger

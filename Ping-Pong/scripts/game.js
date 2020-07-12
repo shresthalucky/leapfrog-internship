@@ -46,7 +46,7 @@ function beginGame() {
   if (ball.checkCollision(Game.state.server)) {
     Game.state.served = true;
     console.log('serve');
-    ball.serve(90, 0);
+    ball.serve(80, player.getHitAngle());
   }
 }
 
@@ -55,11 +55,11 @@ function playGame() {
 
   if (ball.checkCollision(player)) {
     console.log('ping');
-    ball.hit(player, 90, 30, 0);
+    ball.hit(player, 80, 30, player.getHitAngle());
   }
 
   if (ball.checkCollision(opponent)) {
-    ball.hit(opponent, 90, 30, 0);
+    ball.hit(opponent, 80, 30, 0);
     console.log('pong');
   }
 }

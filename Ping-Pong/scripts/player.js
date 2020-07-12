@@ -13,6 +13,7 @@ class Player {
     this.surface3d;
     this.surface2d;
     this.batThickness = BAT_THICKNESS;
+    this.intialX;
   }
 
   loadSurface = () => {
@@ -34,6 +35,7 @@ class Player {
   drawBat = () => {
 
     this.loadSurface();
+    this.setInitialX();
     
     let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
@@ -43,6 +45,12 @@ class Player {
     ctx.fillStyle = "#FF0000";
     ctx.fill();
     ctx.closePath();
+  }
+
+  setInitialX = () => {
+    if(this.position.z <= BAT_INITIAL_Z) {
+      this.intialX = this.position.x;
+    }
   }
 
   handleBatMovement = (event) => {
@@ -65,6 +73,14 @@ class Player {
     if (this.position.z > BOARD_Z + BOARD_HALF_LENGTH) {
       this.position.z = BOARD_Z + BOARD_HALF_LENGTH;
     }
+  }
+
+  getHitAngle = () => {
+    let finalPosition = this.position;
+    let dz = BOARD_Z - BAT_INITIAL_Z;
+    let dx = finalPosition.x - this.intialX;
+
+    return Math.atan(dz/dx);
   }
 
 }

@@ -18,6 +18,7 @@ const BOARD_THICKNESS = 20;
 const BOARD_Y = 0;
 const BOARD_Z = 160;
 const BORDER_WIDTH = 10;
+const BOARD_OFFSET = 100;
 
 // ball constants and defaults
 const BALL_START_HEIGHT = 120; // vertical height from the board

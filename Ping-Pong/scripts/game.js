@@ -20,8 +20,9 @@ function renderGame() {
   ball.draw();
   player.drawBat();
 
+
   if (Game.state.begin && !Game.state.isOver) {
-    if(Game.state.ballStart) {
+    if (Game.state.ballStart) {
       beginGame();
     } else {
       if (Game.state.inPlay) {
@@ -34,26 +35,24 @@ function renderGame() {
     // TODO: start game menu
   }
 
+
+  updateStates();
+
   requestAnimationFrame(renderGame);
 }
 
 // choose ball server and serve the ball
 function beginGame() {
-  if (ball.checkCollision(player)) {
+  if (ball.checkCollision(Game.state.server)) {
+    Game.state.served = true;
     console.log('serve');
     ball.serve(90, 0);
-    Game.state.served = true;
-  }
-  
-  if(ball.bounceCount === 1) {
-    Game.state.ballStart = false;
-    Game.state.inPlay = true;
   }
 }
 
 // ball inside board conditions
 function playGame() {
-  
+
   if (ball.checkCollision(player)) {
     console.log('ping');
     ball.hit(player, 90, 30, 0);
@@ -68,4 +67,23 @@ function playGame() {
 // update scoreboard and restart
 function restartGame() {
 
+}
+
+function updateStates() {
+
+  if (ball.bounceCount === 1) {
+    Game.state.ballStart = false;
+    Game.state.inPlay = true;
+  }
+
+  if (Game.state.inPlay) {
+    if (!ball.isBallInside()) {
+      console.log('out')
+      Game.state.served = false;
+      Game.state.inPlay = false;
+      Game.state.ballStart = true;
+      
+      ball.setServePosition(Game.state.server);
+    }
+  }
 }

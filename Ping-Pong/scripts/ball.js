@@ -19,23 +19,24 @@ class Ball {
     this.rebound = false;
     this.lastPosition = new Position(startPos.x, startPos.y, startPos.z);
     this.bounceCount = 0;
-    this.active = true;
+    // this.active = true;
   }
 
   getRadius = () => SLOPE * (this.current3dPos.z - BOARD_Z) + BALL_MAX_RADIUS;
-  
+
   draw = () => {
 
     if (Game.state.served) {
       this.bounce();
+      console.log(this.velocity.z);
     } else {
       this.current3dPos.x = Game.state.server.position.x;
     }
 
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
     let current2dPos = projection.get2dProjection(new Position(this.current3dPos.x, current3dY, this.current3dPos.z));
-    
-    if(this.current3dPos.z > 0) {
+
+    if (this.current3dPos.z > 0) {
       this.radius = this.getRadius();
     }
 
@@ -78,7 +79,7 @@ class Ball {
       }
 
       this.time += 0.2;
-
+      
     } else {
       this.initialVel = -this.velocity.y;
       this.initial3dPos.z = this.current3dPos.z;
@@ -91,7 +92,7 @@ class Ball {
       this.angle = this.getBounceAngle();
 
       this.bounceCount++;
-      console.log('bounce');
+      // console.log('bounce');
     }
   }
 
@@ -108,7 +109,7 @@ class Ball {
   }
 
   hit = (side, velocity, upAngle, sideAngle) => {
-    
+
     let offsetZ;
     let v;
 
@@ -133,11 +134,26 @@ class Ball {
     this.bounceCount = 0;
   }
 
+  setServePosition = (server) => {
+    let ballPosition;
+    
+    if (server === player) {
+      ballPosition = new Position(player.position.x , BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
+    }
+
+    this.initial3dPos = ballPosition;
+    this.current3dPos = ballPosition;
+
+    this.time = 0;
+    this.bounceCount = 0;
+  }
+
   serve = (velocity, sideAngle) => {
     this.angle = SERVE_ANGLE;
     this.velocity.x = ENV.toRadian(sideAngle);
     this.initialVel = velocity;
     this.velocity.z = this.initialVel * Math.cos(this.angle);
+    // debugger
   }
 
   checkCollision = (side) => {
@@ -168,6 +184,17 @@ class Ball {
           return true;
         }
       }
+    }
+    return false;
+  }
+
+  isBallInside() {
+    if (this.current3dPos.x <= table.surface3d.outer[1].x + BOARD_OFFSET
+      && this.current3dPos.x >= table.surface3d.outer[0].x - BOARD_OFFSET
+      && this.current3dPos.z <= table.surface3d.outer[2].z + BOARD_OFFSET
+      && this.current3dPos.z >= table.surface3d.outer[0].z - BOARD_OFFSET
+    ) {
+      return true;
     }
     return false;
   }

@@ -136,7 +136,6 @@ class Ball {
     this.time = 0;
     this.bounceCount = 0;
     // debugger 
-
   }
 
   hit = (side, velocity, upAngle, sideAngle) => {
@@ -167,16 +166,10 @@ class Ball {
   }
 
   setServePosition = (server) => {
-    let ballPosition;
+    this.initial3dPos = new Position(server.position.x , BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
+    this.current3dPos = new Position(server.position.x , BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
     
-    if (server === player) {
-      ballPosition = new Position(player.position.x , BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
-    }
-
     this.period = 0;
-    this.initial3dPos = ballPosition;
-    this.current3dPos = ballPosition;
-
     this.time = 0;
     this.bounceCount = 0;
   }

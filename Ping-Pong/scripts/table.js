@@ -121,20 +121,20 @@ class Net {
   constructor() {
     this.width = BOARD_WIDTH;
     this.height = 100;
-    this.z = BOARD_LENGTH / 2;
+    this.z = BOARD_Z + BOARD_HALF_LENGTH;
     this.y = BOARD_Y;
 
     const halfWidth = this.width / 2;
     const leftX = halfCanvasWidth - halfWidth;
     const rightX = halfCanvasWidth + halfWidth;
-    
+
     this.surface3d = {
       'topLeft': new Position(leftX, -this.height, this.z),
       'topRight': new Position(rightX, -this.height, this.z),
       'bottomRight': new Position(rightX, this.y, this.z),
       'bottomLeft': new Position(leftX, this.y, this.z)
     }
-    
+
     this.surface2d = {
       'topLeft': projection.get2dProjection(this.surface3d.topLeft),
       'topRight': projection.get2dProjection(this.surface3d.topRight),
@@ -146,12 +146,31 @@ class Net {
   draw = () => {
     let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
-    
+
     ctx.beginPath();
     ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
     ctx.fillStyle = "#dfdfdf";
     ctx.fill();
-    ctx.closePath()
+    ctx.closePath();
+  }
+
+  checkCollision = () => {
+
+    let playBall = {
+      'playerZ': ball.current3dPos.z - BALL_MAX_RADIUS,
+      'opponentZ': ball.current3dPos.z + BALL_MAX_RADIUS,
+      'topY': ball.current3dPos.y + BALL_MAX_RADIUS,
+      'bottomY': ball.current3dPos.y - BALL_MAX_RADIUS
+    }
+
+    if (
+      ((playBall.opponentZ >= this.z - BALL_MAX_RADIUS && playBall.opponentZ <= this.z + BALL_MAX_RADIUS)
+      || (playBall.playerZ >= this.z - BALL_MAX_RADIUS && playBall.playerZ <= this.z + BALL_MAX_RADIUS))
+      && playBall.bottomY <= this.height
+    ) {
+      return true;
+    }
+    return false;
   }
 
 }

@@ -112,6 +112,33 @@ class Ball {
     ctx.closePath();
   }
 
+  bounceBack = (side) => {
+    let offsetZ;
+    let v;
+
+    // this.period = 0;
+    this.angle = 0;
+    this.initialVel = 40;
+
+    if (side === player) {
+      offsetZ = net.z - 50;
+      v = -this.initialVel;
+    } else {
+      offsetZ = net.z + 50;
+      v = this.initialVel;
+    }
+    
+    this.initial3dPos = new Position(this.current3dPos.x, -this.current3dPos.y, offsetZ);
+    this.current3dPos = new Position(this.current3dPos.x, -this.current3dPos.y, offsetZ);
+
+    this.velocity.z = v * Math.cos(this.angle);
+
+    this.time = 0;
+    this.bounceCount = 0;
+    // debugger 
+
+  }
+
   hit = (side, velocity, upAngle, sideAngle) => {
 
     let offsetZ;
@@ -155,9 +182,9 @@ class Ball {
   }
 
   serve = (velocity, sideAngle) => {
+    this.initialVel = velocity;
     this.angle = SERVE_ANGLE;
     this.velocity.x = Math.sin(sideAngle);
-    this.initialVel = velocity;
     this.velocity.z = this.initialVel * Math.cos(this.angle);
     // debugger
   }
@@ -195,8 +222,8 @@ class Ball {
   }
 
   isBallInside() {
-    if (this.current3dPos.x <= table.surface3d.outer[1].x + BOARD_OFFSET
-      && this.current3dPos.x >= table.surface3d.outer[0].x - BOARD_OFFSET
+    if (this.current3dPos.x <= table.surface3d.outer[1].x + BALL_MAX_RADIUS
+      && this.current3dPos.x >= table.surface3d.outer[0].x - BALL_MAX_RADIUS
       && this.current3dPos.z <= table.surface3d.outer[2].z + BOARD_OFFSET
       && this.current3dPos.z >= table.surface3d.outer[0].z - BOARD_OFFSET
     ) {

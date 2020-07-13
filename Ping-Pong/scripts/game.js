@@ -5,7 +5,8 @@ let Game = {
     'isOver': false,
     'ballStart': true,
     'server': undefined,
-    'served': false
+    'driver': undefined,
+    'served': false,
   }
 }
 
@@ -47,6 +48,7 @@ function beginGame() {
     Game.state.served = true;
     console.log('serve');
     ball.serve(80, player.getHitAngle());
+    Game.state.driver = player;
   }
 }
 
@@ -54,14 +56,21 @@ function beginGame() {
 function playGame() {
 
   if (ball.checkCollision(player)) {
+    ball.hit(player, 75, 40, player.getHitAngle());
+    Game.state.driver = player;
     console.log('ping');
-    ball.hit(player, 80, 30, player.getHitAngle());
   }
 
   if (ball.checkCollision(opponent)) {
-    ball.hit(opponent, 80, 30, 0);
+    ball.hit(opponent, 90, 30, 0);
+    Game.state.driver = opponent;
     console.log('pong');
   }
+
+  if(net.checkCollision()){
+    ball.bounceBack(Game.state.driver);
+  }
+
 }
 
 // update scoreboard and restart

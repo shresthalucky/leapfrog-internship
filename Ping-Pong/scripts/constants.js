@@ -23,8 +23,8 @@ const BOARD_OFFSET = 100;
 
 // ball constants and defaults
 const BALL_START_HEIGHT = 120; // vertical height from the board
-const BALL_MAX_RADIUS = 18;
-const BALL_MIN_RADIUS = 8;
+const BALL_MAX_RADIUS = 16;
+const BALL_MIN_RADIUS = 6;
 const BALL_ANGLE = ENV.toRadian(30);
 const BALL_INITAL_VEL = 100;
 const SLOPE = (BALL_MIN_RADIUS - BALL_MAX_RADIUS) / (BOARD_LENGTH - BOARD_Z);

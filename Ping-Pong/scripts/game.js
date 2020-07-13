@@ -7,12 +7,12 @@ let Game = {
     'server': undefined,
     'driver': undefined,
     'served': false,
-  }
+  },
+  'batDirection': false
 }
 
 function renderGame() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
-  Game.state.server = player;
 
   table.draw();
   opponent.position.x = ball.current3dPos.x;
@@ -21,9 +21,10 @@ function renderGame() {
   ball.draw();
   player.drawBat();
 
+  updateStates();
 
   if (Game.state.begin && !Game.state.isOver) {
-    if (Game.state.ballStart) {
+    if (!Game.state.served) {
       beginGame();
     } else {
       if (Game.state.inPlay) {
@@ -36,19 +37,22 @@ function renderGame() {
     // TODO: start game menu
   }
 
-
-  updateStates();
-
   requestAnimationFrame(renderGame);
 }
 
 // choose ball server and serve the ball
 function beginGame() {
-  if (ball.checkCollision(Game.state.server)) {
+
+  Game.state.server = player;
+  Game.state.driver = player;
+  ball.setServePosition(Game.state.server);
+
+  if (!Game.batDirection) player.movementDirection();
+
+  if (Game.batDirection && ball.checkCollision(Game.state.server)) {
     Game.state.served = true;
     console.log('serve');
     ball.serve(80, player.getHitAngle());
-    Game.state.driver = player;
   }
 }
 
@@ -67,7 +71,7 @@ function playGame() {
     console.log('pong');
   }
 
-  if(net.checkCollision()){
+  if (net.checkCollision()) {
     ball.bounceBack(Game.state.driver);
   }
 
@@ -81,7 +85,6 @@ function restartGame() {
 function updateStates() {
 
   if (ball.bounceCount === 1) {
-    Game.state.ballStart = false;
     Game.state.inPlay = true;
   }
 
@@ -90,9 +93,7 @@ function updateStates() {
       console.log('out')
       Game.state.served = false;
       Game.state.inPlay = false;
-      Game.state.ballStart = true;
-      
-      ball.setServePosition(Game.state.server);
+      Game.batDirection = false;
     }
   }
 }

@@ -19,10 +19,11 @@ const BOARD_THICKNESS = 20;
 const BOARD_Y = 0;
 const BOARD_Z = 160;
 const BORDER_WIDTH = 10;
-const BOARD_OFFSET = 100;
+const BOARD_OFFSET = 160;
+const NET_HEIGHT = 90;
 
 // ball constants and defaults
-const BALL_START_HEIGHT = 120; // vertical height from the board
+const BALL_START_HEIGHT = 100; // vertical height from the board
 const BALL_MAX_RADIUS = 16;
 const BALL_MIN_RADIUS = 6;
 const BALL_ANGLE = ENV.toRadian(30);

@@ -120,7 +120,7 @@ class Board {
 class Net {
   constructor() {
     this.width = BOARD_WIDTH;
-    this.height = 100;
+    this.height = NET_HEIGHT;
     this.z = BOARD_Z + BOARD_HALF_LENGTH;
     this.y = BOARD_Y;
 

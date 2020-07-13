@@ -20,7 +20,6 @@ class Ball {
     this.rebound = false;
     this.lastPosition = new Position(startPos.x, startPos.y, startPos.z);
     this.bounceCount = 0;
-    // this.active = true;
   }
 
   getRadius = () => SLOPE * (this.current3dPos.z - BOARD_Z) + BALL_MAX_RADIUS;
@@ -29,9 +28,6 @@ class Ball {
 
     if (Game.state.served) {
       this.bounce();
-      // console.log(this.velocity.x);
-    } else {
-      this.current3dPos.x = Game.state.server.position.x;
     }
 
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
@@ -200,13 +196,13 @@ class Ball {
     ) {
 
       if (side === player) {
-        if (ball.z <= side.position.z) {
-          ball.z = side.position.z;
+        if (ball.z <= side.position.z && ball.z >= side.position.z - BAT_THICKNESS) {
+          if (Game.state.inPlay) ball.z = side.position.z;
           return true;
         }
       } else if (side === opponent) {
-        if (ball.z >= side.position.z) {
-          ball.z = side.position.z;
+        if (ball.z >= side.position.z && ball.z <= side.position.z + BAT_THICKNESS) {
+          if (Game.state.inPlay) ball.z = side.position.z;
           return true;
         }
       }

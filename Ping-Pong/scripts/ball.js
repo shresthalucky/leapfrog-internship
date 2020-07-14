@@ -81,6 +81,7 @@ class Ball {
       this.time += 0.2;
       
     } else {
+      table.recordBounce(ball.current3dPos);
       this.initialVel = -this.velocity.y;
       this.initial3dPos.z = this.current3dPos.z;
       this.current3dPos.y = 0;
@@ -112,7 +113,6 @@ class Ball {
     let offsetZ;
     let v;
 
-    // this.period = 0;
     this.angle = 0;
     this.initialVel = 40;
 
@@ -131,7 +131,6 @@ class Ball {
 
     this.time = 0;
     this.bounceCount = 0;
-    // debugger 
   }
 
   hit = (side, velocity, upAngle, sideAngle) => {
@@ -159,6 +158,9 @@ class Ball {
 
     this.time = 0;
     this.bounceCount = 0;
+    
+    player.resetBounce();
+    opponent.resetBounce();
   }
 
   setServePosition = (server) => {
@@ -168,6 +170,9 @@ class Ball {
     this.period = 0;
     this.time = 0;
     this.bounceCount = 0;
+    
+    player.resetBounce();
+    opponent.resetBounce();
   }
 
   serve = (velocity, sideAngle) => {
@@ -175,7 +180,6 @@ class Ball {
     this.angle = SERVE_ANGLE;
     this.velocity.x = Math.sin(sideAngle);
     this.velocity.z = this.initialVel * Math.cos(this.angle);
-    // debugger
   }
 
   checkCollision = (side) => {

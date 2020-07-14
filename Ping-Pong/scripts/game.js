@@ -7,6 +7,11 @@ let Game = {
     'server': undefined,
     'driver': undefined,
     'served': false,
+    'serveSuccess': false
+  },
+  'score': {
+    'player': 0,
+    'opponent': 0
   },
   'batDirection': false
 }
@@ -29,8 +34,6 @@ function renderGame() {
     } else {
       if (Game.state.inPlay) {
         playGame();
-      } else {
-        restartGame();
       }
     }
   } else {
@@ -51,7 +54,7 @@ function beginGame() {
 
   if (Game.batDirection && ball.checkCollision(Game.state.server)) {
     Game.state.served = true;
-    console.log('serve');
+    // console.log('serve');
     ball.serve(80, player.getHitAngle());
   }
 }
@@ -66,6 +69,7 @@ function playGame() {
   }
 
   if (ball.checkCollision(opponent)) {
+    Game.state.serveSuccess = true;
     ball.hit(opponent, 90, 30, 0);
     Game.state.driver = opponent;
     console.log('pong');
@@ -73,12 +77,8 @@ function playGame() {
 
   if (net.checkCollision()) {
     ball.bounceBack(Game.state.driver);
+    Game.state.inPlay = false;
   }
-
-}
-
-// update scoreboard and restart
-function restartGame() {
 
 }
 
@@ -90,10 +90,51 @@ function updateStates() {
 
   if (Game.state.inPlay) {
     if (!ball.isBallInside()) {
-      console.log('out')
+      console.log('out');
+      updateScore();
       Game.state.served = false;
       Game.state.inPlay = false;
       Game.batDirection = false;
+      Game.state.serveSuccess = false;
     }
   }
+}
+
+//
+function updateScore() {
+
+  let bounce = `${player.bounce}${opponent.bounce}`;
+
+  if (Game.state.serveSuccess) {
+    if (Game.state.driver === player) {
+      if (bounce === '01') {
+        Game.score.player++;
+      } else {
+        Game.score.opponent++;
+      }
+    } else if (Game.state.driver === opponent) {
+      if (bounce === '10') {
+        Game.score.opponent++;
+      } else {
+        Game.score.player++;
+      }
+    }
+  } else {
+    if (Game.state.server === player) {
+      if (bounce === '11') {
+        Game.score.player++;
+      } else {
+        Game.score.opponent++;
+      }
+    } else if (Game.state.server === opponent) {
+      if (bounce === '11') {
+        Game.score.opponent++;
+      } else {
+        Game.score.player++;
+      }
+    }
+  }
+
+  console.log(Game.score);
+
 }

@@ -1,5 +1,5 @@
 class Player {
-  constructor(position) {
+  constructor(position, court) {
     this.position = new Position(position.x, position.y, position.z);
     this.size = {
       'long': BAT_LENGTH,
@@ -14,6 +14,7 @@ class Player {
     this.surface2d;
     // this.batThickness = BAT_THICKNESS;
     this.intialX;
+    this.bounce;
   }
 
   loadSurface = () => {
@@ -87,6 +88,14 @@ class Player {
     if (this.position.z - (ball.current3dPos.z - BAT_THICKNESS) < 0) {
       Game.batDirection = true;
     }
+  }
+
+  getBounce = () => {
+
+  }
+
+  resetBounce = () => {
+    this.bounce = 0;
   }
 
 }

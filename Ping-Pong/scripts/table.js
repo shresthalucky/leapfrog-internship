@@ -50,6 +50,20 @@ class Board {
       'thickness': this.surface3d.thickness.map(projection.get2dProjection),
       'midLine': this.surface3d.midLine.map(projection.get2dProjection)
     }
+
+    this.playerHalf = {
+      'top': this.z + BOARD_HALF_LENGTH,
+      'bottom': this.z,
+      'left': leftX,
+      'right': rightX
+    }
+
+    this.opponentHalf = {
+      'top': this.z + BOARD_LENGTH,
+      'bottom': this.z + BOARD_HALF_LENGTH,
+      'left': leftX,
+      'right': rightX
+    }
   }
 
   drawOuterSurface = () => {
@@ -115,6 +129,24 @@ class Board {
     this.drawMidLine();
   }
 
+  recordBounce = (ballPos) => {
+    if (ballPos.x >= this.playerHalf.left
+      && ballPos.x <= this.playerHalf.right
+      && ballPos.z >= this.playerHalf.bottom
+      && ballPos.z <= this.playerHalf.top
+    ) {
+      player.bounce++;
+    }
+
+    if (ballPos.x >= this.opponentHalf.left
+      && ballPos.x <= this.opponentHalf.right
+      && ballPos.z >= this.opponentHalf.bottom
+      && ballPos.z <= this.opponentHalf.top
+    ) {
+      opponent.bounce++;
+    }
+  }
+
 }
 
 class Net {
@@ -165,7 +197,7 @@ class Net {
 
     if (
       ((playBall.opponentZ >= this.z - BALL_MAX_RADIUS && playBall.opponentZ <= this.z + BALL_MAX_RADIUS)
-      || (playBall.playerZ >= this.z - BALL_MAX_RADIUS && playBall.playerZ <= this.z + BALL_MAX_RADIUS))
+        || (playBall.playerZ >= this.z - BALL_MAX_RADIUS && playBall.playerZ <= this.z + BALL_MAX_RADIUS))
       && playBall.bottomY <= this.height
     ) {
       return true;

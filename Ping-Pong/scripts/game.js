@@ -7,7 +7,11 @@ let Game = {
     'server': undefined,
     'driver': undefined,
     'served': false,
-    'serveSuccess': false
+    'serveSuccess': false,
+    'deuce': false
+  },
+  'service': {
+    'change': 2
   },
   'score': {
     'player': 0,
@@ -23,12 +27,11 @@ function renderGame() {
   opponent.position.x = ball.current3dPos.x;
   opponent.drawBat();
   net.draw();
-  ball.draw();
-  player.drawBat();
-
-  updateStates();
 
   if (Game.state.begin && !Game.state.isOver) {
+    ball.draw();
+    player.drawBat();
+    updateStates();
     if (!Game.state.served) {
       beginGame();
     } else {
@@ -38,6 +41,7 @@ function renderGame() {
     }
   } else {
     // TODO: start game menu
+    // console.log('end');
   }
 
   requestAnimationFrame(renderGame);
@@ -68,7 +72,6 @@ function beginGame() {
       ball.serve(opponent, 80, 0);
     }
   }
-
 }
 
 // ball inside board conditions
@@ -149,14 +152,47 @@ function updateScore() {
     }
   }
 
+  checkWin();
+
+  if (Game.score.player === 10 && Game.score.opponent === 10) {
+    deuce();
+  }
+
   let points = Game.score.player + Game.score.opponent;
 
-  if (points % 2 === 0) {
+  if (points % Game.service.change === 0) {
     const side = Game.state.server === player ? opponent : player;
     Game.state.server = side;
     Game.state.driver = side;
   }
 
   console.log(Game.score);
+}
 
+function checkWin() {
+  if (!Game.state.deuce) {
+
+    if (Game.score.player === 11) gameOver(player);
+    if (Game.score.opponent === 11) gameOver(opponent);
+
+  } else {
+
+    const dPoints = Game.score.player - Game.score.opponent;
+    if (Math.abs(dPoints) === 2) {
+      const winner = dPoints > 0 ? player : opponent;
+      gameOver(winner);
+    }
+  }
+}
+
+function deuce() {
+  console.log('deuce');
+  Game.state.deuce = true;
+  Game.service.change = 1;
+}
+
+function gameOver(winner) {
+  Game.state.isOver = true;
+  Game.state.inPlay = false;
+  console.log('over', Game.score);
 }

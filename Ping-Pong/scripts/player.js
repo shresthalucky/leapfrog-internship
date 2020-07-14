@@ -15,6 +15,7 @@ class Player {
     // this.batThickness = BAT_THICKNESS;
     this.intialX;
     this.bounce;
+    this.batActive = true;
   }
 
   loadSurface = () => {
@@ -80,8 +81,8 @@ class Player {
     let finalPosition = this.position;
     let dz = BOARD_Z - BAT_INITIAL_Z;
     let dx = finalPosition.x - this.intialX;
-
-    return Math.atan(dz / dx);
+    let angle = Math.atan(dz / dx);
+    return angle;
   }
 
   movementDirection = () => {

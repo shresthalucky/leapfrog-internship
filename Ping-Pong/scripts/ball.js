@@ -30,6 +30,8 @@ class Ball {
       this.bounce();
     }
 
+    // console.log(this.velocity.x);
+
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
     let current2dPos = projection.get2dProjection(new Position(this.current3dPos.x, current3dY, this.current3dPos.z));
 
@@ -63,10 +65,11 @@ class Ball {
       this.current3dPos.z = this.initial3dPos.z + this.velocity.z * this.time;
 
       if (this.velocity.x !== 0) {
-        this.current3dPos.x = this.current3dPos.x + this.velocity.x * this.period;
+        // this.current3dPos.x = this.current3dPos.x + this.velocity.x * this.period;
+        this.current3dPos.x += this.velocity.x * 10;
         this.period += 0.1;
       }
-      
+
       let vy = this.initialVel * Math.sin(this.angle);
 
       this.velocity.y = vy - ENV.gravity * this.time;
@@ -78,8 +81,8 @@ class Ball {
         this.rebound = true;
       }
 
-      this.time += 0.2;
-      
+      this.time += TIME;
+
     } else {
       table.recordBounce(ball.current3dPos);
       this.initialVel = -this.velocity.y;
@@ -123,7 +126,7 @@ class Ball {
       offsetZ = net.z + 50;
       v = this.initialVel;
     }
-    
+
     this.initial3dPos = new Position(this.current3dPos.x, -this.current3dPos.y, offsetZ);
     this.current3dPos = new Position(this.current3dPos.x, -this.current3dPos.y, offsetZ);
 
@@ -140,15 +143,16 @@ class Ball {
 
     this.period = 0;
     this.angle = ENV.toRadian(upAngle);
-    this.velocity.x = Math.sin(sideAngle);
     this.initialVel = velocity;
 
     if (side === player) {
       offsetZ = side.position.z + 10;
       v = this.initialVel;
+      this.velocity.x = sideAngle > 0 ? Math.cos(sideAngle) : -Math.cos(sideAngle);
     } else {
       offsetZ = side.position.z - 10;
       v = -this.initialVel;
+      this.velocity.x = 0;
     }
 
     this.initial3dPos = new Position(this.current3dPos.x, -this.current3dPos.y, offsetZ);
@@ -158,7 +162,7 @@ class Ball {
 
     this.time = 0;
     this.bounceCount = 0;
-    
+
     player.resetBounce();
     opponent.resetBounce();
   }
@@ -167,24 +171,30 @@ class Ball {
 
     const z = server === player ? BOARD_Z : BOARD_Z + BOARD_LENGTH;
 
-    this.initial3dPos = new Position(server.position.x , BOARD_Y - BALL_START_HEIGHT, z);
-    this.current3dPos = new Position(server.position.x , BOARD_Y - BALL_START_HEIGHT, z);
-    
+    this.initial3dPos = new Position(server.position.x, BOARD_Y - BALL_START_HEIGHT, z);
+    this.current3dPos = new Position(server.position.x, BOARD_Y - BALL_START_HEIGHT, z);
+
     this.period = 0;
     this.time = 0;
     this.bounceCount = 0;
-    
+
     player.resetBounce();
     opponent.resetBounce();
   }
 
   serve = (server, velocity, sideAngle) => {
     this.initialVel = velocity;
+    let v;
 
-    let v = server === player ? this.initialVel : -this.initialVel;
-
+    if (server === player) {
+      v = this.initialVel;
+      this.velocity.x = sideAngle > 0 ? Math.cos(sideAngle) : -Math.cos(sideAngle);
+    } else {
+      this.velocity.x = 0;
+      v = -this.initialVel;
+    }
+    
     this.angle = SERVE_ANGLE;
-    this.velocity.x = Math.sin(sideAngle);
     this.velocity.z = v * Math.cos(this.angle);
   }
 
@@ -220,7 +230,7 @@ class Ball {
     return false;
   }
 
-  isBallInside() {
+  isBallInside = () => {
     if (this.current3dPos.x <= table.surface3d.outer[1].x + BALL_MAX_RADIUS
       && this.current3dPos.x >= table.surface3d.outer[0].x - BALL_MAX_RADIUS
       && this.current3dPos.z <= table.surface3d.outer[2].z + BOARD_OFFSET

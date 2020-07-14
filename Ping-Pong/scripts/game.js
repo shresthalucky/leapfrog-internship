@@ -24,20 +24,21 @@ function renderGame() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
 
   table.draw();
-  opponent.position.x = ball.current3dPos.x;
+  // opponentMovement();
+  // opponent.position.x = ball.current3dPos.x;
   opponent.drawBat();
   net.draw();
 
   if (Game.state.begin && !Game.state.isOver) {
     ball.draw();
     player.drawBat();
+
     updateStates();
+    
     if (!Game.state.served) {
-      beginGame();
-    } else {
-      if (Game.state.inPlay) {
-        playGame();
-      }
+      serveBall();
+    } else if (Game.state.inPlay) {
+      hitBall();
     }
   } else {
     // TODO: start game menu
@@ -48,7 +49,7 @@ function renderGame() {
 }
 
 // choose ball server and serve the ball
-function beginGame() {
+function serveBall() {
 
   if (!Game.state.server) {
     Game.state.server = player;
@@ -60,14 +61,17 @@ function beginGame() {
   if (Game.state.server === player) {
     if (!Game.batDirection) player.movementDirection();
 
-    if (Game.batDirection && ball.checkCollision(player)) {
+    if (player.batActive && Game.batDirection && ball.checkCollision(player)) {
+      player.batActive = false;
       Game.state.served = true;
       // console.log('serve');
       ball.serve(player, 80, player.getHitAngle());
+      opponentMovement();
     }
   } else {
     if (ball.checkCollision(opponent)) {
       Game.state.served = true;
+      player.batActive = true;
       // console.log('serve');
       ball.serve(opponent, 80, 0);
     }
@@ -75,32 +79,34 @@ function beginGame() {
 }
 
 // ball inside board conditions
-function playGame() {
+function hitBall() {
 
-  if (ball.checkCollision(player)) {
-    ball.hit(player, 75, 40, player.getHitAngle());
+  if (player.batActive && ball.checkCollision(player)) {
+    player.batActive = false;
+    ball.hit(player, 80, 40, player.getHitAngle());
     Game.state.driver = player;
     console.log('ping');
+    opponentMovement();
   }
 
   if (ball.checkCollision(opponent)) {
     Game.state.serveSuccess = true;
-    ball.hit(opponent, 90, 30, 0);
+    player.batActive = true;
+    ball.hit(opponent, 85, 30, 0);
     Game.state.driver = opponent;
     console.log('pong');
   }
-
-  if (net.checkCollision()) {
-    ball.bounceBack(Game.state.driver);
-    Game.state.inPlay = false;
-  }
-
 }
 
 function updateStates() {
 
   if (ball.bounceCount === 1) {
     Game.state.inPlay = true;
+  }
+
+  if (net.checkCollision()) {
+    ball.bounceBack(Game.state.driver);
+    Game.state.inPlay = false;
   }
 
   if (Game.state.inPlay) {
@@ -111,6 +117,7 @@ function updateStates() {
       Game.state.inPlay = false;
       Game.batDirection = false;
       Game.state.serveSuccess = false;
+      player.batActive = true;
     }
   }
 }
@@ -195,4 +202,12 @@ function gameOver(winner) {
   Game.state.isOver = true;
   Game.state.inPlay = false;
   console.log('over', Game.score);
+}
+
+function opponentMovement() {
+    let pos = ball.current3dPos;
+    let slope = ball.velocity.z * TIME / (10 * ball.velocity.x);
+    let source = opponent.position.x;
+    let destination = pos.x + ((BOARD_END - pos.z) / slope);
+    opponent.position.x = destination;
 }

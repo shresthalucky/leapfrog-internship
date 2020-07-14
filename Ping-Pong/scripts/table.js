@@ -229,7 +229,7 @@ class Net {
   constructor() {
     this.width = BOARD_WIDTH;
     this.height = NET_HEIGHT;
-    this.z = BOARD_Z + BOARD_HALF_LENGTH;
+    this.z = NET_Z;
     this.y = BOARD_Y;
 
     const halfWidth = this.width / 2;

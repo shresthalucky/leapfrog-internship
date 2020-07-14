@@ -10,8 +10,16 @@ const ENV = {
 const CANVAS_WIDTH = window.innerWidth;
 const CANVAS_HEIGHT = window.innerHeight;
 
+// colors
+const BOARD_BACKGROUND = '#4879BC';
+const BLACK_A = '#000000';
+const BLACK_B = '#212121';
+const BLACK_C = '#424242';
+const WHITE = '#FFFFFF';
+
 // board constants
-const TABLE_HEIGHT = 200;
+const TABLE_HEIGHT = 300;
+const TABLE_STAND_PADDING = 40;
 const BOARD_WIDTH = 800;
 const BOARD_LENGTH = BOARD_WIDTH * 6 / 5;
 const BOARD_HALF_LENGTH = BOARD_LENGTH / 2;

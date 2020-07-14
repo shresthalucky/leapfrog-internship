@@ -41,14 +41,46 @@ class Board {
         new Position(midRightX, this.y, this.z + 1),
         new Position(midRightX, this.y, this.length + this.z - 1),
         new Position(midLeftX, this.y, this.length + this.z - 1)
-      ]
+      ],
+
+      'tableLeftStand': [
+        new Position(leftX + TABLE_STAND_PADDING, this.thickness, this.z + TABLE_STAND_PADDING),
+        new Position(leftX + TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING),
+        new Position(leftX + TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING),
+        new Position(leftX + TABLE_STAND_PADDING, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING)
+      ],
+
+      'tableLeftThickness': [
+        new Position(leftX + TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING),
+        new Position(leftX + TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING + this.thickness),
+        new Position(leftX + TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING + this.thickness),
+        new Position(leftX + TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING)
+      ],
+
+      'tableRightStand': [
+        new Position(rightX - TABLE_STAND_PADDING, this.thickness, this.z + TABLE_STAND_PADDING),
+        new Position(rightX - TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING),
+        new Position(rightX - TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING),
+        new Position(rightX - TABLE_STAND_PADDING, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING)
+      ],
+
+      'tableRightThickness': [
+        new Position(rightX - TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING),
+        new Position(rightX - TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING + this.thickness),
+        new Position(rightX - TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING + this.thickness),
+        new Position(rightX - TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING)
+      ],
     }
 
     this.surface2d = {
       'outer': this.surface3d.outer.map(projection.get2dProjection),
       'inner': this.surface3d.inner.map(projection.get2dProjection),
       'thickness': this.surface3d.thickness.map(projection.get2dProjection),
-      'midLine': this.surface3d.midLine.map(projection.get2dProjection)
+      'midLine': this.surface3d.midLine.map(projection.get2dProjection),
+      'tableLeftStand': this.surface3d.tableLeftStand.map(projection.get2dProjection),
+      'tableLeftThickness': this.surface3d.tableLeftThickness.map(projection.get2dProjection),
+      'tableRightStand': this.surface3d.tableRightStand.map(projection.get2dProjection),
+      'tableRightThickness': this.surface3d.tableRightThickness.map(projection.get2dProjection)
     }
 
     this.playerHalf = {
@@ -74,7 +106,7 @@ class Board {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = '#FFF';
+    ctx.fillStyle = WHITE;
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
@@ -88,7 +120,7 @@ class Board {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = '#4879BC';
+    ctx.fillStyle = BOARD_BACKGROUND;
     ctx.fill();
     // ctx.stroke();
     ctx.closePath();
@@ -102,7 +134,7 @@ class Board {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = '#4879BC';
+    ctx.fillStyle = BLACK_C;
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
@@ -116,13 +148,57 @@ class Board {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = '#FFF';
+    ctx.fillStyle = WHITE;
     ctx.fill();
     // ctx.stroke();
     ctx.closePath();
   }
 
+  drawTableStand = () => {
+    let startPosition = this.surface2d.tableLeftStand[0];
+    ctx.beginPath();
+    ctx.moveTo(startPosition.x, startPosition.y);
+    for (const point of this.surface2d.tableLeftStand) {
+      ctx.lineTo(point.x, point.y);
+    }
+    ctx.lineTo(startPosition.x, startPosition.y);
+    ctx.fillStyle = BLACK_B;
+    ctx.fill();
+
+    startPosition = this.surface2d.tableLeftThickness[0];
+    ctx.beginPath();
+    ctx.moveTo(startPosition.x, startPosition.y);
+    for (const point of this.surface2d.tableLeftThickness) {
+      ctx.lineTo(point.x, point.y);
+    }
+    ctx.lineTo(startPosition.x, startPosition.y);
+    ctx.fillStyle = BLACK_A;
+    ctx.fill();
+
+    startPosition = this.surface2d.tableRightStand[0];
+    ctx.beginPath();
+    ctx.moveTo(startPosition.x, startPosition.y);
+    for (const point of this.surface2d.tableRightStand) {
+      ctx.lineTo(point.x, point.y);
+    }
+    ctx.lineTo(startPosition.x, startPosition.y);
+    ctx.fillStyle = BLACK_B;
+    ctx.fill();
+
+    startPosition = this.surface2d.tableRightThickness[0];
+    ctx.beginPath();
+    ctx.moveTo(startPosition.x, startPosition.y);
+    for (const point of this.surface2d.tableRightThickness) {
+      ctx.lineTo(point.x, point.y);
+    }
+    ctx.lineTo(startPosition.x, startPosition.y);
+    ctx.fillStyle = BLACK_A;
+    ctx.fill();
+
+  }
+
   draw = () => {
+    this.drawTableStand();
     this.drawOuterSurface();
     this.drawInnerSurface();
     this.drawThickness();

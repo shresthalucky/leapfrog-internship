@@ -46,17 +46,29 @@ function renderGame() {
 // choose ball server and serve the ball
 function beginGame() {
 
-  Game.state.server = player;
-  Game.state.driver = player;
+  if (!Game.state.server) {
+    Game.state.server = player;
+    Game.state.driver = player;
+  }
+
   ball.setServePosition(Game.state.server);
 
-  if (!Game.batDirection) player.movementDirection();
+  if (Game.state.server === player) {
+    if (!Game.batDirection) player.movementDirection();
 
-  if (Game.batDirection && ball.checkCollision(Game.state.server)) {
-    Game.state.served = true;
-    // console.log('serve');
-    ball.serve(80, player.getHitAngle());
+    if (Game.batDirection && ball.checkCollision(player)) {
+      Game.state.served = true;
+      // console.log('serve');
+      ball.serve(player, 80, player.getHitAngle());
+    }
+  } else {
+    if (ball.checkCollision(opponent)) {
+      Game.state.served = true;
+      // console.log('serve');
+      ball.serve(opponent, 80, 0);
+    }
   }
+
 }
 
 // ball inside board conditions
@@ -105,6 +117,8 @@ function updateScore() {
 
   let bounce = `${player.bounce}${opponent.bounce}`;
 
+  // console.log(bounce);
+
   if (Game.state.serveSuccess) {
     if (Game.state.driver === player) {
       if (bounce === '01') {
@@ -133,6 +147,14 @@ function updateScore() {
         Game.score.player++;
       }
     }
+  }
+
+  let points = Game.score.player + Game.score.opponent;
+
+  if (points % 2 === 0) {
+    const side = Game.state.server === player ? opponent : player;
+    Game.state.server = side;
+    Game.state.driver = side;
   }
 
   console.log(Game.score);

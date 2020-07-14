@@ -164,8 +164,11 @@ class Ball {
   }
 
   setServePosition = (server) => {
-    this.initial3dPos = new Position(server.position.x , BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
-    this.current3dPos = new Position(server.position.x , BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
+
+    const z = server === player ? BOARD_Z : BOARD_Z + BOARD_LENGTH;
+
+    this.initial3dPos = new Position(server.position.x , BOARD_Y - BALL_START_HEIGHT, z);
+    this.current3dPos = new Position(server.position.x , BOARD_Y - BALL_START_HEIGHT, z);
     
     this.period = 0;
     this.time = 0;
@@ -175,11 +178,14 @@ class Ball {
     opponent.resetBounce();
   }
 
-  serve = (velocity, sideAngle) => {
+  serve = (server, velocity, sideAngle) => {
     this.initialVel = velocity;
+
+    let v = server === player ? this.initialVel : -this.initialVel;
+
     this.angle = SERVE_ANGLE;
     this.velocity.x = Math.sin(sideAngle);
-    this.velocity.z = this.initialVel * Math.cos(this.angle);
+    this.velocity.z = v * Math.cos(this.angle);
   }
 
   checkCollision = (side) => {

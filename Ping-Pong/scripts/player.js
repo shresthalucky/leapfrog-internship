@@ -90,10 +90,6 @@ class Player {
     }
   }
 
-  getBounce = () => {
-
-  }
-
   resetBounce = () => {
     this.bounce = 0;
   }

@@ -38,8 +38,8 @@ class Player {
 
     this.loadSurface();
 
-    let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
+    let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
 
     // ctx.beginPath();
     // ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
@@ -47,20 +47,31 @@ class Player {
     // ctx.fill();
     // ctx.closePath();
 
+    ctx.save();
+    ctx.beginPath();
+    ctx.translate(this.surface2d.topLeft.x + width / 2, this.surface2d.topLeft.y + height / 2);
+    ctx.rotate(this.getRotationAngle());
     ctx.drawImage(sprite,
       Player.sprite.bat.sx,
       Player.sprite.bat.sy,
       Player.sprite.bat.sw,
       Player.sprite.bat.sh,
-      this.surface2d.topLeft.x,
-      this.surface2d.topLeft.y,
+      -width / 2,
+      -height / 2,
       width,
       height);
-
+    ctx.closePath();
+    ctx.restore();
   }
 
   resetBounce = () => {
     this.bounce = 0;
+  }
+
+  getRotationAngle = () => {
+    let norm = (halfCanvasWidth - this.position.x) / (BOARD_HALF_WIDTH + BOUNDARY_PADDING);
+    let angle = Math.acos(norm) - ENV.toRadian(90);
+    return angle;
   }
 }
 

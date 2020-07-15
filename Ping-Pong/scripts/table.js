@@ -240,26 +240,43 @@ class Net {
       'topLeft': new Position(leftX, -this.height, this.z),
       'topRight': new Position(rightX, -this.height, this.z),
       'bottomRight': new Position(rightX, this.y, this.z),
-      'bottomLeft': new Position(leftX, this.y, this.z)
+      'bottomLeft': new Position(leftX, this.y, this.z),
+      'netImageLeft': new Position(leftX, this.y, this.z),
+      'netImageRight': new Position(leftX + Net.sprite.strip.sw, this.y, this.z),
     }
 
     this.surface2d = {
       'topLeft': projection.get2dProjection(this.surface3d.topLeft),
       'topRight': projection.get2dProjection(this.surface3d.topRight),
       'bottomRight': projection.get2dProjection(this.surface3d.bottomRight),
-      'bottomLeft': projection.get2dProjection(this.surface3d.bottomLeft)
+      'bottomLeft': projection.get2dProjection(this.surface3d.bottomLeft),
+      'netImageLeft': projection.get2dProjection(this.surface3d.netImageLeft),
+      'netImageRight': projection.get2dProjection(this.surface3d.netImageRight)
     }
   }
 
   draw = () => {
     let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
+    let spriteWidth = this.surface2d.netImageLeft.get2dDistance(this.surface2d.netImageRight);
 
-    ctx.beginPath();
-    ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
-    ctx.fillStyle = "#dfdfdf";
-    ctx.fill();
-    ctx.closePath();
+    // ctx.beginPath();
+    // ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
+    // ctx.fillStyle = "#dfdfdf";
+    // ctx.fill();
+    // ctx.closePath();
+
+    for (let i = 0; i < width; i += spriteWidth) {
+      ctx.drawImage(sprite,
+        Net.sprite.strip.sx,
+        Net.sprite.strip.sy,
+        Net.sprite.strip.sw,
+        Net.sprite.strip.sh,
+        this.surface2d.topLeft.x + i,
+        this.surface2d.topLeft.y,
+        spriteWidth,
+        height);
+    }
   }
 
   checkCollision = () => {
@@ -280,5 +297,13 @@ class Net {
     }
     return false;
   }
+}
 
+Net.sprite = {
+  'strip': {
+    'sx': 127,
+    'sy': 0,
+    'sw': 37,
+    'sh': 90
+  }
 }

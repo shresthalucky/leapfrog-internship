@@ -13,6 +13,11 @@ let ball;
 let player;
 let opponent;
 
+let sprite = new Image();
+sprite.src = 'assets/sprite.png';
+
+sprite.onload = init;
+
 function init() {
   projection.camera.position.x = halfCanvasWidth;
   projection.viewplane.x = halfCanvasWidth;
@@ -46,5 +51,3 @@ function initEvents() {
     player.handleBatMovement(e);
   })
 }
-
-init();

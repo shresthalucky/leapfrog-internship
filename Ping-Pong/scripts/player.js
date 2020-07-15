@@ -42,11 +42,22 @@ class Player {
     let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
 
-    ctx.beginPath();
-    ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
-    ctx.fillStyle = "#FF0000";
-    ctx.fill();
-    ctx.closePath();
+    // ctx.beginPath();
+    // ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
+    // ctx.fillStyle = "#FF0000";
+    // ctx.fill();
+    // ctx.closePath();
+
+    ctx.drawImage(sprite,
+      Player.sprite.bat.sx,
+      Player.sprite.bat.sy,
+      Player.sprite.bat.sw,
+      Player.sprite.bat.sh,
+      this.surface2d.topLeft.x,
+      this.surface2d.topLeft.y,
+      width,
+      height);
+
   }
 
   setInitialX = () => {
@@ -95,4 +106,13 @@ class Player {
     this.bounce = 0;
   }
 
+}
+
+Player.sprite = {
+  'bat': {
+    'sx': 0,
+    'sy': 0,
+    'sw': 124,
+    'sh': 207
+  }
 }

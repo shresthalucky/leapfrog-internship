@@ -42,8 +42,8 @@ const SLOPE = (BALL_MIN_RADIUS - BALL_MAX_RADIUS) / (BOARD_LENGTH - BOARD_Z);
 const TIME = 0.22;
 
 // bat constants and defaults
-const BAT_LENGTH = 150;
-const BAT_WIDTH = 120;
+const BAT_LENGTH = 207;
+const BAT_WIDTH = 124;
 const BAT_THICKNESS = 50;
 const BAT_INITIAL_Z = 120;
 

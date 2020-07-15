@@ -43,8 +43,10 @@ class Ball {
 
     ctx.beginPath();
     ctx.arc(current2dPos.x, current2dPos.y, this.radius, 0, 360);
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = BALL_BACKGROUND;
     ctx.fill();
+    ctx.strokeStyle = BALL_BORDER;
+    ctx.stroke();
     ctx.closePath();
   }
 

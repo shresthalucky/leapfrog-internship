@@ -108,6 +108,7 @@ class Board {
     ctx.lineTo(startPosition.x, startPosition.y);
     ctx.fillStyle = WHITE;
     ctx.fill();
+    ctx.strokeStyle = BLACK_B;
     ctx.stroke();
     ctx.closePath();
   }
@@ -136,6 +137,7 @@ class Board {
     ctx.lineTo(startPosition.x, startPosition.y);
     ctx.fillStyle = BLACK_C;
     ctx.fill();
+    ctx.strokeStyle = BLACK_B;
     ctx.stroke();
     ctx.closePath();
   }

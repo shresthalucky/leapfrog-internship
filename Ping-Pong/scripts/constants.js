@@ -12,6 +12,8 @@ const CANVAS_HEIGHT = window.innerHeight;
 
 // colors
 const BOARD_BACKGROUND = '#4879BC';
+const BALL_BACKGROUND = '#FFD740';
+const BALL_BORDER = '#FFC400';
 const BLACK_A = '#000000';
 const BLACK_B = '#212121';
 const BLACK_C = '#424242';
@@ -34,7 +36,7 @@ const NET_Z = BOARD_Z + BOARD_HALF_LENGTH;
 
 // ball constants and defaults
 const BALL_START_HEIGHT = 100; // vertical height from the board
-const BALL_MAX_RADIUS = 16;
+const BALL_MAX_RADIUS = 14;
 const BALL_MIN_RADIUS = 6;
 const BALL_ANGLE = ENV.toRadian(30);
 const BALL_INITAL_VEL = 100;

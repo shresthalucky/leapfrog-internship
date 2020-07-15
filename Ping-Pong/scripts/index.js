@@ -29,14 +29,8 @@ function init() {
   table = new Board();
   net = new Net();
   ball = new Ball(ballStartPosition);
-  player = new Player(playerPosition);
-  opponent = new Player(opponentPosition);
-
-  // console.log(table);
-  // console.log(net);
-  // console.log(ball);
-  // console.log(player);
-  // console.log(opponent);
+  player = new User(playerPosition);
+  opponent = new Opponent(opponentPosition);
 
   table.draw();
   net.draw();

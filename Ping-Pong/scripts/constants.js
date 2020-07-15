@@ -51,7 +51,8 @@ const BAT_INITIAL_Z = 120;
 
 // player constants and defaults
 const PLAYER_Z_POSITION = BOARD_Z - 100;
-const OPPONENT_Z_POSITION = BOARD_LENGTH + BOARD_Z; 
+const OPPONENT_Z_POSITION = BOARD_LENGTH + BOARD_Z;
+const BOUNDARY_PADDING = 100;
 
 // gameplay constants
 const SERVE_ANGLE = ENV.toRadian(-45);

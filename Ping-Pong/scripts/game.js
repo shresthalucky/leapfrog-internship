@@ -24,17 +24,16 @@ function renderGame() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
 
   table.draw();
-  // opponentMovement();
-  // opponent.position.x = ball.current3dPos.x;
   opponent.drawBat();
   net.draw();
 
   if (Game.state.begin && !Game.state.isOver) {
     ball.draw();
+    player.setInitialX();
     player.drawBat();
 
     updateStates();
-    
+
     if (!Game.state.served) {
       serveBall();
     } else if (Game.state.inPlay) {
@@ -122,7 +121,6 @@ function updateStates() {
   }
 }
 
-//
 function updateScore() {
 
   let bounce = `${player.bounce}${opponent.bounce}`;
@@ -205,9 +203,22 @@ function gameOver(winner) {
 }
 
 function opponentMovement() {
-    let pos = ball.current3dPos;
-    let slope = ball.velocity.z * TIME / (10 * ball.velocity.x);
-    let source = opponent.position.x;
-    let destination = pos.x + ((BOARD_END - pos.z) / slope);
-    opponent.position.x = destination;
+  let pos = ball.current3dPos;
+  let slope = ball.velocity.z * TIME / (10 * ball.velocity.x);
+  let destination = new Position(pos.x + ((BOARD_END - pos.z) / slope), opponent.position.y, BOARD_END);
+
+  let right = table.surface3d.outer[1].x;
+  let left = table.surface3d.outer[0].x;
+
+  if (destination.x < left) {
+    destination.x = left;
+    let z = (slope * (left - pos.x)) + pos.z;
+    destination.z = z > NET_Z + 20 ? z : destination.z;
+  } else if (destination.x > right) {
+    destination.x = right;
+    let z = (slope * (right - pos.x)) + pos.z;
+    destination.z = z > NET_Z + 20 ? z : destination.z;
+  }
+
+  opponent.animate(destination);
 }

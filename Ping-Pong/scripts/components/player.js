@@ -1,5 +1,5 @@
 class Player {
-  constructor(position, court) {
+  constructor(position) {
     this.position = new Position(position.x, position.y, position.z);
     this.size = {
       'long': BAT_LENGTH,
@@ -37,7 +37,6 @@ class Player {
   drawBat = () => {
 
     this.loadSurface();
-    this.setInitialX();
 
     let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
@@ -60,52 +59,9 @@ class Player {
 
   }
 
-  setInitialX = () => {
-    if (this.position.z <= BAT_INITIAL_Z) {
-      this.intialX = this.position.x;
-    }
-  }
-
-  handleBatMovement = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    this.position = projection.get3dPosition(event.clientX, event.clientY);
-    // this.position = projection.get3dPosition(event.clientX, event.clientY - projection.camera.position.y);
-    this.fitToCourt();
-  }
-
-  fitToCourt = () => {
-    if (this.position.x > table.surface3d.outer[1].x - BALL_MAX_RADIUS) {
-      this.position.x = table.surface3d.outer[1].x - BALL_MAX_RADIUS;
-    }
-
-    if (this.position.x < table.surface3d.outer[0].x + BALL_MAX_RADIUS) {
-      this.position.x = table.surface3d.outer[0].x + BALL_MAX_RADIUS;
-    }
-
-    if (this.position.z > BOARD_Z + BOARD_HALF_LENGTH) {
-      this.position.z = BOARD_Z + BOARD_HALF_LENGTH;
-    }
-  }
-
-  getHitAngle = () => {
-    let finalPosition = this.position;
-    let dz = BOARD_Z - BAT_INITIAL_Z;
-    let dx = finalPosition.x - this.intialX;
-    let angle = Math.atan(dz / dx);
-    return angle;
-  }
-
-  movementDirection = () => {
-    if (this.position.z - (ball.current3dPos.z - BAT_THICKNESS) < 0) {
-      Game.batDirection = true;
-    }
-  }
-
   resetBounce = () => {
     this.bounce = 0;
   }
-
 }
 
 Player.sprite = {

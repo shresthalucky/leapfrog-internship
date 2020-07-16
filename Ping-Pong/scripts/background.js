@@ -55,8 +55,8 @@ class Wall {
         new Position(RIGHT_WALL, top, projection.camera.position.z + 1)
       ]
     }
-  
-    this.surface2d  = {
+
+    this.surface2d = {
       'leftWall': this.surface3d.leftWall.map(projection.get2dProjection),
       'backWall': this.surface3d.backWall.map(projection.get2dProjection),
       'rightWall': this.surface3d.rightWall.map(projection.get2dProjection)
@@ -71,7 +71,7 @@ class Wall {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = '#80CBC4';
+    ctx.fillStyle = '#BDBDBD';
     ctx.fill();
     ctx.closePath();
   }
@@ -84,7 +84,7 @@ class Wall {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = '#80CBC4';
+    ctx.fillStyle = '#BDBDBD';
     ctx.fill();
     ctx.closePath();
   }
@@ -97,7 +97,7 @@ class Wall {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(startPosition.x, startPosition.y);
-    ctx.fillStyle = '#80CBC4';
+    ctx.fillStyle = '#BDBDBD';
     ctx.fill();
     ctx.closePath();
   }

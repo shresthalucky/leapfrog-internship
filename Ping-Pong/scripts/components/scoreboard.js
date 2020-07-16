@@ -19,12 +19,51 @@ class Scoreboard {
     this.totalGames = 1;
   }
 
-  draw = () => {
+  drawCard = () => {
+
+    if (this.state.server === player) {
+      ctx.drawImage(sprite,
+        Scoreboard.sprite.player.sx,
+        Scoreboard.sprite.player.sy,
+        Scoreboard.sprite.player.sw,
+        Scoreboard.sprite.player.sh,
+        this.position.x,
+        this.position.y,
+        Scoreboard.sprite.player.sw,
+        Scoreboard.sprite.player.sh
+      );
+    } else if (this.state.server === opponent) {
+      ctx.drawImage(sprite,
+        Scoreboard.sprite.opponent.sx,
+        Scoreboard.sprite.opponent.sy,
+        Scoreboard.sprite.opponent.sw,
+        Scoreboard.sprite.opponent.sh,
+        this.position.x,
+        this.position.y,
+        Scoreboard.sprite.opponent.sw,
+        Scoreboard.sprite.opponent.sh
+      );
+    }
+  }
+
+  drawScore = () => {
     ctx.beginPath();
-    ctx.rect(this.position.x, this.position.y, 300, 100);
-    ctx.fillStyle = '#000';
-    ctx.fill();
+    ctx.font = 'bold 20px Arial';
+    ctx.fillStyle = WHITE;
+    ctx.fillText('YOU', 70, 52);
+    ctx.fillText('COMPUTER', 54, 52 * 2);
+    ctx.fillText('COMPUTER', 54, 52 * 2);
+    ctx.fillText(this.scores.games.player, 304, 52);
+    ctx.fillText(this.scores.games.opponent, 288, 52 * 2);
+    ctx.fillStyle = BLACK_A;
+    ctx.fillText(this.scores.current.player, 364, 52);
+    ctx.fillText(this.scores.current.opponent, 348, 52 * 2);
     ctx.closePath();
+  }
+
+  draw = () => {
+    this.drawCard();
+    this.drawScore();
   }
 
   updateScore = () => {
@@ -65,9 +104,9 @@ class Scoreboard {
     if (this.scores.current.player === 10 && this.scores.current.opponent === 10) {
       this.state.serveChange = 1;
     }
-    
+
     console.log(this.scores.current);
-    
+
   }
 
 
@@ -98,4 +137,19 @@ class Scoreboard {
     }
   }
 
+}
+
+Scoreboard.sprite = {
+  'player': {
+    'sx': 0,
+    'sy': 316,
+    'sw': 390,
+    'sh': 100
+  },
+  'opponent': {
+    'sx': 0,
+    'sy': 417,
+    'sw': 390,
+    'sh': 100
+  }
 }

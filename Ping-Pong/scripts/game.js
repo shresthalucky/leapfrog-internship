@@ -15,15 +15,22 @@ function renderGame() {
 
   floor.draw();
   walls.draw();
-  table.draw();
-  opponent.drawBat();
-  net.draw();
   scoreboard.draw();
+  opponent.draw();
+
+  if(Math.abs(ball.current3dPos.y) < -BOARD_Y) {
+    ball.draw();
+    table.draw();
+    net.draw();
+  } else {
+    table.draw();
+    net.draw();
+    ball.draw();
+  }
 
   if (Game.state.begin && !Game.state.isOver) {
-    ball.draw();
     player.setInitialX();
-    player.drawBat();
+    player.draw();
 
     updateStates();
 

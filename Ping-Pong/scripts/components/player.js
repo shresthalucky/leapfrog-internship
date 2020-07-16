@@ -34,7 +34,7 @@ class Player {
     }
   }
 
-  drawBat = () => {
+  draw = () => {
 
     this.loadSurface();
 

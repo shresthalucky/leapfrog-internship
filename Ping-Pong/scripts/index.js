@@ -13,6 +13,7 @@ let net;
 let ball;
 let player;
 let opponent;
+let scoreboard;
 
 const sprite = new Image();
 sprite.src = 'assets/sprite.png';
@@ -26,6 +27,7 @@ function init() {
   const ballStartPosition = new Position(HALF_CANVAS_WIDTH, BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
   const playerPosition = new Position(0, BOARD_Y - BALL_START_HEIGHT, PLAYER_Z_POSITION);
   const opponentPosition = new Position(1000, BOARD_Y - BALL_START_HEIGHT, OPPONENT_Z_POSITION);
+  const scoreboardPosition = new Position(20, 20);
 
   floor = new Floor();
   walls = new Wall();
@@ -34,6 +36,7 @@ function init() {
   ball = new Ball(ballStartPosition);
   player = new User(playerPosition);
   opponent = new Opponent(opponentPosition);
+  scoreboard = new Scoreboard(scoreboardPosition, player);
 
   floor.draw();
   walls.draw();

@@ -4,18 +4,8 @@ let Game = {
     'inPlay': false,
     'isOver': false,
     'ballStart': true,
-    'server': undefined,
-    'driver': undefined,
     'served': false,
     'serveSuccess': false,
-    'deuce': false
-  },
-  'service': {
-    'change': 2
-  },
-  'score': {
-    'player': 0,
-    'opponent': 0
   },
   'batDirection': false
 }
@@ -28,6 +18,7 @@ function renderGame() {
   table.draw();
   opponent.drawBat();
   net.draw();
+  scoreboard.draw();
 
   if (Game.state.begin && !Game.state.isOver) {
     ball.draw();
@@ -52,12 +43,7 @@ function renderGame() {
 // choose ball server and serve the ball
 function serveBall() {
 
-  if (!Game.state.server) {
-    Game.state.server = player;
-    Game.state.driver = player;
-  }
-
-  if (Game.state.server === player) {
+  if (scoreboard.state.server === player) {
   
     const x = clamp(BOARD_LEFT_X + BALL_MAX_RADIUS, BOARD_RIGHT_X - BALL_MAX_RADIUS, player.position.x);
     ball.setPosition(new Position(x, player.position.y, BOARD_Z));
@@ -89,7 +75,7 @@ function hitBall() {
   if (player.batActive && ball.checkCollision(player)) {
     player.batActive = false;
     ball.hit(player, 80, 40, player.getHitAngle());
-    Game.state.driver = player;
+    scoreboard.state.driver = player;
     console.log('ping');
     opponentMovement();
   }
@@ -98,7 +84,7 @@ function hitBall() {
     Game.state.serveSuccess = true;
     player.batActive = true;
     ball.hit(opponent, 80, 30, 0);
-    Game.state.driver = opponent;
+    scoreboard.state.driver = opponent;
     console.log('pong');
   }
 }
@@ -110,13 +96,12 @@ function updateStates() {
   }
 
   if (net.checkCollision()) {
-    ball.bounceBack(Game.state.driver);
+    ball.bounceBack(scoreboard.state.driver);
     Game.state.inPlay = false;
-    Game.state.driver.batActive = false;
+    scoreboard.state.driver.batActive = false;
   }
 
-  if (Game.state.inPlay) {
-    if (ball.ballOut()) {
+  if (Game.state.inPlay && ball.ballOut()) {
       console.log('out');
       updateScore();
       Game.state.served = false;
@@ -125,89 +110,19 @@ function updateStates() {
       Game.state.serveSuccess = false;
       player.batActive = true;
       opponent.batActive = true;
-    }
   }
 }
 
 function updateScore() {
-
-  const bounce = `${player.bounce}${opponent.bounce}`;
-
-  // console.log(bounce);
-
-  if (Game.state.serveSuccess) {
-    if (Game.state.driver === player) {
-      if (bounce === '01') {
-        Game.score.player++;
-      } else {
-        Game.score.opponent++;
-      }
-    } else if (Game.state.driver === opponent) {
-      if (bounce === '10') {
-        Game.score.opponent++;
-      } else {
-        Game.score.player++;
-      }
-    }
-  } else {
-    if (Game.state.server === player) {
-      if (bounce === '11') {
-        Game.score.player++;
-      } else {
-        Game.score.opponent++;
-      }
-    } else if (Game.state.server === opponent) {
-      if (bounce === '11') {
-        Game.score.opponent++;
-      } else {
-        Game.score.player++;
-      }
-    }
-  }
-
-  checkWin();
-
-  if (Game.score.player === 10 && Game.score.opponent === 10) {
-    deuce();
-  }
-
-  let points = Game.score.player + Game.score.opponent;
-
-  if (points % Game.service.change === 0) {
-    const side = Game.state.server === player ? opponent : player;
-    Game.state.server = side;
-    Game.state.driver = side;
-  }
-
-  console.log(Game.score);
-}
-
-function checkWin() {
-  if (!Game.state.deuce) {
-
-    if (Game.score.player === 11) gameOver(player);
-    if (Game.score.opponent === 11) gameOver(opponent);
-
-  } else {
-
-    const dPoints = Game.score.player - Game.score.opponent;
-    if (Math.abs(dPoints) === 2) {
-      const winner = dPoints > 0 ? player : opponent;
-      gameOver(winner);
-    }
-  }
-}
-
-function deuce() {
-  console.log('deuce');
-  Game.state.deuce = true;
-  Game.service.change = 1;
+  scoreboard.updateScore();
+  scoreboard.checkWin(gameOver);
+  scoreboard.server();
 }
 
 function gameOver(winner) {
   Game.state.isOver = true;
   Game.state.inPlay = false;
-  console.log('over', Game.score);
+  console.log('over', scoreboard.scores);
 }
 
 function opponentMovement() {
@@ -222,13 +137,13 @@ function opponentMovement() {
     destination.x = left;
 
     const z = (slope * (left - pos.x)) + pos.z;
-    destination.z = z > NET_Z + 100 ? z : destination.z;
+    destination.z = z > NET_Z + BOARD_HALF_LENGTH / 2 ? z : destination.z;
 
   } else if (destination.x > right) {
     destination.x = right;
 
     const z = (slope * (right - pos.x)) + pos.z;
-    destination.z = z > NET_Z + 100 ? z : destination.z;
+    destination.z = z > NET_Z + BOARD_HALF_LENGTH / 2 ? z : destination.z;
   }
   
   opponent.animate(destination);

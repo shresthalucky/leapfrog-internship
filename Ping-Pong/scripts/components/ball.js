@@ -17,7 +17,7 @@ class Ball {
     this.bounceLevel = -BOARD_Y;
   }
 
-  getRadius = () => Math.max(SLOPE * (this.current3dPos.z - BOARD_Z) + BALL_MAX_RADIUS, BALL_MIN_RADIUS);
+  getRadius = () => Math.max(SLOPE * (this.current3dPos.z - BOARD_Z) + BALL_MAX_RADIUS, 4);
 
   draw = () => {
 

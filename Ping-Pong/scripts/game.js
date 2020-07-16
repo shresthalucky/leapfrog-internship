@@ -120,10 +120,16 @@ function updateScore() {
   scoreboard.server();
 }
 
-function gameOver(winner) {
-  Game.state.isOver = true;
+function gameOver() {
   Game.state.inPlay = false;
+  scoreboard.resetState();
   console.log('over', scoreboard.scores);
+  scoreboard.allOver(endGame);
+}
+
+function endGame(winner) {
+  Game.state.isOver = true;
+  console.log('end');
 }
 
 function opponentMovement() {

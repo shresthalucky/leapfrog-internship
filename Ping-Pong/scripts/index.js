@@ -36,7 +36,7 @@ function init() {
   ball = new Ball(ballStartPosition);
   player = new User(playerPosition);
   opponent = new Opponent(opponentPosition);
-  scoreboard = new Scoreboard(scoreboardPosition, player);
+  scoreboard = new Scoreboard(scoreboardPosition, player, 3);
 
   floor.draw();
   walls.draw();

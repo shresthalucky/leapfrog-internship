@@ -1,10 +1,11 @@
 class Scoreboard {
-  constructor(position, firstServer) {
+  constructor(position, firstServer, bestOfGames = 1) {
     this.position = position;
+    this.firstServer = firstServer;
     this.state = {
       'serveChange': 2,
-      'server': firstServer,
-      'driver': firstServer
+      'server': this.firstServer,
+      'driver': this.firstServer
     }
     this.scores = {
       'current': {
@@ -16,7 +17,7 @@ class Scoreboard {
         'opponent': 0
       }
     }
-    this.totalGames = 1;
+    this.bestOfGames = bestOfGames;
   }
 
   drawCard = () => {
@@ -70,7 +71,7 @@ class Scoreboard {
     const bounce = `${player.bounce}${opponent.bounce}`;
 
     // console.log(Game.state.serveSuccess, this.state.driver, bounce);
-    
+
     if (Game.state.serveSuccess) {
       if (this.state.driver === player) {
         if (bounce === '01') {
@@ -114,16 +115,45 @@ class Scoreboard {
 
     if (!this.state.deuce) {
 
-      if (this.scores.current.player === 11) gameOver(player);
-      if (this.scores.current.opponent === 11) gameOver(opponent);
+      if (this.scores.current.player === 11) {
+        this.scores.games.player++;
+        gameOver();
+        return;
+      }
+
+      if (this.scores.current.opponent === 11) {
+        this.scores.games.opponent++;
+        gameOver();
+        return;
+      }
 
     } else {
 
       const dPoints = this.scores.current.player - this.scores.current.opponent;
+      
       if (Math.abs(dPoints) === 2) {
-        const winner = dPoints > 0 ? player : opponent;
-        gameOver(winner);
+        const winner = dPoints > 0 ? 'player' : 'opponent';
+        this.scores.games[winner]++;
+        gameOver();
       }
+    }
+  }
+
+  allOver = (endGame) => {
+    const playerWins = this.scores.games.player;
+    const opponentWins = this.scores.games.opponent;
+    const requiredWins = Math.ceil(this.bestOfGames / 2);
+
+    if (playerWins === requiredWins) {
+      console.log('player wins');
+      endGame();
+      return;
+    }
+
+    if (opponentWins === requiredWins) {
+      console.log('computer wins');
+      endGame();
+      return;
     }
   }
 
@@ -135,6 +165,16 @@ class Scoreboard {
       this.state.server = side;
       this.state.driver = side;
     }
+  }
+
+  resetState = () => {
+    this.state = {
+      'serveChange': 2,
+      'server': this.firstServer,
+      'driver': this.firstServer
+    }
+    this.scores.current.player = 0;
+    this.scores.current.opponent = 0;
   }
 
 }

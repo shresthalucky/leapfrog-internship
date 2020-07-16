@@ -57,27 +57,31 @@ function serveBall() {
     Game.state.driver = player;
   }
 
-  ball.setServePosition(Game.state.server);
-
   if (Game.state.server === player) {
+  
+    const x = clamp(BOARD_LEFT_X + BALL_MAX_RADIUS, BOARD_RIGHT_X - BALL_MAX_RADIUS, player.position.x);
+    ball.setPosition(new Position(x, player.position.y, BOARD_Z));
+
     if (!Game.batDirection) player.movementDirection();
 
     if (player.batActive && Game.batDirection && ball.checkCollision(player)) {
-      player.batActive = false;
-      Game.state.served = true;
-      // console.log('serve');
-      ball.serve(player, 80, player.getHitAngle());
+      player.serve(VELOCITY);
       opponentMovement();
+      Game.state.served = true;
+      player.batActive = false;
     }
   } else {
-    if (ball.checkCollision(opponent)) {
-      Game.state.served = true;
-      player.batActive = true;
-      // console.log('serve');
-      ball.serve(opponent, 80, 0);
-    }
+    const pos = opponent.setPosition();
+    ball.setPosition(pos);
+    opponent.serve(VELOCITY);
+    Game.state.served = true;
+    player.batActive = true;
   }
+
+  player.resetBounce();
+  opponent.resetBounce();
 }
+
 
 // ball inside board conditions
 function hitBall() {
@@ -90,10 +94,10 @@ function hitBall() {
     opponentMovement();
   }
 
-  if (ball.checkCollision(opponent)) {
+  if (opponent.batActive && ball.checkCollision(opponent)) {
     Game.state.serveSuccess = true;
     player.batActive = true;
-    ball.hit(opponent, 85, 30, 0);
+    ball.hit(opponent, 80, 30, 0);
     Game.state.driver = opponent;
     console.log('pong');
   }
@@ -108,6 +112,7 @@ function updateStates() {
   if (net.checkCollision()) {
     ball.bounceBack(Game.state.driver);
     Game.state.inPlay = false;
+    Game.state.driver.batActive = false;
   }
 
   if (Game.state.inPlay) {
@@ -119,15 +124,14 @@ function updateStates() {
       Game.batDirection = false;
       Game.state.serveSuccess = false;
       player.batActive = true;
+      opponent.batActive = true;
     }
   }
-
-  
 }
 
 function updateScore() {
 
-  let bounce = `${player.bounce}${opponent.bounce}`;
+  const bounce = `${player.bounce}${opponent.bounce}`;
 
   // console.log(bounce);
 
@@ -207,27 +211,25 @@ function gameOver(winner) {
 }
 
 function opponentMovement() {
-  let pos = ball.current3dPos;
-  let slope = ball.velocity.z * TIME / (10 * ball.velocity.x);
-  let destination = new Position(pos.x + ((BOARD_END - pos.z) / slope), opponent.position.y, BOARD_END);
+  const pos = ball.current3dPos;
+  const slope = ball.velocity.z * TIME / (10 * ball.velocity.x);
+  const destination = new Position(pos.x + ((BOARD_END - pos.z) / slope), opponent.position.y, BOARD_END);
 
-  let right = BOARD_RIGHT_X;
-  let left = BOARD_LEFT_X;
+  const right = BOARD_RIGHT_X;
+  const left = BOARD_LEFT_X;
 
   if (destination.x < left) {
     destination.x = left;
-    
-    let z = (slope * (left - pos.x)) + pos.z;
+
+    const z = (slope * (left - pos.x)) + pos.z;
     destination.z = z > NET_Z + 100 ? z : destination.z;
 
   } else if (destination.x > right) {
     destination.x = right;
-    
-    let z = (slope * (right - pos.x)) + pos.z;
+
+    const z = (slope * (right - pos.x)) + pos.z;
     destination.z = z > NET_Z + 100 ? z : destination.z;
   }
-
-  console.log(destination);
-
+  
   opponent.animate(destination);
 }

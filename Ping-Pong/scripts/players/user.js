@@ -18,6 +18,10 @@ class User extends Player {
     return angle;
   }
 
+  serve = (velocity) => {
+    ball.serve(velocity, this.getHitAngle());
+  }
+
   fitToCourt = () => {
     let left = BOARD_LEFT_X - BOUNDARY_PADDING + BALL_MAX_RADIUS;
     let right = BOARD_RIGHT_X + BOUNDARY_PADDING - BALL_MAX_RADIUS;

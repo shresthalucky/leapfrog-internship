@@ -150,35 +150,35 @@ class Ball {
     opponent.resetBounce();
   }
 
-  setServePosition = (server) => {
+  // setServePosition = (server) => {
 
-    const z = server === player ? BOARD_Z : BOARD_Z + BOARD_LENGTH;
-    const x = clamp(BOARD_LEFT_X + this.radius, BOARD_RIGHT_X - this.radius, server.position.x);
+  //   const z = server === player ? BOARD_Z : BOARD_Z + BOARD_LENGTH;
+  //   const x = clamp(BOARD_LEFT_X + this.radius, BOARD_RIGHT_X - this.radius, server.position.x);
 
-    this.initial3dPos = new Position(x, BOARD_Y - BALL_START_HEIGHT, z);
-    this.current3dPos = new Position(x, BOARD_Y - BALL_START_HEIGHT, z);
+  //   this.initial3dPos = new Position(x, BOARD_Y - BALL_START_HEIGHT, z);
+  //   this.current3dPos = new Position(x, BOARD_Y - BALL_START_HEIGHT, z);
 
-    this.time = 0;
+  // }
+
+  setPosition = (position) => {
+    this.initial3dPos = new Position(position.x, position.y, position.z);
+    this.current3dPos = new Position(position.x, position.y, position.z);
     this.bounceCount = 0;
-
-    player.resetBounce();
-    opponent.resetBounce();
+    this.time = 0;
   }
 
-  serve = (server, velocity, sideAngle) => {
-    this.initialVel = velocity;
-    let v;
+  serve = (velocity, sideAngle) => {
 
-    if (server === player) {
-      v = this.initialVel;
+    this.initialVel = Math.abs(velocity);
+
+    if(sideAngle) {
       this.velocity.x = sideAngle > 0 ? Math.cos(sideAngle) : -Math.cos(sideAngle);
     } else {
       this.velocity.x = 0;
-      v = -this.initialVel;
     }
 
     this.angle = SERVE_ANGLE;
-    this.velocity.z = v * Math.cos(this.angle);
+    this.velocity.z = velocity * Math.cos(this.angle);
   }
 
   checkCollision = (side) => {

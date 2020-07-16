@@ -14,7 +14,7 @@ let ball;
 let player;
 let opponent;
 
-let sprite = new Image();
+const sprite = new Image();
 sprite.src = 'assets/sprite.png';
 
 sprite.onload = init;

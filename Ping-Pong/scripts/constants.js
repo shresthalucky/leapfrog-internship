@@ -60,6 +60,7 @@ const BOUNDARY_PADDING = 100;
 
 // gameplay constants
 const SERVE_ANGLE = ENV.toRadian(-45);
+const VELOCITY = 80;
 
 //background constants
 const LEFT_WALL = HALF_CANVAS_WIDTH - BOARD_WIDTH * 2;

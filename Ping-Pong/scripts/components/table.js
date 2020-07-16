@@ -261,12 +261,6 @@ class Net {
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
     let spriteWidth = this.surface2d.netImageLeft.get2dDistance(this.surface2d.netImageRight);
 
-    // ctx.beginPath();
-    // ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
-    // ctx.fillStyle = "#dfdfdf";
-    // ctx.fill();
-    // ctx.closePath();
-
     for (let i = 0; i < width; i += spriteWidth) {
       ctx.drawImage(sprite,
         Net.sprite.strip.sx,
@@ -291,8 +285,8 @@ class Net {
 
     if (
       ((playBall.opponentZ >= this.z - BALL_MAX_RADIUS && playBall.opponentZ <= this.z + BALL_MAX_RADIUS)
-        || (playBall.playerZ >= this.z - BALL_MAX_RADIUS && playBall.playerZ <= this.z + BALL_MAX_RADIUS))
-      && playBall.bottomY <= this.height
+        || (playBall.playerZ <= this.z - BALL_MAX_RADIUS && playBall.playerZ >= this.z + BALL_MAX_RADIUS))
+      && playBall.bottomY <= this.height - BOARD_Y
     ) {
       return true;
     }

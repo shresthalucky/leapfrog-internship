@@ -3,6 +3,27 @@ class Opponent extends Player {
     super(position);
   }
 
+  setPosition = (position) => {
+
+    if (!position) {
+      let left = BOARD_LEFT_X + BALL_MAX_RADIUS;
+      let right = BOARD_RIGHT_X - BALL_MAX_RADIUS;
+      let x = (Math.random() * (right - left)) + left;
+      let y = BOARD_Y - BALL_START_HEIGHT;
+
+      this.position = new Position(x, y, BOARD_END);
+      return this.position;
+    }
+
+    this.position = new Position(position.x, position.y, position.z);
+    return this.position;
+  }
+
+  serve = (velocity) => {
+    ball.setPosition(this.position);
+    ball.serve(-velocity);
+  }
+
   animate = (destination) => {
 
     let x = this.position.x;

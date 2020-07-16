@@ -41,12 +41,6 @@ class Player {
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
     let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
 
-    // ctx.beginPath();
-    // ctx.rect(this.surface2d.topLeft.x, this.surface2d.topLeft.y, width, height);
-    // ctx.fillStyle = "#FF0000";
-    // ctx.fill();
-    // ctx.closePath();
-
     ctx.save();
     ctx.beginPath();
     ctx.translate(this.surface2d.topLeft.x + width / 2, this.surface2d.topLeft.y + height / 2);

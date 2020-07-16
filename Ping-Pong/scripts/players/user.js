@@ -19,34 +19,22 @@ class User extends Player {
   }
 
   fitToCourt = () => {
-
-    let right = table.surface3d.outer[1].x + BOUNDARY_PADDING - BALL_MAX_RADIUS;
-    let left = table.surface3d.outer[0].x - BOUNDARY_PADDING + BALL_MAX_RADIUS;
+    let left = BOARD_LEFT_X - BOUNDARY_PADDING + BALL_MAX_RADIUS;
+    let right = BOARD_RIGHT_X + BOUNDARY_PADDING - BALL_MAX_RADIUS;
     let top = BOARD_Z + BOARD_HALF_LENGTH;
 
-    if (this.position.x > right) {
-      this.position.x = right;
-      ball.current3dPos
-    }
-
-    if (this.position.x < left) {
-      this.position.x = left;
-    }
-
-    if (this.position.z > top) {
-      this.position.z = top;
-    }
+    this.position.x = clamp(left, right, this.position.x);
+    this.position.z = clamp(0, top, this.position.z);
   }
 
   handleBatMovement = (event) => {
     event.preventDefault();
     event.stopPropagation();
     this.position = projection.get3dPosition(event.clientX, event.clientY);
-    // this.position = projection.get3dPosition(event.clientX, event.clientY - projection.camera.position.y);
     this.fitToCourt();
   }
 
-  
+
   movementDirection = () => {
     if (this.position.z - (ball.current3dPos.z - BAT_THICKNESS) < 0) {
       Game.batDirection = true;

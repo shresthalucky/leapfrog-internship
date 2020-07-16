@@ -211,18 +211,23 @@ function opponentMovement() {
   let slope = ball.velocity.z * TIME / (10 * ball.velocity.x);
   let destination = new Position(pos.x + ((BOARD_END - pos.z) / slope), opponent.position.y, BOARD_END);
 
-  let right = table.surface3d.outer[1].x;
-  let left = table.surface3d.outer[0].x;
+  let right = BOARD_RIGHT_X;
+  let left = BOARD_LEFT_X;
 
   if (destination.x < left) {
     destination.x = left;
+    
     let z = (slope * (left - pos.x)) + pos.z;
-    destination.z = z > NET_Z + 20 ? z : destination.z;
+    destination.z = z > NET_Z + 100 ? z : destination.z;
+
   } else if (destination.x > right) {
     destination.x = right;
+    
     let z = (slope * (right - pos.x)) + pos.z;
-    destination.z = z > NET_Z + 20 ? z : destination.z;
+    destination.z = z > NET_Z + 100 ? z : destination.z;
   }
+
+  console.log(destination);
 
   opponent.animate(destination);
 }

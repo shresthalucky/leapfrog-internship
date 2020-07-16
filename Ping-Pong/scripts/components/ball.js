@@ -21,8 +21,6 @@ class Ball {
 
   draw = () => {
 
-    // this.bounceLevel = !this.isBallInside ? 300 : 0;
-
     if (Game.state.served) {
       this.bounce();
     }
@@ -155,9 +153,10 @@ class Ball {
   setServePosition = (server) => {
 
     const z = server === player ? BOARD_Z : BOARD_Z + BOARD_LENGTH;
+    const x = clamp(BOARD_LEFT_X + this.radius, BOARD_RIGHT_X - this.radius, server.position.x);
 
-    this.initial3dPos = new Position(server.position.x, BOARD_Y - BALL_START_HEIGHT, z);
-    this.current3dPos = new Position(server.position.x, BOARD_Y - BALL_START_HEIGHT, z);
+    this.initial3dPos = new Position(x, BOARD_Y - BALL_START_HEIGHT, z);
+    this.current3dPos = new Position(x, BOARD_Y - BALL_START_HEIGHT, z);
 
     this.time = 0;
     this.bounceCount = 0;
@@ -215,10 +214,10 @@ class Ball {
   }
 
   isBallInside = () => {
-    if (this.current3dPos.x <= table.surface3d.outer[1].x + BALL_MAX_RADIUS
-      && this.current3dPos.x >= table.surface3d.outer[0].x - BALL_MAX_RADIUS
-      && this.current3dPos.z <= table.surface3d.outer[2].z + BALL_MAX_RADIUS
-      && this.current3dPos.z >= table.surface3d.outer[0].z - BALL_MAX_RADIUS
+    if (this.current3dPos.x <= BOARD_RIGHT_X + BALL_MAX_RADIUS
+      && this.current3dPos.x >= BOARD_LEFT_X - BALL_MAX_RADIUS
+      && this.current3dPos.z <= BOARD_END + BALL_MAX_RADIUS
+      && this.current3dPos.z >= BOARD_Z - BALL_MAX_RADIUS
     ) {
       this.bounceLevel = -BOARD_Y;
       return true;

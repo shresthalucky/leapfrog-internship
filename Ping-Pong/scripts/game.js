@@ -73,6 +73,7 @@ function serveBall() {
 function hitBall() {
 
   if (player.batActive && ball.checkCollision(player)) {
+    Game.state.serveSuccess = true;
     player.batActive = false;
     ball.hit(player, 80, 40, player.getHitAngle());
     scoreboard.state.driver = player;

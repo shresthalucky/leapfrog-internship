@@ -69,9 +69,9 @@ class Scoreboard {
   updateScore = () => {
     const bounce = `${player.bounce}${opponent.bounce}`;
 
-    console.log(bounce);
-
-    if (this.state.serveSuccess) {
+    // console.log(Game.state.serveSuccess, this.state.driver, bounce);
+    
+    if (Game.state.serveSuccess) {
       if (this.state.driver === player) {
         if (bounce === '01') {
           this.scores.current.player++;

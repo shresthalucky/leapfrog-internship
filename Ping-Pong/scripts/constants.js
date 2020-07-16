@@ -21,14 +21,14 @@ const BLACK_C = '#424242';
 const WHITE = '#FFFFFF';
 
 // board constants
-const TABLE_HEIGHT = 300;
+const TABLE_HEIGHT = 0;
 const TABLE_STAND_PADDING = 40;
 const BOARD_WIDTH = 800;
 const BOARD_LENGTH = BOARD_WIDTH * 6 / 5;
 const BOARD_HALF_LENGTH = BOARD_LENGTH / 2;
 const BOARD_HALF_WIDTH = BOARD_WIDTH / 2;
 const BOARD_THICKNESS = 20;
-const BOARD_Y = 0;
+const BOARD_Y = -300;
 const BOARD_Z = 160;
 const BORDER_WIDTH = 10;
 const BOARD_OFFSET = 160;
@@ -58,3 +58,8 @@ const BOUNDARY_PADDING = 100;
 
 // gameplay constants
 const SERVE_ANGLE = ENV.toRadian(-45);
+
+//background constants
+const LEFT_WALL = HALF_CANVAS_WIDTH - BOARD_WIDTH * 2;
+const RIGHT_WALL = HALF_CANVAS_WIDTH + BOARD_WIDTH * 2;
+const END_WALL = BOARD_END + BOARD_WIDTH * 2;

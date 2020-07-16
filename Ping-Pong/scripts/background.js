@@ -1,15 +1,12 @@
 class Floor {
   constructor() {
-    const z = BOARD_END + BOARD_WIDTH * 2;
     const y = TABLE_HEIGHT;
-    const leftX = HALF_CANVAS_WIDTH - BOARD_WIDTH * 2;
-    const rightX = HALF_CANVAS_WIDTH + BOARD_WIDTH * 2;
 
     this.surface3d = {
-      'topLeft': new Position(leftX, y, z),
-      'topRight': new Position(rightX, y, z),
-      'bottomRight': new Position(rightX, y, projection.camera.position.z + 1),
-      'bottomLeft': new Position(leftX, y, projection.camera.position.z + 1)
+      'topLeft': new Position(LEFT_WALL, y, END_WALL),
+      'topRight': new Position(RIGHT_WALL, y, END_WALL),
+      'bottomRight': new Position(RIGHT_WALL, y, projection.camera.position.z + 1),
+      'bottomLeft': new Position(LEFT_WALL, y, projection.camera.position.z + 1)
     }
 
     this.surface2d = {
@@ -35,30 +32,27 @@ class Floor {
 
 class Wall {
   constructor() {
-    const z = BOARD_END + BOARD_WIDTH * 2;
     const y = TABLE_HEIGHT;
-    const leftX = HALF_CANVAS_WIDTH - BOARD_WIDTH * 2;
-    const rightX = HALF_CANVAS_WIDTH + BOARD_WIDTH * 2;
     const top = -1000;
 
     this.surface3d = {
       'leftWall': [
-        new Position(leftX, y, projection.camera.position.z + 1),
-        new Position(leftX, y, z),
-        new Position(leftX, top, z),
-        new Position(leftX, top, projection.camera.position.z + 1)
+        new Position(LEFT_WALL, y, projection.camera.position.z + 1),
+        new Position(LEFT_WALL, y, END_WALL),
+        new Position(LEFT_WALL, top, END_WALL),
+        new Position(LEFT_WALL, top, projection.camera.position.z + 1)
       ],
       'backWall': [
-        new Position(leftX, y, z),
-        new Position(leftX, top, z),
-        new Position(rightX, top, z),
-        new Position(rightX, y, z)
+        new Position(LEFT_WALL, y, END_WALL),
+        new Position(LEFT_WALL, top, END_WALL),
+        new Position(RIGHT_WALL, top, END_WALL),
+        new Position(RIGHT_WALL, y, END_WALL)
       ],
       'rightWall': [
-        new Position(rightX, y, projection.camera.position.z + 1),
-        new Position(rightX, y, z),
-        new Position(rightX, top, z),
-        new Position(rightX, top, projection.camera.position.z + 1)
+        new Position(RIGHT_WALL, y, projection.camera.position.z + 1),
+        new Position(RIGHT_WALL, y, END_WALL),
+        new Position(RIGHT_WALL, top, END_WALL),
+        new Position(RIGHT_WALL, top, projection.camera.position.z + 1)
       ]
     }
   

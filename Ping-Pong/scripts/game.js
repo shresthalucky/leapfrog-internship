@@ -111,7 +111,7 @@ function updateStates() {
   }
 
   if (Game.state.inPlay) {
-    if (!ball.isBallInside()) {
+    if (ball.ballOut()) {
       console.log('out');
       updateScore();
       Game.state.served = false;
@@ -121,6 +121,8 @@ function updateStates() {
       player.batActive = true;
     }
   }
+
+  
 }
 
 function updateScore() {

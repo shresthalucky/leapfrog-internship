@@ -31,7 +31,7 @@ class Position {
 
 const projection = {
   'camera': {
-    'position': new Position(0, -700, -300)
+    'position': new Position(0, -1000, -300)
   },
 
   'viewplane': new Position(0, 0, 500),
@@ -47,14 +47,13 @@ const projection = {
 
   'get3dPosition': (bx, by) => {
 
-    let dy = -BALL_START_HEIGHT - projection.camera.position.y;
+    let dy = (-BALL_START_HEIGHT + BOARD_Y) - projection.camera.position.y;
     let dz = projection.viewplane.z * dy / (by - projection.viewplane.y);
     let dx = ((bx - projection.viewplane.x) * dz / projection.viewplane.z);
 
     let ax = projection.camera.position.x + dx;
     let ay = projection.camera.position.y + dy;
     let az = projection.camera.position.z + dz;
-
     return new Position(ax, ay, az);
   }
 

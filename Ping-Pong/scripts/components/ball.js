@@ -10,27 +10,22 @@ class Ball {
       'y': 0,
       'x': 0
     }
-    this.acceleration = {
-      'z': 0,
-      'y': 0,
-      'x': 0
-    }
     this.time = 0;
-    this.period = 0;
     this.rebound = false;
     this.lastPosition = new Position(startPos.x, startPos.y, startPos.z);
     this.bounceCount = 0;
+    this.bounceLevel = -BOARD_Y;
   }
 
-  getRadius = () => SLOPE * (this.current3dPos.z - BOARD_Z) + BALL_MAX_RADIUS;
+  getRadius = () => Math.max(SLOPE * (this.current3dPos.z - BOARD_Z) + BALL_MAX_RADIUS, BALL_MIN_RADIUS);
 
   draw = () => {
+
+    // this.bounceLevel = !this.isBallInside ? 300 : 0;
 
     if (Game.state.served) {
       this.bounce();
     }
-
-    // console.log(this.velocity.x);
 
     let current3dY = this.current3dPos.y > 0 ? -this.current3dPos.y : this.current3dPos.y;
     let current2dPos = projection.get2dProjection(new Position(this.current3dPos.x, current3dY, this.current3dPos.z));
@@ -53,33 +48,26 @@ class Ball {
   getBounceAngle = () => {
     let d = this.lastPosition.get3dDistance(this.current3dPos);
     let dx = this.current3dPos.get3dDistance(new Position(this.lastPosition.x, 0, this.lastPosition.z));
-    // debugger
     return Math.atan(d / dx);
   }
 
   bounce = () => {
     if (!this.rebound) {
 
-      this.lastPosition.x = this.current3dPos.x;
-      this.lastPosition.y = this.current3dPos.y;
-      this.lastPosition.z = this.current3dPos.z;
+      this.lastPosition = new Position(this.current3dPos.x, this.current3dPos.y, this.current3dPos.z);
 
       this.current3dPos.z = this.initial3dPos.z + this.velocity.z * this.time;
 
       if (this.velocity.x !== 0) {
-        // this.current3dPos.x = this.current3dPos.x + this.velocity.x * this.period;
         this.current3dPos.x += this.velocity.x * 10;
-        this.period += 0.1;
       }
 
       let vy = this.initialVel * Math.sin(this.angle);
 
       this.velocity.y = vy - ENV.gravity * this.time;
-      // this.current3dPos.y = this.initial3dPos.y + (vy * this.time) - (ENV.gravity * this.time * this.time * 0.5);
       this.current3dPos.y = -this.initial3dPos.y + (vy * this.time) - (ENV.gravity * this.time * this.time * 0.5);
-      // this.current3dPos.y = -this.current3dPos.y;
 
-      if (this.current3dPos.y < 0) {
+      if (this.current3dPos.y < this.bounceLevel) {
         this.rebound = true;
       }
 
@@ -89,25 +77,21 @@ class Ball {
       table.recordBounce(ball.current3dPos);
       this.initialVel = -this.velocity.y;
       this.initial3dPos.z = this.current3dPos.z;
-      this.current3dPos.y = 0;
-      this.initial3dPos.y = 0;
-      // this.velocity.z = this.initialVel * Math.cos(this.angle);
+      this.current3dPos.y = -this.bounceLevel;
+      this.initial3dPos.y = -this.bounceLevel;
       this.rebound = false;
       this.time = 0;
-      // this.draw();
       this.angle = this.getBounceAngle();
-
       this.bounceCount++;
-      // console.log('bounce');
     }
   }
 
   drawShadow = () => {
-    let shadow = new Position(this.current3dPos.x, 0, this.current3dPos.z);
+    let y = this.isBallInside() ? BOARD_Y : 0;
+    let shadow = new Position(this.current3dPos.x, y, this.current3dPos.z);
     shadow = projection.get2dProjection(shadow);
 
     ctx.beginPath();
-    // ctx.arc(shadow.x, shadow.y, this.radius, 0, 360);
     ctx.ellipse(shadow.x, shadow.y, this.radius, this.radius * 0.5, 0, 0, 360);
     ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
     ctx.fill();
@@ -143,7 +127,6 @@ class Ball {
     let offsetZ;
     let v;
 
-    this.period = 0;
     this.angle = ENV.toRadian(upAngle);
     this.initialVel = velocity;
 
@@ -176,7 +159,6 @@ class Ball {
     this.initial3dPos = new Position(server.position.x, BOARD_Y - BALL_START_HEIGHT, z);
     this.current3dPos = new Position(server.position.x, BOARD_Y - BALL_START_HEIGHT, z);
 
-    this.period = 0;
     this.time = 0;
     this.bounceCount = 0;
 
@@ -235,11 +217,25 @@ class Ball {
   isBallInside = () => {
     if (this.current3dPos.x <= table.surface3d.outer[1].x + BALL_MAX_RADIUS
       && this.current3dPos.x >= table.surface3d.outer[0].x - BALL_MAX_RADIUS
-      && this.current3dPos.z <= table.surface3d.outer[2].z + BOARD_OFFSET
-      && this.current3dPos.z >= table.surface3d.outer[0].z - BOARD_OFFSET
+      && this.current3dPos.z <= table.surface3d.outer[2].z + BALL_MAX_RADIUS
+      && this.current3dPos.z >= table.surface3d.outer[0].z - BALL_MAX_RADIUS
+    ) {
+      this.bounceLevel = -BOARD_Y;
+      return true;
+    }
+    this.bounceLevel = 0;
+    return false;
+  }
+
+  ballOut = () => {
+    if (this.current3dPos.x >= RIGHT_WALL
+      || this.current3dPos.x <= LEFT_WALL
+      || this.current3dPos.z <= 0
+      || this.current3dPos.z >= END_WALL
     ) {
       return true;
     }
+    return false;
   }
 
 

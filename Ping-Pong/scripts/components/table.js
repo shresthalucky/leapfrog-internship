@@ -2,7 +2,7 @@ class Board {
   constructor() {
     this.width = BOARD_WIDTH;
     this.length = BOARD_LENGTH;
-    this.thickness = BOARD_THICKNESS;
+    this.thickness = BOARD_THICKNESS + BOARD_Y;
     this.z = BOARD_Z;
     this.borderWidth = BORDER_WIDTH;
     this.y = BOARD_Y;
@@ -51,8 +51,8 @@ class Board {
 
       'tableLeftThickness': [
         new Position(leftX + TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING),
-        new Position(leftX + TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING + this.thickness),
-        new Position(leftX + TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING + this.thickness),
+        new Position(leftX + TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING + BOARD_THICKNESS),
+        new Position(leftX + TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING + BOARD_THICKNESS),
         new Position(leftX + TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING)
       ],
 
@@ -65,8 +65,8 @@ class Board {
 
       'tableRightThickness': [
         new Position(rightX - TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING),
-        new Position(rightX - TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING + this.thickness),
-        new Position(rightX - TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING + this.thickness),
+        new Position(rightX - TABLE_STAND_PADDING * 2, this.thickness, this.z + TABLE_STAND_PADDING + BOARD_THICKNESS),
+        new Position(rightX - TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING + BOARD_THICKNESS),
         new Position(rightX - TABLE_STAND_PADDING * 2, TABLE_HEIGHT, this.z + TABLE_STAND_PADDING)
       ],
     }
@@ -238,8 +238,8 @@ class Net {
     const rightX = HALF_CANVAS_WIDTH + BOARD_HALF_WIDTH;
 
     this.surface3d = {
-      'topLeft': new Position(leftX, -this.height, this.z),
-      'topRight': new Position(rightX, -this.height, this.z),
+      'topLeft': new Position(leftX, this.y - this.height, this.z),
+      'topRight': new Position(rightX, this.y - this.height, this.z),
       'bottomRight': new Position(rightX, this.y, this.z),
       'bottomLeft': new Position(leftX, this.y, this.z),
       'netImageLeft': new Position(leftX, this.y, this.z),

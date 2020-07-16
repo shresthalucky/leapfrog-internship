@@ -7,12 +7,11 @@ class Board {
     this.borderWidth = BORDER_WIDTH;
     this.y = BOARD_Y;
 
-    const halfWidth = this.width / 2;
-    const leftX = halfCanvasWidth - halfWidth;
-    const rightX = halfCanvasWidth + halfWidth;
+    const leftX = HALF_CANVAS_WIDTH - BOARD_HALF_WIDTH;
+    const rightX = HALF_CANVAS_WIDTH + BOARD_HALF_WIDTH;
 
-    const midLeftX = leftX + halfWidth - this.borderWidth / 2;
-    const midRightX = rightX - halfWidth + this.borderWidth / 2;
+    const midLeftX = leftX + BOARD_HALF_WIDTH - this.borderWidth / 2;
+    const midRightX = rightX - BOARD_HALF_WIDTH + this.borderWidth / 2;
 
     this.surface3d = {
       'outer': [
@@ -234,9 +233,9 @@ class Net {
     this.z = NET_Z;
     this.y = BOARD_Y;
 
-    const halfWidth = this.width / 2;
-    const leftX = halfCanvasWidth - halfWidth;
-    const rightX = halfCanvasWidth + halfWidth;
+    const BOARD_HALF_WIDTH = this.width / 2;
+    const leftX = HALF_CANVAS_WIDTH - BOARD_HALF_WIDTH;
+    const rightX = HALF_CANVAS_WIDTH + BOARD_HALF_WIDTH;
 
     this.surface3d = {
       'topLeft': new Position(leftX, -this.height, this.z),

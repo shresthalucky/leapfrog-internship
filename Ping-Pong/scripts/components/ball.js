@@ -233,20 +233,13 @@ class Ball {
   }
 
   isBallInside = () => {
-    // if (this.current3dPos.x <= table.surface3d.outer[1].x + BALL_MAX_RADIUS
-    //   && this.current3dPos.x >= table.surface3d.outer[0].x - BALL_MAX_RADIUS
-    //   && this.current3dPos.z <= table.surface3d.outer[2].z + BOARD_OFFSET
-    //   && this.current3dPos.z >= table.surface3d.outer[0].z - BOARD_OFFSET
-    // ) {
-    //   return true;
-    // }
-
-    if (this.current3dPos.z <= table.surface3d.outer[2].z + BOARD_OFFSET
+    if (this.current3dPos.x <= table.surface3d.outer[1].x + BALL_MAX_RADIUS
+      && this.current3dPos.x >= table.surface3d.outer[0].x - BALL_MAX_RADIUS
+      && this.current3dPos.z <= table.surface3d.outer[2].z + BOARD_OFFSET
       && this.current3dPos.z >= table.surface3d.outer[0].z - BOARD_OFFSET
     ) {
       return true;
     }
-    return false;
   }
 
 

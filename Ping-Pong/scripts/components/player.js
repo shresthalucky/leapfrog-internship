@@ -69,7 +69,7 @@ class Player {
   }
 
   getRotationAngle = () => {
-    let norm = (halfCanvasWidth - this.position.x) / (BOARD_HALF_WIDTH + BOUNDARY_PADDING);
+    let norm = (HALF_CANVAS_WIDTH - this.position.x) / (BOARD_HALF_WIDTH + BOUNDARY_PADDING);
     let angle = Math.acos(norm) - ENV.toRadian(90);
     return angle;
   }

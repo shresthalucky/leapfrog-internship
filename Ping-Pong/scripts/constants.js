@@ -9,6 +9,7 @@ const ENV = {
 // canvas constants
 const CANVAS_WIDTH = window.innerWidth;
 const CANVAS_HEIGHT = window.innerHeight;
+const HALF_CANVAS_WIDTH = CANVAS_WIDTH / 2;
 
 // colors
 const BOARD_BACKGROUND = '#4879BC';

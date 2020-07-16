@@ -23,6 +23,8 @@ let Game = {
 function renderGame() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
 
+  floor.draw();
+  walls.draw();
   table.draw();
   opponent.drawBat();
   net.draw();

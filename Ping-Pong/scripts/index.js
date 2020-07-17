@@ -78,21 +78,24 @@ function loadComplete() {
   }
 }
 
-
 function displayIntro() {
+  
+  initComponents();
+  
+  layoutElement = document.body.querySelector('.layout');
   loadingElement = document.body.querySelector('.loading');
   introElement = document.body.querySelector('.intro');
   form = introElement.querySelector('form');
 
   loadingElement.style.display = 'none';
-  introElement.style.display = 'block';
+  introElement.style.display = 'table';
 
   form.addEventListener('submit', (e) => {
 
     e.preventDefault();
 
     introElement.style.display = 'none';
-    canvas.style.display = 'block';
+    layoutElement.style.display = 'none';
 
     const config = {
       'playerName': (e.target.elements.player.value).toUpperCase(),
@@ -104,14 +107,13 @@ function displayIntro() {
 }
 
 
-function initGame(config) {
+function initComponents() {
   projection.camera.position.x = HALF_CANVAS_WIDTH;
   projection.viewplane.x = HALF_CANVAS_WIDTH;
 
   const ballStartPosition = new Position(HALF_CANVAS_WIDTH, BOARD_Y - BALL_START_HEIGHT, BOARD_Z);
   const playerPosition = new Position(0, BOARD_Y - BALL_START_HEIGHT, PLAYER_Z_POSITION);
   const opponentPosition = new Position(1000, BOARD_Y - BALL_START_HEIGHT, OPPONENT_Z_POSITION);
-  const scoreboardPosition = new Position(20, 20);
 
   floor = new Floor();
   walls = new Wall();
@@ -120,12 +122,16 @@ function initGame(config) {
   ball = new Ball(ballStartPosition);
   player = new User(playerPosition);
   opponent = new Opponent(opponentPosition);
-  scoreboard = new Scoreboard(scoreboardPosition, player, config);
 
   floor.draw();
   walls.draw();
   table.draw();
   net.draw();
+}
+
+function initGame(config) {
+  const scoreboardPosition = new Position(20, 20);
+  scoreboard = new Scoreboard(scoreboardPosition, player, config);
 
   initEvents();
 

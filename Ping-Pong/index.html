@@ -5,24 +5,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ping Pong</title>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
   <div class="main-wrapper">
+    <div class="layout"></div>
     <div class="loading container">
       <div class="content">
         LOADING...
       </div>
     </div>
+    
+    <canvas id="game"></canvas>
+
     <div class="intro container">
       <div class="content">
+        <h1>PING PONG</h1>
+        <div class="sep">🟊 🟊 🟊</div>
         <form>
-          <div>
-            <input name="player" value="HUMAN" maxlength="10">
+          <div class="row">
+            <p>YOUR NAME</p>
+            <input type="text" name="player" value="HUMAN" maxlength="10">
           </div>
-          <div>
-            <span>Best of</span>
+          <div class="row">
+            <p>BEST OF</p>
             <input type="radio" id="1" name="bestof" value="1" checked="checked">
             <label for="1">1</label>
             <input type="radio" id="3" name="bestof" value="3">
@@ -30,15 +38,16 @@
             <input type="radio" id="5" name="bestof" value="5">
             <label for="5">5</label>
           </div>
-          <button id="play-btn" type="submit">Play</button>
+          <div class="row">
+            <button id="play-btn" class="btn" type="submit">PLAY</button>
+          </div>
         </form>
 
-        <div>
-          Press ESC to pause/resume the game 
+        <div class="row">
+          Press ESC to pause / resume 
         </div>
       </div>
     </div>
-    <canvas id="game"></canvas>
   </div>
 
   <script src="./scripts/constants.js"></script>

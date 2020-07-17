@@ -16,7 +16,7 @@ const CANVAS_HEIGHT = window.innerHeight;
 const HALF_CANVAS_WIDTH = CANVAS_WIDTH / 2;
 
 // colors
-const BOARD_BACKGROUND = '#4879BC';
+const BOARD_BACKGROUND = '#284088';
 const BALL_BACKGROUND = '#FFD740';
 const BALL_BORDER = '#FFC400';
 const BLACK_A = '#000000';

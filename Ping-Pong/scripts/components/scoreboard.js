@@ -76,28 +76,36 @@ class Scoreboard {
       if (this.state.driver === player) {
         if (bounce === '01') {
           this.scores.current.player++;
+          clapHigh.play();
         } else {
           this.scores.current.opponent++;
+          clapLow.play();
         }
       } else if (this.state.driver === opponent) {
         if (bounce === '10') {
           this.scores.current.opponent++;
+          clapLow.play();
         } else {
           this.scores.current.player++;
+          clapHigh.play();
         }
       }
     } else {
       if (this.state.server === player) {
         if (bounce === '11') {
           this.scores.current.player++;
+          clapHigh.play();
         } else {
           this.scores.current.opponent++;
+          clapLow.play();
         }
       } else if (this.state.server === opponent) {
         if (bounce === '11') {
           this.scores.current.opponent++;
+          clapLow.play();
         } else {
           this.scores.current.player++;
+          clapHigh.play();
         }
       }
     }

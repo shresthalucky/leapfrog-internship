@@ -58,12 +58,14 @@ function serveBall() {
     if (!Game.batDirection) player.movementDirection();
 
     if (player.batActive && Game.batDirection && ball.checkCollision(player)) {
+      batHit.play();
       player.serve(VELOCITY);
       opponentMovement();
       Game.state.served = true;
       player.batActive = false;
     }
   } else {
+    batHit.play();
     const pos = opponent.setPosition();
     ball.setPosition(pos);
     opponent.serve(VELOCITY);
@@ -80,15 +82,17 @@ function serveBall() {
 function hitBall() {
 
   if (player.batActive && ball.checkCollision(player)) {
+    batHit.play();
     Game.state.serveSuccess = true;
     player.batActive = false;
-    ball.hit(player, 80, 40, player.getHitAngle());
+    ball.hit(player, 80, 30, player.getHitAngle());
     scoreboard.state.driver = player;
     console.log('ping');
     opponentMovement();
   }
 
   if (opponent.batActive && ball.checkCollision(opponent)) {
+    batHit.play();
     Game.state.serveSuccess = true;
     player.batActive = true;
     ball.hit(opponent, 80, 30, 0);

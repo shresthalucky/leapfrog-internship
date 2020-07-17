@@ -1,3 +1,7 @@
+const STATE_INIT = 1;
+const STATE_LOADING = 2;
+const STATE_LOADED = 3;
+
 // environment constants
 const ENV = {
   'gravity': 9.82,

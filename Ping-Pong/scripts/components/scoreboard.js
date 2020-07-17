@@ -1,5 +1,5 @@
 class Scoreboard {
-  constructor(position, firstServer, bestOfGames = 1) {
+  constructor(position, firstServer, {playerName, bestOfGames}) {
     this.position = position;
     this.firstServer = firstServer;
     this.state = {
@@ -18,6 +18,7 @@ class Scoreboard {
       }
     }
     this.bestOfGames = bestOfGames;
+    this.playerName = playerName;
   }
 
   drawCard = () => {
@@ -51,7 +52,7 @@ class Scoreboard {
     ctx.beginPath();
     ctx.font = 'bold 20px Arial';
     ctx.fillStyle = WHITE;
-    ctx.fillText('YOU', 70, 52);
+    ctx.fillText(this.playerName, 70, 52);
     ctx.fillText('COMPUTER', 54, 52 * 2);
     ctx.fillText('COMPUTER', 54, 52 * 2);
     ctx.fillText(this.scores.games.player, 304, 52);

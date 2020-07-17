@@ -1,4 +1,4 @@
-const canvas = document.getElementById('main');
+const canvas = document.getElementById('game');
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
@@ -14,15 +14,14 @@ const App = {
 }
 
 function run() {
-  switch(App.state) {
+  switch (App.state) {
     case STATE_INIT:
       initAssets();
       break;
     case STATE_LOADING:
-      console.log('loading');
       break;
     case STATE_LOADED:
-      initGame();
+      displayIntro();
       break;
   }
 }
@@ -39,7 +38,7 @@ function initAssets() {
   document.body.appendChild(bounceIn);
   bounceIn.addEventListener('canplaythrough', loadComplete);
   bounceIn.setAttribute('src', App.assets.src + 'sounds/bounce1.mp3');
-  
+
   bounceOut = document.createElement('audio');
   document.body.appendChild(bounceOut);
   bounceOut.addEventListener('canplaythrough', loadComplete);
@@ -54,7 +53,7 @@ function initAssets() {
   document.body.appendChild(clapHigh);
   clapHigh.addEventListener('canplaythrough', loadComplete);
   clapHigh.setAttribute('src', App.assets.src + 'sounds/clap1.mp3');
-  
+
   clapLow = document.createElement('audio');
   document.body.appendChild(clapLow);
   clapLow.addEventListener('canplaythrough', loadComplete);
@@ -66,20 +65,46 @@ function initAssets() {
 function loadComplete() {
   App.assets.loadCount++;
 
-  if(App.assets.loadCount >= App.assets.total) {
+  if (App.assets.loadCount >= App.assets.total) {
     App.state = STATE_LOADED;
-    
+
     bounceIn.removeEventListener('canplaythrough', loadComplete);
     bounceOut.removeEventListener('canplaythrough', loadComplete);
     batHit.removeEventListener('canplaythrough', loadComplete);
     clapHigh.removeEventListener('canplaythrough', loadComplete);
     clapLow.removeEventListener('canplaythrough', loadComplete);
-    
+
     run();
   }
 }
 
-function initGame() {
+
+function displayIntro() {
+  loadingElement = document.body.querySelector('.loading');
+  introElement = document.body.querySelector('.intro');
+  form = introElement.querySelector('form');
+
+  loadingElement.style.display = 'none';
+  introElement.style.display = 'block';
+
+  form.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
+    introElement.style.display = 'none';
+    canvas.style.display = 'block';
+
+    const config = {
+      'playerName': (e.target.elements.player.value).toUpperCase(),
+      'bestOfGames': parseInt(e.target.elements.bestof.value)
+    }
+
+    initGame(config);
+  });
+}
+
+
+function initGame(config) {
   projection.camera.position.x = HALF_CANVAS_WIDTH;
   projection.viewplane.x = HALF_CANVAS_WIDTH;
 
@@ -95,7 +120,7 @@ function initGame() {
   ball = new Ball(ballStartPosition);
   player = new User(playerPosition);
   opponent = new Opponent(opponentPosition);
-  scoreboard = new Scoreboard(scoreboardPosition, player, 3);
+  scoreboard = new Scoreboard(scoreboardPosition, player, config);
 
   floor.draw();
   walls.draw();
@@ -108,9 +133,23 @@ function initGame() {
 }
 
 function initEvents() {
-  document.addEventListener('mousemove', function (e) {
+
+  document.addEventListener('mousemove', (e) => {
     player.handleBatMovement(e);
-  })
+  });
+
+  document.addEventListener('keyup', (e) => {
+
+    if (e.key === 'Escape') {
+      Game.state.pause = !Game.state.pause;
+
+      if (Game.state.pause) {
+        cancelAnimationFrame(animationId);
+      } else {
+        animationId = requestAnimationFrame(renderGame);
+      }
+    }
+  });
 }
 
 run();

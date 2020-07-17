@@ -6,6 +6,7 @@ let Game = {
     'ballStart': true,
     'served': false,
     'serveSuccess': false,
+    'pause': false
   },
   'batDirection': false
 }
@@ -44,7 +45,7 @@ function renderGame() {
     // console.log('end');
   }
 
-  requestAnimationFrame(renderGame);
+  animationId = requestAnimationFrame(renderGame);
 }
 
 // choose ball server and serve the ball

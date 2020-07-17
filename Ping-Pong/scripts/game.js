@@ -6,7 +6,8 @@ let Game = {
     'ballStart': true,
     'served': false,
     'serveSuccess': false,
-    'pause': false
+    'pause': false,
+    'ballIn': true
   },
   'batDirection': false
 }
@@ -43,6 +44,8 @@ function renderGame() {
   } else {
     // TODO: start game menu
     // console.log('end');
+    cancelAnimationFrame(animationId);
+    return;
   }
 
   animationId = requestAnimationFrame(renderGame);
@@ -141,6 +144,9 @@ function gameOver() {
 
 function endGame(winner) {
   Game.state.isOver = true;
+  Game.state.inPlay = false;
+  Game.state.begin = false;
+  
   console.log('end');
 }
 

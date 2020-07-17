@@ -72,7 +72,13 @@ class Ball {
       this.time += TIME;
 
     } else {
-      bounceIn.play();
+      
+      if (Game.state.ballIn) {
+        bounceIn.play();
+      } else {
+        bounceOut.play();
+      }
+
       table.recordBounce(ball.current3dPos);
       this.initialVel = -this.velocity.y;
       this.initial3dPos.z = this.current3dPos.z;
@@ -151,16 +157,6 @@ class Ball {
     opponent.resetBounce();
   }
 
-  // setServePosition = (server) => {
-
-  //   const z = server === player ? BOARD_Z : BOARD_Z + BOARD_LENGTH;
-  //   const x = clamp(BOARD_LEFT_X + this.radius, BOARD_RIGHT_X - this.radius, server.position.x);
-
-  //   this.initial3dPos = new Position(x, BOARD_Y - BALL_START_HEIGHT, z);
-  //   this.current3dPos = new Position(x, BOARD_Y - BALL_START_HEIGHT, z);
-
-  // }
-
   setPosition = (position) => {
     this.initial3dPos = new Position(position.x, position.y, position.z);
     this.current3dPos = new Position(position.x, position.y, position.z);
@@ -172,7 +168,7 @@ class Ball {
 
     this.initialVel = Math.abs(velocity);
 
-    if(sideAngle) {
+    if (sideAngle) {
       this.velocity.x = sideAngle > 0 ? Math.cos(sideAngle) : -Math.cos(sideAngle);
     } else {
       this.velocity.x = 0;
@@ -233,8 +229,10 @@ class Ball {
       || this.current3dPos.z <= 0
       || this.current3dPos.z >= END_WALL
     ) {
+      Game.state.ballIn = true;
       return true;
     }
+    Game.state.ballIn = false;
     return false;
   }
 

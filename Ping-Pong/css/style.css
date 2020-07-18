@@ -33,7 +33,7 @@ h1 {
 
 canvas#game {
   display: block;
-  /* cursor: none; */
+  cursor: none;
 }
 
 .container {
@@ -52,11 +52,14 @@ canvas#game {
   color: #ffffff;
 }
 
-.intro {
-  display: none;
+.intro, .info {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.intro {
+  display: none;
 }
 
 .row {

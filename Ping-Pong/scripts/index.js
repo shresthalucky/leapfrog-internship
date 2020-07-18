@@ -79,15 +79,15 @@ function loadComplete() {
 }
 
 function displayIntro() {
-  
+
   initComponents();
-  
+
   layoutElement = document.body.querySelector('.layout');
-  loadingElement = document.body.querySelector('.loading');
+  infoElement = document.body.querySelector('.info');
   introElement = document.body.querySelector('.intro');
   form = introElement.querySelector('form');
 
-  loadingElement.style.display = 'none';
+  infoElement.style.display = 'none';
   introElement.style.display = 'table';
 
   form.addEventListener('submit', (e) => {
@@ -129,6 +129,21 @@ function initComponents() {
   net.draw();
 }
 
+function escapeEvent() {
+  if (Game.state.pause) {
+    cancelAnimationFrame(animationId);
+
+    layoutElement.style.display = 'block';
+    infoElement.style.display = 'table';
+    infoElement.querySelector('.content').innerHTML = "Press ESC to pause / resume"
+
+  } else {
+    layoutElement.style.display = 'none';
+    infoElement.style.display = 'none';
+    animationId = requestAnimationFrame(renderGame);
+  }
+}
+
 function initGame(config) {
   const scoreboardPosition = new Position(20, 20);
   scoreboard = new Scoreboard(scoreboardPosition, player, config);
@@ -148,12 +163,7 @@ function initEvents() {
 
     if (e.key === 'Escape') {
       Game.state.pause = !Game.state.pause;
-
-      if (Game.state.pause) {
-        cancelAnimationFrame(animationId);
-      } else {
-        animationId = requestAnimationFrame(renderGame);
-      }
+      escapeEvent();
     }
   });
 }

@@ -127,7 +127,7 @@ class Ball {
     this.bounceCount = 0;
   }
 
-  hit = (side, velocity, upAngle, sideAngle) => {
+  hit = (side, velocity, sideAngle, upAngle) => {
 
     let offsetZ;
     let v;
@@ -165,7 +165,6 @@ class Ball {
   }
 
   serve = (velocity, sideAngle) => {
-
     this.initialVel = Math.abs(velocity);
 
     if (sideAngle) {

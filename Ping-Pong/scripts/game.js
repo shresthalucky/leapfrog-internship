@@ -47,7 +47,6 @@ function renderGame() {
   }
 
   if (Game.state.begin && !Game.state.isOver) {
-    player.setInitialX();
     player.draw();
 
     updateStates();
@@ -62,6 +61,7 @@ function renderGame() {
     return;
   }
 
+  lastFrameTime = performance.now();
   animationId = requestAnimationFrame(renderGame);
 }
 
@@ -77,11 +77,10 @@ function serveBall() {
 
     if (player.batActive && Game.batDirection && ball.checkCollision(player)) {
       batHit.play();
-      player.serve(VELOCITY);
+      player.serve();
       opponentMovement();
       Game.state.served = true;
       player.batActive = false;
-      player.resetInitialX();
     }
   } else {
     const pos = opponent.setPosition();
@@ -96,7 +95,6 @@ function serveBall() {
   opponent.resetBounce();
 }
 
-
 // ball inside board conditions
 function hitBall() {
 
@@ -104,17 +102,16 @@ function hitBall() {
     batHit.play();
     Game.state.serveSuccess = true;
     player.batActive = false;
-    ball.hit(player, 80, 30, player.getHitAngle());
+    ball.hit(player, ...player.getParameters());
     scoreboard.state.driver = player;
     opponentMovement();
-    player.resetInitialX();
   }
 
   if (opponent.batActive && ball.checkCollision(opponent)) {
     batHit.play();
     Game.state.serveSuccess = true;
     player.batActive = true;
-    ball.hit(opponent, 80, 30, 0);
+    ball.hit(opponent, 85, 0, 30);
     scoreboard.state.driver = opponent;
   }
 }

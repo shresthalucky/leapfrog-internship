@@ -149,6 +149,7 @@ function escapeEvent() {
 
 function initGame(config) {
   const scoreboardPosition = new Position(20, 20);
+  // scoreboard = new Scoreboard(scoreboardPosition, opponent, config, displayWin);
   scoreboard = new Scoreboard(scoreboardPosition, player, config, displayWin);
 
   initEvents();

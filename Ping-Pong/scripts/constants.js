@@ -51,7 +51,7 @@ const BALL_MIN_RADIUS = 6;
 const BALL_ANGLE = ENV.toRadian(30);
 const BALL_INITAL_VEL = 100;
 const SLOPE = (BALL_MIN_RADIUS - BALL_MAX_RADIUS) / (BOARD_LENGTH - BOARD_Z);
-const TIME = 0.22;
+const TIME = 0.25;
 
 // bat constants and defaults
 const BAT_LENGTH = 207;

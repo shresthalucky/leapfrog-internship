@@ -12,6 +12,22 @@ let Game = {
   'batDirection': false
 }
 
+function resetGame() {
+  Game = {
+    'state': {
+      'begin': true,
+      'inPlay': false,
+      'isOver': false,
+      'ballStart': true,
+      'served': false,
+      'serveSuccess': false,
+      'pause': false,
+      'ballIn': true
+    },
+    'batDirection': false
+  };
+}
+
 function renderGame() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
 
@@ -42,8 +58,6 @@ function renderGame() {
       hitBall();
     }
   } else {
-    // TODO: start game menu
-    // console.log('end');
     cancelAnimationFrame(animationId);
     return;
   }
@@ -138,16 +152,32 @@ function updateScore() {
 function gameOver() {
   Game.state.inPlay = false;
   scoreboard.resetState();
-  console.log('over', scoreboard.scores);
   scoreboard.allOver(endGame);
 }
 
-function endGame(winner) {
+function endGame(player) {
+
+  cancelAnimationFrame(animationId);
+
   Game.state.isOver = true;
   Game.state.inPlay = false;
   Game.state.begin = false;
-  
-  console.log('end');
+
+  const playAgainBtn = document.createElement('button');
+  const winText = '<div class="row"><h1>'+ player + ' WINS!' +'</h1></div>';
+  const content = infoElement.querySelector('.content');
+
+  playAgainBtn.classList.add('btn');
+  playAgainBtn.innerText = 'NEW GAME';
+  content.innerHTML = innerHTML = winText;
+  content.appendChild(playAgainBtn)
+  layoutElement.style.display = 'block';
+  infoElement.style.display = 'table';
+
+  playAgainBtn.addEventListener('click', ()=> {
+    resetGame();
+    run();
+  });
 }
 
 function opponentMovement() {

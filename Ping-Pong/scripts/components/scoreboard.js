@@ -154,14 +154,12 @@ class Scoreboard {
     const requiredWins = Math.ceil(this.bestOfGames / 2);
 
     if (playerWins === requiredWins) {
-      console.log('player wins');
-      endGame();
+      endGame(this.playerName);
       return;
     }
 
     if (opponentWins === requiredWins) {
-      console.log('computer wins');
-      endGame();
+      endGame('COMPUTER');
       return;
     }
   }

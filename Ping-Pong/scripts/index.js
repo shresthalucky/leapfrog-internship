@@ -106,9 +106,9 @@ function displayIntro() {
   });
 }
 
-
 function initComponents() {
   projection.camera.position.x = HALF_CANVAS_WIDTH;
+  projection.camera.position.y = CANVAS_HEIGHT <= -MAX_CAMERA_Y ? -CANVAS_HEIGHT : MAX_CAMERA_Y;
   projection.viewplane.x = HALF_CANVAS_WIDTH;
 
   const ballStartPosition = new Position(HALF_CANVAS_WIDTH, BOARD_Y - BALL_START_HEIGHT, BOARD_Z);

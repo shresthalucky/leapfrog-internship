@@ -33,7 +33,7 @@ class Floor {
 class Wall {
   constructor() {
     const y = TABLE_HEIGHT;
-    const top = -1000;
+    const top = projection.camera.position.y;
 
     this.surface3d = {
       'leftWall': [

@@ -31,7 +31,7 @@ class Position {
 
 const projection = {
   'camera': {
-    'position': new Position(0, -1000, -300)
+    'position': new Position(0, MAX_CAMERA_Y, -300)
   },
 
   'viewplane': new Position(0, 0, 500),

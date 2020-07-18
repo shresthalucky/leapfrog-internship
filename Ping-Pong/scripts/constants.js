@@ -14,6 +14,8 @@ const ENV = {
 const CANVAS_WIDTH = window.innerWidth;
 const CANVAS_HEIGHT = window.innerHeight;
 const HALF_CANVAS_WIDTH = CANVAS_WIDTH / 2;
+const HALF_CANVAS_HEIGHT = CANVAS_HEIGHT / 2;
+const MAX_CAMERA_Y = -1200;
 
 // colors
 const BOARD_BACKGROUND = '#284088';

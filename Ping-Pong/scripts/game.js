@@ -83,9 +83,9 @@ function serveBall() {
       player.batActive = false;
     }
   } else {
-    batHit.play();
     const pos = opponent.setPosition();
     ball.setPosition(pos);
+    batHit.play();
     opponent.serve(VELOCITY);
     Game.state.served = true;
     player.batActive = true;

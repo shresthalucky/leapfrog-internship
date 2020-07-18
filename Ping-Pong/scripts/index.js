@@ -8,7 +8,7 @@ const App = {
   'state': STATE_INIT,
   'assets': {
     'src': 'assets/',
-    'total': 6,
+    'total': 7,
     'loadCount': 0
   }
 }
@@ -18,8 +18,6 @@ function run() {
     case STATE_INIT:
       initAssets();
       break;
-    case STATE_LOADING:
-      break;
     case STATE_LOADED:
       displayIntro();
       break;
@@ -27,12 +25,14 @@ function run() {
 }
 
 function initAssets() {
-
-  App.state = STATE_LOADING;
-
   sprite = new Image();
   sprite.src = App.assets.src + 'sprite.png';
   sprite.onload = loadComplete;
+
+  referee = document.createElement('audio');
+  document.body.appendChild(referee);
+  referee.addEventListener('canplaythrough', loadComplete);
+  referee.setAttribute('src', App.assets.src + 'sounds/referee.mp3');
 
   bounceIn = document.createElement('audio');
   document.body.appendChild(bounceIn);
@@ -58,8 +58,6 @@ function initAssets() {
   document.body.appendChild(clapLow);
   clapLow.addEventListener('canplaythrough', loadComplete);
   clapLow.setAttribute('src', App.assets.src + 'sounds/clap2.mp3');
-
-  run();
 }
 
 function loadComplete() {
@@ -149,7 +147,7 @@ function initGame(config) {
   scoreboard = new Scoreboard(scoreboardPosition, player, config);
 
   initEvents();
-
+  referee.play();
   animationId = requestAnimationFrame(renderGame);
 }
 

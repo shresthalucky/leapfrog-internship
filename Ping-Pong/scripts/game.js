@@ -81,6 +81,7 @@ function serveBall() {
       opponentMovement();
       Game.state.served = true;
       player.batActive = false;
+      player.resetInitialX();
     }
   } else {
     const pos = opponent.setPosition();
@@ -105,8 +106,8 @@ function hitBall() {
     player.batActive = false;
     ball.hit(player, 80, 30, player.getHitAngle());
     scoreboard.state.driver = player;
-    console.log('ping');
     opponentMovement();
+    player.resetInitialX();
   }
 
   if (opponent.batActive && ball.checkCollision(opponent)) {
@@ -115,7 +116,6 @@ function hitBall() {
     player.batActive = true;
     ball.hit(opponent, 80, 30, 0);
     scoreboard.state.driver = opponent;
-    console.log('pong');
   }
 }
 
@@ -132,7 +132,6 @@ function updateStates() {
   }
 
   if (Game.state.inPlay && ball.ballOut()) {
-      console.log('out');
       updateScore();
       Game.state.served = false;
       Game.state.inPlay = false;
@@ -150,34 +149,10 @@ function updateScore() {
 }
 
 function gameOver() {
-  Game.state.inPlay = false;
-  scoreboard.resetState();
-  scoreboard.allOver(endGame);
-}
-
-function endGame(player) {
-
-  cancelAnimationFrame(animationId);
-
   Game.state.isOver = true;
   Game.state.inPlay = false;
-  Game.state.begin = false;
-
-  const playAgainBtn = document.createElement('button');
-  const winText = '<div class="row"><h1>'+ player + ' WINS!' +'</h1></div>';
-  const content = infoElement.querySelector('.content');
-
-  playAgainBtn.classList.add('btn');
-  playAgainBtn.innerText = 'NEW GAME';
-  content.innerHTML = innerHTML = winText;
-  content.appendChild(playAgainBtn)
-  layoutElement.style.display = 'block';
-  infoElement.style.display = 'table';
-
-  playAgainBtn.addEventListener('click', ()=> {
-    resetGame();
-    run();
-  });
+  scoreboard.resetState();
+  scoreboard.allOver();
 }
 
 function opponentMovement() {

@@ -1,7 +1,7 @@
 class User extends Player {
   constructor(position) {
     super(position);
-    this.intialX;
+    this.intialX = 0;
   }
 
   setInitialX = () => {
@@ -10,12 +10,19 @@ class User extends Player {
     }
   }
 
+  resetInitialX = () => {
+    this.intialX = 0;
+  }
+
   getHitAngle = () => {
-    let finalPosition = this.position;
-    let dz = BOARD_Z - BAT_INITIAL_Z;
-    let dx = finalPosition.x - this.intialX;
-    let angle = Math.atan(dz / dx);
-    return angle;
+    if (this.intialX) {
+      const finalPosition = this.position;
+      const dz = BOARD_Z - BAT_INITIAL_Z;
+      const dx = finalPosition.x - this.intialX;
+      const angle = Math.atan(dz / dx);
+      return angle;
+    }
+    return ENV.toRadian(90);
   }
 
   serve = (velocity) => {
@@ -23,10 +30,9 @@ class User extends Player {
   }
 
   fitToCourt = () => {
-    let left = BOARD_LEFT_X - BOUNDARY_PADDING + BALL_MAX_RADIUS;
-    let right = BOARD_RIGHT_X + BOUNDARY_PADDING - BALL_MAX_RADIUS;
-    let top = BOARD_Z + BOARD_HALF_LENGTH;
-
+    const left = BOARD_LEFT_X - BOUNDARY_PADDING + BALL_MAX_RADIUS;
+    const right = BOARD_RIGHT_X + BOUNDARY_PADDING - BALL_MAX_RADIUS;
+    const top = BOARD_Z + BOARD_HALF_LENGTH;
     this.position.x = clamp(left, right, this.position.x);
     this.position.z = clamp(0, top, this.position.z);
   }
@@ -34,6 +40,8 @@ class User extends Player {
   handleBatMovement = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    this.prevPositionX = this.position.x
+    this.prevPositionY = this.position.y
     this.position = projection.get3dPosition(event.clientX, event.clientY);
     this.fitToCourt();
   }

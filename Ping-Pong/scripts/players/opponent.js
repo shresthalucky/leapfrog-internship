@@ -25,13 +25,15 @@ class Opponent extends Player {
   }
 
   animate = (destination) => {
+    // this.position.x = destination.x;
+    // this.position.z = destination.z;
 
     let x = this.position.x;
     let z = this.position.z;
     let dx = (destination.x - this.position.x);
     let dz = (destination.z - this.position.z);
     let time = {
-      'total': 1000,
+      'total': 1500,
       'elapsed': 0
     };
 

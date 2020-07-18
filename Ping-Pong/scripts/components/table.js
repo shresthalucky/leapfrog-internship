@@ -280,13 +280,16 @@ class Net {
       'playerZ': ball.current3dPos.z - BALL_MAX_RADIUS,
       'opponentZ': ball.current3dPos.z + BALL_MAX_RADIUS,
       'topY': ball.current3dPos.y + BALL_MAX_RADIUS,
-      'bottomY': ball.current3dPos.y - BALL_MAX_RADIUS
+      'bottomY': ball.current3dPos.y - BALL_MAX_RADIUS,
+      'centerX': ball.current3dPos.x + BALL_MAX_RADIUS
     }
 
     if (
       ((playBall.opponentZ >= this.z - BALL_MAX_RADIUS && playBall.opponentZ <= this.z + BALL_MAX_RADIUS)
         || (playBall.playerZ <= this.z - BALL_MAX_RADIUS && playBall.playerZ >= this.z + BALL_MAX_RADIUS))
       && playBall.bottomY <= this.height - BOARD_Y
+      && playBall.centerX <= this.surface3d.bottomRight.x
+      && playBall.centerX >= this.surface3d.topLeft.x
     ) {
       return true;
     }

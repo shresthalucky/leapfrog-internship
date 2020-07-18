@@ -66,6 +66,7 @@ function loadComplete() {
   if (App.assets.loadCount >= App.assets.total) {
     App.state = STATE_LOADED;
 
+    referee.removeEventListener('canplaythrough', loadComplete);
     bounceIn.removeEventListener('canplaythrough', loadComplete);
     bounceOut.removeEventListener('canplaythrough', loadComplete);
     batHit.removeEventListener('canplaythrough', loadComplete);
@@ -74,6 +75,20 @@ function loadComplete() {
 
     run();
   }
+}
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+
+  introElement.style.display = 'none';
+  layoutElement.style.display = 'none';
+
+  const config = {
+    'playerName': (e.target.elements.player.value).toUpperCase(),
+    'bestOfGames': parseInt(e.target.elements.bestof.value)
+  }
+
+  initGame(config);
 }
 
 function displayIntro() {
@@ -88,23 +103,13 @@ function displayIntro() {
   infoElement.style.display = 'none';
   introElement.style.display = 'table';
 
-  form.addEventListener('submit', (e) => {
-
-    e.preventDefault();
-
-    introElement.style.display = 'none';
-    layoutElement.style.display = 'none';
-
-    const config = {
-      'playerName': (e.target.elements.player.value).toUpperCase(),
-      'bestOfGames': parseInt(e.target.elements.bestof.value)
-    }
-
-    initGame(config);
-  });
+  form.removeEventListener('submit', handleFormSubmit);
+  form.addEventListener('submit', handleFormSubmit);
 }
 
 function initComponents() {
+  ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
+
   projection.camera.position.x = HALF_CANVAS_WIDTH;
   projection.camera.position.y = CANVAS_HEIGHT <= -MAX_CAMERA_Y ? -CANVAS_HEIGHT : MAX_CAMERA_Y;
   projection.viewplane.x = HALF_CANVAS_WIDTH;
@@ -144,7 +149,7 @@ function escapeEvent() {
 
 function initGame(config) {
   const scoreboardPosition = new Position(20, 20);
-  scoreboard = new Scoreboard(scoreboardPosition, player, config);
+  scoreboard = new Scoreboard(scoreboardPosition, player, config, displayWin);
 
   initEvents();
   referee.play();
@@ -163,6 +168,25 @@ function initEvents() {
       Game.state.pause = !Game.state.pause;
       escapeEvent();
     }
+  });
+}
+
+function displayWin(player) {
+  cancelAnimationFrame(animationId);
+  const playAgainBtn = document.createElement('button');
+  const winText = '<div class="row"><h1>'+ player + ' WINS!' +'</h1></div>';
+  const content = infoElement.querySelector('.content');
+
+  playAgainBtn.classList.add('btn');
+  playAgainBtn.innerText = 'NEW GAME';
+  content.innerHTML = innerHTML = winText;
+  content.appendChild(playAgainBtn)
+  layoutElement.style.display = 'block';
+  infoElement.style.display = 'table';
+
+  playAgainBtn.addEventListener('click', ()=> {
+    resetGame();
+    displayIntro();
   });
 }
 

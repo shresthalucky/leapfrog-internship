@@ -1,5 +1,5 @@
 class Scoreboard {
-  constructor(position, firstServer, {playerName, bestOfGames}) {
+  constructor(position, firstServer, {playerName, bestOfGames}, endFn) {
     this.position = position;
     this.firstServer = firstServer;
     this.state = {
@@ -19,6 +19,7 @@ class Scoreboard {
     }
     this.bestOfGames = bestOfGames;
     this.playerName = playerName;
+    this.endFn = endFn;
   }
 
   drawCard = () => {
@@ -70,9 +71,7 @@ class Scoreboard {
 
   updateScore = () => {
     const bounce = `${player.bounce}${opponent.bounce}`;
-
-    // console.log(Game.state.serveSuccess, this.state.driver, bounce);
-
+    
     if (Game.state.serveSuccess) {
       if (this.state.driver === player) {
         if (bounce === '01') {
@@ -114,9 +113,6 @@ class Scoreboard {
     if (this.scores.current.player === 10 && this.scores.current.opponent === 10) {
       this.state.serveChange = 1;
     }
-
-    console.log(this.scores.current);
-
   }
 
 
@@ -148,18 +144,19 @@ class Scoreboard {
     }
   }
 
-  allOver = (endGame) => {
+  allOver = () => {
+
     const playerWins = this.scores.games.player;
     const opponentWins = this.scores.games.opponent;
     const requiredWins = Math.ceil(this.bestOfGames / 2);
 
     if (playerWins === requiredWins) {
-      endGame(this.playerName);
+      this.endFn(this.playerName);
       return;
     }
 
     if (opponentWins === requiredWins) {
-      endGame('COMPUTER');
+      this.endFn('COMPUTER');
       return;
     }
   }

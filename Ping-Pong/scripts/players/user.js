@@ -7,7 +7,7 @@ class User extends Player {
     const dt = (performance.now() - lastFrameTime) / 1000;
     const dx = this.position.x - this.prevPositionX;
     const dz = this.position.z - this.prevPositionZ;
-    const sideAngle = Math.atan(dz / dx);
+    const sideAngle = dx !== 0 ? Math.atan(dz / dx) : 0;
     const v = clamp(0, 1200, dz/dt);
     
     const velocity = (v + 2400) / 40;

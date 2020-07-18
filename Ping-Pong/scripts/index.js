@@ -132,50 +132,47 @@ function initComponents() {
   net.draw();
 }
 
-function escapeEvent() {
-  if (Game.state.pause) {
-    cancelAnimationFrame(animationId);
+const escapeHandler = (e) => {
+  if (e.key === 'Escape') {
 
-    layoutElement.style.display = 'block';
-    infoElement.style.display = 'table';
-    infoElement.querySelector('.content').innerHTML = "Press ESC to pause / resume"
+    if (Game.state.pause) {
+      cancelAnimationFrame(animationId);
 
-  } else {
-    layoutElement.style.display = 'none';
-    infoElement.style.display = 'none';
-    animationId = requestAnimationFrame(renderGame);
+      layoutElement.style.display = 'block';
+      infoElement.style.display = 'table';
+      infoElement.querySelector('.content').innerHTML = "Press ESC to pause / resume"
+
+    } else {
+      layoutElement.style.display = 'none';
+      infoElement.style.display = 'none';
+      animationId = requestAnimationFrame(renderGame);
+    }
   }
+}
+
+const mouseHandler = (e) => player.handleBatMovement(e);
+
+function initEvents() {
+  document.removeEventListener('mousemove', mouseHandler);
+  document.addEventListener('mousemove', mouseHandler);
+
+  document.removeEventListener('keyup', escapeHandler);
+  document.addEventListener('keyup', escapeHandler);
 }
 
 function initGame(config) {
   const scoreboardPosition = new Position(20, 20);
-  // scoreboard = new Scoreboard(scoreboardPosition, opponent, config, displayWin);
   scoreboard = new Scoreboard(scoreboardPosition, player, config, displayWin);
-
+  
   initEvents();
   referee.play();
   animationId = requestAnimationFrame(renderGame);
 }
 
-function initEvents() {
-
-  document.addEventListener('mousemove', (e) => {
-    player.handleBatMovement(e);
-  });
-
-  document.addEventListener('keyup', (e) => {
-
-    if (e.key === 'Escape') {
-      Game.state.pause = !Game.state.pause;
-      escapeEvent();
-    }
-  });
-}
-
 function displayWin(player) {
   cancelAnimationFrame(animationId);
   const playAgainBtn = document.createElement('button');
-  const winText = '<div class="row"><h1>'+ player + ' WINS!' +'</h1></div>';
+  const winText = '<div class="row"><h1>' + player + ' WINS!' + '</h1></div>';
   const content = infoElement.querySelector('.content');
 
   playAgainBtn.classList.add('btn');
@@ -185,7 +182,7 @@ function displayWin(player) {
   layoutElement.style.display = 'block';
   infoElement.style.display = 'table';
 
-  playAgainBtn.addEventListener('click', ()=> {
+  playAgainBtn.addEventListener('click', () => {
     resetGame();
     displayIntro();
   });

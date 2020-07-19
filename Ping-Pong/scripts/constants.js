@@ -42,6 +42,7 @@ const BOARD_OFFSET = 160;
 const BOARD_END = BOARD_LENGTH + BOARD_Z;
 const NET_HEIGHT = 90;
 const NET_Z = BOARD_Z + BOARD_HALF_LENGTH;
+const NET_OFFSET = 50;
 
 // ball constants and defaults
 const BALL_START_HEIGHT = 100; // vertical height from the board
@@ -51,6 +52,7 @@ const BALL_ANGLE = ENV.toRadian(30);
 const BALL_INITAL_VEL = 100;
 const SLOPE = (BALL_MIN_RADIUS - BALL_MAX_RADIUS) / (BOARD_LENGTH - BOARD_Z);
 const TIME = 0.25;
+const BOUNCE_BACK_VELOCITY = 40;
 
 // bat constants and defaults
 const BAT_LENGTH = 207;
@@ -68,6 +70,7 @@ const SERVE_ANGLE = ENV.toRadian(-50);
 const VELOCITY = 85;
 const UP_ANGLE = 30;
 const SIDE_ANGLE = 0;
+const MAX_MOVE_VELOCITY = 1200;
 
 //background constants
 const LEFT_WALL = HALF_CANVAS_WIDTH - BOARD_WIDTH * 2;

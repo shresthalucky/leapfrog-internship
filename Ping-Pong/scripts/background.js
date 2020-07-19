@@ -17,6 +17,7 @@ class Floor {
     }
   }
 
+  // Draw floor on canvas
   draw = () => {
     ctx.beginPath();
     ctx.moveTo(this.surface2d.topLeft.x, this.surface2d.topLeft.y);
@@ -63,6 +64,7 @@ class Wall {
     }
   }
 
+  // Draw leftside wall on canvas
   drawLeftWall = () => {
     let startPosition = this.surface2d.leftWall[0];
     ctx.beginPath();
@@ -76,6 +78,7 @@ class Wall {
     ctx.closePath();
   }
 
+  // Draw backside wall on canvas
   drawBackWall = () => {
     let startPosition = this.surface2d.backWall[0];
     ctx.beginPath();
@@ -89,6 +92,7 @@ class Wall {
     ctx.closePath();
   }
 
+  // Draw rightside wall on canvas
   drawRightWall = () => {
     let startPosition = this.surface2d.rightWall[0];
     ctx.beginPath();
@@ -102,6 +106,7 @@ class Wall {
     ctx.closePath();
   }
 
+  // Draw walls on canvas
   draw = () => {
     this.drawLeftWall();
     this.drawBackWall();

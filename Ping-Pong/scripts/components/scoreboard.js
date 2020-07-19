@@ -1,11 +1,12 @@
 class Scoreboard {
-  constructor(position, firstServer, {playerName, bestOfGames}, endFn) {
+  constructor(position, firstServer, { playerName, bestOfGames }, endFn) {
     this.position = position;
     this.firstServer = firstServer;
     this.state = {
       'serveChange': 2,
       'server': this.firstServer,
-      'driver': this.firstServer
+      'driver': this.firstServer,
+      'deuce': false
     }
     this.scores = {
       'current': {
@@ -22,9 +23,10 @@ class Scoreboard {
     this.endFn = endFn;
   }
 
+  // Draw scoreboard sprite to canvas
   drawCard = () => {
 
-    if (this.state.server === player) {
+    if (this.state.server instanceof User) {
       ctx.drawImage(sprite,
         Scoreboard.sprite.player.sx,
         Scoreboard.sprite.player.sy,
@@ -35,7 +37,7 @@ class Scoreboard {
         Scoreboard.sprite.player.sw,
         Scoreboard.sprite.player.sh
       );
-    } else if (this.state.server === opponent) {
+    } else if (this.state.server instanceof Opponent) {
       ctx.drawImage(sprite,
         Scoreboard.sprite.opponent.sx,
         Scoreboard.sprite.opponent.sy,
@@ -49,6 +51,7 @@ class Scoreboard {
     }
   }
 
+  // Draw scoreboard text to canvas
   drawScore = () => {
     ctx.beginPath();
     ctx.font = 'bold 20px Arial';
@@ -64,12 +67,15 @@ class Scoreboard {
     ctx.closePath();
   }
 
+  // Draw scoreboard to canvas
   draw = () => {
     this.drawCard();
     this.drawScore();
   }
 
+  // Increase game scores of players on scoreboard
   updateScore = () => {
+
     const bounce = `${player.bounce}${opponent.bounce}`;
 
     if (Game.state.serveSuccess) {
@@ -110,12 +116,17 @@ class Scoreboard {
       }
     }
 
+    // Condition for deuce game
     if (this.scores.current.player === 10 && this.scores.current.opponent === 10) {
+      this.state.deuce = true;
       this.state.serveChange = 1;
     }
   }
 
-
+  /**
+   * Check for winning conditions
+   * @param {function} gameOver - game over callback function
+   */
   checkWin = (gameOver) => {
 
     if (!this.state.deuce) {
@@ -135,7 +146,7 @@ class Scoreboard {
     } else {
 
       const dPoints = this.scores.current.player - this.scores.current.opponent;
-      
+
       if (Math.abs(dPoints) === 2) {
         const winner = dPoints > 0 ? 'player' : 'opponent';
         this.scores.games[winner]++;
@@ -144,6 +155,7 @@ class Scoreboard {
     }
   }
 
+  // Check for Best of Games completion
   allOver = () => {
 
     const playerWins = this.scores.games.player;
@@ -161,6 +173,7 @@ class Scoreboard {
     }
   }
 
+  // Set server for game
   server = () => {
     const points = this.scores.current.player + this.scores.current.opponent;
 
@@ -171,6 +184,7 @@ class Scoreboard {
     }
   }
 
+  // Set scoreboard to initial state
   resetState = () => {
     this.state = {
       'serveChange': 2,

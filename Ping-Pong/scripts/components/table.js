@@ -83,7 +83,9 @@ class Board {
     }
   }
 
+  // Draw outer surface of board (white) on canvas
   drawOuterSurface = () => {
+
     let startPosition = this.surface2d.outer[0];
     ctx.beginPath();
     ctx.moveTo(startPosition.x, startPosition.y);
@@ -96,8 +98,10 @@ class Board {
     ctx.strokeStyle = BLACK_B;
     ctx.stroke();
     ctx.closePath();
+  
   }
 
+  // Draw inner surface of board (blue) on canvas
   drawInnerSurface = () => {
     let startPosition = this.surface2d.inner[0];
     ctx.beginPath();
@@ -112,6 +116,7 @@ class Board {
     ctx.closePath();
   }
 
+  // Draw thickness of board on canvas
   drawThickness = () => {
     let startPosition = this.surface2d.thickness[0];
     ctx.beginPath();
@@ -127,6 +132,7 @@ class Board {
     ctx.closePath();
   }
 
+  // Draw white middle line of board on canvas
   drawMidLine = () => {
     let startPosition = this.surface2d.midLine[0];
     ctx.beginPath();
@@ -141,6 +147,7 @@ class Board {
     ctx.closePath();
   }
 
+  // Draw table stands on canvas
   drawTableStand = () => {
     let startPosition = this.surface2d.tableLeftStand[0];
     ctx.beginPath();
@@ -184,6 +191,7 @@ class Board {
 
   }
 
+  // Draw table and board on canvas
   draw = () => {
     this.drawTableStand();
     this.drawOuterSurface();
@@ -221,13 +229,17 @@ class Net {
       'netImageLeft': projection.get2dProjection(this.surface3d.netImageLeft),
       'netImageRight': projection.get2dProjection(this.surface3d.netImageRight)
     }
+
     this.spriteWidth;
   }
 
+  // Draw net with sprite image on canvas
   draw = () => {
     const height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     const width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
     this.spriteWidth = this.surface2d.netImageLeft.get2dDistance(this.surface2d.netImageRight);
+    
+    // Add one more layer to left and right of net width
     const steps = Math.floor(width / this.spriteWidth) + 2;
     
     for (let i = 0; i <= steps; i++) {
@@ -265,6 +277,7 @@ class Net {
     }
   }
 
+  // Check for collision of ball on net
   checkCollision = () => {
 
     let playBall = {

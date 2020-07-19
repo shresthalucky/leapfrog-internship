@@ -12,6 +12,7 @@ let Game = {
   'batDirection': false
 }
 
+// Set Game object to initial state
 function resetGame() {
   Game = {
     'state': {
@@ -28,6 +29,7 @@ function resetGame() {
   };
 }
 
+// Draw on canvas sequentially
 function drawSequence () {
   if (Math.abs(ball.current3dPos.y) < -BOARD_Y) {
     ball.draw();
@@ -40,6 +42,7 @@ function drawSequence () {
   }
 }
 
+// Perform game loop operations
 function renderGame() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
 
@@ -56,8 +59,8 @@ function renderGame() {
   }
 
   if (Game.state.begin && !Game.state.isOver) {
+    
     player.draw();
-
     updateStates();
 
     if (!Game.state.served) {
@@ -74,16 +77,18 @@ function renderGame() {
   animationId = requestAnimationFrame(renderGame);
 }
 
+// Reset player's bounce count
 function resetBounceCount() {
   player.resetBounce();
   opponent.resetBounce();
 }
 
-// choose ball server and serve the ball
+// Choose ball server and serve the ball
 function serveBall() {
 
   if (scoreboard.state.server === player) {
 
+    // Limit ball within board
     const x = clamp(BOARD_LEFT_X + BALL_MAX_RADIUS, BOARD_RIGHT_X - BALL_MAX_RADIUS, player.position.x);
     ball.setPosition(new Position(x, player.position.y, BOARD_Z));
 
@@ -108,7 +113,7 @@ function serveBall() {
   }
 }
 
-// ball inside board conditions
+// Perform driving of ball to opponent's court
 function hitBall() {
 
   if (player.batActive && ball.checkCollision(player)) {
@@ -139,6 +144,7 @@ function hitBall() {
   }
 }
 
+// Update game states with conditions
 function updateStates() {
 
   if (ball.bounceCount === 1) {
@@ -162,12 +168,14 @@ function updateStates() {
   }
 }
 
+// Update scoreboard for current game
 function updateScore() {
   scoreboard.updateScore();
   scoreboard.checkWin(gameOver);
   scoreboard.server();
 }
 
+// Set game states for game over
 function gameOver() {
   Game.state.isOver = true;
   Game.state.inPlay = false;
@@ -175,6 +183,7 @@ function gameOver() {
   scoreboard.allOver();
 }
 
+// Control opponent's bat movement with ball's movement
 function opponentMovement() {
   const pos = ball.current3dPos;
   const slope = ball.velocity.z * TIME / (10 * ball.velocity.x);

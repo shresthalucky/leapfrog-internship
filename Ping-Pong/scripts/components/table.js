@@ -260,17 +260,40 @@ class Net {
     let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
     let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
     let spriteWidth = this.surface2d.netImageLeft.get2dDistance(this.surface2d.netImageRight);
-
-    for (let i = 0; i < width; i += spriteWidth) {
-      ctx.drawImage(sprite,
-        Net.sprite.strip.sx,
-        Net.sprite.strip.sy,
-        Net.sprite.strip.sw,
-        Net.sprite.strip.sh,
-        this.surface2d.topLeft.x + i,
-        this.surface2d.topLeft.y,
-        spriteWidth,
-        height);
+    let steps = Math.floor(width / spriteWidth) + 2;
+    
+    for (let i = 0; i <= steps; i++) {
+      if (i === 0) {
+        ctx.drawImage(sprite,
+          Net.sprite.barLeft.sx,
+          Net.sprite.barLeft.sy,
+          Net.sprite.barLeft.sw,
+          Net.sprite.barLeft.sh,
+          this.surface2d.topLeft.x - spriteWidth,
+          this.surface2d.topLeft.y,
+          spriteWidth,
+          height);
+      } else if (i === steps) {
+        ctx.drawImage(sprite,
+          Net.sprite.barRight.sx,
+          Net.sprite.barRight.sy,
+          Net.sprite.barRight.sw,
+          Net.sprite.barRight.sh,
+          this.surface2d.topLeft.x + spriteWidth * (i-1),
+          this.surface2d.topLeft.y,
+          spriteWidth,
+          height);
+      } else {
+        ctx.drawImage(sprite,
+          Net.sprite.strip.sx,
+          Net.sprite.strip.sy,
+          Net.sprite.strip.sw,
+          Net.sprite.strip.sh,
+          this.surface2d.topLeft.x + spriteWidth * (i-1),
+          this.surface2d.topLeft.y,
+          spriteWidth,
+          height);
+      }
     }
   }
 
@@ -300,6 +323,18 @@ class Net {
 Net.sprite = {
   'strip': {
     'sx': 127,
+    'sy': 0,
+    'sw': 37,
+    'sh': 90
+  },
+  'barLeft': {
+    'sx': 165,
+    'sy': 0,
+    'sw': 37,
+    'sh': 90
+  },
+  'barRight': {
+    'sx': 224,
     'sy': 0,
     'sw': 37,
     'sh': 90

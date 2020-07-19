@@ -133,6 +133,7 @@ function initComponents() {
 }
 
 const escapeHandler = (e) => {
+  Game.state.pause = !Game.state.pause;
   if (e.key === 'Escape') {
 
     if (Game.state.pause) {

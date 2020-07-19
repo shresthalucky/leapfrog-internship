@@ -9,7 +9,6 @@ class Player {
       'long': this.size.long / 2,
       'width': this.size.width / 2
     }
-
     this.surface3d;
     this.surface2d;
     this.bounce = 0;
@@ -17,6 +16,7 @@ class Player {
     this.selfHalf;
   }
 
+  // Set 3D position and 2D projection of Player's bat
   loadSurface = () => {
     this.surface3d = {
       'topLeft': new Position(this.position.x - this.halfSize.width, this.position.y - this.halfSize.long, this.position.z),
@@ -33,6 +33,7 @@ class Player {
     }
   }
 
+  // Draw Player's bat on canvas
   draw = () => {
 
     this.loadSurface();
@@ -61,12 +62,17 @@ class Player {
     this.bounce = 0;
   }
 
+  /**
+   * Get angle of rotation of bat as per Player's position
+   * @return {number} angle of rotation
+   */
   getRotationAngle = () => {
     let norm = (HALF_CANVAS_WIDTH - this.position.x) / (BOARD_HALF_WIDTH + BOUNDARY_PADDING);
     let angle = Math.acos(norm) - ENV.toRadian(90);
     return angle;
   }
 
+  // Increase ball bounce count on Player's court 
   logBounce = () => {
     const ballPos = ball.current3dPos;
     if (ballPos.x >= this.selfHalf.left
@@ -78,6 +84,10 @@ class Player {
     }
   }
 
+  /**
+   * Check for foul condition
+   * @return {boolean} foul or not foul
+   */
   foul = () => {
     if ((this.bounce != 1 && this.position.z <= this.selfHalf.top)) {
       return true;

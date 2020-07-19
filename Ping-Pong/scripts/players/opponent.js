@@ -1,6 +1,13 @@
 class Opponent extends Player {
   constructor(position) {
     super(position);
+    
+    this.selfHalf = {
+      'top': BOARD_END,
+      'bottom': BOARD_Z + BOARD_HALF_LENGTH,
+      'left': BOARD_LEFT_X,
+      'right': BOARD_RIGHT_X
+    }
   }
 
   setPosition = (position) => {

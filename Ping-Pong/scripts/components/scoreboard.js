@@ -71,7 +71,7 @@ class Scoreboard {
 
   updateScore = () => {
     const bounce = `${player.bounce}${opponent.bounce}`;
-    
+
     if (Game.state.serveSuccess) {
       if (this.state.driver === player) {
         if (bounce === '01') {

@@ -78,8 +78,10 @@ class Ball {
       } else {
         bounceOut.play();
       }
+      
+      player.recordBounce();
+      opponent.recordBounce();
 
-      table.recordBounce(ball.current3dPos);
       this.initialVel = -this.velocity.y;
       this.initial3dPos.z = this.current3dPos.z;
       this.current3dPos.y = -this.bounceLevel;
@@ -151,10 +153,7 @@ class Ball {
     this.velocity.z = v * Math.cos(this.angle)
 
     this.time = 0;
-    this.bounceCount = 0;
-
-    player.resetBounce();
-    opponent.resetBounce();
+    this.bounceCount = 0;    
   }
 
   setPosition = (position) => {

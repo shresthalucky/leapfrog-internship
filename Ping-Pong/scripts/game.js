@@ -36,7 +36,7 @@ function renderGame() {
   scoreboard.draw();
   opponent.draw();
 
-  if(Math.abs(ball.current3dPos.y) < -BOARD_Y) {
+  if (Math.abs(ball.current3dPos.y) < -BOARD_Y) {
     ball.draw();
     table.draw();
     net.draw();
@@ -69,7 +69,7 @@ function renderGame() {
 function serveBall() {
 
   if (scoreboard.state.server === player) {
-  
+
     const x = clamp(BOARD_LEFT_X + BALL_MAX_RADIUS, BOARD_RIGHT_X - BALL_MAX_RADIUS, player.position.x);
     ball.setPosition(new Position(x, player.position.y, BOARD_Z));
 
@@ -98,21 +98,32 @@ function serveBall() {
 // ball inside board conditions
 function hitBall() {
 
+  player.resetBounce();
+  opponent.resetBounce();
+
   if (player.batActive && ball.checkCollision(player)) {
     batHit.play();
     Game.state.serveSuccess = true;
     player.batActive = false;
     ball.hit(player, ...player.getParameters());
     scoreboard.state.driver = player;
+    if (player.foul()) {
+      Game.state.inPlay = false;
+    }
     opponentMovement();
+    return;
   }
 
   if (opponent.batActive && ball.checkCollision(opponent)) {
     batHit.play();
     Game.state.serveSuccess = true;
+    ball.hit(opponent, VELOCITY, SIDE_ANGLE, UP_ANGLE);
     player.batActive = true;
-    ball.hit(opponent, 85, 0, 30);
     scoreboard.state.driver = opponent;
+    if (opponent.foul()) {
+      Game.state.inPlay = false;
+    }
+    return;
   }
 }
 
@@ -129,13 +140,13 @@ function updateStates() {
   }
 
   if (Game.state.inPlay && ball.ballOut()) {
-      updateScore();
-      Game.state.served = false;
-      Game.state.inPlay = false;
-      Game.batDirection = false;
-      Game.state.serveSuccess = false;
-      player.batActive = true;
-      opponent.batActive = true;
+    updateScore();
+    Game.state.served = false;
+    Game.state.inPlay = false;
+    Game.batDirection = false;
+    Game.state.serveSuccess = false;
+    player.batActive = true;
+    opponent.batActive = true;
   }
 }
 
@@ -155,7 +166,7 @@ function gameOver() {
 function opponentMovement() {
   const pos = ball.current3dPos;
   const slope = ball.velocity.z * TIME / (10 * ball.velocity.x);
-  const destination = new Position(pos.x + ((BOARD_END - pos.z) / slope), opponent.position.y, BOARD_END);
+  const destination = new Position(pos.x + ((BOARD_END - pos.z) / slope), opponent.position.y, BOARD_END + 10);
 
   const right = BOARD_RIGHT_X;
   const left = BOARD_LEFT_X;
@@ -172,6 +183,6 @@ function opponentMovement() {
     const z = (slope * (right - pos.x)) + pos.z;
     destination.z = z > NET_Z + BOARD_HALF_LENGTH / 2 ? z : destination.z;
   }
-  
+
   opponent.animate(destination);
 }

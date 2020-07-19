@@ -12,10 +12,9 @@ class Player {
 
     this.surface3d;
     this.surface2d;
-    // this.batThickness = BAT_THICKNESS;
-    this.intialX;
-    this.bounce;
+    this.bounce = 0;
     this.batActive = true;
+    this.selfHalf;
   }
 
   loadSurface = () => {
@@ -67,6 +66,27 @@ class Player {
     let angle = Math.acos(norm) - ENV.toRadian(90);
     return angle;
   }
+
+  recordBounce = () => {
+    if (Game.state.inPlay) {
+      const ballPos = ball.current3dPos;
+      if (ballPos.x >= this.selfHalf.left
+        && ballPos.x <= this.selfHalf.right
+        && ballPos.z >= this.selfHalf.bottom
+        && ballPos.z <= this.selfHalf.top
+      ) {
+        this.bounce++;
+      }
+    }
+  }
+
+  foul = () => {
+    if ((this.bounce != 1 && this.position.z <= this.selfHalf.top)) {
+      return true;
+    }
+    return false;
+  }
+
 }
 
 Player.sprite = {

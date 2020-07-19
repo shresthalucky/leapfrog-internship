@@ -81,20 +81,6 @@ class Board {
       'tableRightStand': this.surface3d.tableRightStand.map(projection.get2dProjection),
       'tableRightThickness': this.surface3d.tableRightThickness.map(projection.get2dProjection)
     }
-
-    this.playerHalf = {
-      'top': this.z + BOARD_HALF_LENGTH,
-      'bottom': this.z,
-      'left': leftX,
-      'right': rightX
-    }
-
-    this.opponentHalf = {
-      'top': this.z + BOARD_LENGTH,
-      'bottom': this.z + BOARD_HALF_LENGTH,
-      'left': leftX,
-      'right': rightX
-    }
   }
 
   drawOuterSurface = () => {
@@ -254,13 +240,14 @@ class Net {
       'netImageLeft': projection.get2dProjection(this.surface3d.netImageLeft),
       'netImageRight': projection.get2dProjection(this.surface3d.netImageRight)
     }
+    this.spriteWidth;
   }
 
   draw = () => {
-    let height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
-    let width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
-    let spriteWidth = this.surface2d.netImageLeft.get2dDistance(this.surface2d.netImageRight);
-    let steps = Math.floor(width / spriteWidth) + 2;
+    const height = this.surface2d.topLeft.get2dDistance(this.surface2d.bottomLeft);
+    const width = this.surface2d.topRight.get2dDistance(this.surface2d.topLeft);
+    this.spriteWidth = this.surface2d.netImageLeft.get2dDistance(this.surface2d.netImageRight);
+    const steps = Math.floor(width / this.spriteWidth) + 2;
     
     for (let i = 0; i <= steps; i++) {
       if (i === 0) {
@@ -269,9 +256,9 @@ class Net {
           Net.sprite.barLeft.sy,
           Net.sprite.barLeft.sw,
           Net.sprite.barLeft.sh,
-          this.surface2d.topLeft.x - spriteWidth,
+          this.surface2d.topLeft.x - this.spriteWidth,
           this.surface2d.topLeft.y,
-          spriteWidth,
+          this.spriteWidth,
           height);
       } else if (i === steps) {
         ctx.drawImage(sprite,
@@ -279,9 +266,9 @@ class Net {
           Net.sprite.barRight.sy,
           Net.sprite.barRight.sw,
           Net.sprite.barRight.sh,
-          this.surface2d.topLeft.x + spriteWidth * (i-1),
+          this.surface2d.topLeft.x + this.spriteWidth * (i-1),
           this.surface2d.topLeft.y,
-          spriteWidth,
+          this.spriteWidth,
           height);
       } else {
         ctx.drawImage(sprite,
@@ -289,9 +276,9 @@ class Net {
           Net.sprite.strip.sy,
           Net.sprite.strip.sw,
           Net.sprite.strip.sh,
-          this.surface2d.topLeft.x + spriteWidth * (i-1),
+          this.surface2d.topLeft.x + this.spriteWidth * (i-1),
           this.surface2d.topLeft.y,
-          spriteWidth,
+          this.spriteWidth,
           height);
       }
     }
@@ -311,8 +298,8 @@ class Net {
       ((playBall.opponentZ >= this.z - BALL_MAX_RADIUS && playBall.opponentZ <= this.z + BALL_MAX_RADIUS)
         || (playBall.playerZ <= this.z - BALL_MAX_RADIUS && playBall.playerZ >= this.z + BALL_MAX_RADIUS))
       && playBall.bottomY <= this.height - BOARD_Y
-      && playBall.centerX <= this.surface3d.bottomRight.x
-      && playBall.centerX >= this.surface3d.topLeft.x
+      && playBall.centerX <= this.surface3d.bottomRight.x + this.spriteWidth
+      && playBall.centerX >= this.surface3d.topLeft.x - this.spriteWidth
     ) {
       return true;
     }

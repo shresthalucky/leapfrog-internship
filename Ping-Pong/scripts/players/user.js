@@ -1,6 +1,12 @@
 class User extends Player {
   constructor(position) {
     super(position);
+    this.selfHalf = {
+      'top': BOARD_Z + BOARD_HALF_LENGTH,
+      'bottom': BOARD_Z,
+      'left': BOARD_LEFT_X,
+      'right': BOARD_RIGHT_X
+    }
   }
 
   getParameters = () => {
@@ -12,10 +18,6 @@ class User extends Player {
     
     const velocity = (v + 2400) / 40;
     const upAngle = 120 - velocity;
-
-    console.log('v', velocity);
-    console.log('angleX', sideAngle);
-    console.log('angleY', upAngle);
 
     return [velocity, sideAngle, upAngle];
   }

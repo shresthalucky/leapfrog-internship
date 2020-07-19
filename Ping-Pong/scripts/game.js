@@ -28,14 +28,7 @@ function resetGame() {
   };
 }
 
-function renderGame() {
-  ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
-
-  floor.draw();
-  walls.draw();
-  scoreboard.draw();
-  opponent.draw();
-
+function drawSequence () {
   if (Math.abs(ball.current3dPos.y) < -BOARD_Y) {
     ball.draw();
     table.draw();
@@ -44,6 +37,22 @@ function renderGame() {
     table.draw();
     net.draw();
     ball.draw();
+  }
+}
+
+function renderGame() {
+  ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
+
+  floor.draw();
+  walls.draw();
+  scoreboard.draw();
+
+  if(ball.current3dPos.z > opponent.position.z ) {
+    drawSequence();
+    opponent.draw();
+  }else {
+    opponent.draw();
+    drawSequence();
   }
 
   if (Game.state.begin && !Game.state.isOver) {
@@ -65,6 +74,11 @@ function renderGame() {
   animationId = requestAnimationFrame(renderGame);
 }
 
+function resetBounceCount() {
+  player.resetBounce();
+  opponent.resetBounce();
+}
+
 // choose ball server and serve the ball
 function serveBall() {
 
@@ -76,6 +90,7 @@ function serveBall() {
     if (!Game.batDirection) player.movementDirection();
 
     if (player.batActive && Game.batDirection && ball.checkCollision(player)) {
+      resetBounceCount();
       batHit.play();
       player.serve();
       opponentMovement();
@@ -83,6 +98,7 @@ function serveBall() {
       player.batActive = false;
     }
   } else {
+    resetBounceCount();
     const pos = opponent.setPosition();
     ball.setPosition(pos);
     batHit.play();
@@ -90,18 +106,13 @@ function serveBall() {
     Game.state.served = true;
     player.batActive = true;
   }
-
-  player.resetBounce();
-  opponent.resetBounce();
 }
 
 // ball inside board conditions
 function hitBall() {
 
-  player.resetBounce();
-  opponent.resetBounce();
-
   if (player.batActive && ball.checkCollision(player)) {
+    resetBounceCount();
     batHit.play();
     Game.state.serveSuccess = true;
     player.batActive = false;
@@ -115,6 +126,7 @@ function hitBall() {
   }
 
   if (opponent.batActive && ball.checkCollision(opponent)) {
+    resetBounceCount();
     batHit.play();
     Game.state.serveSuccess = true;
     ball.hit(opponent, VELOCITY, SIDE_ANGLE, UP_ANGLE);

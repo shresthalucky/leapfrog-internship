@@ -191,25 +191,6 @@ class Board {
     this.drawThickness();
     this.drawMidLine();
   }
-
-  recordBounce = (ballPos) => {
-    if (ballPos.x >= this.playerHalf.left
-      && ballPos.x <= this.playerHalf.right
-      && ballPos.z >= this.playerHalf.bottom
-      && ballPos.z <= this.playerHalf.top
-    ) {
-      player.bounce++;
-    }
-
-    if (ballPos.x >= this.opponentHalf.left
-      && ballPos.x <= this.opponentHalf.right
-      && ballPos.z >= this.opponentHalf.bottom
-      && ballPos.z <= this.opponentHalf.top
-    ) {
-      opponent.bounce++;
-    }
-  }
-
 }
 
 class Net {

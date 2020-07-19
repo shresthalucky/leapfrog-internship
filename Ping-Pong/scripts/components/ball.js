@@ -72,15 +72,14 @@ class Ball {
       this.time += TIME;
 
     } else {
-      
+      player.logBounce();
+      opponent.logBounce();
+
       if (Game.state.ballIn) {
         bounceIn.play();
       } else {
         bounceOut.play();
       }
-      
-      player.recordBounce();
-      opponent.recordBounce();
 
       this.initialVel = -this.velocity.y;
       this.initial3dPos.z = this.current3dPos.z;

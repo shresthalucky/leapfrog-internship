@@ -64,7 +64,7 @@ const OPPONENT_Z_POSITION = BOARD_LENGTH + BOARD_Z;
 const BOUNDARY_PADDING = 100;
 
 // gameplay constants
-const SERVE_ANGLE = ENV.toRadian(-45);
+const SERVE_ANGLE = ENV.toRadian(-50);
 const VELOCITY = 85;
 const UP_ANGLE = 30;
 const SIDE_ANGLE = 0;

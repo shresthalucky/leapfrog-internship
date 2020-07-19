@@ -67,16 +67,14 @@ class Player {
     return angle;
   }
 
-  recordBounce = () => {
-    if (Game.state.inPlay) {
-      const ballPos = ball.current3dPos;
-      if (ballPos.x >= this.selfHalf.left
-        && ballPos.x <= this.selfHalf.right
-        && ballPos.z >= this.selfHalf.bottom
-        && ballPos.z <= this.selfHalf.top
-      ) {
-        this.bounce++;
-      }
+  logBounce = () => {
+    const ballPos = ball.current3dPos;
+    if (ballPos.x >= this.selfHalf.left
+      && ballPos.x <= this.selfHalf.right
+      && ballPos.z >= this.selfHalf.bottom
+      && ballPos.z <= this.selfHalf.top
+    ) {
+      this.bounce++;
     }
   }
 

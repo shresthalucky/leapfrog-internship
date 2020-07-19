@@ -70,6 +70,7 @@ const SERVE_ANGLE = ENV.toRadian(-50);
 const VELOCITY = 85;
 const UP_ANGLE = 30;
 const SIDE_ANGLE = 0;
+const MAX_MOVE_VELOCITY = 1200;
 
 //background constants
 const LEFT_WALL = HALF_CANVAS_WIDTH - BOARD_WIDTH * 2;

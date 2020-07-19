@@ -5,6 +5,11 @@ class Position {
     this.z = z;
   }
 
+  /**
+   * Subtract next position from this position
+   * @param {Position} position - position to be subtacted
+   * @returns {Position} subtracted new position
+   */
   subtract = (position) => {
     let x = this.x - position.x;
     let y = this.y - position.y;
@@ -13,6 +18,11 @@ class Position {
     return new Position(x, y, z);
   }
 
+  /**
+   * Get distance from this position to next positon in space
+   * @param {Position} position - position in space
+   * @returns {number} distance from this position to next position
+   */
   get3dDistance = (position) => {
     let x = this.x - position.x;
     let y = this.y - position.y;
@@ -21,6 +31,11 @@ class Position {
     return (Math.sqrt(x * x + y * y + z * z));
   }
 
+  /**
+   * Get distance from this position to next positon in paper
+   * @param {Position} position - position in paper
+   * @returns {number} distance from this position to next position
+   */
   get2dDistance = (position) => {
     let x = this.x - position.x;
     let y = this.y - position.y;
@@ -36,6 +51,11 @@ const projection = {
 
   'viewplane': new Position(0, 0, 500),
 
+  /**
+   * Get projection of 3D position into 2D position on plane
+   * @param {Position} position - 3D position
+   * @returns {Position} 2D position
+   */
   'get2dProjection': (position3d) => {
     let d = position3d.subtract(projection.camera.position);
     let vz = projection.viewplane.z / d.z;
@@ -45,6 +65,12 @@ const projection = {
     return new Position(bx, by);
   },
 
+  /**
+   * Get 3D position from 2D position on plane
+   * @param {number} bx - x coordinate
+   * @param {number} by - y coordinate
+   * @returns {Position} 3D position
+   */
   'get3dPosition': (bx, by) => {
 
     let dy = (-BALL_START_HEIGHT + BOARD_Y) - projection.camera.position.y;
@@ -54,11 +80,17 @@ const projection = {
     let ax = projection.camera.position.x + dx;
     let ay = projection.camera.position.y + dy;
     let az = projection.camera.position.z + dz;
+
     return new Position(ax, ay, az);
   }
-
 }
 
+/**
+   * Limit number inbetween range
+   * @param {number} min - Minimum value
+   * @param {number} max - Maximum value
+   * @returns {number} number between min and max
+   */
 function clamp(min, max, value) {
   return Math.min(Math.max(value, min), max);
 }

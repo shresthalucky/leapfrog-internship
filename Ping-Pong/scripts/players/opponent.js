@@ -1,7 +1,8 @@
 class Opponent extends Player {
   constructor(position) {
     super(position);
-    
+
+    // Define court area for player
     this.selfHalf = {
       'top': BOARD_END,
       'bottom': BOARD_Z + BOARD_HALF_LENGTH,
@@ -10,6 +11,11 @@ class Opponent extends Player {
     }
   }
 
+  /**
+   * Set position of opponent
+   * @param {Position} position - Position object
+   * @returns {Position} new position of opponent
+   */
   setPosition = (position) => {
 
     if (!position) {
@@ -26,13 +32,21 @@ class Opponent extends Player {
     return this.position;
   }
 
+  /**
+   * Serve ball from opponent
+   * @param {number} velocity - serving velocity of ball
+   */
   serve = (velocity) => {
     ball.setPosition(this.position);
     ball.serve(-velocity);
   }
 
+  /**
+   * Ease animate position of opponent from current position to new position
+   * @param {Position} destination - new position of opponent
+   */
   animate = (destination) => {
-    
+
     let x = this.position.x;
     let z = this.position.z;
     let dx = (destination.x - this.position.x);
@@ -41,6 +55,8 @@ class Opponent extends Player {
       'total': 1500,
       'elapsed': 0
     };
+
+    // Ease animation from https://codepen.io/bdc/pen/MvBEwP
 
     const getProgress = ({ elapsed, total }) => Math.min(elapsed / total, 1);
     const easeOut = progress => Math.pow(--progress, 5) + 1;

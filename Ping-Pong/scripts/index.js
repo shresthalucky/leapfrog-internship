@@ -13,17 +13,25 @@ const App = {
   }
 }
 
-function run() {
-  switch (App.state) {
-    case STATE_INIT:
-      initAssets();
-      break;
-    case STATE_LOADED:
-      displayIntro();
-      break;
-  }
-}
+// Game image and sounds
+let sprite;
+let referee;
+let bounceIn;
+let bounceOut;
+let batHit;
+let clapHigh;
+let clapLow;
 
+// Game components
+let floor;
+let walls;
+let table;
+let net;
+let ball;
+let player;
+let opponent;
+
+// Load required assets for game
 function initAssets() {
   sprite = new Image();
   sprite.src = App.assets.src + 'sprite.png';
@@ -60,6 +68,7 @@ function initAssets() {
   clapLow.setAttribute('src', App.assets.src + 'sounds/clap2.mp3');
 }
 
+// Check for load of assets
 function loadComplete() {
   App.assets.loadCount++;
 
@@ -91,6 +100,7 @@ function handleFormSubmit(e) {
   initGame(config);
 }
 
+// Display intro components and configure game
 function displayIntro() {
 
   initComponents();
@@ -107,6 +117,7 @@ function displayIntro() {
   form.addEventListener('submit', handleFormSubmit);
 }
 
+// Initialize and draw game components on canvas
 function initComponents() {
   ctx.clearRect(-500, -500, CANVAS_WIDTH + 500, CANVAS_HEIGHT + 500);
 
@@ -132,6 +143,7 @@ function initComponents() {
   net.draw();
 }
 
+// Pause or resume game
 const escapeHandler = (e) => {
   Game.state.pause = !Game.state.pause;
   if (e.key === 'Escape') {
@@ -153,6 +165,7 @@ const escapeHandler = (e) => {
 
 const mouseHandler = (e) => player.handleBatMovement(e);
 
+// Initialize game events
 function initEvents() {
   document.removeEventListener('mousemove', mouseHandler);
   document.addEventListener('mousemove', mouseHandler);
@@ -161,16 +174,17 @@ function initEvents() {
   document.addEventListener('keyup', escapeHandler);
 }
 
+// Initialize game with configuration
 function initGame(config) {
   const scoreboardPosition = new Position(20, 20);
   scoreboard = new Scoreboard(scoreboardPosition, player, config, displayWin);
-  // scoreboard = new Scoreboard(scoreboardPosition, opponent, config, displayWin);
-  
+
   initEvents();
   referee.play();
   animationId = requestAnimationFrame(renderGame);
 }
 
+// Display winner component for game
 function displayWin(player) {
   cancelAnimationFrame(animationId);
   const playAgainBtn = document.createElement('button');
@@ -188,6 +202,17 @@ function displayWin(player) {
     resetGame();
     displayIntro();
   });
+}
+
+function run() {
+  switch (App.state) {
+    case STATE_INIT:
+      initAssets();
+      break;
+    case STATE_LOADED:
+      displayIntro();
+      break;
+  }
 }
 
 run();

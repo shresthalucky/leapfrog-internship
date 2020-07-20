@@ -186,7 +186,10 @@ function initGame(config) {
 
 // Display winner component for game
 function displayWin(player) {
+
+  referee.play();
   cancelAnimationFrame(animationId);
+  
   const playAgainBtn = document.createElement('button');
   const winText = '<div class="row"><h1>' + player + ' WINS!' + '</h1></div>';
   const content = infoElement.querySelector('.content');

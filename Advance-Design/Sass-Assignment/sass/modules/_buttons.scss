@@ -1,18 +1,16 @@
 .btn {
-  padding: 8px 12px;
+  padding: 24px 68px;
   border: 0;
   border-radius: 3px;
   color: $white;
   cursor: pointer;
+  font-weight: 700;
+  font-size: $default-font-size + 4px;
+  font-family: $font-family--primary;
 
   @include m(primary) {
-    border: 1px solid $green;
-    color: $green;
-    background: $white;
-  }
-
-  @include m(secondary) {
-    background: $green;
+    border: 1px solid $caribbean-green;
+    background: $caribbean-green;
   }
 }
 

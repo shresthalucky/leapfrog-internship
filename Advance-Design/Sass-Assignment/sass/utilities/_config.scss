@@ -34,7 +34,7 @@ $font-family-sans: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', $font-famil
 $font-family-serif: 'Georgia', 'Cambria', 'Times New Roman', 'Times', serif;
 $font-family-monospace: 'Inconsolata', 'Menlo', 'Consolas', 'Bitstream Vera Sans Mono', 'Courier', monospace;
 $font-family--primary : $font-family-sans;
-$font-family--secondary : $font-family-sans;
+$font-family--secondary : 'Lato', $font-family-sans;
 
 //Colors
 $black: #000;
@@ -49,7 +49,8 @@ $green: #36D7B7;
 $white: #fff;
 $blue-bayoux: #506a85;
 $caribbean-green: #00bb9b;
-$athens-gray : #f5f7f9;
+$athens-gray: #f5f7f9;
+$cadet-blue: #a3b1bf;
 
 //Message Colors
 // $error: lighten($red,5%) !default;

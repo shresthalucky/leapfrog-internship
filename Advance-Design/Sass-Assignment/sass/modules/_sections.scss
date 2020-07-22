@@ -1,0 +1,49 @@
+section {
+
+  .container {
+    height: 100%;
+    display: table;
+    text-align: center;
+  }
+  
+  .content {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.hero {
+  width: 100%;
+  height: calc(100vh - 161px);
+  background-color: $blue-bayoux;
+  text-align: center;
+
+  @include e(content) {
+    font-family: $font-family--secondary;
+    float: none;
+    margin: 0 auto;
+  }
+
+  @include e(heading) {
+    font-family: $font-family--secondary;
+    font-size: 34px;
+    color: $white;
+    text-transform: uppercase;
+
+    @include mq(md) {
+      font-size: 78px;
+    }
+  }
+
+  @include e(p) {
+    color: $cadet-blue;
+    padding-top: 20px;
+    padding-bottom: 58px;
+    font-size: $default-font-size;
+    font-weight: 700;
+
+    @include mq(md) {
+      font-size: 24px;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# Files
+.DS_Store
+Read Me.txt
+npm-debug.log
+
+# Directories
+**/node_modules/
+**/dist/
+**/bower_components/
+**/.sass-cache/
+
+# sass-starter
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE
+
+Advance-Design/Sass-Assignment/README.md
+Advance-Design/Sass-Assignment/sass/libs
+Advance-Design/Sass-Assignment/sass/modules/_example.scss
+Advance-Design/Sass-Assignment/sass/utilities/_theme.scss

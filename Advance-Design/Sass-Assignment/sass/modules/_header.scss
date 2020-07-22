@@ -1,0 +1,121 @@
+.header {
+  @include e(less-info) {
+    background-color: $athens-gray;
+    padding: 14px 0;
+    font-weight: 400;
+    border-bottom: 1px solid palette(gray-shades, dark);
+  }
+
+  @include e(navbar) {
+    padding: 36px 0;
+  }
+}
+
+.less-info {
+  text-align: center;
+
+  span {
+    margin-right: 26px;
+    font-size: $small-font-size;
+  }
+
+  span:last-child {
+    margin-right: 0;
+  }
+
+  @include e(left) {
+    i {
+      margin-right: 10px;
+    }
+
+    @include mq(md) {
+      float: left;
+    }
+  }
+
+  @include e(right) {
+    display: none;
+
+    @include mq(md) {
+      float: right;
+      display: block;
+    }
+  }
+}
+
+.navbar {
+  @include e(nav) {
+    float: left;
+  }
+
+  @include e(search-icon) {
+    display: none;
+
+    @include mq(md) {
+      display: block;
+      float: right;
+      padding: 12px 0;
+    }
+  }
+}
+
+.nav {
+  width: 100%;
+
+  @include mq(md) {
+    width: calc(100% - 16px);
+  }
+
+  @include e(holder) {
+    @include mq(md) {
+      float: left;
+    }
+  }
+
+  @include e(logo) {
+    float: left;
+    
+    @include mq(lg) {
+      margin-right: 88px;
+    }
+  }
+
+  @include e(nav-icon) {
+    float: right;
+    padding: 12px 0;
+
+    @include mq(md) {
+      display: none;
+    }
+
+    .icon-btn {
+      margin-left: 20px;
+    }
+  }
+
+  @include e(nav-links) {
+    display: none;
+
+    @include mq(md) {
+      display: block;
+      float: left;
+      padding: 12px 0;
+    }
+
+    li {
+      font-weight: 700;
+      font-size: $default-font-size;
+      padding: 12px 0;
+
+      @include mq(md) {
+        margin-right: 20px;
+        display: inline-block;
+      }
+
+      @include mq(lg) {
+        margin-right: 44px;
+        padding: 0;
+      }
+    }
+  }
+}

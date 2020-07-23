@@ -37,3 +37,17 @@
   white-space: nowrap;
 }
 
+.content-text {
+  @extend .col-xs-10;
+  float: none !important;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 76px;
+  font: 400 $default-font-size $font-family--primary;
+  line-height: 1.5;
+  
+  @include mq(md) {
+    font-size: 22px;
+  }
+}
+

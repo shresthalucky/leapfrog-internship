@@ -95,6 +95,11 @@ $palettes: (
     base: $blue-bayoux,
     dark: darken($blue-bayoux,20%),
     light: lighten($blue-bayoux,20%)
+  ),
+  green-shades: (
+    base: $caribbean-green,
+    dark: darken($caribbean-green, 20%),
+    light: lighten($caribbean-green, 20%)
   )
 );
 
@@ -105,10 +110,15 @@ $small-font-size: $default-font-size - 2px;
 $lg-font-size: $default-font-size + 2px;
 
 //Heading font size vairables
+// $heading-line-height: 28px !default;
+// $head1-font-size: 26px !default;
+// $head2-font-size: $head1-font-size - 4px !default;
+// $head3-font-size: $head1-font-size - 8px !default;
+
 $heading-line-height: 28px !default;
-$head1-font-size: 26px !default;
-$head2-font-size: $head1-font-size - 4px !default;
-$head3-font-size: $head1-font-size - 8px !default;
+$head1-font-size: 44px !default;
+$head2-font-size: $head1-font-size - 10px !default;
+$head3-font-size: $head1-font-size - 18px !default;
 
 //Color Usage
 $primary-color: $blue-bayoux;
@@ -120,4 +130,4 @@ $color-text: $blue-bayoux;
 $color-link: $blue;
 
 //Path to Assets
-$path--rel: "../images";
+$path--rel: "../../images";

@@ -1,0 +1,22 @@
+.about {
+  background-color: $white;
+  
+  @include e(content) {
+    padding: 120px 0;
+    text-align: center;
+  }
+
+  @include e(heading) {
+    font: 900 44px $font-family--secondary;
+  }
+
+  @include e(text) {
+    @extend .content-text;
+  }
+
+  @include e(qualities) {
+    
+  }
+
+
+}

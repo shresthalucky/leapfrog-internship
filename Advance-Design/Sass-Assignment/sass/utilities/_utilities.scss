@@ -164,10 +164,10 @@
 // Ellipsis mixin
 // $width  - Value of width or max value of cutoff point in px
 // @usage  - `.Text--info {@include ellipsis(120px) {...}}`
-@mixin ellipsis($width){
-  @extend %ellipsis;
-  width : $width;
-}
+// @mixin ellipsis($width){
+//   @extend %ellipsis;
+//   width : $width;
+// }
 
 //Turn px in rem with px fallback
 @mixin rem($size) {

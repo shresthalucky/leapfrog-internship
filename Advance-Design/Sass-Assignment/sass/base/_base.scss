@@ -47,7 +47,7 @@ ul,ol{
   list-style: none;
 }
 h1,h2,h3,h4,h5,h6{
-  font-family: $font-family--primary;
+  font-family: $font-family--secondary;
   margin: 0;
 }
 h1{
@@ -89,4 +89,8 @@ select{
 option {
   background-color: $white;
   color: $black;
+}
+
+p {
+  line-height: 1.5;
 }

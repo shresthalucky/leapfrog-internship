@@ -710,19 +710,30 @@ p {
   border-radius: 3px;
   color: #fff;
   cursor: pointer;
-  font: 700 20px "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
+  font: 700 16px "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
   .btn:focus {
     outline: none; }
-  .btn--sm {
+  @media (min-width: 768px) {
+    .btn {
+      font-size: 20px; } }
+  .btn--small {
     padding: 4px 8px;
     font-size: 14px; }
-  .btn--md {
-    padding: 24px 68px; }
-  .btn--lg {
-    padding: 24px 68px; }
+  .btn--medium {
+    padding: 18px 42px; }
+    @media (min-width: 768px) {
+      .btn--medium {
+        padding: 22px 42px; } }
+  .btn--large {
+    padding: 18px 68px; }
+    @media (min-width: 768px) {
+      .btn--large {
+        padding: 22px 68px; } }
   .btn--primary {
     box-shadow: 0px 3px 0px #00a286;
     background: #00bb9b; }
+    .btn--primary:hover {
+      background: #00a286; }
 
 .icon-btn {
   border: 0;
@@ -776,7 +787,7 @@ p {
 
 .navbar__search-icon {
   display: none; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     .navbar__search-icon {
       display: block;
       float: right;
@@ -784,10 +795,10 @@ p {
 
 .nav {
   width: 100%; }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     .nav {
       width: calc(100% - 16px); } }
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     .nav__holder {
       float: left; } }
   .nav__logo {
@@ -798,14 +809,14 @@ p {
   .nav__nav-icon {
     float: right;
     padding: 12px 0; }
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       .nav__nav-icon {
         display: none; } }
     .nav__nav-icon .icon-btn {
       margin-left: 20px; }
   .nav__nav-links {
     display: none; }
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       .nav__nav-links {
         display: block;
         float: left;
@@ -814,7 +825,7 @@ p {
       font-weight: 700;
       font-size: 16px;
       padding: 12px 0; }
-      @media (min-width: 768px) {
+      @media (min-width: 992px) {
         .nav__nav-links li {
           margin-right: 20px;
           display: inline-block; } }
@@ -944,8 +955,7 @@ p {
     vertical-align: middle;
     text-align: center; }
   .hero__heading {
-    font-family: "Lato", "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    font-size: 34px;
+    font: 900 34px "Lato", "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 5px; }
@@ -1024,10 +1034,10 @@ p {
     header h1, header nav {
       display: none; }
     header:after {
-      content: "www.domain-name.com"; }
+      content: "www.reen.com"; }
     header:before {
       display: block;
-      content: "Thank you for printing our content at www.domain-name.com. Please check back soon for new contents.";
+      content: "Thank you for printing our content at www.reen.com. Please check back soon for new contents.";
       margin-bottom: 10px;
       border: 1px solid #bbb;
       padding: 6px 8px;

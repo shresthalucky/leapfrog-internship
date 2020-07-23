@@ -1,5 +1,5 @@
 .footer {
-  background-color: darken($blue-bayoux, 15%);
+  background-color: darken($primary-color, 15%);
 
   @include e(row) {
     margin: 0 -15px;
@@ -20,7 +20,7 @@
 
   @include e(text) {
     text-align: center;
-    color: darken($blue-bayoux, 15%);
+    color: darken($primary-color, 15%);
 
     @include mq(md) {
       float: left;
@@ -29,7 +29,7 @@
 
   @include e(bottom) {
     padding: 32px 0;
-    background-color: darken($blue-bayoux, 25%);
+    background-color: darken($primary-color, 25%);
     font-size: $small-font-size;
     text-align: center;
 

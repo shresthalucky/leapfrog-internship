@@ -6,7 +6,7 @@
   @include e(search-icon) {
     display: none;
 
-    @include mq(md) {
+    @include mq(lg) {
       display: block;
       float: right;
       padding: 12px 0;

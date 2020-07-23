@@ -1,8 +1,8 @@
 .hero {
   width: 100%;
   height: calc(100vh - 161px);
-  background-color: $blue-bayoux;
-  background: url($path--rel + '/hero.png') no-repeat center;
+  background-color: $primary-color;
+  background: url($path--rel + "/hero.png") no-repeat center;
   background-size: cover;
   display: table;
 
@@ -13,8 +13,7 @@
   }
 
   @include e(heading) {
-    font-family: $font-family--secondary;
-    font-size: 34px;
+    font: 900 34px $font-family--secondary;
     color: $white;
     text-transform: uppercase;
     letter-spacing: 5px;

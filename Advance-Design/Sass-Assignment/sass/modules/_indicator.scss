@@ -5,7 +5,7 @@
   background-color: $primary-color;
   display: inline-block;
   margin: 0 2px;
-  
+
   @include m(active) {
     background-color: $accent-color;
   }

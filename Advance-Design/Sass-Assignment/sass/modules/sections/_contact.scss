@@ -1,6 +1,6 @@
 .contact {
   background-color: $white;
-  
+
   @include e(content) {
     @extend .content;
   }

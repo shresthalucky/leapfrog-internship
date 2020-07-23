@@ -1,0 +1,62 @@
+.footer {
+  background-color: darken($blue-bayoux, 15%);
+
+  @include e(row) {
+    margin: 0 -15px;
+    padding: 72px 0;
+  }
+
+  @include e(col) {
+    @extend .col-sm-6;
+    @extend .col-md-6;
+    @extend .col-lg-3;
+
+    margin-top: 30px;
+
+    @include mq(lg) {
+      margin: 0;
+    }
+  }
+
+  @include e(text) {
+    text-align: center;
+    color: darken($blue-bayoux, 15%);
+
+    @include mq(md) {
+      float: left;
+    }
+  }
+
+  @include e(bottom) {
+    padding: 32px 0;
+    background-color: darken($blue-bayoux, 25%);
+    font-size: $small-font-size;
+    text-align: center;
+
+    @include mq(md) {
+      text-align: left;
+    }
+
+    ul {
+      float: right;
+      margin-top: 16px;
+
+      @include mq(md) {
+        margin: 0;
+      }
+    }
+
+    li {
+      display: inline-block;
+    }
+
+    li:before {
+      content: "·";
+      padding: 6px;
+    }
+
+    li:first-child:before {
+      content: "";
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.f-column {
+
+  @include e(heading){
+    color: $white;
+    margin-bottom: 24px;
+  }
+
+  @include e(text) {
+    font-size: $small-font-size;
+    margin: 24px 0;
+    color: $cadet-blue;
+
+    span {
+      display: block;
+    }
+
+    i.fas, i.far, i.fa {
+      margin-right: 10px;
+    }
+  }
+
+  @include e(link) {
+    color: $cadet-blue;
+    font-weight: 700;
+  }
+
+  @include e(showcase-image) {
+    width: 49%;
+    display: inline-block;
+    padding-bottom: 4px;
+
+    &:nth-child(odd){
+      padding-right: 2px;
+    }
+
+    &:nth-child(even){
+      padding-left: 2px;
+    }
+  }
+
+  @include e(input) {
+    background-color: palette(blue-shades, dark);
+    border-radius: 3px;
+    padding: 6px 6px;
+
+    input {
+      float: left;
+      background: transparent;
+      color: $cadet-blue;
+      font: $small-font-size $font-family--primary;
+      border: 0;
+      padding: 5px 0;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $cadet-blue;
+      }
+    }
+
+    button {
+      float: right;
+    }
+  }
+}

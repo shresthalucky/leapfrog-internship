@@ -2,21 +2,19 @@
   background-color: $white;
   
   @include e(content) {
-    padding: 120px 0;
-    text-align: center;
-  }
-
-  @include e(heading) {
-    font: 900 44px $font-family--secondary;
+    @extend .content;
   }
 
   @include e(text) {
     @extend .content-text;
   }
-
+  
   @include e(qualities) {
-    
+    margin: 0 -15px;
   }
 
-
+  @include e(quality) {
+    @extend .col-sm-12;
+    @extend .col-lg-4;
+  }
 }

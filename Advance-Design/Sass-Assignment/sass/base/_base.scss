@@ -8,13 +8,13 @@
 // ==========================================================================
 
 // Reset CSS
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   // Global Clearfixing
-  @if $grid-type == 'float'{
-    &:after{
+  @if $grid-type == "float" {
+    &:after {
       clear: both;
       content: "";
       display: block;
@@ -23,47 +23,68 @@
 }
 
 // Base Code
-html, body{
+html,
+body {
   font-size: 100%;
 }
-body{
+body {
   -webkit-font-smoothing: antialiased;
   color: $color-text;
   font-family: $font-family--primary;
   text-rendering: optimizeLegibility;
 }
-a{
+a {
   outline: none;
   color: $color-link;
   text-decoration: none;
-  transition: color .2s;
+  transition: color 0.2s;
 }
-a, span, strong {
-  &:after{
+a,
+span,
+strong {
+  &:after {
     @extend %clearfix-none;
   }
 }
-ul,ol{
+ul,
+ol {
   list-style: none;
 }
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-family--secondary;
   margin: 0;
 }
-h1{
+h1 {
   font-size: $head1-font-size;
+
+  @include mq(md) {
+    font-size: $head1-lg-font-size;
+  }
 }
-h2{
+h2 {
   font-size: $head2-font-size;
+
+  @include mq(md) {
+    font-size: $head2-lg-font-size;
+  }
 }
-h3{
+h3 {
   font-size: $head3-font-size;
+
+  @include mq(md) {
+    font-size: $head3-lg-font-size;
+  }
 }
-img{
+img {
   max-width: 100%;
   vertical-align: top;
 }
-select{
+select {
   border: 1px solid $gray;
   border-radius: 4px;
   cursor: pointer;
@@ -81,7 +102,7 @@ select{
   //   padding: theme-property(selectPadding);
   // }
 
-  &:focus{
+  &:focus {
     outline: none;
     border-color: $light-blue;
   }

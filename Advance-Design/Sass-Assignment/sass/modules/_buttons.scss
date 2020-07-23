@@ -21,4 +21,9 @@
   background: transparent;
   padding: 0;
   color: $blue-bayoux;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 }

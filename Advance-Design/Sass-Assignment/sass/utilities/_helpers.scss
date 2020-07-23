@@ -37,6 +37,15 @@
   white-space: nowrap;
 }
 
+.content {
+  padding: 60px 0;
+  text-align: center;
+
+  @include mq(md) {
+    padding: 120px 0;
+  }
+}
+
 .content-text {
   @extend .col-xs-10;
   float: none !important;
@@ -50,4 +59,3 @@
     font-size: 22px;
   }
 }
-

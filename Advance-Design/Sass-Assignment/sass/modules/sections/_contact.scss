@@ -1,0 +1,11 @@
+.contact {
+  background-color: $white;
+
+  @include e(content) {
+    @extend .content;
+  }
+
+  @include e(text) {
+    @extend .content-text;
+  }
+}

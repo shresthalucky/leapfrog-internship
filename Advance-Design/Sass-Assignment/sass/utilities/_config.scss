@@ -4,7 +4,7 @@
 // ==========================================================================
 
 //Enter your Web Address here for print media
-$domain-name: "www.domain-name.com";
+$domain-name: "www.reen.com";
 
 //Text
 $base__font-size: 16px;
@@ -44,18 +44,16 @@ $blue: #3A539B;
 $light-blue: #009BDE;
 $yellow: #F7CA18;
 $green: #36D7B7;
-
-
 $white: #fff;
 $blue-bayoux: #506a85;
 $caribbean-green: #00bb9b;
 $athens-gray: #f5f7f9;
 $cadet-blue: #a3b1bf;
 
-//Message Colors
-// $error: lighten($red,5%) !default;
-// $success: $green !default;
-// $edit: $yellow !default;
+// Message Colors
+$error: lighten($red,5%) !default;
+$success: $green !default;
+$edit: $yellow !default;
 
 //Breakpoints
 $sm-device: 576px;
@@ -63,61 +61,54 @@ $md-device: 768px;
 $lg-device: 992px;
 $xl-device: 1200px;
 
-//UI Colors
-// $ui-colors: (
-//   default: $blue,
-//   success: $success,
-//   error: $error,
-//   warning: $edit
-// );
+// UI Colors
+$ui-colors: (
+  default: $blue,
+  success: $success,
+  error: $error,
+  warning: $edit
+);
 
 //Color Palette
-// $palettes: (
-//   gray-shades: (
-//     base: $gray,
-//     dark: darken($gray,20%),
-//     light: lighten($gray,20%)
-//   ),
-//   blue-shades: (
-//     base: $blue,
-//     dark: darken($blue,20%),
-//     light: lighten($blue,20%)
-//   )
-// );
-
 $palettes: (
   gray-shades: (
     base: $athens-gray,
-    dark: darken($athens-gray,20%),
-    light: lighten($athens-gray,20%)
+    dark: darken($athens-gray,5%),
+    light: lighten($athens-gray,5%)
   ),
   blue-shades: (
     base: $blue-bayoux,
-    dark: darken($blue-bayoux,20%),
-    light: lighten($blue-bayoux,20%)
+    dark: darken($blue-bayoux,5%),
+    light: lighten($blue-bayoux,5%)
+  ),
+  green-shades: (
+    base: $caribbean-green,
+    dark: darken($caribbean-green, 5%),
+    light: lighten($caribbean-green, 5%)
   )
 );
 
-
 //Font size variables
-$default-font-size: $base__font-size - 2px;
+$default-font-size: $base__font-size;
 $small-font-size: $default-font-size - 2px;
 $lg-font-size: $default-font-size + 2px;
 
 //Heading font size vairables
-$heading-line-height: 28px !default;
-$head1-font-size: 26px !default;
-$head2-font-size: $head1-font-size - 4px !default;
-$head3-font-size: $head1-font-size - 8px !default;
+$heading-line-height: 1.5 !default;
+$head1-font-size: 32px !default;
+$head2-font-size: $head1-font-size - 8px !default;
+$head3-font-size: $head1-font-size - 14px !default;
+
+// larger screen font size
+$head1-lg-font-size: $head1-font-size + 12px;
+$head2-lg-font-size: $head1-font-size - 10px !default;
+$head3-lg-font-size: $head1-font-size - 12px !default;
 
 //Color Usage
 $primary-color: $blue-bayoux;
-// $secondary-color: $black;
 $accent-color: $caribbean-green;
-// $shadow-color: rgba($black, .2);
-// $border-color: $gray;
 $color-text: $blue-bayoux;
-$color-link: $blue;
+$color-link: $blue-bayoux;
 
 //Path to Assets
-$path--rel: "../images";
+$path--rel: "../../images";

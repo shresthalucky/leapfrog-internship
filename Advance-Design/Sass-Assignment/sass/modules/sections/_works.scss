@@ -1,0 +1,45 @@
+.works {
+  background-color: $athens-gray;
+  
+  @include e(content) {
+    @extend .content;
+  }
+
+  @include e(text) {
+    @extend .content-text;
+  }
+
+  @include e(showcase-lg) {
+    margin: 0 -15px;
+    margin-bottom: 20px;
+
+    @include mq(md) {
+      margin-bottom: 80px;
+    }
+  }
+
+  @include e(article) {
+    @extend .col-sm-12;
+    @extend .col-md-6;
+
+    margin: 10px 0;
+
+    @include mq(md) {
+      margin: 0;
+    }
+  }
+
+  @include e(showcase-sm) {
+    margin: 0 -15px;
+  }
+
+  @include e(image) {
+    @extend .col-sm-6;
+    @extend .col-md-3;
+    margin: 15px 0;
+  }
+
+  @include e(indicator-holder) {
+    margin-top: 44px;
+  }
+}

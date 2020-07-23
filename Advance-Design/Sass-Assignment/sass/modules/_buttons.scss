@@ -1,16 +1,46 @@
 .btn {
-  padding: 24px 68px;
   border: 0;
   border-radius: 3px;
   color: $white;
   cursor: pointer;
-  font-weight: 700;
-  font-size: $default-font-size + 4px;
-  font-family: $font-family--primary;
+  font: 700 $default-font-size $font-family--primary;
+
+  &:focus {
+    outline: none;
+  }
+
+  @include mq(md) {
+    font-size: $default-font-size + 4px;
+  }
+
+  @include m(small) {
+    padding: 4px 8px;
+    font-size: $small-font-size;
+  }
+
+  @include m(medium) {
+    padding: 18px 42px;
+
+    @include mq(md) {
+      padding: 22px 42px;
+    }
+  }
+
+  @include m(large) {
+    padding: 18px 68px;
+
+    @include mq(md) {
+      padding: 22px 68px;
+    }
+  }
 
   @include m(primary) {
-    border: 1px solid $caribbean-green;
-    background: $caribbean-green;
+    box-shadow: 0px 3px 0px palette(green-shades, dark);
+    background: $accent-color;
+
+    &:hover {
+      background: palette(green-shades, dark);
+    }
   }
 }
 
@@ -18,5 +48,10 @@
   border: 0;
   background: transparent;
   padding: 0;
-  color: $blue-bayoux;
+  color: $primary-color;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 }

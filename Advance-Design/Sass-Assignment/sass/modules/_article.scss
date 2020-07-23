@@ -1,0 +1,18 @@
+.article {
+  background-color: $white;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0px 3px 0px palette(gray-shades, dark);
+
+  @include e(image-holder) {
+    background-color: $accent-color;
+  }
+
+  @include e(description) {
+    padding: 34px 12px;
+
+    p {
+      margin-top: 6px;
+    }
+  }
+}

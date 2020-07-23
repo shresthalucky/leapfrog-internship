@@ -1,0 +1,20 @@
+.about {
+  background-color: $white;
+  
+  @include e(content) {
+    @extend .content;
+  }
+
+  @include e(text) {
+    @extend .content-text;
+  }
+  
+  @include e(qualities) {
+    margin: 0 -15px;
+  }
+
+  @include e(quality) {
+    @extend .col-sm-12;
+    @extend .col-lg-4;
+  }
+}

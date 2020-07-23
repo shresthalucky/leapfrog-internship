@@ -1,0 +1,20 @@
+.quality {
+  text-align: left;
+  margin: 20px 0;
+  
+  @include mq(lg) {
+    margin: 0;
+  }
+
+  @include e(icon) {
+    width: 70px;
+    float: left;
+    font-size: 56px;
+    text-align: right;
+    color: $accent-color;
+  }
+
+  @include e(text) {
+    padding-left: 100px;
+  }
+}

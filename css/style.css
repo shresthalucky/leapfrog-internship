@@ -43,6 +43,11 @@ span.capsule {
   color: #f9a825;
 }
 
+.btn-pink {
+  background-color: #FCE4EC;
+  color: #AD1457;
+}
+
 span.capsule {
   border-radius: 24px;
 }

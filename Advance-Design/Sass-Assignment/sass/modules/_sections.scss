@@ -1,27 +1,18 @@
-section {
-
-  .container {
-    height: 100%;
-    display: table;
-    text-align: center;
-  }
-  
-  .content {
-    display: table-cell;
-    vertical-align: middle;
-  }
-}
-
 .hero {
   width: 100%;
   height: calc(100vh - 161px);
   background-color: $blue-bayoux;
+  text-align: center;
+  // height: 100%;
+  display: table;
   text-align: center;
 
   @include e(content) {
     font-family: $font-family--secondary;
     float: none;
     margin: 0 auto;
+    display: table-cell;
+    vertical-align: middle;
   }
 
   @include e(heading) {
@@ -35,7 +26,7 @@ section {
     }
   }
 
-  @include e(p) {
+  @include e(text) {
     color: $cadet-blue;
     padding-top: 20px;
     padding-bottom: 58px;

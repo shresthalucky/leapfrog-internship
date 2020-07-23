@@ -4,9 +4,7 @@
   border-radius: 3px;
   color: $white;
   cursor: pointer;
-  font-weight: 700;
-  font-size: $default-font-size + 4px;
-  font-family: $font-family--primary;
+  font: 700 $default-font-size + 4px $font-family--primary;
 
   @include m(primary) {
     border: 1px solid $caribbean-green;

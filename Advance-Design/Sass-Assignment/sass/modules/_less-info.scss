@@ -1,0 +1,31 @@
+.less-info {
+  text-align: center;
+
+  span {
+    margin-right: 26px;
+    font-size: $small-font-size;
+  }
+
+  span:last-child {
+    margin-right: 0;
+  }
+
+  @include e(left) {
+    i {
+      margin-right: 10px;
+    }
+
+    @include mq(md) {
+      float: left;
+    }
+  }
+
+  @include e(right) {
+    display: none;
+
+    @include mq(md) {
+      float: right;
+      display: block;
+    }
+  }
+}

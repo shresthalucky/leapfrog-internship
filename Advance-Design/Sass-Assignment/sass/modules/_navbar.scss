@@ -1,0 +1,15 @@
+.navbar {
+  @include e(nav) {
+    float: left;
+  }
+
+  @include e(search-icon) {
+    display: none;
+
+    @include mq(md) {
+      display: block;
+      float: right;
+      padding: 12px 0;
+    }
+  }
+}

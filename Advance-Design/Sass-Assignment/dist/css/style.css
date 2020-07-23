@@ -657,16 +657,6 @@ select {
   outline: none;
   color: #ffffff;
   width: 100%; }
-  .theme-default select {
-    background-color: #df2771; }
-  .theme-custom select {
-    background-color: #1B9988; }
-  .theme-cozy select {
-    font-size: 12px;
-    padding: 6px 8px; }
-  .theme-comfortable select {
-    font-size: 14px;
-    padding: 8px 16px; }
   select:focus {
     outline: none;
     border-color: #009BDE; }
@@ -681,9 +671,7 @@ option {
   border-radius: 3px;
   color: #fff;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 18px;
-  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
+  font: 700 18px "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
   .btn--primary {
     border: 1px solid #00bb9b;
     background: #00bb9b; }
@@ -774,24 +762,19 @@ option {
           margin-right: 44px;
           padding: 0; } }
 
-section .container {
-  height: 100%;
-  display: table;
-  text-align: center; }
-
-section .content {
-  display: table-cell;
-  vertical-align: middle; }
-
 .hero {
   width: 100%;
   height: calc(100vh - 161px);
   background-color: #506a85;
+  text-align: center;
+  display: table;
   text-align: center; }
   .hero__content {
     font-family: "Lato", "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     float: none;
-    margin: 0 auto; }
+    margin: 0 auto;
+    display: table-cell;
+    vertical-align: middle; }
   .hero__heading {
     font-family: "Lato", "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     font-size: 34px;
@@ -800,14 +783,14 @@ section .content {
     @media (min-width: 768px) {
       .hero__heading {
         font-size: 78px; } }
-  .hero__p {
+  .hero__text {
     color: #a3b1bf;
     padding-top: 20px;
     padding-bottom: 58px;
     font-size: 14px;
     font-weight: 700; }
     @media (min-width: 768px) {
-      .hero__p {
+      .hero__text {
         font-size: 24px; } }
 
 @media (min-width: 576px) {

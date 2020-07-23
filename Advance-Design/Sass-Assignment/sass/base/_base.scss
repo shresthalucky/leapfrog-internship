@@ -72,14 +72,14 @@ select{
   color: #ffffff;
   width: 100%;
 
-  @include themify(theme-type(color)) {
-    background-color: theme-property(select-bg);
-  }
+  // @include themify(theme-type(color)) {
+  //   background-color: theme-property(select-bg);
+  // }
 
-  @include themify(theme-type(size)) {
-    font-size: theme-property(selectFontSize);
-    padding: theme-property(selectPadding);
-  }
+  // @include themify(theme-type(size)) {
+  //   font-size: theme-property(selectFontSize);
+  //   padding: theme-property(selectPadding);
+  // }
 
   &:focus{
     outline: none;

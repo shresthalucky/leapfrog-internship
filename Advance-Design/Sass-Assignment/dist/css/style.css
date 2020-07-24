@@ -750,7 +750,8 @@ p {
   border-radius: 50%;
   background-color: #506a85;
   display: inline-block;
-  margin: 0 2px; }
+  margin: 0 2px;
+  cursor: pointer; }
   .indicator--active {
     background-color: #00bb9b; }
 

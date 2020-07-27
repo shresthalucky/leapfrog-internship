@@ -163,11 +163,13 @@ class Scoreboard {
     const requiredWins = Math.ceil(this.bestOfGames / 2);
 
     if (playerWins === requiredWins) {
+      Game.state.isOver = true;
       this.endFn(this.playerName);
       return;
     }
 
     if (opponentWins === requiredWins) {
+      Game.state.isOver = true;
       this.endFn('COMPUTER');
       return;
     }

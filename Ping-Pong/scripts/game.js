@@ -177,7 +177,6 @@ function updateScore() {
 
 // Set game states for game over
 function gameOver() {
-  Game.state.isOver = true;
   Game.state.inPlay = false;
   scoreboard.resetState();
   scoreboard.allOver();

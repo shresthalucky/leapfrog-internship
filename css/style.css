@@ -48,6 +48,11 @@ span.capsule {
   color: #AD1457;
 }
 
+.btn-malibu {
+  background-color: #e4f9ff;
+  color: #61dafb;
+}
+
 span.capsule {
   border-radius: 24px;
 }

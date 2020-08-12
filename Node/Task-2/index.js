@@ -1,11 +1,10 @@
 const express = require('express');
 
 const configs = require('./configs');
-const pages = require('./pages');
 const file = require('./utils/file');
+const routes = require('./routes');
 
 const dir = configs.dir;
-const routes = configs.routes;
 const app = express();
 
 /*
@@ -17,14 +16,22 @@ rename a file - http://127.0.0.1:1234/rename/<oldFilename.extension>/<newFilenam
 delete a file - http://127.0.0.1:1234/delete/<filename.extension>
 */
 
-app.get(routes.home, (req, res) => {
-  res.send('welcome to homepage!');
+app.use('/', routes);
+
+// file system error handler middleware
+app.use((err, req, res, next) => {
+  res.json({
+    errorCode: err.code,
+    message: err.message
+  });
 });
 
-app.use(routes.write, pages.write);
-app.use(routes.read, pages.read);
-app.use(routes.rename, pages.rename);
-app.use(routes.del, pages.del);
+// page not found middleware
+app.use((req, res, next) => {
+  res.json({
+    statusCode: 404
+  })
+})
 
 app.listen(configs.port, configs.host, () => {
   file.makeDir(dir).then(message => console.log(message));

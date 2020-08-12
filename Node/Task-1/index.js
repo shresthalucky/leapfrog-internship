@@ -8,10 +8,10 @@ const dir = './files';
 
 /*
 Endpoints to:
-write a file - http://127.0.0.1/write/<filename.extension>/<content>
-read a file - http://127.0.0.1/read/<filename.extension>
-rename a file - http://127.0.0.1/rename/<oldFilename.extension>/<newFilename.extension>
-delete a file - http://127.0.0.1/delete/<filename.extension>
+write a file - http://127.0.0.1:1234/write/<filename.extension>/<content>
+read a file - http://127.0.0.1:1234/read/<filename.extension>
+rename a file - http://127.0.0.1:1234/rename/<oldFilename.extension>/<newFilename.extension>
+delete a file - http://127.0.0.1:1234/delete/<filename.extension>
 */
 
 const server = http.createServer((req, res) => {

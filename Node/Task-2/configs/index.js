@@ -1,5 +1,3 @@
-const routes = require('./routes');
-
 const host = '127.0.0.1';
 const port = 1234;
 const dir = './saved';
@@ -7,6 +5,5 @@ const dir = './saved';
 module.exports = {
   host,
   port,
-  dir,
-  routes
+  dir
 }

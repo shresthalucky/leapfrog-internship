@@ -2,6 +2,9 @@ const jwt = require('jsonwebtoken');
 
 const usersService = require("../services/users.service")
 
+/* 
+get list of users
+ */
 function getUsers(req, res, next) {
   usersService.getUsers()
     .then(users => {
@@ -10,6 +13,9 @@ function getUsers(req, res, next) {
     .catch(next);
 }
 
+/* 
+create new user and send JWT with user id in response
+ */
 function createUser(req, res, next) {
 
   usersService.createUser(req.body)

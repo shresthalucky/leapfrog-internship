@@ -1,5 +1,8 @@
 const crypto = require('crypto');
 
+/* 
+middleware to generate password salt and password hash from raw password
+ */
 function generatePassword(req, res, next) {
 
   const salt = crypto.randomBytes(10).toString('hex');

@@ -1,5 +1,8 @@
 const connection = require('../utils').connection;
 
+/* 
+get list of users from user table
+ */
 function getUsers() {
 
   return new Promise((resolve, reject) => {
@@ -10,6 +13,9 @@ function getUsers() {
   });
 }
 
+/* 
+insert new user with username, password_hash and password_salt into user table
+ */
 function createUser({ username, passwordHash, passwordSalt }) {
 
   const data = {

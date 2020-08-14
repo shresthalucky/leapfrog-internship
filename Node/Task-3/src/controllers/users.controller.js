@@ -5,27 +5,26 @@ const usersService = require("../services/users.service")
 /* 
 get list of users
  */
-function getUsers(req, res, next) {
-  usersService.getUsers()
-    .then(users => {
-      res.json(users);
-    })
-    .catch(next);
+async function getUsers(req, res, next) {
+  try {
+    const users = await usersService.getUsers()
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
 }
 
 /* 
 create new user and send JWT with user id in response
  */
-function createUser(req, res, next) {
-
-  usersService.createUser(req.body)
-    .then(userId => {
-
-      const token = jwt.sign({ userId }, process.env.JWT_KEY);
-      res.json({ token });
-
-    })
-    .catch(next);
+async function createUser(req, res, next) {
+  try {
+    const userId = await usersService.createUser(req.body);
+    const token = jwt.sign({ userId }, process.env.JWT_KEY);
+    res.json({ token });
+  } catch (err) {
+    next(err);
+  }
 }
 
 module.exports = {

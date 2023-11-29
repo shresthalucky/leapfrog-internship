@@ -176,6 +176,10 @@ a.btn-disabled {
   color: #37474f;
 }
 
+.table-wrapper table td:last-child {
+  white-space: nowrap;
+}
+
 table.list-assignment td a.btn {
   margin: 0 4px 0 4px;
 }
